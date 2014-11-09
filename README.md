@@ -1,0 +1,1 @@
+# Bloonix Plugin Configuration Files
