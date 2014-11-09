@@ -1,0 +1,383 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-apache2",
+         "options" : [
+            {
+               "value" : "url",
+               "name" : "URL",
+               "default" : "http://localhost/server-status?auto",
+               "description" : "This is the URL to call the server-status of Apache. Please enter the full URL with the query string.",
+               "value_type" : "string",
+               "option" : "url",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Timeout",
+               "default" : 10,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "value_type" : "number",
+               "option" : "timeout",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Warning threshold",
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 1
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Critical threshold",
+               "default" : null,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 1
+            },
+            {
+               "value" : "username",
+               "name" : "Username",
+               "default" : null,
+               "description" : "A username for a HTTP Auth-Basic authentication.",
+               "value_type" : "string",
+               "option" : "username",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "password",
+               "name" : "Password",
+               "default" : null,
+               "description" : "A password for a HTTP Auth-Basic authentication.",
+               "value_type" : "string",
+               "option" : "password",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "hostname or ip address",
+               "name" : "Hostname or IP address",
+               "default" : null,
+               "description" : "A hostname or IP address to connect to.",
+               "value_type" : "string",
+               "option" : "host",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value_type" : 0,
+               "name" : "Use IPv6",
+               "option" : "use-ipv6",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "Use IPv6 to connect to the host."
+            }
+         ],
+         "flags" : "",
+         "version" : null,
+         "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  or if a unit makes sense\n\n",
+               "    key:operator:threshold + UNIT\n\n",
+               "  where the unit can be in ",
+               "bytes",
+               ".\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n",
+               "\n",
+               "  Allowed units for bytes:\n\n",
+               "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
+               "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
+               "    GB = Gigabytes   EB = Exabytes\n\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "idleworker"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "reqpersec"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "bytperreq"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "bytpersec"
+               }
+            ]
+         },
+         "examples" : [
+            {
+               "command_line" : "check-apache2 --url 'http://localhost/server-status?auto' --warning 'idleworker:lt:10' --critical 'idleworker:lt:5' --warning 'reqpersec:ge:1000' --critical 'reqpersec:ge:2000'",
+               "arguments" : [
+                  "url",
+                  "http://localhost/server-status?auto",
+                  "warning",
+                  "idleworker:lt:10",
+                  "critical",
+                  "idleworker:lt:5",
+                  "warning",
+                  "reqpersec:ge:1000",
+                  "critical",
+                  "reqpersec:ge:2000"
+               ],
+               "description" : [
+                  "Simple example:",
+                  "",
+                  "- return WARNING if idleworker is less than 10",
+                  "- return critical if idleworker is less than 5",
+                  "- return warning if reqpersec is equal or higher than 1000",
+                  "- return critical if reqpersec is equal or higher than 2000"
+               ]
+            }
+         ]
+      },
+      "plugin" : "Apache2.Statistics",
+      "prefer" : "localhost",
+      "description" : "Apache2 webserver statistics and process status.",
+      "netaccess" : "yes",
+      "id" : "1",
+      "category" : "System,Webserver,Apache2",
+      "abstract" : "Apache2 process status",
+      "command" : "check-apache2",
+      "datatype" : "statistic"
+   },
+   "chart" : [
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "count",
+            "series" : [
+               {
+                  "color" : "#66c066",
+                  "name" : "waitproc"
+               },
+               {
+                  "color" : "#0000ff",
+                  "name" : "startup"
+               },
+               {
+                  "color" : "#ff6666",
+                  "name" : "readreq"
+               },
+               {
+                  "color" : "#bf00bf",
+                  "name" : "sendrep"
+               },
+               {
+                  "color" : "#ff0000",
+                  "name" : "keepalive"
+               },
+               {
+                  "color" : "#7648eb",
+                  "name" : "dnslookup"
+               },
+               {
+                  "color" : "#7f7fff",
+                  "name" : "closeconn"
+               },
+               {
+                  "color" : "#00ffff",
+                  "name" : "logging"
+               },
+               {
+                  "color" : "#000000",
+                  "name" : "gracefin"
+               },
+               {
+                  "color" : "#66c066",
+                  "name" : "idleclw"
+               }
+            ]
+         },
+         "title" : "Apache - process status",
+         "id" : "1"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "workers",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "busyworkers"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "idleworker"
+               }
+            ]
+         },
+         "title" : "Apache - workers",
+         "id" : "2"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "bytes/req (-) - bytes/s (+)",
+            "series" : [
+               {
+                  "color" : "#005467",
+                  "name" : "bytpersec"
+               },
+               {
+                  "opposite" : "true",
+                  "color" : "#ff7a0d",
+                  "name" : "bytperreq"
+               }
+            ],
+            "units" : "bytes"
+         },
+         "title" : "Apache - bytes/s, bytes/req",
+         "id" : "3"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "requests/s",
+            "series" : {
+               "color" : "#005467",
+               "name" : "reqpersec"
+            }
+         },
+         "title" : "Apache - requests",
+         "id" : "4"
+      }
+   ],
+   "statistic" : [
+      {
+         "description" : "Sending Reply.",
+         "alias" : "Sending reply",
+         "statkey" : "sendrep",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Reading Request.",
+         "alias" : "Reading request",
+         "statkey" : "readreq",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Bytes per request.",
+         "alias" : "Bytes/request",
+         "statkey" : "bytperreq",
+         "units" : "bytes",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Keepalive read.",
+         "alias" : "Keepalive read",
+         "statkey" : "keepalive",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "DNS Lookup.",
+         "alias" : "DNS lookup",
+         "statkey" : "dnslookup",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Idle workers.",
+         "alias" : "Idle workers",
+         "statkey" : "idleworker",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Waiting for Connection.",
+         "alias" : "Waiting for connection",
+         "statkey" : "waitproc",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Requests per second.",
+         "alias" : "Requests/second",
+         "statkey" : "reqpersec",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Starting up.",
+         "alias" : "Starting up",
+         "statkey" : "startup",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Bytes per second.",
+         "alias" : "Bytes/second",
+         "statkey" : "bytpersec",
+         "units" : "bytes",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Gracefully finishing.",
+         "alias" : "Gracefully finishing",
+         "statkey" : "gracefin",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Idle cleanup of worker.",
+         "alias" : "Idle cleanup",
+         "statkey" : "idleclw",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Logging.",
+         "alias" : "Logging",
+         "statkey" : "logging",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Workers currently busy.",
+         "alias" : "Busy workers",
+         "statkey" : "busyworkers",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Closing connection.",
+         "alias" : "Closing connection",
+         "statkey" : "closeconn",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Open slot with no current process.",
+         "alias" : "Open slots",
+         "statkey" : "openslot",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Total accesses processed.",
+         "alias" : "Total accesses",
+         "statkey" : "ttlacc",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Total bytes processed.",
+         "alias" : "Total bytes",
+         "statkey" : "ttlbyt",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      }
+   ]
+}

@@ -1,0 +1,84 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-linux-updates",
+         "info" : [
+            "This plugin works only with Debian/Ubuntu or RedHat/CentOS/Fedora like systems. On RedHat/CentOS/Fedora you have to install the package 'yum-security'."
+         ],
+         "options" : [
+            {
+               "value" : "count",
+               "name" : "Warning threshold for normal packages",
+               "default" : null,
+               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a WARNING is triggered.",
+               "value_type" : "int",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "count",
+               "name" : "Critical threshold for normal packages",
+               "default" : null,
+               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages arei available then a CRITICAL is triggered.",
+               "value_type" : "int",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "count",
+               "name" : "Warning threshold for security packages",
+               "default" : null,
+               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a WARNING is triggered.",
+               "value_type" : "int",
+               "option" : "warning-security",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "count",
+               "name" : "Critical threshold for security packages",
+               "default" : null,
+               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a CRITICAL is triggered.",
+               "value_type" : "int",
+               "option" : "critical-security",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Timeout",
+               "default" : 30,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "value_type" : "number",
+               "option" : "timeout",
+               "mandatory" : 0,
+               "multiple" : 0
+            }
+         ],
+         "flags" : "sudo",
+         "version" : "0.3",
+         "examples" : [
+            {
+               "command_line" : "check-linux-updates --critical-security '1'",
+               "arguments" : [
+                  "critical-security",
+                  1
+               ],
+               "description" : [
+                  "Check if updates are available and trigger a critical status if",
+                  "there is 1 or more as 1 package for security is available."
+               ]
+            }
+         ]
+      },
+      "plugin" : "Linux.Updates.Check",
+      "description" : "Check if updates are available.",
+      "id" : "23",
+      "category" : "System,Linux,Security",
+      "abstract" : "Linux check updates",
+      "command" : "check-linux-updates",
+      "datatype" : "none"
+   }
+}

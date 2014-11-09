@@ -1,0 +1,239 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-imap",
+         "options" : [
+            {
+               "value" : "seconds",
+               "name" : "Warning threshold",
+               "default" : 5,
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
+               "value_type" : "number",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Critical threshold",
+               "default" : 8,
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "value_type" : "number",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Timeout",
+               "default" : 10,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "value_type" : "number",
+               "option" : "timeout",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "hostname or ip address",
+               "name" : "Hostname or IP address",
+               "default" : null,
+               "description" : "A hostname or IP address to connect to.",
+               "value_type" : "string",
+               "option" : "host",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "port",
+               "name" : "Port number",
+               "default" : null,
+               "description" : "A port number to connect to.",
+               "value_type" : "int",
+               "option" : "port",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "ipaddr",
+               "name" : "Bind to IP address",
+               "default" : null,
+               "description" : "A local IP address to bind to.",
+               "value_type" : "string",
+               "option" : "bind",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value_type" : 0,
+               "name" : "Use IPv6",
+               "option" : "use-ipv6",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "Use IPv6 to connect to the host."
+            },
+            {
+               "value_type" : 0,
+               "name" : "Use secure connection via SSL",
+               "option" : "use-ssl",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "Use secure connection via SSL."
+            },
+            {
+               "value" : "username",
+               "name" : "Username",
+               "default" : null,
+               "description" : "The username to use for the login.",
+               "value_type" : "string",
+               "option" : "username",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "password",
+               "name" : "Password",
+               "default" : null,
+               "description" : "The password for the user to login.",
+               "value_type" : "string",
+               "option" : "password",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "mailbox",
+               "name" : "Mailbox",
+               "default" : "INBOX",
+               "description" : "The mailbox to query.",
+               "value_type" : "string",
+               "option" : "mailbox",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "string",
+               "name" : "Search for mails",
+               "default" : null,
+               "description" : "Search for the given string in the subject of each mail. If the\nstring was not found then the value of option 'misses' will be\nincreased. If the threshold of option 'misses' is exceded then\na critical status will be returned.\nAllowed characters for the search string: a-zA-Z_0-9",
+               "value_type" : "string",
+               "option" : "search",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "number",
+               "name" : "Misses",
+               "default" : 10,
+               "description" : "Set the number of allowed misses until a critical status will be\nreturned if the given string that is set with options 'search'\nwas not found in the subject of any mail.",
+               "value_type" : "string",
+               "option" : "misses",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value_type" : 0,
+               "name" : "Delete found mails",
+               "option" : "delete",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "If this option is set then all mails will be deleted from the mailbox\nBUT only if the subject of a mail contains the string that is set\nwith option 'search'."
+            },
+            {
+               "value_type" : 0,
+               "name" : "Delete all mails",
+               "option" : "delete-all",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "If this option is set then all mails will be deleted from the mailbox\nafter the run."
+            }
+         ],
+         "flags" : "",
+         "version" : "0.8",
+         "examples" : [
+            {
+               "command_line" : "check-imap --host '127.0.0.1' --port '993' --warning '5' --critical '10' --use-ssl --username 'bloonix' --password 'secret'",
+               "arguments" : [
+                  "host",
+                  "127.0.0.1",
+                  "port",
+                  993,
+                  "warning",
+                  5,
+                  "critical",
+                  10,
+                  "use-ssl",
+                  null,
+                  "username",
+                  "bloonix",
+                  "password",
+                  "secret"
+               ],
+               "description" : [
+                  "A simple login check with username and password"
+               ]
+            },
+            {
+               "command_line" : "check-imap --host '127.0.0.1' --port '993' --warning '5' --critical '10' --use-ssl --username 'bloonix' --password 'secret' --misses '5' --search 'Bloonix test mail' --delete",
+               "arguments" : [
+                  "host",
+                  "127.0.0.1",
+                  "port",
+                  993,
+                  "warning",
+                  5,
+                  "critical",
+                  10,
+                  "use-ssl",
+                  null,
+                  "username",
+                  "bloonix",
+                  "password",
+                  "secret",
+                  "misses",
+                  5,
+                  "search",
+                  "Bloonix test mail",
+                  "delete",
+                  null
+               ],
+               "description" : [
+                  "In combination with the SMTP check of Bloonix it's possible to check a complete send-and-receive workflow. If you configure a SMTP check to send a mail with the subject 'Bloonix test mail' then it's possible to pick this mails with the IMAP check."
+               ]
+            }
+         ]
+      },
+      "plugin" : "IMAP.Check",
+      "prefer" : "remote",
+      "description" : "IMAP connect statistics",
+      "worldwide" : "yes",
+      "netaccess" : "yes",
+      "abstract" : "IMAP check",
+      "id" : "8",
+      "category" : "Network,Mail",
+      "command" : "check-imap",
+      "datatype" : "statistic"
+   },
+   "chart" : {
+      "options" : {
+         "chart-type" : "area",
+         "ylabel" : "time in ms",
+         "series" : {
+            "color" : "#005467",
+            "name" : "time"
+         },
+         "units" : "null"
+      },
+      "title" : "IMAP connect - response time",
+      "id" : "1"
+   },
+   "statistic" : {
+      "description" : "Time in milliseconds waiting for response.",
+      "alias" : "Response time",
+      "statkey" : "time",
+      "units" : "ms",
+      "datatype" : "float"
+   }
+}

@@ -1,0 +1,135 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-loadavg",
+         "options" : [
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Warning threshold",
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 1
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Critical threshold",
+               "default" : null,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 1
+            }
+         ],
+         "flags" : "",
+         "version" : "0.6",
+         "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "avg1"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "avg5"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "avg15"
+               }
+            ]
+         },
+         "examples" : [
+            {
+               "command_line" : "check-loadavg --warning 'avg1:ge:20' --critical 'avg1:ge:50' --warning 'avg5:ge:20' --critical 'avg5:ge:50'",
+               "arguments" : [
+                  "warning",
+                  "avg1:ge:20",
+                  "critical",
+                  "avg1:ge:50",
+                  "warning",
+                  "avg5:ge:20",
+                  "critical",
+                  "avg5:ge:50"
+               ],
+               "description" : [
+                  "An example to check the load average and trigger",
+                  "",
+                  "- a warning if avg1 or avg5 is equal or higher than 20",
+                  "- a critical if avg1 or avg5 is equal or higher than 50"
+               ]
+            }
+         ]
+      },
+      "plugin" : "Linux.LoadAVG.Check",
+      "description" : "Linux load average",
+      "id" : "24",
+      "category" : "System,Linux",
+      "abstract" : "Load average check",
+      "command" : "check-loadavg",
+      "datatype" : "statistic"
+   },
+   "chart" : {
+      "options" : {
+         "chart-type" : "line",
+         "ylabel" : "loadavg",
+         "series" : [
+            {
+               "color" : "#e9644a",
+               "name" : "avg1"
+            },
+            {
+               "color" : "#005467",
+               "name" : "avg5"
+            },
+            {
+               "color" : "#9a72ad",
+               "name" : "avg15"
+            }
+         ],
+         "units" : "null"
+      },
+      "title" : "Linux - loadavg",
+      "id" : "1"
+   },
+   "statistic" : [
+      {
+         "description" : "The average processor workload of the last fifteen minutes.",
+         "alias" : "Load average last 15 minutes",
+         "statkey" : "avg15",
+         "units" : "null",
+         "datatype" : "float"
+      },
+      {
+         "description" : "The average processor workload of the last five minutes.",
+         "alias" : "Load average last 5 minutes",
+         "statkey" : "avg5",
+         "units" : "null",
+         "datatype" : "float"
+      },
+      {
+         "description" : "The average processor workload of the last minute.",
+         "alias" : "Load average last minute",
+         "statkey" : "avg1",
+         "units" : "null",
+         "datatype" : "float"
+      }
+   ]
+}

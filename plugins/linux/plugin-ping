@@ -1,0 +1,135 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-ping",
+         "options" : [
+            {
+               "value" : "hostname or ip address",
+               "name" : "Hostname or IP address",
+               "default" : null,
+               "description" : "A hostname or IP address to connect to.",
+               "value_type" : "string",
+               "option" : "host",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Timeout",
+               "default" : 10,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "value_type" : "number",
+               "option" : "timeout",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value_type" : 0,
+               "name" : "Use IPv6",
+               "option" : "use-ipv6",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "Use IPv6 to connect to the host."
+            },
+            {
+               "value" : "packets",
+               "name" : "Packets",
+               "default" : 3,
+               "description" : "Number of packets to send. At least 1 and maximum 10.",
+               "value_type" : "number",
+               "option" : "packets",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Warning threshold",
+               "default" : "2000,33%",
+               "description" : "Set the the maximum average in seconds and loss in percent with a comma separated.",
+               "value_type" : "string",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Critical threshold",
+               "default" : "5000,66%",
+               "description" : "Set the the maximum average in seconds and loss in percent with a comma separated.",
+               "value_type" : "string",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 0
+            }
+         ],
+         "flags" : "",
+         "version" : "0.9",
+         "examples" : [
+            {
+               "command_line" : "check-ping --host '127.0.0.1' --warning '1000,40%' --critical '2000,60%'",
+               "arguments" : [
+                  "host",
+                  "127.0.0.1",
+                  "warning",
+                  "1000,40%",
+                  "critical",
+                  "2000,60%"
+               ],
+               "description" : [
+                  "A simple example:",
+                  "",
+                  "- Trigger a warning if rta is higher than 1000ms or package loss is higher than 40%.",
+                  "- Trigger a critical if rta is higher than 2000ms or package loss is higher than 60%."
+               ]
+            }
+         ]
+      },
+      "plugin" : "Ping.Check",
+      "prefer" : "remote",
+      "description" : "Ping statistics.",
+      "worldwide" : "yes",
+      "netaccess" : "yes",
+      "abstract" : "Ping check",
+      "id" : "35",
+      "category" : "System,Network",
+      "command" : "check-ping",
+      "datatype" : "statistic"
+   },
+   "chart" : {
+      "options" : {
+         "chart-type" : "area",
+         "ylabel" : "loss (-) / rta (+)",
+         "series" : [
+            {
+               "color" : "#005467",
+               "name" : "rta"
+            },
+            {
+               "opposite" : "true",
+               "color" : "#ff7a0d",
+               "name" : "loss"
+            }
+         ],
+         "units" : "null"
+      },
+      "title" : "Ping - round trip average / paket loss",
+      "id" : "1"
+   },
+   "statistic" : [
+      {
+         "description" : "Round trip average in milliseconds.",
+         "alias" : "Round trip average",
+         "statkey" : "rta",
+         "units" : "ms",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Packets loss in percent.",
+         "alias" : "Packets loss",
+         "statkey" : "loss",
+         "units" : "percent",
+         "datatype" : "float"
+      }
+   ]
+}

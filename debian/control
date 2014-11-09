@@ -1,0 +1,14 @@
+Source: bloonix-plugin-config
+Section: net
+Priority: extra
+Maintainer: Jonny Schulz <js@bloonix.de>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.7.3
+Homepage: http://www.bloonix.de/
+
+Package: bloonix-plugin-config
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, bloonix-core, bloonix-dbi, libparams-validate-perl, libjson-perl, libjson-xs-perl
+Description: Bloonix Plugin Configuration Files
+ bloonix-plugin-config provides configuration files
+ for all plugins to import into the database.

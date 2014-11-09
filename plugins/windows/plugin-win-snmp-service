@@ -1,0 +1,147 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-win-snmp-service.pl",
+         "options" : [
+            {
+               "value" : "hostname or ip address",
+               "name" : "Hostname or IP address",
+               "default" : "127.0.0.1",
+               "description" : "A hostname or IP address to connect to.",
+               "value_type" : "string",
+               "option" : "host",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "port",
+               "name" : "Port number",
+               "default" : 161,
+               "description" : "A port number to connect to.",
+               "value_type" : "int",
+               "option" : "port",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "community",
+               "name" : "SNMP community",
+               "default" : "public",
+               "description" : "The SNMP community to connect to the host.",
+               "value_type" : "string",
+               "option" : "community",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "version",
+               "name" : "SNMP version",
+               "default" : 2,
+               "description" : "The SNMP version to use to connect to the host.",
+               "value_type" : "string",
+               "option" : "snmp-version",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "username",
+               "name" : "SNMPv3 username",
+               "default" : null,
+               "description" : "The SNMPv3 username.",
+               "value_type" : "string",
+               "option" : "username",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "authpassword",
+               "name" : "SNMPv3 auth password",
+               "default" : null,
+               "description" : "The SNMPv3 auth password.",
+               "value_type" : "string",
+               "option" : "authpassword",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "authprotocol",
+               "name" : "SNMPv3 auth protocol",
+               "default" : null,
+               "description" : "The SNMPv3 auth protocol.",
+               "value_type" : "string",
+               "option" : "authprotocol",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "privpassword",
+               "name" : "SNMPv3 priv password",
+               "default" : null,
+               "description" : "The SNMPv3 priv password.",
+               "value_type" : "string",
+               "option" : "privpassword",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "privprotocol",
+               "name" : "SNMPv3 priv protocol",
+               "default" : null,
+               "description" : "The SNMPv3 priv protocol.",
+               "value_type" : "string",
+               "option" : "privprotocol",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "string",
+               "name" : "Service name to check",
+               "default" : null,
+               "description" : "This is the service name to check.",
+               "value_type" : "string",
+               "option" : "service",
+               "mandatory" : 1,
+               "multiple" : 1
+            },
+            {
+               "value_type" : 0,
+               "name" : "Match the service name as regex",
+               "option" : "match",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "Use the service name as a regex."
+            }
+         ],
+         "flags" : "",
+         "version" : "0.3",
+         "examples" : [
+            {
+               "command_line" : "check-win-snmp-service.pl --host '127.0.0.1' --port '161' --community 'public' --service 'My Service'",
+               "arguments" : [
+                  "host",
+                  "127.0.0.1",
+                  "port",
+                  161,
+                  "community",
+                  "public",
+                  "service",
+                  "My Service"
+               ],
+               "description" : [
+                  "Example to check if the service 'My Service' is alive:"
+               ]
+            }
+         ]
+      },
+      "plugin" : "Windows.SNMP.Service",
+      "prefer" : "localhost",
+      "description" : "Check the status of a Windows services over SNMP.",
+      "netaccess" : "yes",
+      "id" : "57",
+      "category" : "System,Windows,SNMP",
+      "abstract" : "Service check",
+      "command" : "check-win-snmp-service.pl",
+      "datatype" : "none"
+   }
+}

@@ -1,0 +1,42 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-nagios-wrapper",
+         "options" : [
+            {
+               "value" : "string",
+               "name" : "Nagios command",
+               "default" : null,
+               "description" : "Enter the complete nagios command with arguments but without\nthe path to the script. Note that single quotes, backticks\nand backslashes are not allowed characters. Command example:\ncheck_this_or_that -H 127.0.0.1 -w 4 -c 5",
+               "value_type" : "string",
+               "option" : "nagios-command",
+               "mandatory" : 1,
+               "multiple" : 0
+            }
+         ],
+         "flags" : "nagios",
+         "version" : "0.1",
+         "examples" : [
+            {
+               "command_line" : "check-nagios-wrapper --nagios-command 'check_this_or_that -H 127.0.0.1 -w 4 -c 5'",
+               "arguments" : [
+                  "nagios-command",
+                  "check_this_or_that -H 127.0.0.1 -w 4 -c 5"
+               ],
+               "description" : [
+                  "Using nagios checks is very simple. Just enter the full command:"
+               ]
+            }
+         ]
+      },
+      "plugin" : "Nagios.Wrapper",
+      "prefer" : "localhost",
+      "description" : "Check a service with a nagios plugin.",
+      "netaccess" : "yes",
+      "id" : "59",
+      "category" : "Nagios",
+      "abstract" : "Nagios wrapper",
+      "command" : "check-nagios-wrapper",
+      "datatype" : "none"
+   }
+}

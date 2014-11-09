@@ -1,0 +1,87 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-lm-sensors",
+         "options" : [
+            {
+               "value" : "sensor",
+               "name" : "Sensor",
+               "default" : null,
+               "description" : "This is the name of the sensor to check.",
+               "value_type" : "string",
+               "option" : "sensor",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "temporature",
+               "name" : "Warning threshold",
+               "default" : null,
+               "description" : "This is the warning threshold to check the temperatur.",
+               "value_type" : "int",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "temporature",
+               "name" : "Critical threshold",
+               "default" : null,
+               "description" : "This is the critical threshold to check the temperatur.",
+               "value_type" : "int",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 0
+            }
+         ],
+         "flags" : "",
+         "version" : "0.3",
+         "examples" : [
+            {
+               "command_line" : "check-lm-sensors --sensor 'Physical id 0' --warning '80' --critical '100'",
+               "arguments" : [
+                  "sensor",
+                  "Physical id 0",
+                  "warning",
+                  80,
+                  "critical",
+                  100
+               ],
+               "description" : [
+                  "Example to check the temperature of the cpu cores and trigger",
+                  "",
+                  "- a warning status if the temperature is higher than or equal 80 degrees",
+                  "- or a critical status if the temperature is higher than or equal 100 degrees"
+               ]
+            }
+         ]
+      },
+      "plugin" : "Linux.Sensors",
+      "description" : "Hardware temperature.",
+      "id" : "50",
+      "category" : "System,Temperature,Linux",
+      "abstract" : "Temperature check",
+      "command" : "check-lm-sensors",
+      "datatype" : "statistic"
+   },
+   "chart" : {
+      "options" : {
+         "chart-type" : "area",
+         "ylabel" : "celsius",
+         "series" : {
+            "color" : "#005467",
+            "name" : "temperature"
+         },
+         "units" : "null"
+      },
+      "title" : "Temperature",
+      "id" : "1"
+   },
+   "statistic" : {
+      "description" : "The temperatur of the sensor.",
+      "alias" : "Temperature",
+      "statkey" : "temperature",
+      "units" : "temperature",
+      "datatype" : "float"
+   }
+}

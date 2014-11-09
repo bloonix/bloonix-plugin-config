@@ -1,0 +1,21 @@
+bloonix-plugin-config (0.5) released at 2014-11-08
+
+    * Kicked deprecated base plugins.
+
+bloonix-plugin-config (0.4) released at 2014-11-06
+
+    * Added PluginLoader.pm and bloonix-load-plugins to
+      load the plugins into the database.
+
+bloonix-plugin-config (0.3) released at 2014-11-05
+
+    * Update of check-linux-updates, check-smart-health
+
+bloonix-plugin-config (0.2) released at 2014-11-03
+
+    * Updated the license information.
+    * Different plugin updates.
+
+bloonix-plugin-config (0.1) released at 2014-09-10
+
+    * Initial release.

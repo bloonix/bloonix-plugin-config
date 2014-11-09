@@ -1,0 +1,129 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-dns",
+         "options" : [
+            {
+               "value" : "ip,ip,ip",
+               "name" : "The nameserver to connect",
+               "default" : null,
+               "description" : "This is the IP address of the DNS server to request.",
+               "value_type" : "string",
+               "option" : "nameserver",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "hostname",
+               "name" : "The hostname to query",
+               "default" : null,
+               "description" : "This is the hostname or address to query.",
+               "value_type" : "string",
+               "option" : "hostname",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "type",
+               "name" : "The record type to query",
+               "default" : "A",
+               "description" : "This is the record type that is expected in combination with the IP address. It's possible to search for type A or AAAA.",
+               "value_type" : "string",
+               "option" : "type",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "address",
+               "name" : "The IP address to expect",
+               "default" : null,
+               "description" : "Enter a IP address that is expected in combination with the record type.",
+               "value_type" : "string",
+               "option" : "ipaddr",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Warning threshold",
+               "default" : 3,
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
+               "value_type" : "number",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Critical threshold",
+               "default" : 5,
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "value_type" : "number",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Timeout",
+               "default" : 10,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "value_type" : "number",
+               "option" : "timeout",
+               "mandatory" : 0,
+               "multiple" : 0
+            }
+         ],
+         "flags" : "",
+         "version" : "0.3",
+         "examples" : [
+            {
+               "command_line" : "check-dns --nameserver 'dns.example.test' --hostname 'bloonix.de' --ipaddr '192.168.10.11' --type 'A'",
+               "arguments" : [
+                  "nameserver",
+                  "dns.example.test",
+                  "hostname",
+                  "bloonix.de",
+                  "ipaddr",
+                  "192.168.10.11",
+                  "type",
+                  "A"
+               ],
+               "description" : [
+                  "In the following example a DNS request is send to the nameserver dns.example.test for the domain bloonix.de and the record type A. In the response of the DNS server the IP address 192.168.10.11 is expected. A CRITICAL status is triggered if the IP address is not present in the response."
+               ]
+            }
+         ]
+      },
+      "plugin" : "DNS.Check",
+      "prefer" : "remote",
+      "description" : "Check DNS records.",
+      "worldwide" : "yes",
+      "netaccess" : "yes",
+      "abstract" : "DNS check",
+      "id" : "4",
+      "category" : "Network,DNS",
+      "command" : "check-dns",
+      "datatype" : "statistic"
+   },
+   "chart" : {
+      "options" : {
+         "chart-type" : "area",
+         "ylabel" : "time in ms",
+         "series" : {
+            "color" : "#005467",
+            "name" : "time"
+         },
+         "units" : "null"
+      },
+      "title" : "DNS request - response time",
+      "id" : "1"
+   },
+   "statistic" : {
+      "description" : "Time in milliseconds waiting for response.",
+      "alias" : "Response time",
+      "statkey" : "time",
+      "units" : "ms",
+      "datatype" : "float"
+   }
+}

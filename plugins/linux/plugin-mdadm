@@ -1,0 +1,17 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-mdadm",
+         "options" : [],
+         "flags" : "sudo",
+         "version" : "0.3"
+      },
+      "plugin" : "Linux.MDADM.Check",
+      "description" : "Check the status of MD software raids.",
+      "id" : "25",
+      "category" : "System,Filesystem,Linux",
+      "abstract" : "MDADM check",
+      "command" : "check-mdadm",
+      "datatype" : "none"
+   }
+}

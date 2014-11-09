@@ -1,0 +1,518 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-memcached",
+         "options" : [
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Warning threshold",
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 1
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Critical threshold",
+               "default" : null,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 1
+            },
+            {
+               "value" : "hostname or ip address",
+               "name" : "Hostname or IP address",
+               "default" : null,
+               "description" : "A hostname or IP address to connect to.",
+               "value_type" : "string",
+               "option" : "host",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "port",
+               "name" : "Port number",
+               "default" : 11211,
+               "description" : "A port number to connect to.",
+               "value_type" : "int",
+               "option" : "port",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value_type" : 0,
+               "name" : "Use IPv6",
+               "option" : "use-ipv6",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "Use IPv6 to connect to the host."
+            },
+            {
+               "value_type" : 0,
+               "name" : "Use secure connection via SSL",
+               "option" : "use-ssl",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "Use secure connection via SSL."
+            },
+            {
+               "value" : "seconds",
+               "name" : "Timeout",
+               "default" : 10,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "value_type" : "number",
+               "option" : "timeout",
+               "mandatory" : 0,
+               "multiple" : 0
+            }
+         ],
+         "flags" : "",
+         "version" : "0.3",
+         "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  or if a unit makes sense\n\n",
+               "    key:operator:threshold + UNIT\n\n",
+               "  where the unit can be in ",
+               "bytes",
+               ".\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n",
+               "\n",
+               "  Allowed units for bytes:\n\n",
+               "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
+               "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
+               "    GB = Gigabytes   EB = Exabytes\n\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "time"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "curr_connections"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "total_connections"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "cmd_get"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "cmd_set"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "cmd_flush"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "get_hits"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "get_misses"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "bytes_read"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "bytes_written"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "bytes_free"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "bytes_used"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "bytes_used_per"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "limit_maxbytes"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "threads"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "bytes"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "curr_items"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "total_items"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "evictions"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "reclaimed"
+               }
+            ]
+         },
+         "examples" : [
+            {
+               "command_line" : "check-memcached --warning 'bytes_used_per:ge:90' --critical 'bytes_used_per:ge:95'",
+               "arguments" : [
+                  "warning",
+                  "bytes_used_per:ge:90",
+                  "critical",
+                  "bytes_used_per:ge:95"
+               ],
+               "description" : [
+                  "An example to check the memory usage that memcached is allowed to allocate and trigger",
+                  "",
+                  "- a warning status if more than or equal 90% is in use",
+                  "- or a critical status if more than or equal 95% is in use"
+               ]
+            }
+         ]
+      },
+      "plugin" : "Memcached.Check",
+      "prefer" : "localhost",
+      "description" : "Memcached statistics",
+      "netaccess" : "yes",
+      "id" : "41",
+      "category" : "System,Caching,Memcached",
+      "abstract" : "Memcached check",
+      "command" : "check-memcached",
+      "datatype" : "statistic"
+   },
+   "chart" : [
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "bytes",
+            "series" : [
+               {
+                  "color" : "#005467",
+                  "name" : "bytes_used"
+               },
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "bytes_free"
+               }
+            ],
+            "units" : "bytes"
+         },
+         "title" : "Memcached - bytes used",
+         "id" : "1"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "read / written",
+            "series" : [
+               {
+                  "color" : "#005467",
+                  "name" : "bytes_written"
+               },
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "bytes_read"
+               }
+            ],
+            "units" : "bytes"
+         },
+         "title" : "Memcached - network traffic",
+         "id" : "2"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "get / set",
+            "series" : [
+               {
+                  "color" : "#005467",
+                  "name" : "cmd_set"
+               },
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "cmd_get"
+               }
+            ],
+            "units" : "default"
+         },
+         "title" : "Memcached - requests/s",
+         "id" : "3"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "connections",
+            "series" : {
+               "color" : "#005467",
+               "name" : "curr_connections"
+            },
+            "units" : "null"
+         },
+         "title" : "Memcached - current connections",
+         "id" : "4"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "connections",
+            "series" : {
+               "color" : "#005467",
+               "name" : "connections"
+            },
+            "units" : "null"
+         },
+         "title" : "Memcached - connections/s",
+         "id" : "5"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "items cached",
+            "series" : {
+               "color" : "#005467",
+               "name" : "curr_items"
+            },
+            "units" : "null"
+         },
+         "title" : "Memcached - items cached",
+         "id" : "6"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "items cached",
+            "series" : {
+               "color" : "#005467",
+               "name" : "items"
+            },
+            "units" : "null"
+         },
+         "title" : "Memcached - items/s cached",
+         "id" : "7"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "evictions",
+            "series" : {
+               "color" : "#005467",
+               "name" : "evictions"
+            },
+            "units" : "null"
+         },
+         "title" : "Memcached - evictions/s",
+         "id" : "8"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "reclaimed",
+            "series" : {
+               "color" : "#ff7a0d",
+               "name" : "reclaimed"
+            },
+            "units" : "null"
+         },
+         "title" : "Memcached - reclaimed/s",
+         "id" : "9"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "misses / hits",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "cmd_set"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "cmd_get"
+               }
+            ],
+            "units" : "default"
+         },
+         "title" : "Memcached - cache hits and misses",
+         "id" : "10"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "miss ratio / hit ratio",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "hitratio"
+               },
+               {
+                  "opposite" : "true",
+                  "color" : "#005467",
+                  "name" : "missratio"
+               }
+            ],
+            "units" : "default"
+         },
+         "title" : "Memcached - cache hit and miss ratio",
+         "id" : "11"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "threads",
+            "series" : {
+               "color" : "#005467",
+               "name" : "threads"
+            },
+            "units" : "null"
+         },
+         "title" : "Memcached - threads",
+         "id" : "12"
+      }
+   ],
+   "statistic" : [
+      {
+         "description" : "Current number of bytes used to store items.",
+         "alias" : "Bytes used",
+         "statkey" : "bytes_used",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Current number of bytes free to store items.",
+         "alias" : "Bytes free",
+         "statkey" : "bytes_free",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Total size in percent memcached is used from the maximum allowed memory size.",
+         "alias" : "Bytes used",
+         "statkey" : "bytes_used_per",
+         "units" : "percent",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of bytes this server is allowed to use for storage.",
+         "alias" : "Max bytes allowed",
+         "statkey" : "limit_maxbytes",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Number of bytes read by this server from network per second.",
+         "alias" : "Bytes read",
+         "statkey" : "bytes_read",
+         "units" : "bytes",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of bytes sent by this server per second.",
+         "alias" : "Bytes written",
+         "statkey" : "bytes_written",
+         "units" : "bytes",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Cumulative number of flush reqs per second.",
+         "alias" : "Flushes",
+         "statkey" : "cmd_flush",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Cumulative number of retrieval reqs per second.",
+         "alias" : "Gets",
+         "statkey" : "cmd_get",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Cumulative number of storage reqs per second.",
+         "alias" : "Sets",
+         "statkey" : "cmd_set",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of open connections.",
+         "alias" : "Open connections",
+         "statkey" : "curr_connections",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Number of connections opened per second.",
+         "alias" : "Connections/second",
+         "statkey" : "connections",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Current number of items stored.",
+         "alias" : "Items stored",
+         "statkey" : "curr_items",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Number of items stored per second.",
+         "alias" : "Items/second stored",
+         "statkey" : "items",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of valid items removed from cache to free memory for new items per second.",
+         "alias" : "Evictions",
+         "statkey" : "evictions",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of times an entry was stored using memory from an expired entry per second.",
+         "alias" : "Reclaimed",
+         "statkey" : "reclaimed",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of keys that have been requested and found present per second.",
+         "alias" : "Hits",
+         "statkey" : "get_hits",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of items that have been requested and not found per second.",
+         "alias" : "Misses",
+         "statkey" : "get_misses",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of worker threads requested.",
+         "alias" : "Threads",
+         "statkey" : "threads",
+         "datatype" : "bigint"
+      }
+   ]
+}

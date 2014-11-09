@@ -1,0 +1,52 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-service",
+         "options" : [
+            {
+               "value" : "service",
+               "name" : "Service name",
+               "default" : null,
+               "description" : "This is the service name you want to check.",
+               "value_type" : "string",
+               "option" : "service",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value_type" : 0,
+               "name" : "Use 'service' instead 'init.d'",
+               "option" : "use-service",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "By default the service is checked with '/etc/init.d/name status'. It's possible to use the service command instead like 'service name status'. Enable this option if you want that the 'service' command is used instead the call over init.d."
+            }
+         ],
+         "flags" : "",
+         "version" : "0.4",
+         "examples" : [
+            {
+               "command_line" : "check-service --service 'httpd'",
+               "arguments" : [
+                  "service",
+                  "httpd"
+               ],
+               "description" : [
+                  "An example to check service /etc/init.d/httpd",
+                  "",
+                  "- return ok if the return value is 0",
+                  "- return a critical status if the return value is higher than 0"
+               ]
+            }
+         ]
+      },
+      "plugin" : "Linux.Service.Check",
+      "description" : "Check the status of a service via \"/etc/init.d/service status\".",
+      "id" : "38",
+      "category" : "System",
+      "abstract" : "Service check",
+      "command" : "check-service",
+      "datatype" : "none"
+   }
+}

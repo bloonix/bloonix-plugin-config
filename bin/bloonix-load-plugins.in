@@ -1,0 +1,108 @@
+#!@@PERL@@
+
+=head1 NAME
+
+bloonix-load-plugins - Plugin loader.
+
+=head1 SYNOPSIS
+
+    bloonix-load-plugins -p plugin-http
+
+=head1 DESCRIPTION
+
+bloonix-load-plugins parses plugin files and import the plugins into the
+bloonix database.
+
+=head1 COPYRIGHT
+
+Copyright (C) 2009-2014 by Jonny Schulz. All rights reserved.
+
+=head1 POWERED BY
+     _    __ ____ ____ __  __ __ __   __
+    | |__|  |    |    |  \|  |__|\  \/  /
+    |  . |  |  | |  | |      |  | >    <
+    |____|__|____|____|__|\__|__|/__/\__\
+
+=cut
+
+use strict;
+use warnings;
+use Getopt::Long qw(:config no_ignore_case);
+use Bloonix::PluginLoader;
+
+my $progname  = do { $0 =~ m!([^/\\]+)\z!; $1 };
+my @config = ("@@CONFDIR@@/bloonix/webgui/main.conf", "@@CONFDIR@@/bloonix/server/main.conf");
+my $o_config = "";
+my $o_plugin = 0;
+my $o_path = 0;
+my $o_all = 0;
+my $o_help = 0;
+my $o_version = 0;
+
+GetOptions(
+    "c|config=s" => \$o_config,
+    "p|plugin=s" => \$o_plugin,
+    "P|path=s" => \$o_path,
+    "A|load-all" => \$o_all,
+    "h|help" => \$o_help
+) or exit 1;
+
+if ($o_help) {
+    print "Usage: $progname [ OPTIONS ]\n\n";
+    print "Options:\n\n";
+    print "-c, --config <file>\n";
+    print "    The path to the configuration file of the Bloonix server.\n";
+    print "    Default: @@CONFDIR@@/bloonix/server/main.conf\n";
+    print "             or @@CONFDIR@@/bloonix/webgui/main.conf\n";
+    print "-p, --plugin <file>\n";
+    print "    The plugin file to load.\n";
+    print "-P, --path <path>\n";
+    print "    Set the path to load all plugins from.\n";
+    print "-A, --load-all\n";
+    print "    Import or update all plugins automatically.\n";
+    print "    Plugins are loaded from /usr/lib/bloonix/etc/plugins\n";
+    print "-h, --help\n";
+    print "    Print the help.\n";
+    exit 0;
+}
+
+if (!$o_config) {
+    foreach my $c (@config) {
+        if (-e $c) {
+            $o_config = $c;
+        }
+    }
+}
+
+if (!$o_config) {
+    print "No configuration file found\n";
+    exit 1;
+}
+
+if (!-e $o_config) {
+    print "Configuration file '$o_config' does not exists\n";
+    exit 1;
+}
+
+if (!$o_plugin && !$o_path && !$o_all) {
+    print "Missing mandatory parameter --plugin or --path or --load-all\n";
+    exit 1;
+}
+
+if ($o_plugin && !-r $o_plugin) {
+    print "Plugin '$o_plugin' does not exists\n";
+    exit 1;
+}
+
+if ($o_path && !-e $o_path) {
+    print "Path '$o_path' does not exists\n";
+    exit 1;
+}
+
+Bloonix::PluginLoader->run(
+    config_file => $o_config,
+    plugin_file => $o_plugin,
+    plugin_path => $o_path,
+    load_all => $o_all
+);
+

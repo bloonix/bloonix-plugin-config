@@ -1,0 +1,194 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-iostat",
+         "info" : [
+            "Available devices:",
+            "  cat /proc/partitions",
+            "or",
+            "  cat /proc/diskstats"
+         ],
+         "options" : [
+            {
+               "value" : "device",
+               "name" : "Device name",
+               "default" : null,
+               "description" : "This is the device name you want to check. As example 'sda' or 'vda'.",
+               "value_type" : "string",
+               "option" : "device",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Warning threshold",
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 1
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Critical threshold",
+               "default" : null,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 1
+            }
+         ],
+         "flags" : "",
+         "version" : "0.8",
+         "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "rdreq"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "rdblk"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "wrtreq"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "wrtblk"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ttreq"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ttblk"
+               }
+            ]
+         },
+         "examples" : [
+            {
+               "command_line" : "check-iostat --device 'sda'",
+               "arguments" : [
+                  "device",
+                  "sda"
+               ],
+               "description" : [
+                  "An example how to check the device /dev/sda"
+               ]
+            }
+         ]
+      },
+      "plugin" : "Linux.DiskIO.Check",
+      "description" : "Linux disk i/o statistics",
+      "id" : "22",
+      "category" : "System,Linux",
+      "abstract" : "Disk i/o check",
+      "command" : "check-iostat",
+      "datatype" : "statistic"
+   },
+   "chart" : [
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "blocks/s",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "rdblk"
+               },
+               {
+                  "opposite" : "true",
+                  "color" : "#005467",
+                  "name" : "wrtblk"
+               }
+            ],
+            "units" : "default"
+         },
+         "title" : "Linux - disk load in blocks",
+         "id" : "1"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "wrtreq (-) / rdreq (+)",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "rdreq"
+               },
+               {
+                  "opposite" : "true",
+                  "color" : "#005467",
+                  "name" : "wrtreq"
+               }
+            ],
+            "units" : "default"
+         },
+         "title" : "Linux - disk requests",
+         "id" : "2"
+      }
+   ],
+   "statistic" : [
+      {
+         "description" : "Number of read requests that were made to physical disk per second.",
+         "alias" : "Read requests",
+         "statkey" : "rdreq",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of write requests that were made to physical disk per second.",
+         "alias" : "Write requests",
+         "statkey" : "wrtreq",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of blocks that were read from physical disk per second.",
+         "alias" : "Blocks read",
+         "statkey" : "rdblk",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of blocks that were written to physical disk per second.",
+         "alias" : "Blocks written",
+         "statkey" : "wrtblk",
+         "datatype" : "float"
+      },
+      {
+         "description" : "The disk name.",
+         "alias" : "Disk name",
+         "statkey" : "disk",
+         "datatype" : "varchar(100)"
+      },
+      {
+         "description" : "Total number of requests were made from/to physical disk per second.",
+         "alias" : "Total requests",
+         "statkey" : "ttreq",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Total number of blocks transmitted from/to physical disk per second.",
+         "alias" : "Total blocks",
+         "statkey" : "ttblk",
+         "datatype" : "float"
+      }
+   ]
+}

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+/usr/bin/bloonix-load-plugins --load-all
+

@@ -1,0 +1,205 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-filestat",
+         "options" : [
+            {
+               "value" : "file",
+               "name" : "Filename",
+               "default" : null,
+               "description" : "This is the file name to check.",
+               "value_type" : "string",
+               "option" : "file",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Warning threshold",
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 1
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Critical threshold",
+               "default" : null,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 1
+            },
+            {
+               "value_type" : 0,
+               "name" : "Ignore missing file",
+               "option" : "ignore-missing",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "Enable this options if it's ok if the file does not exists."
+            }
+         ],
+         "flags" : "",
+         "version" : "0.1",
+         "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  or if a unit makes sense\n\n",
+               "    key:operator:threshold + UNIT\n\n",
+               "  where the unit can be in ",
+               "bytes",
+               ".\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n",
+               "\n",
+               "  Allowed units for bytes:\n\n",
+               "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
+               "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
+               "    GB = Gigabytes   EB = Exabytes\n\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "bytes",
+                  "key" : "size"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "mode"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "nlink"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "uid"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "gid"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "atime"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "diff_atime"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "mtime"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "diff_mtime"
+               }
+            ]
+         },
+         "examples" : [
+            {
+               "command_line" : "check-filestat --file '/var/log/test.log' --warning 'size:gt:1MB' --critical 'size:gt:5MB'",
+               "arguments" : [
+                  "file",
+                  "/var/log/test.log",
+                  "warning",
+                  "size:gt:1MB",
+                  "critical",
+                  "size:gt:5MB"
+               ],
+               "description" : [
+                  "NOTE: please create the configuration file '/etc/bloonix/agent/check-filestat.conf' on your server and write all file names into the file (one file per line) that the Bloonix agent is allowed to check!",
+                  "",
+                  "In this example the file of /var/log/test.log is checked. If the file size is higher than 1MB a warning is triggered. If the file size is higher than 5MB a critical is triggered."
+               ]
+            }
+         ]
+      },
+      "plugin" : "Filestat.Check",
+      "description" : "Check the status of a file.",
+      "id" : "5",
+      "category" : "System,Security",
+      "abstract" : "Check filestat",
+      "command" : "check-filestat",
+      "datatype" : "statistic"
+   },
+   "chart" : {
+      "options" : {
+         "chart-type" : "area",
+         "ylabel" : "size",
+         "series" : {
+            "color" : "#005467",
+            "name" : "size"
+         },
+         "units" : "bytes"
+      },
+      "title" : "File size",
+      "id" : "1"
+   },
+   "statistic" : [
+      {
+         "description" : "The size of the file in bytes.",
+         "alias" : "File size",
+         "statkey" : "size",
+         "units" : "bytes",
+         "datatype" : "float"
+      },
+      {
+         "description" : "File mode (type and permissions).",
+         "statkey" : "mode",
+         "datatype" : "varchar(10)"
+      },
+      {
+         "description" : "Number of (hard) links to the file.",
+         "statkey" : "nlink",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Numeric user ID of file's owner.",
+         "statkey" : "uid",
+         "datatype" : "varchar(10)"
+      },
+      {
+         "description" : "Numeric group ID of file's owner.",
+         "statkey" : "gid",
+         "datatype" : "varchar(10)"
+      },
+      {
+         "description" : "Last access time in seconds since the epoch.",
+         "statkey" : "atime",
+         "units" : "unixtime",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "The time in seconds since the last access to the file.",
+         "statkey" : "diff_atime",
+         "units" : "unixtime",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Last modify time in seconds since the epoch.",
+         "statkey" : "mtime",
+         "units" : "unixtime",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "The time in seconds since the last modification of the file.",
+         "statkey" : "diff_mtime",
+         "units" : "unixtime",
+         "datatype" : "bigint"
+      }
+   ]
+}

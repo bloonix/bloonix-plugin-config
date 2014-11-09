@@ -1,0 +1,33 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Bloonix::Config;
+use JSON;
+
+my $plugin = $ARGV[0];
+
+if (!$plugin || !-e $plugin) {
+    die "Usage: $0 [ plugin-* ]\n";
+}
+
+if ($plugin =~ m!(^|.+/)plugin-[a-zA-Z\-0-9\-]+\z!) {
+    my $path = $1;
+    my $config = Bloonix::Config->parse($plugin);
+    my $check = $path . $config->{plugin}->{command};
+
+    if (!-e $check) {
+        die "ERR: check script not found\n";
+    }
+
+    if ($check !~ m!^/!) {
+        $check = "./$check";
+    }
+
+    my $info = qx{$check --plugin-info};
+    $config->{plugin}->{info} = JSON->new->decode($info);
+    print JSON->new->pretty->encode($config);
+} else {
+    die "ERR: invalid plugin name\n";
+}
+
+

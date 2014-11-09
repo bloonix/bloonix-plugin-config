@@ -1,0 +1,212 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-dbconnect",
+         "options" : [
+            {
+               "value" : "seconds",
+               "name" : "Warning threshold",
+               "default" : 3,
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
+               "value_type" : "number",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Critical threshold",
+               "default" : 5,
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "value_type" : "number",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "seconds",
+               "name" : "Timeout",
+               "default" : 10,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "value_type" : "number",
+               "option" : "timeout",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "hostname or ip address",
+               "name" : "Hostname or IP address",
+               "default" : null,
+               "description" : "A hostname or IP address to connect to.",
+               "value_type" : "string",
+               "option" : "host",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "port",
+               "name" : "Port number",
+               "default" : null,
+               "description" : "A port number to connect to.",
+               "value_type" : "int",
+               "option" : "port",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "driver",
+               "name" : "Database driver",
+               "default" : null,
+               "description" : "Which perl DBD driver to use. Example: mysql, Pg, DB2 ...",
+               "value_type" : "string",
+               "option" : "driver",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "database",
+               "name" : "Database",
+               "default" : null,
+               "description" : "Set the database to connect to.",
+               "value_type" : "string",
+               "option" : "database",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "username",
+               "name" : "Username",
+               "default" : null,
+               "description" : "The username to use for the login.",
+               "value_type" : "string",
+               "option" : "username",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "password",
+               "name" : "Password",
+               "default" : null,
+               "description" : "The password for the user to login.",
+               "value_type" : "string",
+               "option" : "password",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value_type" : 0,
+               "name" : "Use secure connection via SSL",
+               "option" : "use-ssl",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "Use secure connection via SSL."
+            },
+            {
+               "value" : "filename",
+               "name" : "Secret file",
+               "default" : null,
+               "description" : "This is the secret file with the username and password to connect to the service.",
+               "value_type" : "string",
+               "option" : "secret-file",
+               "mandatory" : 0,
+               "multiple" : 0
+            }
+         ],
+         "flags" : "",
+         "version" : "0.7",
+         "examples" : [
+            {
+               "command_line" : "check-dbconnect --secret-file 'passwd.conf'",
+               "arguments" : [
+                  "secret-file",
+                  "passwd.conf"
+               ],
+               "description" : [
+                  "To read the username and password from a configuration file it's possible to use the option 'secret-file'. The path to the file is hard set to:",
+                  "",
+                  "    /etc/bloonix/agent",
+                  "",
+                  "All what you have to do is to create the file in '/etc/bloonix/agent' and fill the filename into the field 'secret-file'. The content of the file should looks like:",
+                  "",
+                  "    username=root",
+                  "    password=secret"
+               ]
+            },
+            {
+               "command_line" : "check-dbconnect --driver 'mysql' --host 'localhost' --port '3306' --warning '2' --critical '3' --username 'bloonix' --password 'secret'",
+               "arguments" : [
+                  "driver",
+                  "mysql",
+                  "host",
+                  "localhost",
+                  "port",
+                  3306,
+                  "warning",
+                  2,
+                  "critical",
+                  3,
+                  "username",
+                  "bloonix",
+                  "password",
+                  "secret"
+               ],
+               "description" : [
+                  "Connect to a mysql instance"
+               ]
+            },
+            {
+               "command_line" : "check-dbconnect --driver 'Pg' --host 'localhost' --port '5432' --warning '2' --critical '3' --username 'bloonix' --password 'secret'",
+               "arguments" : [
+                  "driver",
+                  "Pg",
+                  "host",
+                  "localhost",
+                  "port",
+                  5432,
+                  "warning",
+                  2,
+                  "critical",
+                  3,
+                  "username",
+                  "bloonix",
+                  "password",
+                  "secret"
+               ],
+               "description" : [
+                  "Connect to a postgresql instance"
+               ]
+            }
+         ]
+      },
+      "plugin" : "Database.Check",
+      "prefer" : "localhost",
+      "description" : "Simple database connect statistics.",
+      "netaccess" : "yes",
+      "id" : "3",
+      "category" : "Database",
+      "abstract" : "Check database connection",
+      "command" : "check-dbconnect",
+      "datatype" : "statistic"
+   },
+   "chart" : {
+      "options" : {
+         "chart-type" : "area",
+         "ylabel" : "time in ms",
+         "series" : {
+            "color" : "#005467",
+            "name" : "time"
+         },
+         "units" : "null"
+      },
+      "title" : "DB connect - response time",
+      "id" : "1"
+   },
+   "statistic" : {
+      "description" : "Time in milliseconds waiting for response.",
+      "alias" : "Response time",
+      "statkey" : "time",
+      "units" : "ms",
+      "datatype" : "float"
+   }
+}
