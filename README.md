@@ -22,12 +22,12 @@ Ordered by id (desc)
         60 | Customer.BloonixSatellite.Check | check-bloonix-satellite
         59 | Nagios.Wrapper                  | check-nagios-wrapper
         58 | WebTransaction                  | check-wtrm
-        57 | Windows.SNMP.Service            | check-win-snmp-service.pl
-        56 | Windows.SNMP.ProcessCheck       | check-win-snmp-process.pl
-        55 | Windows.SNMP.NumberOfProcesses  | check-win-snmp-nprocs.pl
-        54 | Windows.SNMP.Memory             | check-win-snmp-mem.pl
-        53 | Windows.SNMP.Disk               | check-win-snmp-disk.pl
-        52 | Windows.SNMP.CPU                | check-win-snmp-cpu.pl
+        57 | Windows.SNMP.Service            | check-win-snmp-service.pl    (deprecated)
+        56 | Windows.SNMP.ProcessCheck       | check-win-snmp-process.pl    (deprecated)
+        55 | Windows.SNMP.NumberOfProcesses  | check-win-snmp-nprocs.pl     (deprecated)
+        54 | Windows.SNMP.Memory             | check-win-snmp-mem.pl        (deprecated)
+        53 | Windows.SNMP.Disk               | check-win-snmp-disk.pl       (deprecated)
+        52 | Windows.SNMP.CPU                | check-win-snmp-cpu.pl        (deprecated)
         51 | Varnish.Check                   | check-varnish3
         50 | Linux.Sensors                   | check-lm-sensors
         49 | Redis.Queue.Check               | check-redis-queue
