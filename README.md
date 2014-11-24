@@ -12,6 +12,12 @@ Ordered by id (desc)
 
       id   |             plugin              |          command          
     -------+---------------------------------+---------------------------
+        67 | SNMP.ServiceCheck               | check-snmp-service
+        66 | SNMP.ProcessCheck               | check-snmp-process
+        65 | SNMP.NumberOfProcesses          | check-snmp-nprocs
+        64 | SNMP.Memory                     | check-snmp-mem
+        63 | SNMP.Disk                       | check-snmp-disk
+        62 | SNMP.CPU                        | check-snmp-cpu
         61 | Linux.RAID.LSI.Check            | check-lsi-raid
         60 | Customer.BloonixSatellite.Check | check-bloonix-satellite
         59 | Nagios.Wrapper                  | check-nagios-wrapper
