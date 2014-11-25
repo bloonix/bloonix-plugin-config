@@ -7,7 +7,7 @@
                "value" : "interface",
                "name" : "Network interface",
                "default" : null,
-               "description" : "This is the network interface you want to check.",
+               "description" : "This is the network interface you want to check. The interface name should be the last digit of ifDescr (1.3.6.1.2.1.2.2.1.2.X) or the string that is found in ifName (1.3.6.1.2.1.31.1.1.1.1).",
                "value_type" : "string",
                "option" : "interface",
                "mandatory" : 1,
@@ -134,7 +134,7 @@
             }
          ],
          "flags" : "",
-         "version" : "0.1",
+         "version" : "0.2",
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",
@@ -218,7 +218,45 @@
                   "key" : "out_broadcast_pkts"
                }
             ]
-         }
+         },
+         "examples" : [
+            {
+               "command_line" : "check-snmp-if --interface 'eth0' --hostname '127.0.0.1' --port '161' --community 'public' --snmp-version '1'",
+               "arguments" : [
+                  "interface",
+                  "eth0",
+                  "hostname",
+                  "127.0.0.1",
+                  "port",
+                  161,
+                  "community",
+                  "public",
+                  "snmp-version",
+                  1
+               ],
+               "description" : [
+                  "Monitor the interface eth0 (1.3.6.1.2.1.31.1.1.1.1) of a linux system:"
+               ]
+            },
+            {
+               "command_line" : "check-snmp-if --interface '10' --hostname '127.0.0.1' --port '161' --community 'public' --snmp-version '1'",
+               "arguments" : [
+                  "interface",
+                  10,
+                  "hostname",
+                  "127.0.0.1",
+                  "port",
+                  161,
+                  "community",
+                  "public",
+                  "snmp-version",
+                  1
+               ],
+               "description" : [
+                  "Monitor the interface 10 (1.3.6.1.2.1.2.2.1.2.10) of a cisco switch:"
+               ]
+            }
+         ]
       },
       "plugin" : "SNMP.Interface",
       "prefer" : "localhost",

@@ -5,7 +5,7 @@
          "options" : [
             {
                "value" : "disk",
-               "name" : "Drive",
+               "name" : "Drive/Disk",
                "default" : null,
                "description" : "This is the disk you want to check. As example 'C:' or '/' for the root filesystem.",
                "value_type" : "string",
