@@ -1,0 +1,303 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-snmp-mem",
+         "options" : [
+            {
+               "value" : "hostname or ip address",
+               "name" : "Hostname or IP address",
+               "default" : "127.0.0.1",
+               "description" : "A hostname or IP address to connect to.",
+               "value_type" : "string",
+               "option" : "host",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "port",
+               "name" : "Port number",
+               "default" : 161,
+               "description" : "A port number to connect to.",
+               "value_type" : "int",
+               "option" : "port",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "community",
+               "name" : "SNMP community",
+               "default" : "public",
+               "description" : "The SNMP community to connect to the host.",
+               "value_type" : "string",
+               "option" : "community",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "version",
+               "name" : "SNMP version",
+               "default" : 2,
+               "description" : "The SNMP version to use to connect to the host.",
+               "value_type" : "string",
+               "option" : "snmp-version",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "username",
+               "name" : "SNMPv3 username",
+               "default" : null,
+               "description" : "The SNMPv3 username.",
+               "value_type" : "string",
+               "option" : "username",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "authpassword",
+               "name" : "SNMPv3 auth password",
+               "default" : null,
+               "description" : "The SNMPv3 auth password.",
+               "value_type" : "string",
+               "option" : "authpassword",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "authprotocol",
+               "name" : "SNMPv3 auth protocol",
+               "default" : null,
+               "description" : "The SNMPv3 auth protocol.",
+               "value_type" : "string",
+               "option" : "authprotocol",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "privpassword",
+               "name" : "SNMPv3 priv password",
+               "default" : null,
+               "description" : "The SNMPv3 priv password.",
+               "value_type" : "string",
+               "option" : "privpassword",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "privprotocol",
+               "name" : "SNMPv3 priv protocol",
+               "default" : null,
+               "description" : "The SNMPv3 priv protocol.",
+               "value_type" : "string",
+               "option" : "privprotocol",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Warning threshold",
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 1
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Critical threshold",
+               "default" : null,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 1
+            }
+         ],
+         "flags" : "",
+         "version" : "0.3",
+         "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  or if a unit makes sense\n\n",
+               "    key:operator:threshold + UNIT\n\n",
+               "  where the unit can be in ",
+               "bytes or percent",
+               ".\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n",
+               "\n",
+               "  Allowed units for bytes:\n\n",
+               "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
+               "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
+               "    GB = Gigabytes   EB = Exabytes\n\n",
+               "  Allowed units for percent: %\n\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "bytes",
+                  "key" : "memtotal"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "memfree"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "swaptotal"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "swapfree"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "memused"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "memusedper"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "swapusedper"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "swapused"
+               }
+            ]
+         },
+         "examples" : [
+            {
+               "command_line" : "check-snmp-mem --warning 'memusedper:ge:90' --critical 'memusedper:ge:95'",
+               "arguments" : [
+                  "warning",
+                  "memusedper:ge:90",
+                  "critical",
+                  "memusedper:ge:95"
+               ],
+               "description" : [
+                  "A simple example to check the memory usage and trigger a warning if the usage is higher than 90% or trigger a critical if the usage is higher than 95%:"
+               ]
+            }
+         ]
+      },
+      "plugin" : "SNMP.Memory",
+      "prefer" : "localhost",
+      "description" : "Check the memory usage.",
+      "netaccess" : "yes",
+      "id" : "64",
+      "category" : "System,SNMP",
+      "abstract" : "Memory check",
+      "command" : "check-snmp-mem",
+      "datatype" : "statistic"
+   },
+   "chart" : [
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "percent %",
+            "series" : [
+               {
+                  "color" : "#005467",
+                  "name" : "memusedper"
+               },
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "swapusedper"
+               }
+            ],
+            "units" : "null"
+         },
+         "title" : "Memory and swap usage in %",
+         "id" : "1"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "bytes",
+            "series" : [
+               {
+                  "color" : "#005467",
+                  "name" : "memused"
+               },
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "memfree"
+               }
+            ],
+            "units" : "bytes"
+         },
+         "title" : "Memory usage",
+         "id" : "2"
+      }
+   ],
+   "statistic" : [
+      {
+         "description" : "Total size of memory in bytes.",
+         "alias" : "Total memory",
+         "statkey" : "memtotal",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Total size of free memory in bytes.",
+         "alias" : "Free",
+         "statkey" : "memfree",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Total size of real used memory in bytes.",
+         "alias" : "Used",
+         "statkey" : "memused",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Total size of used memory in percent.",
+         "alias" : "Used",
+         "statkey" : "memusedper",
+         "units" : "percent",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Total size of swap space in bytes.",
+         "alias" : "Total swap",
+         "statkey" : "swaptotal",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Total size of swap space is free in bytes.",
+         "alias" : "Free",
+         "statkey" : "swapfree",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Total size of swap space is used is bytes.",
+         "alias" : "Used",
+         "statkey" : "swapused",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Total size of swap space is used in percent.",
+         "alias" : "Used",
+         "statkey" : "swapusedper",
+         "units" : "percent",
+         "datatype" : "float"
+      }
+   ]
+}

@@ -1,0 +1,191 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-snmp-process",
+         "options" : [
+            {
+               "value" : "process",
+               "name" : "Process name",
+               "default" : null,
+               "description" : "This is the process name you want to check.",
+               "value_type" : "string",
+               "option" : "process",
+               "mandatory" : 1,
+               "multiple" : 0
+            },
+            {
+               "value" : "hostname or ip address",
+               "name" : "Hostname or IP address",
+               "default" : "127.0.0.1",
+               "description" : "A hostname or IP address to connect to.",
+               "value_type" : "string",
+               "option" : "host",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "port",
+               "name" : "Port number",
+               "default" : 161,
+               "description" : "A port number to connect to.",
+               "value_type" : "int",
+               "option" : "port",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "community",
+               "name" : "SNMP community",
+               "default" : "public",
+               "description" : "The SNMP community to connect to the host.",
+               "value_type" : "string",
+               "option" : "community",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "version",
+               "name" : "SNMP version",
+               "default" : 2,
+               "description" : "The SNMP version to use to connect to the host.",
+               "value_type" : "string",
+               "option" : "snmp-version",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "username",
+               "name" : "SNMPv3 username",
+               "default" : null,
+               "description" : "The SNMPv3 username.",
+               "value_type" : "string",
+               "option" : "username",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "authpassword",
+               "name" : "SNMPv3 auth password",
+               "default" : null,
+               "description" : "The SNMPv3 auth password.",
+               "value_type" : "string",
+               "option" : "authpassword",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "authprotocol",
+               "name" : "SNMPv3 auth protocol",
+               "default" : null,
+               "description" : "The SNMPv3 auth protocol.",
+               "value_type" : "string",
+               "option" : "authprotocol",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "privpassword",
+               "name" : "SNMPv3 priv password",
+               "default" : null,
+               "description" : "The SNMPv3 priv password.",
+               "value_type" : "string",
+               "option" : "privpassword",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "privprotocol",
+               "name" : "SNMPv3 priv protocol",
+               "default" : null,
+               "description" : "The SNMPv3 priv protocol.",
+               "value_type" : "string",
+               "option" : "privprotocol",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Warning threshold",
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 1
+            },
+            {
+               "value" : "key:value or key:op:value",
+               "name" : "Critical threshold",
+               "default" : null,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 1
+            },
+            {
+               "value_type" : 0,
+               "name" : "Match the process name as regex",
+               "option" : "match",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "Use the process name as a regex."
+            }
+         ],
+         "flags" : "",
+         "version" : "0.3",
+         "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "count"
+               }
+            ]
+         },
+         "examples" : [
+            {
+               "command_line" : "check-snmp-process --host '127.0.0.1' --port '161' --community 'public' --warning 'count:lt:5' --critical 'count:lt:3'",
+               "arguments" : [
+                  "host",
+                  "127.0.0.1",
+                  "port",
+                  161,
+                  "community",
+                  "public",
+                  "warning",
+                  "count:lt:5",
+                  "critical",
+                  "count:lt:3"
+               ],
+               "description" : [
+                  "An example to check the number of svchost.exe processes:"
+               ]
+            }
+         ]
+      },
+      "plugin" : "SNMP.ProcessCheck",
+      "prefer" : "localhost",
+      "description" : "Plugin to check a process over snmp.",
+      "netaccess" : "yes",
+      "id" : "66",
+      "category" : "System,SNMP",
+      "abstract" : "Process check",
+      "command" : "check-snmp-process",
+      "datatype" : "none"
+   }
+}

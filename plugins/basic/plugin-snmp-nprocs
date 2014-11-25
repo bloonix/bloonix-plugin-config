@@ -1,0 +1,169 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-snmp-nprocs",
+         "options" : [
+            {
+               "value" : "hostname or ip address",
+               "name" : "Hostname or IP address",
+               "default" : "127.0.0.1",
+               "description" : "A hostname or IP address to connect to.",
+               "value_type" : "string",
+               "option" : "host",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "port",
+               "name" : "Port number",
+               "default" : 161,
+               "description" : "A port number to connect to.",
+               "value_type" : "int",
+               "option" : "port",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "community",
+               "name" : "SNMP community",
+               "default" : "public",
+               "description" : "The SNMP community to connect to the host.",
+               "value_type" : "string",
+               "option" : "community",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "version",
+               "name" : "SNMP version",
+               "default" : 2,
+               "description" : "The SNMP version to use to connect to the host.",
+               "value_type" : "string",
+               "option" : "snmp-version",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "username",
+               "name" : "SNMPv3 username",
+               "default" : null,
+               "description" : "The SNMPv3 username.",
+               "value_type" : "string",
+               "option" : "username",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "authpassword",
+               "name" : "SNMPv3 auth password",
+               "default" : null,
+               "description" : "The SNMPv3 auth password.",
+               "value_type" : "string",
+               "option" : "authpassword",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "authprotocol",
+               "name" : "SNMPv3 auth protocol",
+               "default" : null,
+               "description" : "The SNMPv3 auth protocol.",
+               "value_type" : "string",
+               "option" : "authprotocol",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "privpassword",
+               "name" : "SNMPv3 priv password",
+               "default" : null,
+               "description" : "The SNMPv3 priv password.",
+               "value_type" : "string",
+               "option" : "privpassword",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "privprotocol",
+               "name" : "SNMPv3 priv protocol",
+               "default" : null,
+               "description" : "The SNMPv3 priv protocol.",
+               "value_type" : "string",
+               "option" : "privprotocol",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "count",
+               "name" : "Warning threshold",
+               "default" : null,
+               "description" : "Set the the warning threshold for the maximal count of processes.",
+               "value_type" : "number",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value" : "count",
+               "name" : "Critical threshold",
+               "default" : null,
+               "description" : "Set the the critical threshold for the maximal count of processes.",
+               "value_type" : "number",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 0
+            }
+         ],
+         "flags" : "",
+         "version" : "0.3",
+         "examples" : [
+            {
+               "command_line" : "check-snmp-nprocs --host '127.0.0.1' --port '161' --community 'public' --warning '50' --critical '100'",
+               "arguments" : [
+                  "host",
+                  "127.0.0.1",
+                  "port",
+                  161,
+                  "community",
+                  "public",
+                  "warning",
+                  50,
+                  "critical",
+                  100
+               ],
+               "description" : [
+                  "Return a warning state if more than 50 processes running or return a critical state if more than 100 processes are running:"
+               ]
+            }
+         ]
+      },
+      "plugin" : "SNMP.NumberOfProcesses",
+      "prefer" : "localhost",
+      "description" : "Process statistics",
+      "netaccess" : "yes",
+      "id" : "65",
+      "category" : "System,SNMP",
+      "abstract" : "Process check",
+      "command" : "check-snmp-nprocs",
+      "datatype" : "statistic"
+   },
+   "chart" : {
+      "options" : {
+         "chart-type" : "area",
+         "ylabel" : "count",
+         "series" : {
+            "color" : "#005467",
+            "name" : "count"
+         },
+         "units" : "null"
+      },
+      "title" : "Count processes",
+      "id" : "1"
+   },
+   "statistic" : {
+      "description" : "The number of processes on the system.",
+      "alias" : "Count",
+      "statkey" : "count",
+      "datatype" : "bigint"
+   }
+}
