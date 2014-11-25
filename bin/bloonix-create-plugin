@@ -16,7 +16,7 @@ if ($plugin =~ m!(^|.+/)plugin-[a-zA-Z\-0-9\-]+\z!) {
     my $check = $path . $config->{plugin}->{command};
 
     if (!-e $check) {
-        die "ERR: check script not found\n";
+        die "ERR: check script not found: $check\n";
     }
 
     if ($check !~ m!^/!) {

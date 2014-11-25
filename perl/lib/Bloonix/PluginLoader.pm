@@ -31,7 +31,7 @@ use base qw(Bloonix::Accessor);
 
 __PACKAGE__->mk_accessors(qw/dbi sql json/);
 
-our $VERSION = "0.1";
+our $VERSION = "0.6";
 
 sub run {
     my ($class, %argv) = @_;
