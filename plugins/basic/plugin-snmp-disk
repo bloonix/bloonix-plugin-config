@@ -173,7 +173,7 @@
          },
          "examples" : [
             {
-               "command_line" : "check-snmp-disk --host '127.0.0.1' --port '161' --community 'public' --disk 'C:' --warning '10%' --critical '5%'",
+               "command_line" : "check-snmp-disk --host '127.0.0.1' --port '161' --community 'public' --disk 'C:' --warning 'freeper:lt:10%' --critical 'freeper:lt:5%'",
                "arguments" : [
                   "host",
                   "127.0.0.1",
@@ -184,16 +184,16 @@
                   "disk",
                   "C:",
                   "warning",
-                  "10%",
+                  "freeper:lt:10%",
                   "critical",
-                  "5%"
+                  "freeper:lt:5%"
                ],
                "description" : [
-                  "Example to check the free space of disk C: in percent:"
+                  "Example to check if the free space of disk C: is lower than 10%/5%:"
                ]
             },
             {
-               "command_line" : "check-snmp-disk --host '127.0.0.1' --port '161' --community 'public' --disk 'C:' --warning '2000MB' --critical '1000MB'",
+               "command_line" : "check-snmp-disk --host '127.0.0.1' --port '161' --community 'public' --disk 'C:' --warning 'free:lt:2000MB' --critical 'free:lt:1000MB'",
                "arguments" : [
                   "host",
                   "127.0.0.1",
@@ -204,12 +204,12 @@
                   "disk",
                   "C:",
                   "warning",
-                  "2000MB",
+                  "free:lt:2000MB",
                   "critical",
-                  "1000MB"
+                  "free:lt:1000MB"
                ],
                "description" : [
-                  "Example to check the free space of disk C: in mega bytes:"
+                  "Example to check if the free space of disk C: is lower than 2000MB/1000MB:"
                ]
             }
          ]

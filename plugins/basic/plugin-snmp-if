@@ -221,11 +221,11 @@
          },
          "examples" : [
             {
-               "command_line" : "check-snmp-if --interface 'eth0' --hostname '127.0.0.1' --port '161' --community 'public' --snmp-version '1'",
+               "command_line" : "check-snmp-if --interface 'eth0' --host '127.0.0.1' --port '161' --community 'public' --snmp-version '1'",
                "arguments" : [
                   "interface",
                   "eth0",
-                  "hostname",
+                  "host",
                   "127.0.0.1",
                   "port",
                   161,
@@ -239,11 +239,11 @@
                ]
             },
             {
-               "command_line" : "check-snmp-if --interface '10' --hostname '127.0.0.1' --port '161' --community 'public' --snmp-version '1'",
+               "command_line" : "check-snmp-if --interface '10' --host '127.0.0.1' --port '161' --community 'public' --snmp-version '1'",
                "arguments" : [
                   "interface",
                   10,
-                  "hostname",
+                  "host",
                   "127.0.0.1",
                   "port",
                   161,
