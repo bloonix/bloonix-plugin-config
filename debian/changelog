@@ -1,3 +1,10 @@
+bloonix-plugin-config (0.6-1) unstable; urgency=low
+
+    * Added plugin plugin-lsi-raid.
+    * Added snmp plugins.
+
+ -- Jonny Schulz <js@bloonix.de>  Tue, 25 Nov 2014 17:40:28 +0100
+
 bloonix-plugin-config (0.5-1) unstable; urgency=low
 
     * Kicked deprecated base plugins.

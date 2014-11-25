@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.5
+Version: 0.6
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -75,6 +75,9 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Tue Nov 25 2014 Jonny Schulz <js@bloonix.de> - 0.6-1
+- Added plugin plugin-lsi-raid.
+- Added snmp plugins.
 * Sat Nov 08 2014 Jonny Schulz <js@bloonix.de> - 0.5-1
 - Kicked deprecated base plugins.
 * Thu Nov 06 2014 Jonny Schulz <js@bloonix.de> - 0.4-1
