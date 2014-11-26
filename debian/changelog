@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.7-1) unstable; urgency=low
+
+    * Updates for bloonix-wtrm.
+
+ -- Jonny Schulz <js@bloonix.de>  Wed, 26 Nov 2014 10:33:15 +0100
+
 bloonix-plugin-config (0.6-1) unstable; urgency=low
 
     * Added plugin plugin-lsi-raid.
