@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.7
+Version: 0.8
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -75,6 +75,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Fri Nov 28 2014 Jonny Schulz <js@bloonix.de> - 0.8-1
+- Kicked plugins for Windows.
 * Wed Nov 26 2014 Jonny Schulz <js@bloonix.de> - 0.7-1
 - Updates for bloonix-wtrm.
 * Tue Nov 25 2014 Jonny Schulz <js@bloonix.de> - 0.6-1

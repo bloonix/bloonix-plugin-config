@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.8-1) unstable; urgency=low
+
+    * Kicked plugins for Windows.
+
+ -- Jonny Schulz <js@bloonix.de>  Fri, 28 Nov 2014 14:19:58 +0100
+
 bloonix-plugin-config (0.7-1) unstable; urgency=low
 
     * Updates for bloonix-wtrm.
