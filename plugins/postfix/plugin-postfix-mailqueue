@@ -28,8 +28,8 @@
                "multiple" : 1
             }
          ],
-         "flags" : "",
-         "version" : "0.3",
+         "flags" : "sudo",
+         "version" : "0.4",
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",
