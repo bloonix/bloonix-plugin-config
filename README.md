@@ -12,7 +12,7 @@ Ordered by id (desc)
 
       id   |             plugin              |          command          
     -------+---------------------------------+---------------------------
-        69 | SNMP.Check                      | check-snmp-walk
+        69 | SNMP.Walk.Check                 | check-snmp-walk
         68 | SNMP.Check                      | check-snmp
         67 | SNMP.ServiceCheck               | check-snmp-service
         66 | SNMP.ProcessCheck               | check-snmp-process
