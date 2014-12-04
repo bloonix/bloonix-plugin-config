@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.10
+Version: 0.11
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -75,6 +75,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Thu Dec 04 2014 Jonny Schulz <js@bloonix.de> - 0.11-1
+- New plugin check-snmp-walk.
 * Tue Dec 02 2014 Jonny Schulz <js@bloonix.de> - 0.10-1
 - New plugin check-snmp.
 * Sun Nov 30 2014 Jonny Schulz <js@bloonix.de> - 0.9-1
