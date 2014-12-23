@@ -107,7 +107,7 @@
                "value" : "regex",
                "name" : "Search for a string in the snmp table",
                "default" : null,
-               "description" : "A text string that is expected in the SNMP response for the SNMP table that is checked. The string can be a perl regular expression.",
+               "description" : "A text string that is expected in the SNMP response for the SNMP table that is checked. The string can be a perl regular expression. If the string is not found a CRITICAL status is triggered.",
                "value_type" : "string",
                "option" : "match",
                "mandatory" : 1,
