@@ -43,6 +43,14 @@ install:
 		chmod 644 $(PREFIX)/lib/bloonix/etc/plugins/import/$$dir/*; \
 	done;
 
+	if [ -e "/usr/local/bloonix/etc/plugins/plugin-nagios-wrapper" ] ; then \
+		rm -f /usr/lib/bloonix/etc/plugins/plugin-nagios-wrapper; \
+	fi;
+
+	if [ -e "/usr/local/bloonix/etc/plugins/import/basic/plugin-nagios-wrapper" ] ; then \
+		rm -f /usr/lib/bloonix/etc/plugins/import/basic/plugin-nagios-wrapper; \
+	fi;
+
 	./install-sh -d -m 0755 $(PREFIX)/bin;
 	./install-sh -c -m 0755 bin/bloonix-load-plugins $(PREFIX)/bin/bloonix-load-plugins;
 

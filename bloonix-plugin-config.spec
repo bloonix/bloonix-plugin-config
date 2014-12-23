@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.11
+Version: 0.12
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -48,6 +48,12 @@ cd perl;
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %post
+if [ -e "/usr/lib/bloonix/etc/plugins/plugin-nagios-wrapper" ] ; then
+    rm -f /usr/lib/bloonix/etc/plugins/plugin-nagios-wrapper
+fi
+if [ -e "/usr/lib/bloonix/etc/plugins/import/basic/plugin-nagios-wrapper" ] ; then
+    rm -f /usr/lib/bloonix/etc/plugins/import/basic/plugin-nagios-wrapper
+fi
 /usr/bin/bloonix-load-plugins --load-all
 
 %clean
@@ -75,6 +81,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Tue Dec 23 2014 Jonny Schulz <js@bloonix.de> - 0.12-1
+- Replaced nagios-wrapper with simple-wrapper.
 * Thu Dec 04 2014 Jonny Schulz <js@bloonix.de> - 0.11-1
 - New plugin check-snmp-walk.
 * Tue Dec 02 2014 Jonny Schulz <js@bloonix.de> - 0.10-1

@@ -1,4 +1,12 @@
 #!/bin/sh
 
+if [ -e "/usr/lib/bloonix/etc/plugins/plugin-nagios-wrapper" ] ; then
+    rm -f /usr/lib/bloonix/etc/plugins/plugin-nagios-wrapper
+fi
+
+if [ -e "/usr/lib/bloonix/etc/plugins/import/basic/plugin-nagios-wrapper" ] ; then
+    rm -f /usr/lib/bloonix/etc/plugins/import/basic/plugin-nagios-wrapper
+fi
+
 /usr/bin/bloonix-load-plugins --load-all
 
