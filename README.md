@@ -12,6 +12,7 @@ Ordered by id (desc)
 
       id   |             plugin              |          command          
     -------+---------------------------------+---------------------------
+        70 | RBL.Check                       | check-rbl
         69 | SNMP.Walk.Check                 | check-snmp-walk
         68 | SNMP.Check                      | check-snmp
         67 | SNMP.ServiceCheck               | check-snmp-service
