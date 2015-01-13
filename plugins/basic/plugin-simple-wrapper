@@ -4,14 +4,14 @@
          "plugin" : "check-simple-wrapper",
          "options" : [
             {
-               "value" : "string",
                "name" : "Command",
                "default" : null,
                "description" : "Enter the complete command with arguments but without\nthe path to the script. Note that single quotes, backticks\nand backslashes are not allowed characters. Command example:\ncheck_this_or_that -H 127.0.0.1 -w 4 -c 5",
                "value_type" : "string",
                "option" : "simple-command",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "string"
             }
          ],
          "flags" : "simple",

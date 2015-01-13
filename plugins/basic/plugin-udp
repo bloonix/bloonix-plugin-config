@@ -4,54 +4,54 @@
          "plugin" : "check-udp",
          "options" : [
             {
-               "value" : "seconds",
                "name" : "Warning threshold",
                "default" : 3,
                "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "value_type" : "number",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "seconds",
                "name" : "Critical threshold",
                "default" : 5,
                "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
                "value_type" : "number",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "seconds",
                "name" : "Timeout",
                "default" : 10,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "value_type" : "number",
                "option" : "timeout",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "hostname or ip address",
                "name" : "Hostname or IP address",
                "default" : null,
                "description" : "A hostname or IP address to connect to.",
                "value_type" : "string",
                "option" : "host",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "hostname or ip address"
             },
             {
-               "value" : "port",
                "name" : "Port number",
                "default" : null,
                "description" : "A port number to connect to.",
                "value_type" : "int",
                "option" : "port",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "port"
             },
             {
                "value_type" : 0,
@@ -63,28 +63,28 @@
                "description" : "Use IPv6 to connect to the host."
             },
             {
-               "value" : "string",
                "name" : "Send string",
                "default" : null,
                "description" : "Send a string to the server.",
                "value_type" : "string",
                "option" : "send",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "string"
             },
             {
-               "value" : "regex",
                "name" : "Match string",
                "default" : null,
                "description" : "A string that is expected in the response of the server. If the string is not found then a critical status is triggered.",
                "value_type" : "string",
                "option" : "match",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "regex"
             }
          ],
          "flags" : "",
-         "version" : "0.5",
+         "version" : "0.6",
          "examples" : [
             {
                "command_line" : "check-udp --host 'udp.server.test' --port '5300' --warning '3' --critical '5' --send 'hello server' --match 'hello client'",

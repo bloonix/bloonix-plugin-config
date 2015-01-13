@@ -4,64 +4,64 @@
          "plugin" : "check-imap",
          "options" : [
             {
-               "value" : "seconds",
                "name" : "Warning threshold",
                "default" : 5,
                "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "value_type" : "number",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "seconds",
                "name" : "Critical threshold",
                "default" : 8,
                "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
                "value_type" : "number",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "seconds",
                "name" : "Timeout",
                "default" : 10,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "value_type" : "number",
                "option" : "timeout",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "hostname or ip address",
                "name" : "Hostname or IP address",
                "default" : null,
                "description" : "A hostname or IP address to connect to.",
                "value_type" : "string",
                "option" : "host",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "hostname or ip address"
             },
             {
-               "value" : "port",
                "name" : "Port number",
                "default" : null,
                "description" : "A port number to connect to.",
                "value_type" : "int",
                "option" : "port",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "port"
             },
             {
-               "value" : "ipaddr",
                "name" : "Bind to IP address",
                "default" : null,
                "description" : "A local IP address to bind to.",
                "value_type" : "string",
                "option" : "bind",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "ipaddr"
             },
             {
                "value_type" : 0,
@@ -82,54 +82,54 @@
                "description" : "Use secure connection via SSL."
             },
             {
-               "value" : "username",
                "name" : "Username",
                "default" : null,
                "description" : "The username to use for the login.",
                "value_type" : "string",
                "option" : "username",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "username"
             },
             {
-               "value" : "password",
                "name" : "Password",
                "default" : null,
                "description" : "The password for the user to login.",
                "value_type" : "string",
                "option" : "password",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "password"
             },
             {
-               "value" : "mailbox",
                "name" : "Mailbox",
                "default" : "INBOX",
                "description" : "The mailbox to query.",
                "value_type" : "string",
                "option" : "mailbox",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "mailbox"
             },
             {
-               "value" : "string",
                "name" : "Search for mails",
                "default" : null,
                "description" : "Search for the given string in the subject of each mail. If the\nstring was not found then the value of option 'misses' will be\nincreased. If the threshold of option 'misses' is exceded then\na critical status will be returned.\nAllowed characters for the search string: a-zA-Z_0-9",
                "value_type" : "string",
                "option" : "search",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "string"
             },
             {
-               "value" : "number",
                "name" : "Misses",
                "default" : 10,
                "description" : "Set the number of allowed misses until a critical status will be\nreturned if the given string that is set with options 'search'\nwas not found in the subject of any mail.",
                "value_type" : "string",
                "option" : "misses",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "number"
             },
             {
                "value_type" : 0,
@@ -151,7 +151,7 @@
             }
          ],
          "flags" : "",
-         "version" : "0.8",
+         "version" : "0.9",
          "examples" : [
             {
                "command_line" : "check-imap --host '127.0.0.1' --port '993' --warning '5' --critical '10' --use-ssl --username 'bloonix' --password 'secret'",

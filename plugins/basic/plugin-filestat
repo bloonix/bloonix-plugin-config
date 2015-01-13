@@ -4,34 +4,34 @@
          "plugin" : "check-filestat",
          "options" : [
             {
-               "value" : "file",
                "name" : "Filename",
                "default" : null,
                "description" : "This is the file name to check.",
                "value_type" : "string",
                "option" : "file",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "file"
             },
             {
-               "value" : "key:value or key:op:value",
                "name" : "Warning threshold",
                "default" : null,
                "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
                "value_type" : "string",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value"
             },
             {
-               "value" : "key:value or key:op:value",
                "name" : "Critical threshold",
                "default" : null,
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "value_type" : "string",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value"
             },
             {
                "value_type" : 0,
@@ -44,7 +44,7 @@
             }
          ],
          "flags" : "",
-         "version" : "0.1",
+         "version" : "0.2",
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",

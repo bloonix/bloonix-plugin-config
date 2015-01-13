@@ -4,38 +4,38 @@
          "plugin" : "check-cluster",
          "options" : [
             {
-               "value" : "number",
                "name" : "Warning threshold",
                "default" : null,
                "description" : "The maximum number of services that are allowed in status WARNING.",
                "value_type" : "number",
                "option" : "warning",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "number"
             },
             {
-               "value" : "number",
                "name" : "Critical threshold",
                "default" : null,
                "description" : "The maximum number of services that are allowed in status CRITICAL.",
                "value_type" : "number",
                "option" : "critical",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "number"
             },
             {
-               "value" : "id:status",
                "name" : "Service",
                "default" : null,
                "description" : "The service id you want to check.",
                "value_type" : "string",
                "option" : "service",
                "mandatory" : 1,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "id:status"
             }
          ],
          "flags" : "",
-         "version" : "0.1",
+         "version" : "0.2",
          "examples" : [
             {
                "command_line" : "check-cluster --warning '2' --critical '3' --service '23' --service '24' --service '25' --service '26'",

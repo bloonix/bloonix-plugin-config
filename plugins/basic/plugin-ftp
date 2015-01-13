@@ -4,64 +4,64 @@
          "plugin" : "check-ftp",
          "options" : [
             {
-               "value" : "seconds",
                "name" : "Warning threshold",
                "default" : 3,
                "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "value_type" : "number",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "seconds",
                "name" : "Critical threshold",
                "default" : 5,
                "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
                "value_type" : "number",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "seconds",
                "name" : "Timeout",
                "default" : 10,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "value_type" : "number",
                "option" : "timeout",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "hostname or ip address",
                "name" : "Hostname or IP address",
                "default" : null,
                "description" : "A hostname or IP address to connect to.",
                "value_type" : "string",
                "option" : "host",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "hostname or ip address"
             },
             {
-               "value" : "username",
                "name" : "Username",
                "default" : null,
                "description" : "The username to use for the login.",
                "value_type" : "string",
                "option" : "username",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "username"
             },
             {
-               "value" : "password",
                "name" : "Password",
                "default" : null,
                "description" : "The password for the user to login.",
                "value_type" : "string",
                "option" : "password",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "password"
             },
             {
                "value_type" : 0,
@@ -74,7 +74,7 @@
             }
          ],
          "flags" : "",
-         "version" : "0.2",
+         "version" : "0.3",
          "examples" : [
             {
                "command_line" : "check-ftp --host 'www.bloonix.de' --warning '3' --critical '5' --username 'bloonix' --password 'secret'",
