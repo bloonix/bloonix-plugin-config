@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.12
+Version: 0.13
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Tue Jan 13 2015 Jonny Schulz <js@bloonix.de> - 0.13-1
+- New plugin check-rbl.
 * Tue Dec 23 2014 Jonny Schulz <js@bloonix.de> - 0.12-1
 - Replaced nagios-wrapper with simple-wrapper.
 * Thu Dec 04 2014 Jonny Schulz <js@bloonix.de> - 0.11-1

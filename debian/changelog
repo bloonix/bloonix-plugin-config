@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.13-1) unstable; urgency=low
+
+    * New plugin check-rbl.
+
+ -- Jonny Schulz <js@bloonix.de>  Tue, 13 Jan 2015 11:26:28 +0100
+
 bloonix-plugin-config (0.12-1) unstable; urgency=low
 
     * Replaced nagios-wrapper with simple-wrapper.
