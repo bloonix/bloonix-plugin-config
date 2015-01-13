@@ -88,9 +88,10 @@
       "description" : "Check if a IP or hostname is listed on a blacklist.",
       "worldwide" : "no",
       "netaccess" : "yes",
+      "abstract" : "RBL check",
       "id" : "70",
       "category" : "Mail",
-      "abstract" : "RBL check",
-      "command" : "check-rbl"
+      "command" : "check-rbl",
+      "datatype" : "none"
    }
 }

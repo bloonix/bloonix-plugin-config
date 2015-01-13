@@ -1,3 +1,7 @@
+bloonix-plugin-config (0.14) released at 2015-01-13
+
+    * Fixed datatype for plugin-rbl.
+
 bloonix-plugin-config (0.13) released at 2015-01-13
 
     * New plugin check-rbl.
