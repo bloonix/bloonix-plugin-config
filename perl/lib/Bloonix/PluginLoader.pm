@@ -66,6 +66,7 @@ sub run {
     }
 
     my $config = Bloonix::Config->parse($self->{config_file});
+    delete $config->{database}->{logger};
     $self->{config} = $config;
     $self->{dbi} = Bloonix::DBI->new($config->{database});
     $self->{sql} = $self->dbi->sql;
