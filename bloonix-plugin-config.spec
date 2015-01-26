@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.14
+Version: 0.15
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,9 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Mon Jan 26 2015 Jonny Schulz <js@bloonix.de> - 0.15-1
+- Delete logger section in bloonix-load-plugins to prevent
+  the creation of the file bloonix-server.log as user root.
 * Tue Jan 13 2015 Jonny Schulz <js@bloonix.de> - 0.14-1
 - Fixed datatype for plugin-rbl.
 * Tue Jan 13 2015 Jonny Schulz <js@bloonix.de> - 0.13-1

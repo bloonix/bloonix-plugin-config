@@ -1,4 +1,4 @@
-bloonix-plugin-config (0.15) released at 2015-XX-XX
+bloonix-plugin-config (0.15) released at 2015-01-26
 
     * Delete logger section in bloonix-load-plugins to prevent
       the creation of the file bloonix-server.log as user root.

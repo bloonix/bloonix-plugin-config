@@ -1,3 +1,10 @@
+bloonix-plugin-config (0.15-1) unstable; urgency=low
+
+    * Delete logger section in bloonix-load-plugins to prevent
+      the creation of the file bloonix-server.log as user root.
+
+ -- Jonny Schulz <js@bloonix.de>  Mon, 26 Jan 2015 18:45:53 +0100
+
 bloonix-plugin-config (0.14-1) unstable; urgency=low
 
     * Fixed datatype for plugin-rbl.
