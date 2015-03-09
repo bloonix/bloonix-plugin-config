@@ -7,14 +7,14 @@
          ],
          "options" : [
             {
-               "value" : "service",
                "name" : "Service name",
                "default" : null,
                "description" : "This is the service name you want to check.",
                "value_type" : "string",
                "option" : "service",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "service"
             }
          ],
          "flags" : "sudo",

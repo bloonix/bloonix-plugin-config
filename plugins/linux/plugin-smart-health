@@ -7,24 +7,24 @@
          ],
          "options" : [
             {
-               "value" : "device",
                "name" : "Device name",
                "default" : null,
                "description" : "This is the device name to check.",
                "value_type" : "string",
                "option" : "device",
                "mandatory" : 1,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "device"
             },
             {
-               "value" : "seconds",
                "name" : "Timeout",
                "default" : 30,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "value_type" : "number",
                "option" : "timeout",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             }
          ],
          "flags" : "sudo",

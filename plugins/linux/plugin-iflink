@@ -4,14 +4,14 @@
          "plugin" : "check-iflink",
          "options" : [
             {
-               "value" : "interface",
                "name" : "Network interface",
                "default" : null,
                "description" : "This is the network interface you want to check. As example eth0 or eth1.",
                "value_type" : "string",
                "option" : "interface",
                "mandatory" : 0,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "interface"
             }
          ],
          "flags" : "",

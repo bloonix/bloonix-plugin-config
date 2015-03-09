@@ -3,41 +3,38 @@
       "info" : {
          "plugin" : "check-lsi-raid",
          "info" : [
-            "This plugin checks the status of all disks on all raid controllers that are found.",
-            "In addition the battery status is checked and the temperature of the battery.",
-            "The commands MegaCli, MegaCli64, storcli or storcli64 are used to check the status of the RAID.",
-            "Please install the tools to the path /usr/bin, /opt/MegaRAID/MegaCli or /opt/MegaRAID/storcli."
+            "This plugin checks the status of all disks on all raid controllers that are found. In addition the battery status is checked and the temperature of the battery. The commands MegaCli, MegaCli64, storcli or storcli64 are used to check the status of the RAID. Please install the tools to the path /usr/bin, /opt/MegaRAID/MegaCli or /opt/MegaRAID/storcli."
          ],
          "options" : [
             {
-               "value" : "number",
                "name" : "The number of other errors to ignore",
                "default" : 0,
                "description" : "The number of other errors to ignore and to return status OK.",
                "value_type" : "int",
                "option" : "ignore-other-errors",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "number"
             },
             {
-               "value" : "number",
                "name" : "The number of media errors to ignore",
                "default" : 0,
                "description" : "The number of media errors to ignore and to return status OK.",
                "value_type" : "int",
                "option" : "ignore-media-errors",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "number"
             },
             {
-               "value" : "number",
                "name" : "The number of predictive failures to ignore",
                "default" : 0,
                "description" : "The number of predictive failures to ignore and to return status OK.",
                "value_type" : "int",
                "option" : "ignore-predictive-failures",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "number"
             },
             {
                "value_type" : 0,
@@ -50,7 +47,7 @@
             }
          ],
          "flags" : "sudo",
-         "version" : "0.1"
+         "version" : "0.2"
       },
       "plugin" : "Linux.RAID.LSI.Check",
       "description" : "Check the raid health with megacli or storcli.",

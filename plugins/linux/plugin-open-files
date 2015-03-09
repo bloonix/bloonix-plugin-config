@@ -4,24 +4,24 @@
          "plugin" : "check-open-files",
          "options" : [
             {
-               "value" : "percent",
                "name" : "Warning threshold",
                "default" : 10,
                "description" : "This is the warning threshold for real free file hanlders in percent. If less than this value in percent are free a warning status is triggered.",
                "value_type" : "number",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "percent"
             },
             {
-               "value" : "percent",
                "name" : "Critical threshold",
                "default" : 5,
                "description" : "This is the critical threshold for real free file hanlders in percent. If less than this value in percent are free a critical status is triggered.",
                "value_type" : "number",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "percent"
             }
          ],
          "flags" : "",

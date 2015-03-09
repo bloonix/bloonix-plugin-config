@@ -7,54 +7,54 @@
          ],
          "options" : [
             {
-               "value" : "count",
                "name" : "Warning threshold for normal packages",
                "default" : null,
                "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a WARNING is triggered.",
                "value_type" : "int",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "count"
             },
             {
-               "value" : "count",
                "name" : "Critical threshold for normal packages",
                "default" : null,
                "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages arei available then a CRITICAL is triggered.",
                "value_type" : "int",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "count"
             },
             {
-               "value" : "count",
                "name" : "Warning threshold for security packages",
                "default" : null,
                "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a WARNING is triggered.",
                "value_type" : "int",
                "option" : "warning-security",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "count"
             },
             {
-               "value" : "count",
                "name" : "Critical threshold for security packages",
                "default" : null,
                "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a CRITICAL is triggered.",
                "value_type" : "int",
                "option" : "critical-security",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "count"
             },
             {
-               "value" : "seconds",
                "name" : "Timeout",
                "default" : 30,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "value_type" : "number",
                "option" : "timeout",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             }
          ],
          "flags" : "sudo",

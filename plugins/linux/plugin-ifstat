@@ -4,34 +4,34 @@
          "plugin" : "check-ifstat",
          "options" : [
             {
-               "value" : "interface",
                "name" : "Network interface",
                "default" : null,
                "description" : "This is the network interface you want to check. As example eth0 or eth1.",
                "value_type" : "string",
                "option" : "interface",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "interface"
             },
             {
-               "value" : "key:value or key:op:value",
                "name" : "Warning threshold",
                "default" : null,
                "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
                "value_type" : "string",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value"
             },
             {
-               "value" : "key:value or key:op:value",
                "name" : "Critical threshold",
                "default" : null,
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "value_type" : "string",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value"
             }
          ],
          "flags" : "",

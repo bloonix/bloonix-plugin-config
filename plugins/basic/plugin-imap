@@ -114,7 +114,7 @@
             {
                "name" : "Search for mails",
                "default" : null,
-               "description" : "Search for the given string in the subject of each mail. If the\nstring was not found then the value of option 'misses' will be\nincreased. If the threshold of option 'misses' is exceded then\na critical status will be returned.\nAllowed characters for the search string: a-zA-Z_0-9",
+               "description" : "Search for the given string in the subject of each mail.\nIn combination with the option 'Miss time' a critical\nstatus is triggered if the mail weren't found in the\nexpected time.",
                "value_type" : "string",
                "option" : "search",
                "mandatory" : 0,
@@ -122,14 +122,23 @@
                "value_desc" : "string"
             },
             {
-               "name" : "Misses",
-               "default" : 10,
-               "description" : "Set the number of allowed misses until a critical status will be\nreturned if the given string that is set with options 'search'\nwas not found in the subject of any mail.",
+               "name" : "Miss time",
+               "default" : "10m",
+               "description" : "With this option you can set a expire time. The units are 'm'\nfor minutes, 'h' for hours and 'd' for days. In combination with the\noption 'Search for mails' a critical status is triggered if a mail\nweren't found in the expected time. Note that if no unit is used\nthen this option acts like a counter. That means that a internal\ncounter is increased with each check if a mail weren't found.\nAfter X misses a critical status is triggered.",
                "value_type" : "string",
                "option" : "misses",
                "mandatory" : 0,
                "multiple" : 0,
-               "value_desc" : "number"
+               "value_desc" : "time"
+            },
+            {
+               "value_type" : 0,
+               "name" : "Return CRITICAL, not OK",
+               "option" : "invert-regex",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null,
+               "description" : "Use this option if you want that a CRITICAL status is triggered if a mail is found.\nIf this option is enabled then the option 'misses' will be ignored."
             },
             {
                "value_type" : 0,
@@ -151,7 +160,7 @@
             }
          ],
          "flags" : "",
-         "version" : "0.9",
+         "version" : "0.10",
          "examples" : [
             {
                "command_line" : "check-imap --host '127.0.0.1' --port '993' --warning '5' --critical '10' --use-ssl --username 'bloonix' --password 'secret'",
@@ -176,7 +185,7 @@
                ]
             },
             {
-               "command_line" : "check-imap --host '127.0.0.1' --port '993' --warning '5' --critical '10' --use-ssl --username 'bloonix' --password 'secret' --misses '5' --search 'Bloonix test mail' --delete",
+               "command_line" : "check-imap --host '127.0.0.1' --port '993' --warning '5' --critical '10' --use-ssl --username 'bloonix' --password 'secret' --misses '5m' --search 'Bloonix test mail' --delete",
                "arguments" : [
                   "host",
                   "127.0.0.1",
@@ -193,7 +202,7 @@
                   "password",
                   "secret",
                   "misses",
-                  5,
+                  "5m",
                   "search",
                   "Bloonix test mail",
                   "delete",

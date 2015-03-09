@@ -13,14 +13,14 @@
                "description" : "Enable this option if you want to check all configured bonding interfaces on the system. If you use this option then you don't need to spcifiy the interfaces with the option 'Bonding interface'."
             },
             {
-               "value" : "interface",
                "name" : "Bonding interface",
                "default" : null,
                "description" : "The bonding interface to check. Use the option 'Check all interfaces' if you want to check all interfaces.",
                "value_type" : "string",
                "option" : "interface",
                "mandatory" : 0,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "interface"
             }
          ],
          "flags" : "",

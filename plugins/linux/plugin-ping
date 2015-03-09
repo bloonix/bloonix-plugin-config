@@ -4,24 +4,24 @@
          "plugin" : "check-ping",
          "options" : [
             {
-               "value" : "hostname or ip address",
                "name" : "Hostname or IP address",
                "default" : null,
                "description" : "A hostname or IP address to connect to.",
                "value_type" : "string",
                "option" : "host",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "hostname or ip address"
             },
             {
-               "value" : "seconds",
                "name" : "Timeout",
                "default" : 10,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "value_type" : "number",
                "option" : "timeout",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
                "value_type" : 0,
@@ -33,34 +33,34 @@
                "description" : "Use IPv6 to connect to the host."
             },
             {
-               "value" : "packets",
                "name" : "Packets",
                "default" : 3,
                "description" : "Number of packets to send. At least 1 and maximum 10.",
                "value_type" : "number",
                "option" : "packets",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "packets"
             },
             {
-               "value" : "seconds",
                "name" : "Warning threshold",
                "default" : "2000,33%",
                "description" : "Set the the maximum average in seconds and loss in percent with a comma separated.",
                "value_type" : "string",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "seconds",
                "name" : "Critical threshold",
                "default" : "5000,66%",
                "description" : "Set the the maximum average in seconds and loss in percent with a comma separated.",
                "value_type" : "string",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             }
          ],
          "flags" : "",
