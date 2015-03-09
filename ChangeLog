@@ -1,3 +1,7 @@
+bloonix-plugin-config (0.16) released at 2015-03-09
+
+    * Some new options. check-mdadm has a new parameter.
+
 bloonix-plugin-config (0.15) released at 2015-01-26
 
     * Delete logger section in bloonix-load-plugins to prevent
