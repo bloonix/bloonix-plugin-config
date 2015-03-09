@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.16-1) unstable; urgency=low
+
+    * Some new options. check-mdadm has a new parameter.
+
+ -- Jonny Schulz <js@bloonix.de>  Mon, 09 Mar 2015 18:27:45 +0100
+
 bloonix-plugin-config (0.15-1) unstable; urgency=low
 
     * Delete logger section in bloonix-load-plugins to prevent
