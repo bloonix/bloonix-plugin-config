@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.16
+Version: 0.17
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Mon Apr 06 2015 Jonny Schulz <js@bloonix.de> - 0.17-1
+- All snmp plugins has new options.
 * Mon Mar 09 2015 Jonny Schulz <js@bloonix.de> - 0.16-1
 - Some new options. check-mdadm has a new parameter.
 * Mon Jan 26 2015 Jonny Schulz <js@bloonix.de> - 0.15-1

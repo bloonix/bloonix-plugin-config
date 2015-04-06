@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.17-1) unstable; urgency=low
+
+    * All snmp plugins has new options.
+
+ -- Jonny Schulz <js@bloonix.de>  Mon, 06 Apr 2015 19:08:10 +0200
+
 bloonix-plugin-config (0.16-1) unstable; urgency=low
 
     * Some new options. check-mdadm has a new parameter.

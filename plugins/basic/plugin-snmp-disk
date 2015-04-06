@@ -64,6 +64,16 @@
                "value_desc" : "username"
             },
             {
+               "name" : "SNMPv3 auth key",
+               "default" : null,
+               "description" : "The SNMPv3 auth key.",
+               "value_type" : "string",
+               "option" : "authkey",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "value_desc" : "authkey"
+            },
+            {
                "name" : "SNMPv3 auth password",
                "default" : null,
                "description" : "The SNMPv3 auth password.",
@@ -82,6 +92,16 @@
                "mandatory" : 0,
                "multiple" : 0,
                "value_desc" : "authprotocol"
+            },
+            {
+               "name" : "SNMPv3 priv key",
+               "default" : null,
+               "description" : "The SNMPv3 priv key.",
+               "value_type" : "string",
+               "option" : "privkey",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "value_desc" : "privkey"
             },
             {
                "name" : "SNMPv3 priv password",
