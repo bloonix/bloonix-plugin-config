@@ -7,44 +7,44 @@
          ],
          "options" : [
             {
-               "value" : "workflow",
                "name" : "workflow",
                "default" : null,
                "description" : "This is the workflow to simulate end-users on the website.",
-               "value_type" : "array",
+               "value_type" : "hash",
                "option" : "workflow",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 1,
+               "value_desc" : "workflow"
             },
             {
-               "value" : "seconds",
                "name" : "Warning threshold",
                "default" : null,
                "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "value_type" : "number",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "seconds",
                "name" : "Critical threshold",
                "default" : null,
                "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
                "value_type" : "number",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "seconds",
                "name" : "Timeout",
                "default" : 30,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "value_type" : "number",
                "option" : "timeout",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             }
          ],
          "flags" : "",
