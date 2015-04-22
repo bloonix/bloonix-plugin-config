@@ -10,10 +10,10 @@
                "name" : "workflow",
                "default" : null,
                "description" : "This is the workflow to simulate end-users on the website.",
-               "value_type" : "hash",
+               "value_type" : "array",
                "option" : "workflow",
                "mandatory" : 1,
-               "multiple" : 1,
+               "multiple" : 0,
                "value_desc" : "workflow"
             },
             {
