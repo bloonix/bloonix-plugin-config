@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.18-1) unstable; urgency=low
+
+    * Different plugin changes.
+
+ -- Jonny Schulz <js@bloonix.de>  Thu, 23 Apr 2015 18:30:05 +0200
+
 bloonix-plugin-config (0.17-1) unstable; urgency=low
 
     * All snmp plugins has new options.
