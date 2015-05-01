@@ -84,6 +84,8 @@ sub run {
             $plugin_config = JSON->new->decode($plugin_config);
             if (ref $plugin_config->{plugin}->{info} eq "HASH") {
                 $plugin_config->{plugin}->{info} = JSON->new->encode($plugin_config->{plugin}->{info});
+            } else {
+                $plugin_config->{plugin}->{info} = "{}";
             }
             $self->{plugin} = $self->validate($plugin_config);
             $self->update_plugin;
