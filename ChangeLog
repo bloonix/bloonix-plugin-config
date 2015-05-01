@@ -1,6 +1,7 @@
 bloonix-plugin-config (0.19) released at 2015-XX-XX
 
     * Set string "{}" as default for column "info" in table "plugin".
+    * Plugin check-bloonix-server added.
 
 bloonix-plugin-config (0.18) released at 2015-04-22
 

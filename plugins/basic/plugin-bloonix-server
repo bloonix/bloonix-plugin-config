@@ -1,0 +1,224 @@
+{
+   "plugin" : {
+      "info" : {
+         "plugin" : "check-bloonix-server",
+         "options" : [
+            {
+               "name" : "Hostname or IP address",
+               "default" : null,
+               "description" : "A hostname or IP address to connect to.",
+               "value_type" : "string",
+               "option" : "host",
+               "mandatory" : 1,
+               "multiple" : 0,
+               "value_desc" : "hostname or ip address"
+            },
+            {
+               "name" : "Port number",
+               "default" : 5460,
+               "description" : "A port number to connect to.",
+               "value_type" : "int",
+               "option" : "port",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "value_desc" : "port"
+            },
+            {
+               "name" : "Authkey",
+               "default" : null,
+               "description" : "The authkey to authenticate with the server.",
+               "value_type" : "string",
+               "option" : "authkey",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "value_desc" : "authkey"
+            },
+            {
+               "name" : "Warning threshold",
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value"
+            },
+            {
+               "name" : "Critical threshold",
+               "default" : null,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value"
+            }
+         ],
+         "flags" : "",
+         "version" : "0.1",
+         "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "time"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "freeslot"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "startup"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "sendrep"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "processing"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "readreq"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "idle"
+               }
+            ]
+         }
+      },
+      "plugin" : "Bloonix.Server.Check",
+      "prefer" : "localhost",
+      "description" : "Bloonix statistics",
+      "netaccess" : "yes",
+      "id" : "200",
+      "category" : "System,Bloonix",
+      "abstract" : "Bloonix server status",
+      "command" : "check-bloonix-server",
+      "datatype" : "statistic"
+   },
+   "chart" : [
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "time in ms",
+            "series" : {
+               "color" : "#005467",
+               "name" : "time"
+            },
+            "units" : "null"
+         },
+         "title" : "Bloonix server response time",
+         "id" : "1"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "count",
+            "series" : [
+               {
+                  "color" : "#66c066",
+                  "name" : "none"
+               },
+               {
+                  "color" : "#0000ff",
+                  "name" : "startup"
+               },
+               {
+                  "color" : "#ff6666",
+                  "name" : "readreq"
+               },
+               {
+                  "color" : "#bf00bf",
+                  "name" : "sendrep"
+               },
+               {
+                  "color" : "#ff0000",
+                  "name" : "processing"
+               },
+               {
+                  "color" : "#7648eb",
+                  "name" : "idle"
+               },
+               {
+                  "color" : "#7f7fff",
+                  "name" : "freeslot"
+               }
+            ]
+         },
+         "title" : "Bloonix process status",
+         "id" : "2"
+      }
+   ],
+   "statistic" : [
+      {
+         "description" : "Time in milliseconds waiting for response.",
+         "alias" : "Response time",
+         "statkey" : "time",
+         "units" : "ms",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Sending Reply.",
+         "alias" : "Sending reply",
+         "statkey" : "sendrep",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Reading Request.",
+         "alias" : "Reading request",
+         "statkey" : "readreq",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Idle workers.",
+         "alias" : "Idle workers",
+         "statkey" : "idle",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Starting up.",
+         "alias" : "Starting up",
+         "statkey" : "startup",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Processing request.",
+         "alias" : "Processing request",
+         "statkey" : "processing",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Unknown status.",
+         "alias" : "Unknown status",
+         "statkey" : "none",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Free slot.",
+         "alias" : "Free slot",
+         "statkey" : "freeslot",
+         "datatype" : "bigint"
+      }
+   ]
+}
