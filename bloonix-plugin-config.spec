@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.18
+Version: 0.19
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,9 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Thu May 07 2015 Jonny Schulz <js@bloonix.de> - 0.19-1
+- Set string "{}" as default for column "info" in table "plugin".
+- Plugin check-bloonix-server added.
 * Thu Apr 23 2015 Jonny Schulz <js@bloonix.de> - 0.18-1
 - Different plugin changes.
 * Mon Apr 06 2015 Jonny Schulz <js@bloonix.de> - 0.17-1

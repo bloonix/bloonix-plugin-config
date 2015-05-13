@@ -1,3 +1,10 @@
+bloonix-plugin-config (0.19-1) unstable; urgency=low
+
+    * Set string "{}" as default for column "info" in table "plugin".
+    * Plugin check-bloonix-server added.
+
+ -- Jonny Schulz <js@bloonix.de>  Thu, 07 May 2015 14:26:21 +0200
+
 bloonix-plugin-config (0.18-1) unstable; urgency=low
 
     * Different plugin changes.

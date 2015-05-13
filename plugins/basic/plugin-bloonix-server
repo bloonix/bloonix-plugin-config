@@ -5,11 +5,11 @@
          "options" : [
             {
                "name" : "Hostname or IP address",
-               "default" : null,
+               "default" : "127.0.0.1",
                "description" : "A hostname or IP address to connect to.",
                "value_type" : "string",
                "option" : "host",
-               "mandatory" : 1,
+               "mandatory" : 0,
                "multiple" : 0,
                "value_desc" : "hostname or ip address"
             },
@@ -105,7 +105,29 @@
                   "key" : "idle"
                }
             ]
-         }
+         },
+         "examples" : [
+            {
+               "command_line" : "check-bloonix-server --host '127.0.0.1' --port '5460' --warning 'freeslot:lt:5' --critical 'freeslot:lt:3' --warning 'idle:lt:5' --critical 'idle:lt:3'",
+               "arguments" : [
+                  "host",
+                  "127.0.0.1",
+                  "port",
+                  5460,
+                  "warning",
+                  "freeslot:lt:5",
+                  "critical",
+                  "freeslot:lt:3",
+                  "warning",
+                  "idle:lt:5",
+                  "critical",
+                  "idle:lt:3"
+               ],
+               "description" : [
+                  "Example to check the bloonix server:"
+               ]
+            }
+         ]
       },
       "plugin" : "Bloonix.Server.Check",
       "prefer" : "localhost",
