@@ -99,10 +99,11 @@
       "plugin" : "FTP.Check",
       "prefer" : "remote",
       "description" : "FTP statistics",
+      "worldwide" : "yes",
       "netaccess" : "yes",
+      "abstract" : "FTP check",
       "id" : "6",
       "category" : "Network",
-      "abstract" : "FTP check",
       "command" : "check-ftp",
       "datatype" : "statistic"
    },

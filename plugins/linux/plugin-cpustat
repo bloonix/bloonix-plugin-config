@@ -156,6 +156,10 @@
             {
                "color" : "#666666",
                "name" : "quest"
+            },
+            {
+               "color" : "#bf00bf",
+               "name" : "other"
             }
          ],
          "units" : "null"
@@ -231,6 +235,13 @@
          "description" : "The total usage of the CPU in percent.",
          "alias" : "Total",
          "statkey" : "total",
+         "units" : "percent",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Summary of unknown fields in /proc/stat.",
+         "alias" : "Other",
+         "statkey" : "other",
          "units" : "percent",
          "datatype" : "float"
       }
