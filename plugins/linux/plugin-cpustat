@@ -176,7 +176,7 @@
          "datatype" : "float"
       },
       {
-         "description" : "The nice level of the process.",
+         "description" : "Time spent in user mode with low priority.",
          "alias" : "Nice",
          "statkey" : "nice",
          "units" : "percent",

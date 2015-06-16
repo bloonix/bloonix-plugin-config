@@ -1,3 +1,7 @@
+bloonix-plugin-config (0.21) released at 2015-06-16
+
+    * Fixed description of cpu field "nice"
+
 bloonix-plugin-config (0.20) released at 2015-06-16
 
     * New key "other" in bloonix-plugins-linux/check-cpustat.
