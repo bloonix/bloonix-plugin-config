@@ -1,5 +1,11 @@
 bloonix-plugin-config (0.21-1) unstable; urgency=low
 
+    * Updated example of check-lm-sensors.
+
+ -- Jonny Schulz <js@bloonix.de>  Sat, 15 Aug 2015 18:16:25 +0200
+
+bloonix-plugin-config (0.21-1) unstable; urgency=low
+
     * Fixed description of cpu field "nice"
 
  -- Jonny Schulz <js@bloonix.de>  Tue, 16 Jun 2015 14:20:59 +0200
