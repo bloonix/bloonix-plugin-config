@@ -1,8 +1,8 @@
-bloonix-plugin-config (0.21-1) unstable; urgency=low
+bloonix-plugin-config (0.22-1) unstable; urgency=low
 
     * Updated example of check-lm-sensors.
 
- -- Jonny Schulz <js@bloonix.de>  Sat, 15 Aug 2015 18:16:25 +0200
+ -- Jonny Schulz <js@bloonix.de>  Sat, 15 Aug 2015 18:17:52 +0200
 
 bloonix-plugin-config (0.21-1) unstable; urgency=low
 
