@@ -3,7 +3,7 @@
       "info" : {
          "plugin" : "check-linux-updates",
          "info" : [
-            "This plugin works only with Debian/Ubuntu or RedHat/CentOS/Fedora like systems. On RedHat/CentOS/Fedora you have to install the package 'yum-security'."
+            "This plugin works only with Debian/Ubuntu or RedHat/CentOS/Fedora like systems. On RedHat/CentOS/Fedora you have to install the package 'yum-security'. Note that this checks returns a WARNING status if the check runs on a timeout."
          ],
          "options" : [
             {

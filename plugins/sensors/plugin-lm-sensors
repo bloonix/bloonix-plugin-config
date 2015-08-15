@@ -4,34 +4,34 @@
          "plugin" : "check-lm-sensors",
          "options" : [
             {
-               "value" : "sensor",
                "name" : "Sensor",
                "default" : null,
                "description" : "This is the name of the sensor to check.",
                "value_type" : "string",
                "option" : "sensor",
                "mandatory" : 1,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "sensor"
             },
             {
-               "value" : "temporature",
                "name" : "Warning threshold",
                "default" : null,
                "description" : "This is the warning threshold to check the temperatur.",
                "value_type" : "int",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "temporature"
             },
             {
-               "value" : "temporature",
                "name" : "Critical threshold",
                "default" : null,
                "description" : "This is the critical threshold to check the temperatur.",
                "value_type" : "int",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "temporature"
             }
          ],
          "flags" : "",
