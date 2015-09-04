@@ -24,7 +24,7 @@ Ordered by id (desc)
         62 | SNMP.CPU                        | check-snmp-cpu
         61 | Linux.RAID.LSI.Check            | check-lsi-raid
         60 | Customer.BloonixSatellite.Check | check-bloonix-satellite
-        59 | Nagios.Wrapper                  | check-nagios-wrapper
+        59 | Simple.Wrapper                  | check-simple-wrapper
         58 | WebTransaction                  | check-wtrm
         57 | Windows.SNMP.Service            | check-win-snmp-service.pl    (deprecated)
         56 | Windows.SNMP.ProcessCheck       | check-win-snmp-process.pl    (deprecated)
