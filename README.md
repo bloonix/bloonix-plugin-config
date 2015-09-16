@@ -23,7 +23,7 @@ Ordered by id (desc)
         63 | SNMP.Disk                       | check-snmp-disk
         62 | SNMP.CPU                        | check-snmp-cpu
         61 | Linux.RAID.LSI.Check            | check-lsi-raid
-        60 | Customer.BloonixSatellite.Check | check-bloonix-satellite
+        60 | Bloonix.Satellite.Check         | check-bloonix-satellite
         59 | Simple.Wrapper                  | check-simple-wrapper
         58 | WebTransaction                  | check-wtrm
         57 | Windows.SNMP.Service            | check-win-snmp-service.pl    (deprecated)
