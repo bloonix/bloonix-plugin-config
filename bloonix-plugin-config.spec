@@ -83,6 +83,7 @@ rm -rf %{buildroot}
 %changelog
 * Wed Sep 16 2015 Jonny Schulz <js@bloonix.de> - 0.23-1
 - New plugin check-bloonix-satellite.
+- New plugin check-ntp-time.
 * Sat Aug 15 2015 Jonny Schulz <js@bloonix.de> - 0.22-1
 - Updated example of check-lm-sensors.
 * Tue Jun 16 2015 Jonny Schulz <js@bloonix.de> - 0.21-1
