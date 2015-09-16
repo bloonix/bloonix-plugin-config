@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.22
+Version: 0.23
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Wed Sep 16 2015 Jonny Schulz <js@bloonix.de> - 0.23-1
+- New plugin check-bloonix-satellite.
 * Sat Aug 15 2015 Jonny Schulz <js@bloonix.de> - 0.22-1
 - Updated example of check-lm-sensors.
 * Tue Jun 16 2015 Jonny Schulz <js@bloonix.de> - 0.21-1

@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.23-1) unstable; urgency=low
+
+    * New plugin check-bloonix-satellite.
+
+ -- Jonny Schulz <js@bloonix.de>  Wed, 16 Sep 2015 02:31:23 +0200
+
 bloonix-plugin-config (0.22-1) unstable; urgency=low
 
     * Updated example of check-lm-sensors.
