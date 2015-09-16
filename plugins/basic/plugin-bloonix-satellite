@@ -78,8 +78,7 @@
          "units" : "null"
       },
       "title" : "Bloonix satellite response time",
-      "id" : "1",
-      "gid" : "yeir4oZu4pewolaemeisiw4chihahpee"
+      "id" : "1"
    },
    "statistic" : {
       "stattype" : "gauge",
