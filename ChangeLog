@@ -1,6 +1,7 @@
 bloonix-plugin-config (0.23) released at 2015-09-15
 
     * New plugin check-bloonix-satellite.
+    * New plugin check-ntp-time.
 
 bloonix-plugin-config (0.22) released at 2015-08-15
 
