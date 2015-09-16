@@ -13,6 +13,7 @@ Ordered by id (desc)
       id   |             plugin              |          command          
     -------+---------------------------------+---------------------------
        200 | Bloonix.Server.Check            | check-bloonix-server
+        71 | NTP.Time.Check                  | check-ntp-time
         70 | RBL.Check                       | check-rbl
         69 | SNMP.Walk.Check                 | check-snmp-walk
         68 | SNMP.Check                      | check-snmp
