@@ -27,12 +27,12 @@ Ordered by id (desc)
         60 | Bloonix.Satellite.Check         | check-bloonix-satellite
         59 | Simple.Wrapper                  | check-simple-wrapper
         58 | WebTransaction                  | check-wtrm
-        57 | Windows.SNMP.Service            | check-win-snmp-service.pl    (deprecated)
-        56 | Windows.SNMP.ProcessCheck       | check-win-snmp-process.pl    (deprecated)
-        55 | Windows.SNMP.NumberOfProcesses  | check-win-snmp-nprocs.pl     (deprecated)
-        54 | Windows.SNMP.Memory             | check-win-snmp-mem.pl        (deprecated)
-        53 | Windows.SNMP.Disk               | check-win-snmp-disk.pl       (deprecated)
-        52 | Windows.SNMP.CPU                | check-win-snmp-cpu.pl        (deprecated)
+        57 |                                 |                          free
+        56 |                                 |                          free
+        55 |                                 |                          free
+        54 |                                 |                          free
+        53 |                                 |                          free
+        52 |                                 |                          free
         51 | Varnish.Check                   | check-varnish3
         50 | Linux.Sensors                   | check-lm-sensors
         49 | Redis.Queue.Check               | check-redis-queue
@@ -83,3 +83,4 @@ Ordered by id (desc)
          3 | Database.Check                  | check-dbconnect
          2 | Cluster.ServiceCheck            | check-cluster
          1 | Apache2.Statistics              | check-apache2
+
