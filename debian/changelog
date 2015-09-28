@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.24-1) unstable; urgency=low
+
+    * Infos updates for plugin check-linux-updates.
+
+ -- Jonny Schulz <js@bloonix.de>  Mon, 28 Sep 2015 15:39:26 +0200
+
 bloonix-plugin-config (0.23-1) unstable; urgency=low
 
     * New plugin check-bloonix-satellite.

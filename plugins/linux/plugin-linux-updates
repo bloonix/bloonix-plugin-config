@@ -3,7 +3,7 @@
       "info" : {
          "plugin" : "check-linux-updates",
          "info" : [
-            "This plugin works only with Debian/Ubuntu, RedHat/CentOS/Fedora or openSUSE/SLES like systems. On RedHat/CentOS/Fedora you have to install the package 'yum-security'."
+            "This plugin works only on Linux distributions where the tools yum, dnf, apt or zypper are used as package manager. If yum is used, then you have to install the package yum-security. If dnf is used, then you should know that 'dnf updateinfo' is parsed to get a summary of available security updates."
          ],
          "options" : [
             {
@@ -58,7 +58,7 @@
             }
          ],
          "flags" : "sudo",
-         "version" : "0.3",
+         "version" : "0.5",
          "examples" : [
             {
                "command_line" : "check-linux-updates --critical-security '1'",
