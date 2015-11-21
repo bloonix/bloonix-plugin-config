@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.25-1) unstable; urgency=low
+
+    * New param authkey for plugin check-by-satellite.
+
+ -- Jonny Schulz <js@bloonix.de>  Sat, 21 Nov 2015 23:31:43 +0100
+
 bloonix-plugin-config (0.24-1) unstable; urgency=low
 
     * Infos updates for plugin check-linux-updates.
