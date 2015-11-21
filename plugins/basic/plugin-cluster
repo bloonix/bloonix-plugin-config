@@ -1,78 +1,10 @@
 {
-   "plugin" : {
-      "info" : {
-         "plugin" : "check-cluster",
-         "options" : [
-            {
-               "name" : "Warning threshold",
-               "default" : null,
-               "description" : "The maximum number of services that are allowed in status WARNING.",
-               "value_type" : "number",
-               "option" : "warning",
-               "mandatory" : 1,
-               "multiple" : 0,
-               "value_desc" : "number"
-            },
-            {
-               "name" : "Critical threshold",
-               "default" : null,
-               "description" : "The maximum number of services that are allowed in status CRITICAL.",
-               "value_type" : "number",
-               "option" : "critical",
-               "mandatory" : 1,
-               "multiple" : 0,
-               "value_desc" : "number"
-            },
-            {
-               "name" : "Service",
-               "default" : null,
-               "description" : "The service id you want to check.",
-               "value_type" : "string",
-               "option" : "service",
-               "mandatory" : 1,
-               "multiple" : 1,
-               "value_desc" : "id:status"
-            }
-         ],
-         "flags" : "",
-         "version" : "0.2",
-         "examples" : [
-            {
-               "command_line" : "check-cluster --warning '2' --critical '3' --service '23' --service '24' --service '25' --service '26'",
-               "arguments" : [
-                  "warning",
-                  2,
-                  "critical",
-                  3,
-                  "service",
-                  "23",
-                  "service",
-                  "24",
-                  "service",
-                  "25",
-                  "service",
-                  "26"
-               ],
-               "description" : [
-                  "Check the health of multiple HTTP frontends. If more than or exactly 2 services are in status WARNING then a WARNING status is triggered. If more than or exactly 3 services are in status CRITICAL then a CRITICAL status is triggered."
-               ]
-            }
-         ]
-      },
-      "plugin" : "Cluster.ServiceCheck",
-      "prefer" : "remote",
-      "description" : "Check the status of multiple services.",
-      "netaccess" : "yes",
-      "id" : "2",
-      "category" : "Cluster,System,Utilities",
-      "abstract" : "Check cluster service",
-      "command" : "check-cluster",
-      "datatype" : "none"
-   },
    "chart" : {
+      "id" : "1",
       "options" : {
-         "chart-type" : "area",
          "ylabel" : "count status",
+         "chart-type" : "area",
+         "units" : "null",
          "series" : [
             {
                "color" : "#4b9768",
@@ -91,45 +23,113 @@
                "name" : "CRITICAL"
             },
             {
-               "color" : "#eb582a",
-               "name" : "UNKNOWN"
+               "name" : "UNKNOWN",
+               "color" : "#eb582a"
+            }
+         ]
+      },
+      "title" : "Cluster status"
+   },
+   "plugin" : {
+      "abstract" : "Check cluster service",
+      "datatype" : "none",
+      "netaccess" : "yes",
+      "command" : "check-cluster",
+      "plugin" : "Cluster.ServiceCheck",
+      "description" : "Check the status of multiple services.",
+      "info" : {
+         "flags" : "",
+         "options" : [
+            {
+               "value_type" : "number",
+               "name" : "Warning threshold",
+               "value_desc" : "number",
+               "option" : "warning",
+               "mandatory" : 1,
+               "default" : null,
+               "description" : "The maximum number of services that are allowed in status WARNING.",
+               "multiple" : 0
+            },
+            {
+               "mandatory" : 1,
+               "option" : "critical",
+               "value_desc" : "number",
+               "name" : "Critical threshold",
+               "value_type" : "number",
+               "multiple" : 0,
+               "description" : "The maximum number of services that are allowed in status CRITICAL.",
+               "default" : null
+            },
+            {
+               "mandatory" : 1,
+               "value_desc" : "id:status",
+               "option" : "service",
+               "name" : "Service",
+               "value_type" : "string",
+               "multiple" : 1,
+               "description" : "The service id you want to check.",
+               "default" : null
             }
          ],
-         "units" : "null"
+         "version" : "0.2",
+         "examples" : [
+            {
+               "arguments" : [
+                  "warning",
+                  2,
+                  "critical",
+                  3,
+                  "service",
+                  "23",
+                  "service",
+                  "24",
+                  "service",
+                  "25",
+                  "service",
+                  "26"
+               ],
+               "command_line" : "check-cluster --warning '2' --critical '3' --service '23' --service '24' --service '25' --service '26'",
+               "description" : [
+                  "Check the health of multiple HTTP frontends. If more than or exactly 2 services are in status WARNING then a WARNING status is triggered. If more than or exactly 3 services are in status CRITICAL then a CRITICAL status is triggered."
+               ]
+            }
+         ],
+         "plugin" : "check-cluster"
       },
-      "title" : "Cluster status",
-      "id" : "1"
+      "prefer" : "remote",
+      "category" : "Cluster,System,Utilities",
+      "id" : "2"
    },
    "statistic" : [
       {
-         "description" : "Number of services in status OK.",
+         "units" : "null",
+         "datatype" : "bigint",
          "statkey" : "OK",
-         "units" : "null",
-         "datatype" : "bigint"
+         "description" : "Number of services in status OK."
       },
       {
-         "description" : "Number of services in status INFO.",
          "statkey" : "INFO",
+         "datatype" : "bigint",
          "units" : "null",
-         "datatype" : "bigint"
+         "description" : "Number of services in status INFO."
       },
       {
-         "description" : "Number of services in status WARNING.",
-         "statkey" : "WARNING",
          "units" : "null",
-         "datatype" : "bigint"
+         "datatype" : "bigint",
+         "statkey" : "WARNING",
+         "description" : "Number of services in status WARNING."
       },
       {
          "description" : "Number of services in status CRITICAL.",
-         "statkey" : "CRITICAL",
          "units" : "null",
-         "datatype" : "bigint"
+         "datatype" : "bigint",
+         "statkey" : "CRITICAL"
       },
       {
          "description" : "Number of services in status UNKNOWN.",
-         "statkey" : "UNKNOWN",
+         "datatype" : "bigint",
          "units" : "null",
-         "datatype" : "bigint"
+         "statkey" : "UNKNOWN"
       }
    ]
 }

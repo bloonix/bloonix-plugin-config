@@ -1,29 +1,30 @@
 {
    "plugin" : {
+      "plugin" : "Linux.Bonding.Check",
+      "abstract" : "Bonding check",
       "info" : {
-         "plugin" : "check-bonding",
+         "flags" : "",
          "options" : [
             {
+               "mandatory" : 0,
                "value_type" : 0,
                "name" : "Check all interfaces",
-               "option" : "all",
-               "mandatory" : 0,
+               "description" : "Enable this option if you want to check all configured bonding interfaces on the system. If you use this option then you don't need to spcifiy the interfaces with the option 'Bonding interface'.",
                "multiple" : 0,
-               "default" : null,
-               "description" : "Enable this option if you want to check all configured bonding interfaces on the system. If you use this option then you don't need to spcifiy the interfaces with the option 'Bonding interface'."
+               "option" : "all",
+               "default" : null
             },
             {
-               "name" : "Bonding interface",
-               "default" : null,
                "description" : "The bonding interface to check. Use the option 'Check all interfaces' if you want to check all interfaces.",
+               "value_desc" : "interface",
                "value_type" : "string",
-               "option" : "interface",
                "mandatory" : 0,
+               "name" : "Bonding interface",
                "multiple" : 1,
-               "value_desc" : "interface"
+               "option" : "interface",
+               "default" : null
             }
          ],
-         "flags" : "",
          "version" : "0.6",
          "examples" : [
             {
@@ -38,14 +39,13 @@
                   "A simple example to check the interfaces bond0 and bond1:"
                ]
             }
-         ]
+         ],
+         "plugin" : "check-bonding"
       },
-      "plugin" : "Linux.Bonding.Check",
       "description" : "Check network interfaces.",
       "id" : "17",
-      "category" : "System,Network,Linux",
-      "abstract" : "Bonding check",
       "command" : "check-bonding",
+      "category" : "System,Network,Linux",
       "datatype" : "none"
    }
 }

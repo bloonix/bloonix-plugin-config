@@ -2,60 +2,59 @@
    "plugin" : {
       "info" : {
          "plugin" : "check-rbl",
+         "version" : "0.1",
          "options" : [
             {
-               "name" : "Hostname or IP address",
-               "default" : null,
                "description" : "The SMTP server to check.",
-               "value_type" : "string",
-               "option" : "host",
-               "mandatory" : 1,
+               "default" : null,
+               "value_desc" : "hostname or ip address",
                "multiple" : 0,
-               "value_desc" : "hostname or ip address"
+               "mandatory" : 1,
+               "value_type" : "string",
+               "name" : "Hostname or IP address",
+               "option" : "host"
             },
             {
-               "name" : "Timeout",
-               "default" : 3,
                "description" : "A timeout in seconds after a DNS request will be aborted.",
-               "value_type" : "number",
-               "option" : "timeout",
+               "default" : 3,
                "mandatory" : 0,
+               "value_type" : "number",
+               "value_desc" : "seconds",
                "multiple" : 0,
-               "value_desc" : "seconds"
+               "name" : "Timeout",
+               "option" : "timeout"
             },
             {
                "name" : "Warning threshold",
-               "default" : 0,
-               "description" : "The the number of blacklisting servers to trigger a CRITICAL status.",
-               "value_type" : "int",
                "option" : "warning",
+               "description" : "The the number of blacklisting servers to trigger a CRITICAL status.",
+               "default" : 0,
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "count"
+               "value_type" : "int",
+               "value_desc" : "count",
+               "multiple" : 0
             },
             {
                "name" : "Critical threshold",
-               "default" : 1,
-               "description" : "The the number of blacklisting servers to trigger a WARNING status.",
-               "value_type" : "int",
                "option" : "critical",
+               "description" : "The the number of blacklisting servers to trigger a WARNING status.",
+               "default" : 1,
+               "value_type" : "int",
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "count"
+               "value_desc" : "count",
+               "multiple" : 0
             },
             {
-               "name" : "RBL server",
                "default" : null,
                "description" : "The RBL server to check. It's possible to configure multiple RBL servers.",
-               "value_type" : "string",
-               "option" : "server",
-               "mandatory" : 1,
                "multiple" : 1,
-               "value_desc" : "server"
+               "value_desc" : "server",
+               "value_type" : "string",
+               "mandatory" : 1,
+               "name" : "RBL server",
+               "option" : "server"
             }
          ],
-         "flags" : "mid-check-frequency",
-         "version" : "0.1",
          "examples" : [
             {
                "command_line" : "check-rbl --host 'mail.bloonix.de' --server 'zen.spamhaus.org' --server 'ix.dnsbl.manitu.net' --server 'bl.spamcop.net' --server 'dul.dnsbl.sorbs.net' --server 'combined.njabl.org' --server 'fuldom.rfc-ignorant.org' --server 'blackholes.mail-abuse.org'",
@@ -81,17 +80,18 @@
                   "Check if a host or IP address is listet on a blacklist."
                ]
             }
-         ]
+         ],
+         "flags" : "mid-check-frequency"
       },
-      "plugin" : "RBL.Check",
       "prefer" : "remote",
-      "description" : "Check if a IP or hostname is listed on a blacklist.",
-      "worldwide" : "no",
-      "netaccess" : "yes",
-      "abstract" : "RBL check",
+      "plugin" : "RBL.Check",
       "id" : "70",
-      "category" : "Mail",
+      "worldwide" : "no",
+      "datatype" : "none",
+      "abstract" : "RBL check",
       "command" : "check-rbl",
-      "datatype" : "none"
+      "description" : "Check if a IP or hostname is listed on a blacklist.",
+      "netaccess" : "yes",
+      "category" : "Mail"
    }
 }

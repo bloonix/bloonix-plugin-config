@@ -1,90 +1,90 @@
 {
    "plugin" : {
+      "id" : "60",
+      "netaccess" : "yes",
+      "abstract" : "Bloonix satellite check",
+      "category" : "Network,Satellite,Bloonix",
+      "datatype" : "statistic",
+      "description" : "Check a satellite server.",
+      "prefer" : "remote",
       "info" : {
-         "plugin" : "check-bloonix-satellite",
          "options" : [
             {
                "name" : "Hostname or IP address",
-               "default" : null,
-               "description" : "A hostname or IP address to connect to.",
-               "value_type" : "string",
                "option" : "host",
+               "value_desc" : "hostname or ip address",
+               "value_type" : "string",
                "mandatory" : 1,
+               "description" : "A hostname or IP address to connect to.",
                "multiple" : 0,
-               "value_desc" : "hostname or ip address"
+               "default" : null
             },
             {
-               "name" : "Port number",
                "default" : 5464,
-               "description" : "A port number to connect to.",
-               "value_type" : "int",
-               "option" : "port",
-               "mandatory" : 0,
                "multiple" : 0,
-               "value_desc" : "port"
+               "description" : "A port number to connect to.",
+               "mandatory" : 0,
+               "value_desc" : "port",
+               "value_type" : "int",
+               "name" : "Port number",
+               "option" : "port"
             },
             {
                "name" : "Warning threshold",
-               "default" : 10,
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
-               "value_type" : "number",
                "option" : "warning",
+               "value_desc" : "seconds",
+               "value_type" : "number",
                "mandatory" : 0,
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "multiple" : 0,
-               "value_desc" : "seconds"
+               "default" : 10
             },
             {
+               "mandatory" : 0,
+               "value_type" : "number",
+               "value_desc" : "seconds",
+               "option" : "critical",
                "name" : "Critical threshold",
                "default" : 15,
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
-               "value_type" : "number",
-               "option" : "critical",
-               "mandatory" : 0,
                "multiple" : 0,
-               "value_desc" : "seconds"
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered."
             },
             {
-               "name" : "Authkey",
+               "multiple" : 0,
                "default" : null,
                "description" : "This is the authentication key.",
+               "value_desc" : "authkey",
                "value_type" : "string",
-               "option" : "authkey",
                "mandatory" : 1,
-               "multiple" : 0,
-               "value_desc" : "authkey"
+               "name" : "Authkey",
+               "option" : "authkey"
             }
          ],
          "flags" : "",
+         "plugin" : "check-bloonix-satellite",
          "version" : "0.1"
       },
-      "plugin" : "Bloonix.Satellite.Check",
-      "prefer" : "remote",
-      "description" : "Check a satellite server.",
-      "netaccess" : "yes",
-      "id" : "60",
-      "category" : "Network,Satellite,Bloonix",
-      "abstract" : "Bloonix satellite check",
       "command" : "check-bloonix-satellite",
-      "datatype" : "statistic"
+      "plugin" : "Bloonix.Satellite.Check"
    },
    "chart" : {
+      "title" : "Bloonix satellite response time",
       "options" : {
          "chart-type" : "area",
-         "ylabel" : "time in ms",
          "series" : {
-            "color" : "#005467",
-            "name" : "time"
+            "name" : "time",
+            "color" : "#005467"
          },
+         "ylabel" : "time in ms",
          "units" : "null"
       },
-      "title" : "Bloonix satellite response time",
       "id" : "1"
    },
    "statistic" : {
-      "stattype" : "gauge",
-      "description" : "The response time.",
+      "datatype" : "float",
       "alias" : "Response time",
+      "stattype" : "gauge",
       "statkey" : "time",
-      "datatype" : "float"
+      "description" : "The response time."
    }
 }

@@ -1,162 +1,191 @@
 {
    "plugin" : {
+      "command" : "check-snmp",
+      "category" : "System,SNMP",
+      "netaccess" : "yes",
+      "plugin" : "SNMP.Check",
+      "abstract" : "SNMP oid check",
       "info" : {
+         "examples" : [
+            {
+               "description" : [
+                  "Example to check if a system is alive:"
+               ],
+               "command_line" : "check-snmp --host '127.0.0.1' --port '161' --community 'public' --oid '1.3.6.1.2.1.1.5.0'",
+               "arguments" : [
+                  "host",
+                  "127.0.0.1",
+                  "port",
+                  161,
+                  "community",
+                  "public",
+                  "oid",
+                  "1.3.6.1.2.1.1.5.0"
+               ]
+            }
+         ],
          "plugin" : "check-snmp",
+         "version" : "0.1",
          "options" : [
             {
-               "name" : "Hostname or IP address",
+               "mandatory" : 0,
                "default" : "127.0.0.1",
                "description" : "A hostname or IP address to connect to.",
+               "value_desc" : "hostname or ip address",
                "value_type" : "string",
                "option" : "host",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "hostname or ip address"
+               "name" : "Hostname or IP address",
+               "multiple" : 0
             },
             {
-               "name" : "Port number",
-               "default" : 161,
-               "description" : "A port number to connect to.",
-               "value_type" : "int",
+               "multiple" : 0,
                "option" : "port",
+               "name" : "Port number",
+               "value_type" : "int",
+               "value_desc" : "port",
+               "description" : "A port number to connect to.",
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "port"
+               "default" : 161
             },
             {
-               "name" : "SNMP community",
                "default" : "public",
+               "mandatory" : 0,
+               "option" : "community",
+               "name" : "SNMP community",
+               "value_desc" : "community",
                "description" : "The SNMP community to connect to the host.",
                "value_type" : "string",
-               "option" : "community",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "community"
+               "multiple" : 0
             },
             {
-               "name" : "SNMP version",
-               "default" : 2,
+               "value_type" : "string",
+               "value_desc" : "version",
                "description" : "The SNMP version to use to connect to the host.",
-               "value_type" : "string",
                "option" : "snmp-version",
-               "mandatory" : 0,
+               "name" : "SNMP version",
                "multiple" : 0,
-               "value_desc" : "version"
+               "mandatory" : 0,
+               "default" : 2
             },
             {
-               "name" : "SNMPv3 username",
-               "default" : null,
-               "description" : "The SNMPv3 username.",
+               "multiple" : 0,
                "value_type" : "string",
+               "value_desc" : "username",
+               "description" : "The SNMPv3 username.",
                "option" : "username",
+               "name" : "SNMPv3 username",
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "username"
+               "default" : null
             },
             {
-               "name" : "SNMPv3 auth key",
-               "default" : null,
+               "multiple" : 0,
                "description" : "The SNMPv3 auth key.",
+               "value_desc" : "authkey",
                "value_type" : "string",
                "option" : "authkey",
+               "name" : "SNMPv3 auth key",
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "authkey"
+               "default" : null
             },
             {
+               "mandatory" : 0,
+               "default" : null,
                "name" : "SNMPv3 auth password",
-               "default" : null,
-               "description" : "The SNMPv3 auth password.",
-               "value_type" : "string",
                "option" : "authpassword",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "authpassword"
+               "description" : "The SNMPv3 auth password.",
+               "value_desc" : "authpassword",
+               "value_type" : "string",
+               "multiple" : 0
             },
             {
-               "name" : "SNMPv3 auth protocol",
                "default" : null,
-               "description" : "The SNMPv3 auth protocol.",
-               "value_type" : "string",
-               "option" : "authprotocol",
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "authprotocol"
+               "value_type" : "string",
+               "value_desc" : "authprotocol",
+               "description" : "The SNMPv3 auth protocol.",
+               "name" : "SNMPv3 auth protocol",
+               "option" : "authprotocol",
+               "multiple" : 0
             },
             {
                "name" : "SNMPv3 priv key",
-               "default" : null,
+               "option" : "privkey",
+               "value_desc" : "privkey",
                "description" : "The SNMPv3 priv key.",
                "value_type" : "string",
-               "option" : "privkey",
-               "mandatory" : 0,
                "multiple" : 0,
-               "value_desc" : "privkey"
+               "default" : null,
+               "mandatory" : 0
             },
             {
+               "mandatory" : 0,
+               "default" : null,
+               "multiple" : 0,
                "name" : "SNMPv3 priv password",
-               "default" : null,
-               "description" : "The SNMPv3 priv password.",
-               "value_type" : "string",
                "option" : "privpassword",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "privpassword"
+               "value_desc" : "privpassword",
+               "description" : "The SNMPv3 priv password.",
+               "value_type" : "string"
             },
             {
-               "name" : "SNMPv3 priv protocol",
                "default" : null,
-               "description" : "The SNMPv3 priv protocol.",
-               "value_type" : "string",
+               "mandatory" : 0,
                "option" : "privprotocol",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "privprotocol"
+               "name" : "SNMPv3 priv protocol",
+               "value_type" : "string",
+               "description" : "The SNMPv3 priv protocol.",
+               "value_desc" : "privprotocol",
+               "multiple" : 0
             },
             {
-               "name" : "The OID to check",
-               "default" : "1.3.6.1.2.1.1.5.0",
+               "value_type" : "string",
                "description" : "The OID to check.",
-               "value_type" : "string",
+               "value_desc" : "string",
                "option" : "oid",
-               "mandatory" : 1,
+               "name" : "The OID to check",
                "multiple" : 0,
-               "value_desc" : "string"
+               "default" : "1.3.6.1.2.1.1.5.0",
+               "mandatory" : 1
             },
             {
-               "name" : "Warning threshold",
-               "default" : null,
+               "multiple" : 1,
+               "value_type" : "string",
+               "value_desc" : "key:value or key:op:value",
                "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
+               "name" : "Warning threshold",
                "option" : "warning",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+               "default" : null,
+               "mandatory" : 0
             },
             {
-               "name" : "Critical threshold",
+               "mandatory" : 0,
                "default" : null,
+               "value_type" : "string",
+               "value_desc" : "key:value or key:op:value",
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
+               "name" : "Critical threshold",
                "option" : "critical",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+               "multiple" : 1
             },
             {
-               "name" : "Check the string with a regular expression",
                "default" : null,
-               "description" : "A text string that is expected in the SNMP response for the OID that is checked.",
-               "value_type" : "string",
-               "option" : "match",
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "regex"
+               "name" : "Check the string with a regular expression",
+               "option" : "match",
+               "value_type" : "string",
+               "value_desc" : "regex",
+               "description" : "A text string that is expected in the SNMP response for the OID that is checked.",
+               "multiple" : 0
             }
          ],
          "flags" : "",
-         "version" : "0.1",
          "thresholds" : {
+            "options" : [
+               {
+                  "key" : "oid-value",
+                  "unit" : "none"
+               }
+            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -170,41 +199,12 @@
                "    ge = greater than or equal\n",
                "    eq = equal\n",
                "    ne = not equal\n"
-            ],
-            "options" : [
-               {
-                  "unit" : "none",
-                  "key" : "oid-value"
-               }
             ]
-         },
-         "examples" : [
-            {
-               "command_line" : "check-snmp --host '127.0.0.1' --port '161' --community 'public' --oid '1.3.6.1.2.1.1.5.0'",
-               "arguments" : [
-                  "host",
-                  "127.0.0.1",
-                  "port",
-                  161,
-                  "community",
-                  "public",
-                  "oid",
-                  "1.3.6.1.2.1.1.5.0"
-               ],
-               "description" : [
-                  "Example to check if a system is alive:"
-               ]
-            }
-         ]
+         }
       },
-      "plugin" : "SNMP.Check",
       "prefer" : "localhost",
       "description" : "Check the string of an OID.",
-      "netaccess" : "yes",
-      "id" : "68",
-      "category" : "System,SNMP",
-      "abstract" : "SNMP oid check",
-      "command" : "check-snmp",
-      "datatype" : "none"
+      "datatype" : "none",
+      "id" : "68"
    }
 }

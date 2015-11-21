@@ -1,31 +1,112 @@
 {
+   "statistic" : [
+      {
+         "datatype" : "bigint",
+         "statkey" : "count",
+         "alias" : "Count",
+         "description" : "The number of kernel scheduling entities that currently exist on the system (processes, threads)."
+      },
+      {
+         "datatype" : "bigint",
+         "statkey" : "runqueue",
+         "alias" : "Run queue",
+         "description" : "The number of currently executing kernel scheduling entities (processes, threads)."
+      },
+      {
+         "description" : "Number of new processes that were produced per second.",
+         "alias" : "New",
+         "statkey" : "new",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "bigint",
+         "statkey" : "blocked",
+         "alias" : "Blocked",
+         "description" : "Number of processes blocked waiting for I/O to complete."
+      },
+      {
+         "description" : "Number of processes in runnable state.",
+         "alias" : "Running",
+         "statkey" : "running",
+         "datatype" : "bigint"
+      }
+   ],
+   "chart" : [
+      {
+         "id" : "1",
+         "options" : {
+            "series" : {
+               "name" : "count",
+               "color" : "#005467"
+            },
+            "ylabel" : "count",
+            "chart-type" : "area",
+            "units" : "null"
+         },
+         "title" : "Linux - count processes"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "new/s",
+            "series" : {
+               "color" : "#005467",
+               "name" : "new"
+            },
+            "units" : "null"
+         },
+         "title" : "Linux - new processes",
+         "id" : "2"
+      },
+      {
+         "title" : "Linux - procstats",
+         "options" : {
+            "units" : "null",
+            "ylabel" : "count",
+            "series" : [
+               {
+                  "name" : "running",
+                  "color" : "#ffbc00"
+               },
+               {
+                  "color" : "#ff7c00",
+                  "name" : "runqueue"
+               },
+               {
+                  "color" : "#ff5c00",
+                  "name" : "blocked"
+               }
+            ],
+            "chart-type" : "area"
+         },
+         "id" : "3"
+      }
+   ],
    "plugin" : {
       "info" : {
-         "plugin" : "check-procstat",
-         "options" : [
+         "examples" : [
             {
-               "name" : "Warning threshold",
-               "default" : null,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "option" : "warning",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
-            },
-            {
-               "name" : "Critical threshold",
-               "default" : null,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "option" : "critical",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+               "description" : [
+                  "A simple example",
+                  "",
+                  "- warning if runqueue is equal or higher than 20",
+                  "- critical if runqueue is equal or higher than 40",
+                  "- warning if new is equal or higher than 100",
+                  "- critical if new is equal or higher than 200"
+               ],
+               "command_line" : "check-procstat --warning 'runqueue:20' --critical 'runqueue:40' --warning 'new:100' --critical 'new:200'",
+               "arguments" : [
+                  "warning",
+                  "runqueue:20",
+                  "critical",
+                  "runqueue:40",
+                  "warning",
+                  "new:100",
+                  "critical",
+                  "new:200"
+               ]
             }
          ],
-         "flags" : "",
-         "version" : "0.8",
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",
@@ -47,8 +128,8 @@
                   "key" : "new"
                },
                {
-                  "unit" : "none",
-                  "key" : "runqueue"
+                  "key" : "runqueue",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
@@ -64,119 +145,38 @@
                }
             ]
          },
-         "examples" : [
+         "options" : [
             {
-               "command_line" : "check-procstat --warning 'runqueue:20' --critical 'runqueue:40' --warning 'new:100' --critical 'new:200'",
-               "arguments" : [
-                  "warning",
-                  "runqueue:20",
-                  "critical",
-                  "runqueue:40",
-                  "warning",
-                  "new:100",
-                  "critical",
-                  "new:200"
-               ],
-               "description" : [
-                  "A simple example",
-                  "",
-                  "- warning if runqueue is equal or higher than 20",
-                  "- critical if runqueue is equal or higher than 40",
-                  "- warning if new is equal or higher than 100",
-                  "- critical if new is equal or higher than 200"
-               ]
+               "mandatory" : 0,
+               "option" : "warning",
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value",
+               "name" : "Warning threshold",
+               "value_type" : "string"
+            },
+            {
+               "value_type" : "string",
+               "name" : "Critical threshold",
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value",
+               "default" : null,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "mandatory" : 0,
+               "option" : "critical"
             }
-         ]
+         ],
+         "version" : "0.8",
+         "plugin" : "check-procstat",
+         "flags" : ""
       },
       "plugin" : "Linux.Processes.Check",
+      "abstract" : "Process status check",
       "description" : "Linux process statistics",
+      "datatype" : "statistic",
       "id" : "36",
       "category" : "System,Linux",
-      "abstract" : "Process status check",
-      "command" : "check-procstat",
-      "datatype" : "statistic"
-   },
-   "chart" : [
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "count",
-            "series" : {
-               "color" : "#005467",
-               "name" : "count"
-            },
-            "units" : "null"
-         },
-         "title" : "Linux - count processes",
-         "id" : "1"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "new/s",
-            "series" : {
-               "color" : "#005467",
-               "name" : "new"
-            },
-            "units" : "null"
-         },
-         "title" : "Linux - new processes",
-         "id" : "2"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "count",
-            "series" : [
-               {
-                  "color" : "#ffbc00",
-                  "name" : "running"
-               },
-               {
-                  "color" : "#ff7c00",
-                  "name" : "runqueue"
-               },
-               {
-                  "color" : "#ff5c00",
-                  "name" : "blocked"
-               }
-            ],
-            "units" : "null"
-         },
-         "title" : "Linux - procstats",
-         "id" : "3"
-      }
-   ],
-   "statistic" : [
-      {
-         "description" : "The number of kernel scheduling entities that currently exist on the system (processes, threads).",
-         "alias" : "Count",
-         "statkey" : "count",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "The number of currently executing kernel scheduling entities (processes, threads).",
-         "alias" : "Run queue",
-         "statkey" : "runqueue",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Number of new processes that were produced per second.",
-         "alias" : "New",
-         "statkey" : "new",
-         "datatype" : "float"
-      },
-      {
-         "description" : "Number of processes blocked waiting for I/O to complete.",
-         "alias" : "Blocked",
-         "statkey" : "blocked",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Number of processes in runnable state.",
-         "alias" : "Running",
-         "statkey" : "running",
-         "datatype" : "bigint"
-      }
-   ]
+      "command" : "check-procstat"
+   }
 }

@@ -1,41 +1,44 @@
 {
    "plugin" : {
+      "id" : "19",
+      "description" : "Linux disk usage",
+      "abstract" : "Diskusage check",
+      "category" : "System,Linux",
+      "command" : "check-diskusage",
+      "plugin" : "Linux.Disk.Check",
       "info" : {
-         "plugin" : "check-diskusage",
          "options" : [
             {
-               "name" : "Mountpoint",
+               "value_desc" : "mountpoint",
+               "multiple" : 0,
+               "mandatory" : 1,
                "default" : null,
+               "name" : "Mountpoint",
                "description" : "This is the mountpoint where a filesystem is mounted on. As example /var or a simple / for the root mountpoint.",
                "value_type" : "string",
-               "option" : "mountpoint",
-               "mandatory" : 1,
-               "multiple" : 0,
-               "value_desc" : "mountpoint"
+               "option" : "mountpoint"
             },
             {
-               "name" : "Warning threshold",
-               "default" : null,
                "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
                "value_type" : "string",
                "option" : "warning",
-               "mandatory" : 0,
                "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+               "value_desc" : "key:value or key:op:value",
+               "mandatory" : 0,
+               "default" : null,
+               "name" : "Warning threshold"
             },
             {
-               "name" : "Critical threshold",
-               "default" : null,
+               "option" : "critical",
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "value_type" : "string",
-               "option" : "critical",
+               "default" : null,
                "mandatory" : 0,
+               "name" : "Critical threshold",
                "multiple" : 1,
                "value_desc" : "key:value or key:op:value"
             }
          ],
-         "flags" : "",
-         "version" : "0.7",
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",
@@ -64,20 +67,20 @@
             ],
             "options" : [
                {
-                  "unit" : "percent",
-                  "key" : "usageper"
+                  "key" : "usageper",
+                  "unit" : "percent"
                },
                {
-                  "unit" : "percent",
-                  "key" : "freeper"
+                  "key" : "freeper",
+                  "unit" : "percent"
                },
                {
                   "unit" : "bytes",
                   "key" : "usage"
                },
                {
-                  "unit" : "bytes",
-                  "key" : "free"
+                  "key" : "free",
+                  "unit" : "bytes"
                },
                {
                   "unit" : "percent",
@@ -89,9 +92,15 @@
                }
             ]
          },
+         "version" : "0.7",
+         "flags" : "",
+         "plugin" : "check-diskusage",
          "examples" : [
             {
                "command_line" : "check-diskusage --mountpoint '/home' --warning 'usageper:ge:90' --critical 'usageper:ge:95' --warning 'iusageper:ge:90' --critical 'iusageper:ge:95'",
+               "description" : [
+                  "A simple example to check the home mountpoint - if /home exists as a filesystem mountpoint"
+               ],
                "arguments" : [
                   "mountpoint",
                   "/home",
@@ -103,94 +112,85 @@
                   "iusageper:ge:90",
                   "critical",
                   "iusageper:ge:95"
-               ],
-               "description" : [
-                  "A simple example to check the home mountpoint - if /home exists as a filesystem mountpoint"
                ]
             }
          ]
       },
-      "plugin" : "Linux.Disk.Check",
-      "description" : "Linux disk usage",
-      "id" : "19",
-      "category" : "System,Linux",
-      "abstract" : "Diskusage check",
-      "command" : "check-diskusage",
       "datatype" : "statistic"
    },
    "chart" : {
-      "options" : {
-         "chart-type" : "area",
-         "ylabel" : "disk usage in %",
-         "series" : {
-            "color" : "#005467",
-            "name" : "usageper"
-         },
-         "units" : "null"
-      },
+      "id" : "1",
       "title" : "Linux - diskusage",
-      "id" : "1"
+      "options" : {
+         "units" : "null",
+         "chart-type" : "area",
+         "series" : {
+            "name" : "usageper",
+            "color" : "#005467"
+         },
+         "ylabel" : "disk usage in %"
+      }
    },
    "statistic" : [
       {
-         "description" : "The used disk space in kilobytes.",
-         "alias" : "Usage",
+         "datatype" : "bigint",
          "statkey" : "usage",
          "units" : "kilobytes",
-         "datatype" : "bigint"
+         "alias" : "Usage",
+         "description" : "The used disk space in kilobytes."
       },
       {
          "description" : "The disk name.",
          "alias" : "Disk name",
-         "statkey" : "disk",
-         "datatype" : "varchar(100)"
+         "datatype" : "varchar(100)",
+         "statkey" : "disk"
       },
       {
-         "description" : "The free disk space in kilobytes.",
+         "units" : "kilobytes",
          "alias" : "Free",
          "statkey" : "free",
-         "units" : "kilobytes",
-         "datatype" : "bigint"
+         "datatype" : "bigint",
+         "description" : "The free disk space in kilobytes."
       },
       {
          "description" : "The free disk space in percent.",
-         "alias" : "Free",
          "statkey" : "freeper",
-         "units" : "percent",
-         "datatype" : "bigint"
+         "datatype" : "bigint",
+         "alias" : "Free",
+         "units" : "percent"
       },
       {
          "description" : "The used disk space in percent.",
-         "alias" : "Usage",
+         "datatype" : "bigint",
          "statkey" : "usageper",
          "units" : "percent",
-         "datatype" : "bigint"
+         "alias" : "Usage"
       },
       {
-         "description" : "The free inodes in percent.",
-         "alias" : "Inodes free",
-         "statkey" : "ifreeper",
          "units" : "percent",
-         "datatype" : "bigint"
+         "alias" : "Inodes free",
+         "datatype" : "bigint",
+         "statkey" : "ifreeper",
+         "description" : "The free inodes in percent."
       },
       {
          "description" : "The used inodes in percent.",
-         "alias" : "Inodes used",
          "statkey" : "iusageper",
-         "units" : "percent",
-         "datatype" : "bigint"
+         "datatype" : "bigint",
+         "alias" : "Inodes used",
+         "units" : "percent"
       },
       {
-         "description" : "The moint point of the disk.",
-         "alias" : "Mountpoint",
          "statkey" : "mountpoint",
-         "datatype" : "varchar(100)"
+         "datatype" : "varchar(100)",
+         "alias" : "Mountpoint",
+         "description" : "The moint point of the disk."
       },
       {
          "description" : "The total size of the disk.",
+         "units" : "kilobytes",
          "alias" : "Total",
          "statkey" : "total",
-         "units" : "kilobytes",
          "datatype" : "bigint"
       }
    ]

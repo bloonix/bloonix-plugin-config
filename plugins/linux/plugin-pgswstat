@@ -1,32 +1,64 @@
 {
    "plugin" : {
+      "description" : "Linux paging/swapping statistics.",
+      "category" : "System,Linux",
+      "plugin" : "Linux.Paging.Check",
+      "abstract" : "Paging/Swaping check",
+      "id" : "34",
+      "datatype" : "statistic",
       "info" : {
-         "plugin" : "check-pgswstat",
          "options" : [
             {
                "name" : "Warning threshold",
+               "multiple" : 1,
+               "mandatory" : 0,
+               "value_type" : "string",
                "default" : null,
                "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "option" : "warning",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+               "value_desc" : "key:value or key:op:value",
+               "option" : "warning"
             },
             {
-               "name" : "Critical threshold",
-               "default" : null,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "value_type" : "string",
-               "option" : "critical",
                "mandatory" : 0,
+               "default" : null,
+               "name" : "Critical threshold",
                "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+               "option" : "critical",
+               "value_desc" : "key:value or key:op:value",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information."
             }
          ],
          "flags" : "",
+         "plugin" : "check-pgswstat",
          "version" : "0.8",
          "thresholds" : {
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "pgpgin"
+               },
+               {
+                  "key" : "pgpgout",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "pswpin",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "pswpout"
+               },
+               {
+                  "key" : "pgfault",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "pgmajfault"
+               }
+            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -40,47 +72,16 @@
                "    ge = greater than or equal\n",
                "    eq = equal\n",
                "    ne = not equal\n"
-            ],
-            "options" : [
-               {
-                  "unit" : "none",
-                  "key" : "pgpgin"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "pgpgout"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "pswpin"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "pswpout"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "pgfault"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "pgmajfault"
-               }
             ]
          }
       },
-      "plugin" : "Linux.Paging.Check",
-      "description" : "Linux paging/swapping statistics.",
-      "id" : "34",
-      "category" : "System,Linux",
-      "abstract" : "Paging/Swaping check",
-      "command" : "check-pgswstat",
-      "datatype" : "statistic"
+      "command" : "check-pgswstat"
    },
    "chart" : {
+      "id" : "1",
+      "title" : "Linux - pgswstats",
       "options" : {
          "chart-type" : "area",
-         "ylabel" : "bytes/s",
          "series" : [
             {
                "color" : "#66c066",
@@ -91,67 +92,66 @@
                "name" : "pgpgout"
             },
             {
-               "color" : "#ff6666",
-               "name" : "pswpin"
+               "name" : "pswpin",
+               "color" : "#ff6666"
             },
             {
-               "color" : "#bf00bf",
-               "name" : "pswpout"
+               "name" : "pswpout",
+               "color" : "#bf00bf"
             },
             {
                "color" : "#ea8f00",
                "name" : "pgfault"
             },
             {
-               "color" : "#eacc00",
-               "name" : "pgmajfault"
+               "name" : "pgmajfault",
+               "color" : "#eacc00"
             }
          ],
+         "ylabel" : "bytes/s",
          "units" : "kilobytes"
-      },
-      "title" : "Linux - pgswstats",
-      "id" : "1"
+      }
    },
    "statistic" : [
       {
+         "statkey" : "pgpgin",
+         "datatype" : "float",
          "description" : "Number of kilobytes the system has paged in from disk per second.",
          "alias" : "Paged in",
-         "statkey" : "pgpgin",
-         "units" : "kilobytes",
-         "datatype" : "float"
+         "units" : "kilobytes"
       },
       {
-         "description" : "Number of kilobytes the system has paged out to disk per second.",
+         "units" : "kilobytes",
          "alias" : "Pages out",
-         "statkey" : "pgpgout",
-         "units" : "kilobytes",
-         "datatype" : "float"
+         "description" : "Number of kilobytes the system has paged out to disk per second.",
+         "datatype" : "float",
+         "statkey" : "pgpgout"
       },
       {
-         "description" : "Number of kilobytes the system has swapped in from disk per second.",
          "alias" : "Swapped in",
-         "statkey" : "pswpin",
          "units" : "kilobytes",
-         "datatype" : "float"
+         "statkey" : "pswpin",
+         "datatype" : "float",
+         "description" : "Number of kilobytes the system has swapped in from disk per second."
       },
       {
-         "description" : "Number of kilobytes the system has swapped out to disk per second.",
-         "alias" : "Swapped out",
-         "statkey" : "pswpout",
          "units" : "kilobytes",
-         "datatype" : "float"
+         "alias" : "Swapped out",
+         "description" : "Number of kilobytes the system has swapped out to disk per second.",
+         "datatype" : "float",
+         "statkey" : "pswpout"
       },
       {
          "description" : "Number of major faults per second the system required loading a memory page from disk.",
-         "alias" : "Major faults",
+         "datatype" : "float",
          "statkey" : "pgmajfault",
-         "datatype" : "float"
+         "alias" : "Major faults"
       },
       {
-         "description" : "Number of page faults the system has made per second minor + major.",
          "alias" : "Page faults",
          "statkey" : "pgfault",
-         "datatype" : "float"
+         "datatype" : "float",
+         "description" : "Number of page faults the system has made per second minor + major."
       }
    ]
 }
