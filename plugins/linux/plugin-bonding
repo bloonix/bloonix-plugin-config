@@ -1,51 +1,51 @@
 {
    "plugin" : {
-      "plugin" : "Linux.Bonding.Check",
+      "category" : "System,Network,Linux",
+      "datatype" : "none",
       "abstract" : "Bonding check",
       "info" : {
-         "flags" : "",
-         "options" : [
-            {
-               "mandatory" : 0,
-               "value_type" : 0,
-               "name" : "Check all interfaces",
-               "description" : "Enable this option if you want to check all configured bonding interfaces on the system. If you use this option then you don't need to spcifiy the interfaces with the option 'Bonding interface'.",
-               "multiple" : 0,
-               "option" : "all",
-               "default" : null
-            },
-            {
-               "description" : "The bonding interface to check. Use the option 'Check all interfaces' if you want to check all interfaces.",
-               "value_desc" : "interface",
-               "value_type" : "string",
-               "mandatory" : 0,
-               "name" : "Bonding interface",
-               "multiple" : 1,
-               "option" : "interface",
-               "default" : null
-            }
-         ],
-         "version" : "0.6",
+         "plugin" : "check-bonding",
          "examples" : [
             {
+               "description" : [
+                  "A simple example to check the interfaces bond0 and bond1:"
+               ],
                "command_line" : "check-bonding --interface 'bond0' --interface 'bond1'",
                "arguments" : [
                   "interface",
                   "bond0",
                   "interface",
                   "bond1"
-               ],
-               "description" : [
-                  "A simple example to check the interfaces bond0 and bond1:"
                ]
             }
          ],
-         "plugin" : "check-bonding"
+         "flags" : "",
+         "options" : [
+            {
+               "value_type" : 0,
+               "name" : "Check all interfaces",
+               "option" : "all",
+               "mandatory" : 0,
+               "default" : null,
+               "multiple" : 0,
+               "description" : "Enable this option if you want to check all configured bonding interfaces on the system. If you use this option then you don't need to spcifiy the interfaces with the option 'Bonding interface'."
+            },
+            {
+               "value_type" : "string",
+               "multiple" : 1,
+               "default" : null,
+               "option" : "interface",
+               "description" : "The bonding interface to check. Use the option 'Check all interfaces' if you want to check all interfaces.",
+               "value_desc" : "interface",
+               "name" : "Bonding interface",
+               "mandatory" : 0
+            }
+         ],
+         "version" : "0.6"
       },
+      "plugin" : "Linux.Bonding.Check",
       "description" : "Check network interfaces.",
-      "id" : "17",
       "command" : "check-bonding",
-      "category" : "System,Network,Linux",
-      "datatype" : "none"
+      "id" : "17"
    }
 }

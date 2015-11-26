@@ -1,53 +1,53 @@
 {
    "plugin" : {
+      "datatype" : "none",
       "plugin" : "Linux.Smart.Health",
+      "description" : "Check the SMART health status of a disk.",
+      "id" : "39",
       "info" : {
-         "options" : [
+         "examples" : [
             {
-               "description" : "This is the device name to check.",
-               "option" : "device",
-               "name" : "Device name",
-               "value_desc" : "device",
-               "default" : null,
-               "value_type" : "string",
-               "mandatory" : 1,
-               "multiple" : 1
-            },
-            {
-               "option" : "timeout",
-               "value_desc" : "seconds",
-               "name" : "Timeout",
-               "multiple" : 0,
-               "mandatory" : 0,
-               "value_type" : "number",
-               "default" : 30,
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered."
+               "description" : [
+                  "A simple example to check the health status of /dev/sda"
+               ],
+               "command_line" : "check-smart-health --device 'sda'",
+               "arguments" : [
+                  "device",
+                  "sda"
+               ]
             }
          ],
          "info" : [
             "The tool smartctl is needed for this plugin! Please install smartmontools on your server."
          ],
-         "flags" : "sudo",
-         "examples" : [
+         "options" : [
             {
-               "arguments" : [
-                  "device",
-                  "sda"
-               ],
-               "description" : [
-                  "A simple example to check the health status of /dev/sda"
-               ],
-               "command_line" : "check-smart-health --device 'sda'"
+               "mandatory" : 1,
+               "option" : "device",
+               "value_desc" : "device",
+               "name" : "Device name",
+               "value_type" : "string",
+               "default" : null,
+               "description" : "This is the device name to check.",
+               "multiple" : 1
+            },
+            {
+               "multiple" : 0,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "default" : 30,
+               "mandatory" : 0,
+               "value_type" : "number",
+               "value_desc" : "seconds",
+               "option" : "timeout",
+               "name" : "Timeout"
             }
          ],
-         "version" : "0.3",
-         "plugin" : "check-smart-health"
+         "flags" : "sudo",
+         "plugin" : "check-smart-health",
+         "version" : "0.3"
       },
-      "description" : "Check the SMART health status of a disk.",
       "category" : "System,Disk,Linux",
-      "abstract" : "Smart health",
       "command" : "check-smart-health",
-      "id" : "39",
-      "datatype" : "none"
+      "abstract" : "Smart health"
    }
 }

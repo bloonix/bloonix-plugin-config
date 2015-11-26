@@ -1,115 +1,15 @@
 {
-   "statistic" : [
-      {
-         "datatype" : "float",
-         "units" : "null",
-         "description" : "The average processor workload of the last fifteen minutes.",
-         "alias" : "Load average last 15 minutes",
-         "statkey" : "avg15"
-      },
-      {
-         "statkey" : "avg5",
-         "alias" : "Load average last 5 minutes",
-         "description" : "The average processor workload of the last five minutes.",
-         "units" : "null",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Load average last minute",
-         "statkey" : "avg1",
-         "datatype" : "float",
-         "units" : "null",
-         "description" : "The average processor workload of the last minute."
-      }
-   ],
-   "chart" : {
-      "id" : "1",
-      "options" : {
-         "chart-type" : "line",
-         "series" : [
-            {
-               "color" : "#e9644a",
-               "name" : "avg1"
-            },
-            {
-               "color" : "#005467",
-               "name" : "avg5"
-            },
-            {
-               "color" : "#9a72ad",
-               "name" : "avg15"
-            }
-         ],
-         "ylabel" : "loadavg",
-         "units" : "null"
-      },
-      "title" : "Linux - loadavg"
-   },
    "plugin" : {
-      "id" : "24",
-      "description" : "Linux load average",
-      "abstract" : "Load average check",
       "plugin" : "Linux.LoadAVG.Check",
+      "abstract" : "Load average check",
+      "description" : "Linux load average",
+      "category" : "System,Linux",
+      "command" : "check-loadavg",
+      "datatype" : "statistic",
+      "id" : "24",
       "info" : {
-         "options" : [
-            {
-               "name" : "Warning threshold",
-               "mandatory" : 0,
-               "default" : null,
-               "multiple" : 1,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "option" : "warning",
-               "value_desc" : "key:value or key:op:value"
-            },
-            {
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "mandatory" : 0,
-               "default" : null,
-               "name" : "Critical threshold",
-               "multiple" : 1,
-               "value_type" : "string",
-               "option" : "critical",
-               "value_desc" : "key:value or key:op:value"
-            }
-         ],
-         "examples" : [
-            {
-               "command_line" : "check-loadavg --warning 'avg1:ge:20' --critical 'avg1:ge:50' --warning 'avg5:ge:20' --critical 'avg5:ge:50'",
-               "description" : [
-                  "An example to check the load average and trigger",
-                  "",
-                  "- a warning if avg1 or avg5 is equal or higher than 20",
-                  "- a critical if avg1 or avg5 is equal or higher than 50"
-               ],
-               "arguments" : [
-                  "warning",
-                  "avg1:ge:20",
-                  "critical",
-                  "avg1:ge:50",
-                  "warning",
-                  "avg5:ge:20",
-                  "critical",
-                  "avg5:ge:50"
-               ]
-            }
-         ],
          "version" : "0.6",
          "thresholds" : {
-            "options" : [
-               {
-                  "key" : "avg1",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "avg5"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "avg15"
-               }
-            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -123,13 +23,122 @@
                "    ge = greater than or equal\n",
                "    eq = equal\n",
                "    ne = not equal\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "avg1"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "avg5"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "avg15"
+               }
             ]
          },
+         "flags" : "",
+         "options" : [
+            {
+               "value_desc" : "key:value or key:op:value",
+               "name" : "Warning threshold",
+               "option" : "warning",
+               "mandatory" : 0,
+               "default" : null,
+               "multiple" : 1,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string"
+            },
+            {
+               "value_type" : "string",
+               "multiple" : 1,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "default" : null,
+               "mandatory" : 0,
+               "name" : "Critical threshold",
+               "option" : "critical",
+               "value_desc" : "key:value or key:op:value"
+            },
+            {
+               "name" : "Per CPU",
+               "option" : "per-cpu",
+               "default" : null,
+               "mandatory" : 0,
+               "value_type" : 0,
+               "multiple" : 0,
+               "description" : "Enable this option if you want that the avg threshold is multiplicatied with the number of CPUs (threads). As example if your server has 8 threads and if you set avg1 to 4, then the threshold is 32 (8 * 4). The number of available CPUs is checked in /proc/stat (cpuN)."
+            }
+         ],
          "plugin" : "check-loadavg",
-         "flags" : ""
+         "examples" : [
+            {
+               "arguments" : [
+                  "warning",
+                  "avg1:ge:20",
+                  "critical",
+                  "avg1:ge:50",
+                  "warning",
+                  "avg5:ge:20",
+                  "critical",
+                  "avg5:ge:50"
+               ],
+               "command_line" : "check-loadavg --warning 'avg1:ge:20' --critical 'avg1:ge:50' --warning 'avg5:ge:20' --critical 'avg5:ge:50'",
+               "description" : [
+                  "An example to check the load average and trigger",
+                  "",
+                  "- a warning if avg1 or avg5 is equal or higher than 20",
+                  "- a critical if avg1 or avg5 is equal or higher than 50"
+               ]
+            }
+         ]
+      }
+   },
+   "chart" : {
+      "title" : "Linux - loadavg",
+      "options" : {
+         "series" : [
+            {
+               "name" : "avg1",
+               "color" : "#e9644a"
+            },
+            {
+               "name" : "avg5",
+               "color" : "#005467"
+            },
+            {
+               "name" : "avg15",
+               "color" : "#9a72ad"
+            }
+         ],
+         "chart-type" : "line",
+         "units" : "null",
+         "ylabel" : "loadavg"
       },
-      "category" : "System,Linux",
-      "command" : "check-loadavg",
-      "datatype" : "statistic"
-   }
+      "id" : "1"
+   },
+   "statistic" : [
+      {
+         "statkey" : "avg15",
+         "alias" : "Load average last 15 minutes",
+         "units" : "null",
+         "description" : "The average processor workload of the last fifteen minutes.",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "units" : "null",
+         "description" : "The average processor workload of the last five minutes.",
+         "alias" : "Load average last 5 minutes",
+         "statkey" : "avg5"
+      },
+      {
+         "datatype" : "float",
+         "description" : "The average processor workload of the last minute.",
+         "units" : "null",
+         "statkey" : "avg1",
+         "alias" : "Load average last minute"
+      }
+   ]
 }

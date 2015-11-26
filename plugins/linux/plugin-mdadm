@@ -1,27 +1,27 @@
 {
    "plugin" : {
-      "datatype" : "none",
-      "id" : "25",
       "plugin" : "Linux.MDADM.Check",
-      "description" : "Check the status of MD software raids.",
+      "category" : "System,Filesystem,Linux",
+      "id" : "25",
       "abstract" : "MDADM check",
       "command" : "check-mdadm",
-      "category" : "System,Filesystem,Linux",
+      "description" : "Check the status of MD software raids.",
       "info" : {
          "flags" : "sudo",
+         "version" : "0.4",
          "options" : [
             {
-               "multiple" : 0,
-               "default" : null,
                "name" : "Ignore status 'checking'",
-               "description" : "Enable this option to ignore the MD RAID status 'checking'.",
-               "value_type" : 0,
                "option" : "ignore-status-checking",
-               "mandatory" : 0
+               "value_type" : 0,
+               "description" : "Enable this option to ignore the MD RAID status 'checking'.",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : null
             }
          ],
-         "version" : "0.4",
          "plugin" : "check-mdadm"
-      }
+      },
+      "datatype" : "none"
    }
 }

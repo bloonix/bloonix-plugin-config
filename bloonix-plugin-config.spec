@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.25
+Version: 0.26
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Thu Nov 26 2015 Jonny Schulz <js@bloonix.de> - 0.26-1
+- New param per-cpu for plugin check-loadavg.
 * Sat Nov 21 2015 Jonny Schulz <js@bloonix.de> - 0.25-1
 - New param authkey for plugin check-by-satellite.
 * Mon Sep 28 2015 Jonny Schulz <js@bloonix.de> - 0.24-1

@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.26-1) unstable; urgency=low
+
+    * New param per-cpu for plugin check-loadavg.
+
+ -- Jonny Schulz <js@bloonix.de>  Thu, 26 Nov 2015 14:27:08 +0100
+
 bloonix-plugin-config (0.25-1) unstable; urgency=low
 
     * New param authkey for plugin check-by-satellite.
