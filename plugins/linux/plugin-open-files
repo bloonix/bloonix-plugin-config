@@ -1,60 +1,10 @@
 {
-   "plugin" : {
-      "info" : {
-         "plugin" : "check-open-files",
-         "examples" : [
-            {
-               "description" : [
-                  "Example to check the real free file handlers in percent"
-               ],
-               "arguments" : [
-                  "warning",
-                  "5",
-                  "critical",
-                  "3"
-               ],
-               "command_line" : "check-open-files --warning '5' --critical '3'"
-            }
-         ],
-         "options" : [
-            {
-               "value_desc" : "percent",
-               "name" : "Warning threshold",
-               "description" : "This is the warning threshold for real free file hanlders in percent. If less than this value in percent are free a warning status is triggered.",
-               "default" : 10,
-               "option" : "warning",
-               "value_type" : "number",
-               "mandatory" : 0,
-               "multiple" : 0
-            },
-            {
-               "description" : "This is the critical threshold for real free file hanlders in percent. If less than this value in percent are free a critical status is triggered.",
-               "value_desc" : "percent",
-               "name" : "Critical threshold",
-               "default" : 5,
-               "option" : "critical",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_type" : "number"
-            }
-         ],
-         "flags" : "",
-         "version" : "0.5"
-      },
-      "plugin" : "Linux.OpenFiles.Check",
-      "abstract" : "Open files check",
-      "category" : "System,Linux",
-      "command" : "check-open-files",
-      "description" : "Linux file statistics.",
-      "datatype" : "statistic",
-      "id" : "33"
-   },
    "statistic" : [
       {
-         "statkey" : "fh_alloc",
-         "description" : "Number of allocated file handles.",
+         "datatype" : "bigint",
          "alias" : "FHs allocated",
-         "datatype" : "bigint"
+         "statkey" : "fh_alloc",
+         "description" : "Number of allocated file handles."
       },
       {
          "datatype" : "bigint",
@@ -63,65 +13,115 @@
          "statkey" : "fh_max"
       },
       {
-         "datatype" : "bigint",
-         "alias" : "FHs free",
+         "statkey" : "fh_free",
          "description" : "Number of free file handles.",
-         "statkey" : "fh_free"
+         "datatype" : "bigint",
+         "alias" : "FHs free"
       },
       {
+         "statkey" : "nr_free_inodes",
          "description" : "Number of free inodes.",
-         "datatype" : "bigint",
          "alias" : "Inodes free",
-         "statkey" : "nr_free_inodes"
+         "datatype" : "bigint"
       },
       {
          "statkey" : "nr_inodes",
+         "description" : "Number of allocated inodes.",
          "alias" : "Inodes allocated",
-         "datatype" : "bigint",
-         "description" : "Number of allocated inodes."
+         "datatype" : "bigint"
       },
       {
          "description" : "Number of allocated dentries (directory cache entries).",
-         "datatype" : "bigint",
+         "statkey" : "nr_dentry",
          "alias" : "Dentries allocated",
-         "statkey" : "nr_dentry"
+         "datatype" : "bigint"
       },
       {
-         "alias" : "Dentries unused",
-         "datatype" : "bigint",
+         "statkey" : "nr_unused",
          "description" : "Number of unused dentries (directory cache).",
-         "statkey" : "nr_unused"
+         "datatype" : "bigint",
+         "alias" : "Dentries unused"
       }
    ],
+   "plugin" : {
+      "category" : "System,Linux",
+      "abstract" : "Open files check",
+      "datatype" : "statistic",
+      "plugin" : "Linux.OpenFiles.Check",
+      "id" : "33",
+      "description" : "Linux file statistics.",
+      "info" : {
+         "version" : "0.5",
+         "examples" : [
+            {
+               "arguments" : [
+                  "warning",
+                  "5",
+                  "critical",
+                  "3"
+               ],
+               "description" : [
+                  "Example to check the real free file handlers in percent"
+               ],
+               "command_line" : "check-open-files --warning '5' --critical '3'"
+            }
+         ],
+         "flags" : "",
+         "options" : [
+            {
+               "mandatory" : 0,
+               "multiple" : 0,
+               "value_type" : "number",
+               "name" : "Warning threshold",
+               "option" : "warning",
+               "value_desc" : "percent",
+               "default" : 10,
+               "description" : "This is the warning threshold for real free file hanlders in percent. If less than this value in percent are free a warning status is triggered."
+            },
+            {
+               "name" : "Critical threshold",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "value_type" : "number",
+               "option" : "critical",
+               "value_desc" : "percent",
+               "default" : 5,
+               "description" : "This is the critical threshold for real free file hanlders in percent. If less than this value in percent are free a critical status is triggered."
+            }
+         ],
+         "plugin" : "check-open-files"
+      },
+      "command" : "check-open-files"
+   },
    "chart" : {
-      "id" : "1",
       "title" : "Linux - filestats",
+      "id" : "1",
       "options" : {
-         "units" : "default",
-         "chart-type" : "area",
-         "ylabel" : "count",
          "series" : [
             {
                "name" : "fh_alloc",
                "color" : "#005467"
             },
             {
-               "name" : "nr_inodes",
-               "color" : "#e9644a"
+               "color" : "#e9644a",
+               "name" : "nr_inodes"
             },
             {
                "name" : "nr_free_inodes",
                "color" : "#2ba743"
             },
             {
-               "name" : "nr_dentry",
-               "color" : "#9a72ad"
+               "color" : "#9a72ad",
+               "name" : "nr_dentry"
             },
             {
-               "name" : "nr_unused",
-               "color" : "#ffb244"
+               "color" : "#ffb244",
+               "name" : "nr_unused"
             }
-         ]
+         ],
+         "chart-type" : "area",
+         "units" : "default",
+         "ylabel" : "count"
       }
    }
 }

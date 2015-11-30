@@ -1,84 +1,84 @@
 {
    "plugin" : {
+      "abstract" : "Linux check updates",
       "info" : {
-         "info" : [
-            "This plugin works only on Linux distributions where the tools yum, dnf, apt or zypper are used as package manager. If yum is used, then you have to install the package yum-security. If dnf is used, then you should know that 'dnf updateinfo' is parsed to get a summary of available security updates."
-         ],
          "flags" : "sudo",
-         "version" : "0.5",
          "examples" : [
             {
-               "arguments" : [
-                  "critical-security",
-                  1
-               ],
                "description" : [
                   "Check if updates are available and trigger a critical status if",
                   "there is 1 or more as 1 package for security is available."
                ],
+               "arguments" : [
+                  "critical-security",
+                  1
+               ],
                "command_line" : "check-linux-updates --critical-security '1'"
             }
+         ],
+         "version" : "0.5",
+         "info" : [
+            "This plugin works only on Linux distributions where the tools yum, dnf, apt or zypper are used as package manager. If yum is used, then you have to install the package yum-security. If dnf is used, then you should know that 'dnf updateinfo' is parsed to get a summary of available security updates."
          ],
          "options" : [
             {
                "option" : "warning",
-               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a WARNING is triggered.",
-               "value_desc" : "count",
-               "mandatory" : 0,
-               "value_type" : "int",
-               "default" : null,
                "multiple" : 0,
+               "mandatory" : 0,
+               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a WARNING is triggered.",
+               "default" : null,
+               "value_type" : "int",
+               "value_desc" : "count",
                "name" : "Warning threshold for normal packages"
             },
             {
+               "mandatory" : 0,
                "default" : null,
+               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages arei available then a CRITICAL is triggered.",
+               "option" : "critical",
                "multiple" : 0,
                "name" : "Critical threshold for normal packages",
-               "option" : "critical",
                "value_desc" : "count",
-               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages arei available then a CRITICAL is triggered.",
-               "mandatory" : 0,
                "value_type" : "int"
             },
             {
-               "value_type" : "int",
+               "multiple" : 0,
                "option" : "warning-security",
-               "mandatory" : 0,
                "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a WARNING is triggered.",
-               "value_desc" : "count",
                "default" : null,
-               "name" : "Warning threshold for security packages",
-               "multiple" : 0
-            },
-            {
+               "mandatory" : 0,
                "value_type" : "int",
-               "option" : "critical-security",
-               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a CRITICAL is triggered.",
                "value_desc" : "count",
-               "mandatory" : 0,
-               "default" : null,
-               "multiple" : 0,
-               "name" : "Critical threshold for security packages"
+               "name" : "Warning threshold for security packages"
             },
             {
-               "multiple" : 0,
-               "name" : "Timeout",
-               "default" : 30,
-               "value_type" : "number",
-               "value_desc" : "seconds",
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "mandatory" : 0,
-               "option" : "timeout"
+               "default" : null,
+               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a CRITICAL is triggered.",
+               "multiple" : 0,
+               "option" : "critical-security",
+               "value_desc" : "count",
+               "name" : "Critical threshold for security packages",
+               "value_type" : "int"
+            },
+            {
+               "name" : "Timeout",
+               "value_desc" : "seconds",
+               "value_type" : "number",
+               "mandatory" : 0,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "default" : 30,
+               "option" : "timeout",
+               "multiple" : 0
             }
          ],
          "plugin" : "check-linux-updates"
       },
-      "category" : "System,Linux,Security",
-      "abstract" : "Linux check updates",
-      "command" : "check-linux-updates",
-      "plugin" : "Linux.Updates.Check",
       "datatype" : "none",
-      "id" : "23",
-      "description" : "Check if updates are available."
+      "description" : "Check if updates are available.",
+      "command" : "check-linux-updates",
+      "category" : "System,Linux,Security",
+      "plugin" : "Linux.Updates.Check",
+      "id" : "23"
    }
 }

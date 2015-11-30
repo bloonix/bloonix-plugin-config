@@ -1,57 +1,131 @@
 {
+   "statistic" : [
+      {
+         "datatype" : "float",
+         "statkey" : "txbyt",
+         "units" : "bytes",
+         "description" : "Number of bytes transmitted per second.",
+         "alias" : "TX bytes"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "rxfifo",
+         "alias" : "RX FIFO overruns",
+         "description" : "Number of FIFO overruns that happend on received packets per second."
+      },
+      {
+         "alias" : "RX carrier errors",
+         "description" : "Number of carrier errors that happend on received packets per second.",
+         "statkey" : "rxframe",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of errors that happend while received packets per second.",
+         "alias" : "RX errors",
+         "statkey" : "rxerrs",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of compressed packets transmitted per second.",
+         "alias" : "TX compressed packets",
+         "statkey" : "txcompr",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Total number of bytes transmitted per second.",
+         "units" : "bytes",
+         "alias" : "Total bytes",
+         "statkey" : "ttbyt",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "txerrs",
+         "description" : "Number of errors that happend while transmitting packets per second.",
+         "alias" : "TX errors"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "rxpcks",
+         "description" : "Number of packets received per second.",
+         "alias" : "RX packets"
+      },
+      {
+         "statkey" : "txdrop",
+         "datatype" : "float",
+         "alias" : "TX dropped packets",
+         "description" : "Number of packets that were dropped per second."
+      },
+      {
+         "description" : "Number of carrier errors that happend on transmitted packets per second.",
+         "alias" : "TX carrier errors",
+         "statkey" : "txcarr",
+         "datatype" : "float"
+      },
+      {
+         "alias" : "TX collisions",
+         "description" : "Number of collisions that were detected per second.",
+         "statkey" : "txcolls",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "varchar(16)",
+         "statkey" : "device",
+         "description" : "The device name.",
+         "alias" : "Device"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "txfifo",
+         "description" : "Number of FIFO overruns that happend on transmitted packets per second.",
+         "alias" : "TX FIFO overruns"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "rxbyt",
+         "alias" : "RX bytes",
+         "description" : "Number of bytes received per second.",
+         "units" : "bytes"
+      },
+      {
+         "description" : "Number of packets transmitted per second.",
+         "alias" : "TX packets",
+         "datatype" : "float",
+         "statkey" : "txpcks"
+      },
+      {
+         "description" : "Number of packets that were dropped per second.",
+         "alias" : "RX dropped packets",
+         "datatype" : "float",
+         "statkey" : "rxdrop"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "rxmulti",
+         "alias" : "RX multicast packets",
+         "description" : "Number of multicast packets received per second."
+      },
+      {
+         "statkey" : "ttpcks",
+         "datatype" : "float",
+         "description" : "Total number of packets transmitted per second.",
+         "alias" : "Total packets"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "rxcompr",
+         "alias" : "RX compressed packets",
+         "description" : "Number of compressed packets received per second."
+      }
+   ],
    "plugin" : {
-      "plugin" : "Linux.Interface.Statistics",
-      "datatype" : "statistic",
-      "command" : "check-ifstat",
-      "description" : "Linux network I/O statistics",
       "id" : "21",
-      "category" : "System,Network,Linux",
+      "datatype" : "statistic",
+      "abstract" : "Network interface check",
       "info" : {
-         "plugin" : "check-ifstat",
-         "flags" : "",
          "version" : "0.8",
-         "options" : [
-            {
-               "value_type" : "string",
-               "mandatory" : 1,
-               "default" : null,
-               "value_desc" : "interface",
-               "multiple" : 0,
-               "name" : "Network interface",
-               "description" : "This is the network interface you want to check. As example eth0 or eth1.",
-               "option" : "interface"
-            },
-            {
-               "value_type" : "string",
-               "default" : null,
-               "mandatory" : 0,
-               "name" : "Warning threshold",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "option" : "warning",
-               "value_desc" : "key:value or key:op:value",
-               "multiple" : 1
-            },
-            {
-               "name" : "Critical threshold",
-               "option" : "critical",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_desc" : "key:value or key:op:value",
-               "multiple" : 1,
-               "default" : null,
-               "mandatory" : 0,
-               "value_type" : "string"
-            }
-         ],
          "examples" : [
             {
-               "description" : [
-                  "An example to check the interface eth0 and trigger",
-                  "",
-                  "- a warning if ttpcks is equal or higher than 10000",
-                  "- a critical if ttpcks is equal or higher than 20000",
-                  "- a warning if ttbyt is equal or higher than 60M",
-                  "- a critical if ttbyt is equal or higher than 80M"
-               ],
                "command_line" : "check-ifstat --interface 'eth0' --warning 'ttpcks:ge:10000' --critical 'ttpcks:ge:20000' --warning 'ttbyt:ge:60MB' --critical 'ttbyt:ge:80MB'",
                "arguments" : [
                   "interface",
@@ -64,6 +138,14 @@
                   "ttbyt:ge:60MB",
                   "critical",
                   "ttbyt:ge:80MB"
+               ],
+               "description" : [
+                  "An example to check the interface eth0 and trigger",
+                  "",
+                  "- a warning if ttpcks is equal or higher than 10000",
+                  "- a critical if ttpcks is equal or higher than 20000",
+                  "- a warning if ttbyt is equal or higher than 60M",
+                  "- a critical if ttbyt is equal or higher than 80M"
                ]
             }
          ],
@@ -78,44 +160,44 @@
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "rxerrs"
+                  "key" : "rxerrs",
+                  "unit" : "none"
                },
                {
-                  "key" : "rxdrop",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "rxdrop"
                },
                {
                   "unit" : "none",
                   "key" : "rxfifo"
                },
                {
-                  "unit" : "none",
-                  "key" : "rxframe"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "rxcompr"
-               },
-               {
-                  "key" : "rxmulti",
+                  "key" : "rxframe",
                   "unit" : "none"
+               },
+               {
+                  "key" : "rxcompr",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "rxmulti"
                },
                {
                   "unit" : "bytes",
                   "key" : "txbyt"
                },
                {
-                  "unit" : "none",
-                  "key" : "txpcks"
+                  "key" : "txpcks",
+                  "unit" : "none"
                },
                {
                   "key" : "txerrs",
                   "unit" : "none"
                },
                {
-                  "key" : "txdrop",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "txdrop"
                },
                {
                   "unit" : "none",
@@ -130,12 +212,12 @@
                   "unit" : "none"
                },
                {
-                  "key" : "txcarr",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "txcarr"
                },
                {
-                  "key" : "ttbyt",
-                  "unit" : "bytes"
+                  "unit" : "bytes",
+                  "key" : "ttbyt"
                },
                {
                   "key" : "ttpcks",
@@ -166,174 +248,92 @@
                "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
                "    GB = Gigabytes   EB = Exabytes\n\n"
             ]
-         }
+         },
+         "plugin" : "check-ifstat",
+         "flags" : "",
+         "options" : [
+            {
+               "value_desc" : "interface",
+               "value_type" : "string",
+               "mandatory" : 1,
+               "name" : "Network interface",
+               "multiple" : 0,
+               "default" : null,
+               "option" : "interface",
+               "description" : "This is the network interface you want to check. As example eth0 or eth1."
+            },
+            {
+               "multiple" : 1,
+               "name" : "Warning threshold",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "option" : "warning",
+               "default" : null,
+               "value_desc" : "key:value or key:op:value",
+               "mandatory" : 0,
+               "value_type" : "string"
+            },
+            {
+               "value_desc" : "key:value or key:op:value",
+               "mandatory" : 0,
+               "value_type" : "string",
+               "name" : "Critical threshold",
+               "multiple" : 1,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "option" : "critical",
+               "default" : null
+            }
+         ]
       },
-      "abstract" : "Network interface check"
+      "description" : "Linux network I/O statistics",
+      "command" : "check-ifstat",
+      "category" : "System,Network,Linux",
+      "plugin" : "Linux.Interface.Statistics"
    },
-   "statistic" : [
-      {
-         "statkey" : "txbyt",
-         "datatype" : "float",
-         "units" : "bytes",
-         "description" : "Number of bytes transmitted per second.",
-         "alias" : "TX bytes"
-      },
-      {
-         "statkey" : "rxfifo",
-         "datatype" : "float",
-         "alias" : "RX FIFO overruns",
-         "description" : "Number of FIFO overruns that happend on received packets per second."
-      },
-      {
-         "description" : "Number of carrier errors that happend on received packets per second.",
-         "alias" : "RX carrier errors",
-         "datatype" : "float",
-         "statkey" : "rxframe"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "rxerrs",
-         "description" : "Number of errors that happend while received packets per second.",
-         "alias" : "RX errors"
-      },
-      {
-         "description" : "Number of compressed packets transmitted per second.",
-         "alias" : "TX compressed packets",
-         "statkey" : "txcompr",
-         "datatype" : "float"
-      },
-      {
-         "description" : "Total number of bytes transmitted per second.",
-         "units" : "bytes",
-         "alias" : "Total bytes",
-         "statkey" : "ttbyt",
-         "datatype" : "float"
-      },
-      {
-         "description" : "Number of errors that happend while transmitting packets per second.",
-         "alias" : "TX errors",
-         "datatype" : "float",
-         "statkey" : "txerrs"
-      },
-      {
-         "statkey" : "rxpcks",
-         "datatype" : "float",
-         "description" : "Number of packets received per second.",
-         "alias" : "RX packets"
-      },
-      {
-         "description" : "Number of packets that were dropped per second.",
-         "alias" : "TX dropped packets",
-         "datatype" : "float",
-         "statkey" : "txdrop"
-      },
-      {
-         "statkey" : "txcarr",
-         "datatype" : "float",
-         "description" : "Number of carrier errors that happend on transmitted packets per second.",
-         "alias" : "TX carrier errors"
-      },
-      {
-         "alias" : "TX collisions",
-         "description" : "Number of collisions that were detected per second.",
-         "datatype" : "float",
-         "statkey" : "txcolls"
-      },
-      {
-         "statkey" : "device",
-         "datatype" : "varchar(16)",
-         "description" : "The device name.",
-         "alias" : "Device"
-      },
-      {
-         "statkey" : "txfifo",
-         "datatype" : "float",
-         "description" : "Number of FIFO overruns that happend on transmitted packets per second.",
-         "alias" : "TX FIFO overruns"
-      },
-      {
-         "units" : "bytes",
-         "description" : "Number of bytes received per second.",
-         "alias" : "RX bytes",
-         "datatype" : "float",
-         "statkey" : "rxbyt"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "txpcks",
-         "alias" : "TX packets",
-         "description" : "Number of packets transmitted per second."
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "rxdrop",
-         "description" : "Number of packets that were dropped per second.",
-         "alias" : "RX dropped packets"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "rxmulti",
-         "description" : "Number of multicast packets received per second.",
-         "alias" : "RX multicast packets"
-      },
-      {
-         "description" : "Total number of packets transmitted per second.",
-         "alias" : "Total packets",
-         "statkey" : "ttpcks",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "RX compressed packets",
-         "description" : "Number of compressed packets received per second.",
-         "datatype" : "float",
-         "statkey" : "rxcompr"
-      }
-   ],
    "chart" : [
       {
-         "title" : "Linux - ifstats bytes",
-         "id" : "1",
          "options" : {
             "series" : [
                {
-                  "color" : "#005467",
-                  "name" : "txbyt"
-               },
-               {
-                  "color" : "#ff7a0d",
-                  "name" : "rxbyt",
-                  "opposite" : "true"
-               }
-            ],
-            "units" : "bytes",
-            "chart-type" : "area",
-            "ylabel" : "rxbyt/s (-) - txbyt/s (+)"
-         }
-      },
-      {
-         "title" : "Linux - ifstats packets",
-         "id" : "2",
-         "options" : {
-            "units" : "default",
-            "series" : [
-               {
-                  "name" : "txpcks",
+                  "name" : "txbyt",
                   "color" : "#005467"
                },
                {
-                  "name" : "rxpcks",
                   "opposite" : "true",
-                  "color" : "#ff7a0d"
+                  "color" : "#ff7a0d",
+                  "name" : "rxbyt"
                }
             ],
+            "ylabel" : "rxbyt/s (-) - txbyt/s (+)",
             "chart-type" : "area",
-            "ylabel" : "rxpcks/s (-) / txpcks/s (+)"
+            "units" : "bytes"
+         },
+         "title" : "Linux - ifstats bytes",
+         "id" : "1"
+      },
+      {
+         "id" : "2",
+         "title" : "Linux - ifstats packets",
+         "options" : {
+            "units" : "default",
+            "chart-type" : "area",
+            "ylabel" : "rxpcks/s (-) / txpcks/s (+)",
+            "series" : [
+               {
+                  "color" : "#005467",
+                  "name" : "txpcks"
+               },
+               {
+                  "opposite" : "true",
+                  "name" : "rxpcks",
+                  "color" : "#ff7a0d"
+               }
+            ]
          }
       },
       {
+         "id" : "3",
+         "title" : "Linux - ifstats tx errs",
          "options" : {
-            "ylabel" : "packets",
-            "chart-type" : "area",
             "units" : "default",
             "series" : [
                {
@@ -341,64 +341,64 @@
                   "name" : "txerrs"
                },
                {
-                  "name" : "txdrop",
-                  "color" : "#e9644a"
+                  "color" : "#e9644a",
+                  "name" : "txdrop"
                },
                {
-                  "name" : "txfifo",
-                  "color" : "#ffb244"
+                  "color" : "#ffb244",
+                  "name" : "txfifo"
                },
                {
-                  "name" : "txcolls",
-                  "color" : "#2ba743"
+                  "color" : "#2ba743",
+                  "name" : "txcolls"
                },
                {
-                  "name" : "txcarr",
-                  "color" : "#005467"
+                  "color" : "#005467",
+                  "name" : "txcarr"
                },
                {
-                  "color" : "#7648eb",
-                  "name" : "txcompr"
+                  "name" : "txcompr",
+                  "color" : "#7648eb"
                }
-            ]
-         },
-         "title" : "Linux - ifstats tx errs",
-         "id" : "3"
+            ],
+            "ylabel" : "packets",
+            "chart-type" : "area"
+         }
       },
       {
-         "id" : "4",
-         "title" : "Linux - ifstats rx errs",
          "options" : {
             "units" : "default",
+            "chart-type" : "area",
+            "ylabel" : "packets",
             "series" : [
                {
-                  "name" : "rxerrs",
-                  "color" : "#9a72ad"
+                  "color" : "#9a72ad",
+                  "name" : "rxerrs"
                },
                {
-                  "color" : "#e9644a",
-                  "name" : "rxdrop"
+                  "name" : "rxdrop",
+                  "color" : "#e9644a"
                },
                {
                   "name" : "rxfifo",
                   "color" : "#ffb244"
                },
                {
-                  "color" : "#2ba743",
-                  "name" : "rxframe"
+                  "name" : "rxframe",
+                  "color" : "#2ba743"
                },
                {
-                  "name" : "rxmulti",
-                  "color" : "#005467"
+                  "color" : "#005467",
+                  "name" : "rxmulti"
                },
                {
                   "color" : "#7648eb",
                   "name" : "rxcompr"
                }
-            ],
-            "chart-type" : "area",
-            "ylabel" : "packets"
-         }
+            ]
+         },
+         "id" : "4",
+         "title" : "Linux - ifstats rx errs"
       }
    ]
 }

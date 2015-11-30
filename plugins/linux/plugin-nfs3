@@ -1,58 +1,75 @@
 {
    "plugin" : {
-      "command" : "check-nfs3",
-      "datatype" : "none",
+      "abstract" : "NFS3 check",
+      "plugin" : "Linux.NFS3.Check",
       "id" : "30",
-      "category" : "System,Filesystem,Linux",
+      "command" : "check-nfs3",
+      "description" : "This plugin can check the nfs3 server or nfs3 client.",
       "info" : {
          "options" : [
             {
+               "name" : "Warning threshold",
                "mandatory" : 0,
+               "option" : "warning",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_desc" : "key:value or key:op:value",
                "multiple" : 1,
                "value_type" : "string",
-               "name" : "Warning threshold",
-               "option" : "warning",
-               "default" : null,
-               "value_desc" : "key:value or key:op:value",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information."
+               "default" : null
             },
             {
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_desc" : "key:value or key:op:value",
-               "default" : null,
-               "name" : "Critical threshold",
                "option" : "critical",
-               "value_type" : "string",
                "mandatory" : 0,
-               "multiple" : 1
+               "name" : "Critical threshold",
+               "default" : null,
+               "value_type" : "string",
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value"
             },
             {
+               "description" : "By default the server is checked. Enable this option if you want to check the client instead the server.",
+               "option" : "client",
                "default" : null,
                "value_type" : 0,
-               "multiple" : 0,
                "mandatory" : 0,
-               "description" : "By default the server is checked. Enable this option if you want to check the client instead the server.",
-               "name" : "Check the client instead the server",
-               "option" : "client"
+               "multiple" : 0,
+               "name" : "Check the client instead the server"
             }
          ],
+         "version" : "0.4",
+         "plugin" : "check-nfs3",
          "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
+            ],
             "options" : [
                {
                   "key" : "getattr",
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "setattr"
+                  "key" : "setattr",
+                  "unit" : "none"
                },
                {
                   "key" : "lookup",
                   "unit" : "none"
                },
                {
-                  "key" : "access",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "access"
                },
                {
                   "key" : "readlink",
@@ -83,24 +100,24 @@
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "remove"
+                  "key" : "remove",
+                  "unit" : "none"
                },
                {
-                  "key" : "rmdir",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "rmdir"
                },
                {
                   "unit" : "none",
                   "key" : "rename"
                },
                {
-                  "unit" : "none",
-                  "key" : "link"
+                  "key" : "link",
+                  "unit" : "none"
                },
                {
-                  "key" : "readdir",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "readdir"
                },
                {
                   "key" : "readdirplus",
@@ -119,31 +136,14 @@
                   "key" : "pathconf"
                },
                {
-                  "key" : "commit",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "commit"
                }
-            ],
-            "info" : [
-               "How to set warning and critical thresholds:\n\n",
-               "  It's possible to set thresholds for one or more statistic keys.\n",
-               "  The format to add a threshold for a statistic key is:\n\n",
-               "    key:operator:threshold\n\n",
-               "  If no operator is set then the default operator is 'ge'.\n\n",
-               "  The following operators are available:\n\n",
-               "    lt = less than\n",
-               "    le = less than or equal\n",
-               "    gt = greater than\n",
-               "    ge = greater than or equal\n",
-               "    eq = equal\n",
-               "    ne = not equal\n"
             ]
          },
-         "flags" : "",
-         "plugin" : "check-nfs3",
-         "version" : "0.4"
+         "flags" : ""
       },
-      "abstract" : "NFS3 check",
-      "description" : "This plugin can check the nfs3 server or nfs3 client.",
-      "plugin" : "Linux.NFS3.Check"
+      "category" : "System,Filesystem,Linux",
+      "datatype" : "none"
    }
 }

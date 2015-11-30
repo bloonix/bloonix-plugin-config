@@ -1,14 +1,6 @@
 {
    "plugin" : {
-      "abstract" : "Service check",
-      "category" : "System",
-      "id" : "38",
-      "datatype" : "none",
       "info" : {
-         "info" : [
-            "This plugin tries to determine automatically the method to check the status of a service. At first the plugin searchs for 'systemctl', then for 'service' and then the plugin checks if /etc/init.d/service-name exists."
-         ],
-         "version" : "0.5",
          "examples" : [
             {
                "arguments" : [
@@ -24,23 +16,31 @@
                "command_line" : "check-service --service 'httpd'"
             }
          ],
+         "flags" : "sudo",
+         "plugin" : "check-service",
          "options" : [
             {
-               "mandatory" : 1,
-               "default" : null,
-               "value_type" : "string",
-               "description" : "This is the service name you want to check.",
-               "name" : "Service name",
-               "multiple" : 0,
                "option" : "service",
-               "value_desc" : "service"
+               "default" : null,
+               "name" : "Service name",
+               "value_desc" : "service",
+               "multiple" : 0,
+               "mandatory" : 1,
+               "value_type" : "string",
+               "description" : "This is the service name you want to check."
             }
          ],
-         "plugin" : "check-service",
-         "flags" : "sudo"
+         "version" : "0.5",
+         "info" : [
+            "This plugin tries to determine automatically the method to check the status of a service. At first the plugin searchs for 'systemctl', then for 'service' and then the plugin checks if /etc/init.d/service-name exists."
+         ]
       },
+      "abstract" : "Service check",
       "description" : "Check the status of a service.",
       "plugin" : "Linux.Service.Check",
-      "command" : "check-service"
+      "datatype" : "none",
+      "command" : "check-service",
+      "category" : "System",
+      "id" : "38"
    }
 }

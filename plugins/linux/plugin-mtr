@@ -1,38 +1,38 @@
 {
    "plugin" : {
-      "plugin" : "Network.MTR.Check",
+      "datatype" : "table",
+      "category" : "System,Linux",
+      "description" : "Monitor the route to a host via MTR.",
+      "id" : "27",
       "command" : "check-mtr",
       "abstract" : "Traceroute",
-      "datatype" : "table",
-      "id" : "27",
+      "plugin" : "Network.MTR.Check",
       "info" : {
-         "plugin" : "check-mtr",
+         "version" : "0.2",
+         "flags" : "",
          "options" : [
             {
                "mandatory" : 1,
-               "multiple" : 0,
-               "description" : "A hostname or IP address to connect to.",
-               "option" : "host",
-               "value_desc" : "hostname or ip address",
+               "name" : "Hostname or IP address",
                "default" : null,
+               "value_desc" : "hostname or ip address",
+               "multiple" : 0,
                "value_type" : "string",
-               "name" : "Hostname or IP address"
+               "option" : "host",
+               "description" : "A hostname or IP address to connect to."
             },
             {
-               "mandatory" : 0,
-               "multiple" : 0,
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "option" : "timeout",
                "value_desc" : "seconds",
                "default" : 30,
+               "name" : "Timeout",
+               "mandatory" : 0,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "value_type" : "number",
-               "name" : "Timeout"
+               "option" : "timeout",
+               "multiple" : 0
             }
          ],
-         "flags" : "",
-         "version" : "0.2"
-      },
-      "category" : "System,Linux",
-      "description" : "Monitor the route to a host via MTR."
+         "plugin" : "check-mtr"
+      }
    }
 }

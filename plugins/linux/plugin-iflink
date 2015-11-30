@@ -1,42 +1,42 @@
 {
    "plugin" : {
+      "description" : "Check the link of an interface.",
+      "datatype" : "none",
+      "id" : "20",
+      "plugin" : "Linux.Interface.Check",
+      "abstract" : "Interface link check",
       "info" : {
          "examples" : [
             {
+               "command_line" : "check-iflink --interface 'eth0' --interface 'eth1'",
+               "description" : [
+                  "A simple example"
+               ],
                "arguments" : [
                   "interface",
                   "eth0",
                   "interface",
                   "eth1"
-               ],
-               "description" : [
-                  "A simple example"
-               ],
-               "command_line" : "check-iflink --interface 'eth0' --interface 'eth1'"
+               ]
             }
          ],
-         "plugin" : "check-iflink",
          "options" : [
             {
-               "description" : "This is the network interface you want to check. As example eth0 or eth1.",
-               "value_type" : "string",
+               "default" : null,
                "multiple" : 1,
-               "name" : "Network interface",
-               "mandatory" : 0,
+               "description" : "This is the network interface you want to check. As example eth0 or eth1.",
                "option" : "interface",
+               "value_type" : "string",
                "value_desc" : "interface",
-               "default" : null
+               "name" : "Network interface",
+               "mandatory" : 0
             }
          ],
          "version" : "0.3",
-         "flags" : ""
+         "flags" : "",
+         "plugin" : "check-iflink"
       },
-      "id" : "20",
-      "description" : "Check the link of an interface.",
-      "datatype" : "none",
-      "plugin" : "Linux.Interface.Check",
-      "command" : "check-iflink",
-      "abstract" : "Interface link check",
-      "category" : "System,Network,Linux"
+      "category" : "System,Network,Linux",
+      "command" : "check-iflink"
    }
 }

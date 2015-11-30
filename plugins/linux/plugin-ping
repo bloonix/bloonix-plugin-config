@@ -1,95 +1,70 @@
 {
-   "chart" : {
-      "options" : {
-         "ylabel" : "loss (-) / rta (+)",
-         "series" : [
-            {
-               "color" : "#005467",
-               "name" : "rta"
-            },
-            {
-               "color" : "#ff7a0d",
-               "name" : "loss",
-               "opposite" : "true"
-            }
-         ],
-         "units" : "null",
-         "chart-type" : "area"
-      },
-      "id" : "1",
-      "title" : "Ping - round trip average / paket loss"
-   },
    "plugin" : {
-      "worldwide" : "yes",
-      "netaccess" : "yes",
-      "category" : "System,Network",
-      "description" : "Ping statistics.",
-      "command" : "check-ping",
       "info" : {
          "plugin" : "check-ping",
          "version" : "0.9",
+         "flags" : "",
          "options" : [
             {
-               "default" : null,
-               "value_type" : "string",
                "value_desc" : "hostname or ip address",
-               "mandatory" : 1,
+               "value_type" : "string",
+               "multiple" : 0,
                "description" : "A hostname or IP address to connect to.",
+               "default" : null,
                "name" : "Hostname or IP address",
                "option" : "host",
+               "mandatory" : 1
+            },
+            {
+               "multiple" : 0,
+               "value_type" : "number",
+               "value_desc" : "seconds",
+               "mandatory" : 0,
+               "option" : "timeout",
+               "name" : "Timeout",
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "default" : 10
+            },
+            {
+               "default" : null,
+               "description" : "Use IPv6 to connect to the host.",
+               "value_type" : 0,
+               "name" : "Use IPv6",
+               "multiple" : 0,
+               "option" : "use-ipv6",
+               "mandatory" : 0
+            },
+            {
+               "value_desc" : "packets",
+               "value_type" : "number",
+               "multiple" : 0,
+               "default" : 3,
+               "description" : "Number of packets to send. At least 1 and maximum 10.",
+               "name" : "Packets",
+               "option" : "packets",
+               "mandatory" : 0
+            },
+            {
+               "description" : "Set the the maximum average in seconds and loss in percent with a comma separated.",
+               "default" : "2000,33%",
+               "name" : "Warning threshold",
+               "option" : "warning",
+               "mandatory" : 0,
+               "value_desc" : "seconds",
+               "value_type" : "string",
                "multiple" : 0
             },
             {
-               "mandatory" : 0,
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "value_desc" : "seconds",
-               "name" : "Timeout",
-               "multiple" : 0,
-               "option" : "timeout",
-               "default" : 10,
-               "value_type" : "number"
-            },
-            {
-               "name" : "Use IPv6",
-               "multiple" : 0,
-               "value_type" : 0,
-               "option" : "use-ipv6",
-               "mandatory" : 0,
-               "description" : "Use IPv6 to connect to the host.",
-               "default" : null
-            },
-            {
-               "mandatory" : 0,
-               "description" : "Number of packets to send. At least 1 and maximum 10.",
-               "value_desc" : "packets",
-               "multiple" : 0,
-               "option" : "packets",
-               "name" : "Packets",
-               "default" : 3,
-               "value_type" : "number"
-            },
-            {
-               "value_type" : "string",
-               "default" : "2000,33%",
-               "multiple" : 0,
-               "option" : "warning",
-               "name" : "Warning threshold",
-               "description" : "Set the the maximum average in seconds and loss in percent with a comma separated.",
-               "mandatory" : 0,
-               "value_desc" : "seconds"
-            },
-            {
                "name" : "Critical threshold",
-               "multiple" : 0,
-               "option" : "critical",
-               "mandatory" : 0,
+               "default" : "5000,66%",
                "description" : "Set the the maximum average in seconds and loss in percent with a comma separated.",
-               "value_desc" : "seconds",
+               "mandatory" : 0,
+               "option" : "critical",
                "value_type" : "string",
-               "default" : "5000,66%"
+               "value_desc" : "seconds",
+               "multiple" : 0
             }
          ],
-         "flags" : "",
          "examples" : [
             {
                "description" : [
@@ -111,25 +86,50 @@
          ]
       },
       "plugin" : "Ping.Check",
-      "datatype" : "statistic",
+      "netaccess" : "yes",
+      "worldwide" : "yes",
+      "description" : "Ping statistics.",
       "prefer" : "remote",
+      "command" : "check-ping",
+      "datatype" : "statistic",
+      "category" : "System,Network",
       "id" : "35",
       "abstract" : "Ping check"
    },
+   "chart" : {
+      "title" : "Ping - round trip average / paket loss",
+      "id" : "1",
+      "options" : {
+         "chart-type" : "area",
+         "series" : [
+            {
+               "color" : "#005467",
+               "name" : "rta"
+            },
+            {
+               "opposite" : "true",
+               "color" : "#ff7a0d",
+               "name" : "loss"
+            }
+         ],
+         "ylabel" : "loss (-) / rta (+)",
+         "units" : "null"
+      }
+   },
    "statistic" : [
       {
-         "statkey" : "rta",
-         "description" : "Round trip average in milliseconds.",
-         "alias" : "Round trip average",
+         "units" : "ms",
          "datatype" : "float",
-         "units" : "ms"
+         "alias" : "Round trip average",
+         "description" : "Round trip average in milliseconds.",
+         "statkey" : "rta"
       },
       {
-         "datatype" : "float",
          "units" : "percent",
-         "description" : "Packets loss in percent.",
+         "alias" : "Packets loss",
+         "datatype" : "float",
          "statkey" : "loss",
-         "alias" : "Packets loss"
+         "description" : "Packets loss in percent."
       }
    ]
 }
