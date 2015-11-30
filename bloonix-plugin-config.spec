@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.26
+Version: 0.27
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Mon Nov 30 2015 Jonny Schulz <js@bloonix.de> - 0.27-1
+- New desc for plugin check-wtrm.
 * Thu Nov 26 2015 Jonny Schulz <js@bloonix.de> - 0.26-1
 - New param per-cpu for plugin check-loadavg.
 * Sat Nov 21 2015 Jonny Schulz <js@bloonix.de> - 0.25-1
