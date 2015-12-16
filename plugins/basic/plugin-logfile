@@ -1,99 +1,73 @@
 {
-   "chart" : {
-      "options" : {
-         "chart-type" : "line",
-         "units" : "default",
-         "ylabel" : "alerts",
-         "series" : [
-            {
-               "color" : "#005467",
-               "name" : "critical"
-            },
-            {
-               "name" : "warning",
-               "color" : "#ff7a0d"
-            }
-         ]
-      },
-      "id" : "1",
-      "title" : "Logfile messages"
-   },
    "plugin" : {
       "abstract" : "Check logfile",
-      "id" : "9",
-      "description" : "Logfile statistics.",
+      "command" : "check-logfile",
       "info" : {
+         "flags" : "",
          "options" : [
             {
-               "name" : "Search for warnings",
                "description" : "Define a regular expression to search for it in the logfile. The warn-counter will be increased with each match.",
-               "default" : null,
-               "multiple" : 1,
                "value_type" : "string",
                "mandatory" : 0,
                "option" : "warning",
-               "value_desc" : "regex"
-            },
-            {
-               "mandatory" : 0,
-               "value_type" : "string",
-               "value_desc" : "count",
-               "option" : "warn-count",
-               "name" : "Trigger a warning after X matches",
-               "multiple" : 0,
-               "default" : 1,
-               "description" : "Set the maximum number of matches that are allowed. If more matches are found then a WARNING is triggered."
-            },
-            {
-               "mandatory" : 0,
-               "value_type" : "string",
-               "value_desc" : "regex",
-               "option" : "critical",
-               "name" : "Search for critical events",
-               "multiple" : 1,
                "default" : null,
-               "description" : "Define a regular expression to search for it in the logfile. The crit-counter will be increased with each match."
+               "value_desc" : "regex",
+               "multiple" : 1,
+               "name" : "Search for warnings"
             },
             {
-               "name" : "Trigger a critical after X matches",
-               "default" : 1,
-               "description" : "Set the maximum number of matches that are allowed. If more matches are found then a CRITICAL is triggered.",
+               "description" : "Set the maximum number of matches that are allowed. If more matches are found then a WARNING is triggered.",
                "multiple" : 0,
-               "value_type" : "string",
+               "name" : "Trigger a warning after X matches",
                "mandatory" : 0,
-               "option" : "crit-count",
+               "value_type" : "string",
+               "option" : "warn-count",
+               "default" : 1,
                "value_desc" : "count"
             },
             {
+               "value_desc" : "regex",
+               "default" : null,
+               "option" : "critical",
+               "value_type" : "string",
+               "mandatory" : 0,
+               "name" : "Search for critical events",
+               "multiple" : 1,
+               "description" : "Define a regular expression to search for it in the logfile. The crit-counter will be increased with each match."
+            },
+            {
+               "option" : "crit-count",
+               "mandatory" : 0,
+               "value_type" : "string",
+               "value_desc" : "count",
+               "default" : 1,
+               "name" : "Trigger a critical after X matches",
+               "multiple" : 0,
+               "description" : "Set the maximum number of matches that are allowed. If more matches are found then a CRITICAL is triggered."
+            },
+            {
+               "description" : "This is the logfile to search for events.",
+               "value_desc" : "filename",
+               "default" : null,
+               "option" : "logfile",
                "value_type" : "string",
                "mandatory" : 1,
-               "option" : "logfile",
-               "value_desc" : "filename",
                "name" : "Logfile",
-               "description" : "This is the logfile to search for events.",
-               "default" : null,
                "multiple" : 0
             },
             {
+               "default" : null,
+               "option" : "rotated-file",
+               "mandatory" : 0,
+               "description" : "Enable this option if the check should automatically search rotated log files in the format 'logfile.1'.",
                "value_type" : 0,
                "name" : "Include rotated log files",
-               "mandatory" : 0,
-               "default" : null,
-               "description" : "Enable this option if the check should automatically search rotated log files in the format 'logfile.1'.",
-               "option" : "rotated-file",
                "multiple" : 0
             }
          ],
-         "plugin" : "check-logfile",
-         "flags" : "",
          "examples" : [
             {
                "command_line" : "check-logfile --logfile '/var/log/auth.log' --critical 'Did not receive identification string from' --critical 'Failed password for .+ from .+ ssh' --critical 'User .+ from .+ not allowed because not listed in AllowUsers' --critical 'Invalid user .+ from .+' --warn-count '1' --crit-count '2' --rotated-file",
-               "description" : [
-                  "NOTE: please create the configuration file '/etc/bloonix/agent/check-logfile.conf' on your server and write all logfiles into the file (one logfile per line) that the Bloonix agent is allowed to read!",
-                  "",
-                  "In this example the logfile /var/log/auth.log is checked for failed login attempts and a critical event is triggered if 3 entries were found. In addition the nightly rotated file (/var/log/auth.log.1) is checked also."
-               ],
                "arguments" : [
                   "logfile",
                   "/var/log/auth.log",
@@ -111,30 +85,56 @@
                   2,
                   "rotated-file",
                   null
+               ],
+               "description" : [
+                  "NOTE: please create the configuration file '/etc/bloonix/agent/check-logfile.conf' on your server and write all logfiles into the file (one logfile per line) that the Bloonix agent is allowed to read!",
+                  "",
+                  "In this example the logfile /var/log/auth.log is checked for failed login attempts and a critical event is triggered if 3 entries were found. In addition the nightly rotated file (/var/log/auth.log.1) is checked also."
                ]
             }
          ],
-         "version" : "0.12"
+         "version" : "0.12",
+         "plugin" : "check-logfile"
       },
       "datatype" : "statistic",
-      "command" : "check-logfile",
-      "category" : "System,Security",
-      "plugin" : "Logfile.Check"
+      "plugin" : "Logfile.Check",
+      "description" : "Logfile statistics.",
+      "id" : "9",
+      "category" : "System,Security"
+   },
+   "chart" : {
+      "title" : "Logfile messages",
+      "options" : {
+         "ylabel" : "alerts",
+         "units" : "default",
+         "chart-type" : "line",
+         "series" : [
+            {
+               "color" : "#005467",
+               "name" : "critical"
+            },
+            {
+               "name" : "warning",
+               "color" : "#ff7a0d"
+            }
+         ]
+      },
+      "id" : "1"
    },
    "statistic" : [
       {
-         "description" : "The number of warning matches found in logfile.",
          "statkey" : "warning",
          "datatype" : "bigint",
          "alias" : "Warning matches",
-         "units" : "null"
+         "units" : "null",
+         "description" : "The number of warning matches found in logfile."
       },
       {
-         "alias" : "Critical matches",
-         "units" : "null",
-         "datatype" : "bigint",
          "statkey" : "critical",
-         "description" : "The number of critical matches found in logfile."
+         "datatype" : "bigint",
+         "alias" : "Critical matches",
+         "description" : "The number of critical matches found in logfile.",
+         "units" : "null"
       }
    ]
 }

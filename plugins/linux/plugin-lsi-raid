@@ -1,60 +1,60 @@
 {
    "plugin" : {
-      "command" : "check-lsi-raid",
+      "abstract" : "LSI raid check",
       "plugin" : "Linux.RAID.LSI.Check",
       "datatype" : "none",
       "info" : {
+         "plugin" : "check-lsi-raid",
          "flags" : "sudo",
+         "info" : [
+            "This plugin checks the status of all disks on all raid controllers that are found. In addition the battery status is checked and the temperature of the battery. The commands MegaCli, MegaCli64, storcli or storcli64 are used to check the status of the RAID. Please install the tools to the path /usr/bin, /opt/MegaRAID/MegaCli or /opt/MegaRAID/storcli."
+         ],
+         "version" : "0.2",
          "options" : [
             {
-               "value_desc" : "number",
-               "default" : 0,
-               "value_type" : "int",
                "option" : "ignore-other-errors",
-               "multiple" : 0,
                "name" : "The number of other errors to ignore",
+               "value_type" : "int",
+               "default" : 0,
+               "value_desc" : "number",
+               "multiple" : 0,
                "mandatory" : 0,
                "description" : "The number of other errors to ignore and to return status OK."
             },
             {
-               "description" : "The number of media errors to ignore and to return status OK.",
-               "value_desc" : "number",
-               "default" : 0,
-               "multiple" : 0,
                "value_type" : "int",
-               "option" : "ignore-media-errors",
-               "name" : "The number of media errors to ignore",
-               "mandatory" : 0
-            },
-            {
+               "multiple" : 0,
+               "value_desc" : "number",
+               "description" : "The number of media errors to ignore and to return status OK.",
                "mandatory" : 0,
                "default" : 0,
+               "option" : "ignore-media-errors",
+               "name" : "The number of media errors to ignore"
+            },
+            {
+               "option" : "ignore-predictive-failures",
                "name" : "The number of predictive failures to ignore",
                "value_type" : "int",
-               "multiple" : 0,
-               "option" : "ignore-predictive-failures",
+               "default" : 0,
+               "mandatory" : 0,
+               "description" : "The number of predictive failures to ignore and to return status OK.",
                "value_desc" : "number",
-               "description" : "The number of predictive failures to ignore and to return status OK."
+               "multiple" : 0
             },
             {
                "mandatory" : 0,
                "description" : "Force the usage of the StorCli tool instead of MegaCli. By default MegaCli is used if if both is installed.",
                "multiple" : 0,
-               "value_type" : 0,
-               "option" : "force-storcli",
                "name" : "Force StorCli",
-               "default" : null
+               "default" : null,
+               "option" : "force-storcli",
+               "value_type" : 0
             }
-         ],
-         "version" : "0.2",
-         "info" : [
-            "This plugin checks the status of all disks on all raid controllers that are found. In addition the battery status is checked and the temperature of the battery. The commands MegaCli, MegaCli64, storcli or storcli64 are used to check the status of the RAID. Please install the tools to the path /usr/bin, /opt/MegaRAID/MegaCli or /opt/MegaRAID/storcli."
-         ],
-         "plugin" : "check-lsi-raid"
+         ]
       },
-      "description" : "Check the raid health with megacli or storcli.",
+      "command" : "check-lsi-raid",
       "id" : "61",
-      "category" : "System,RAID,Disk,Linux",
-      "abstract" : "LSI raid check"
+      "description" : "Check the raid health with megacli or storcli.",
+      "category" : "System,RAID,Disk,Linux"
    }
 }

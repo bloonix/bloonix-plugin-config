@@ -1,42 +1,42 @@
 {
    "plugin" : {
-      "plugin" : "Simple.Script",
+      "abstract" : "Simple check script",
+      "category" : "Simple",
+      "datatype" : "none",
+      "command" : "check-simple-wrapper",
       "description" : "Check a service with a simple script.",
       "prefer" : "localhost",
-      "netaccess" : "yes",
-      "command" : "check-simple-wrapper",
-      "category" : "Simple",
-      "abstract" : "Simple check script",
-      "datatype" : "none",
-      "id" : "59",
       "info" : {
-         "version" : "0.2",
-         "flags" : "simple",
-         "plugin" : "check-simple-wrapper",
          "examples" : [
             {
-               "description" : [
-                  "Using simple checks is very simple. Just enter the full command:"
-               ],
+               "command_line" : "check-simple-wrapper --simple-command 'check_this_or_that -H 127.0.0.1 -w 4 -c 5'",
                "arguments" : [
                   "simple-command",
                   "check_this_or_that -H 127.0.0.1 -w 4 -c 5"
                ],
-               "command_line" : "check-simple-wrapper --simple-command 'check_this_or_that -H 127.0.0.1 -w 4 -c 5'"
+               "description" : [
+                  "Using simple checks is very simple. Just enter the full command:"
+               ]
             }
          ],
+         "version" : "0.2",
+         "plugin" : "check-simple-wrapper",
          "options" : [
             {
-               "option" : "simple-command",
-               "value_type" : "string",
-               "name" : "Command",
-               "description" : "Enter the complete command with arguments but without\nthe path to the script. Note that single quotes, backticks\nand backslashes are not allowed characters. Command example:\ncheck_this_or_that -H 127.0.0.1 -w 4 -c 5",
-               "multiple" : 0,
-               "value_desc" : "string",
                "default" : null,
-               "mandatory" : 1
+               "description" : "Enter the complete command with arguments but without\nthe path to the script. Note that single quotes, backticks\nand backslashes are not allowed characters. Command example:\ncheck_this_or_that -H 127.0.0.1 -w 4 -c 5",
+               "value_desc" : "string",
+               "name" : "Command",
+               "value_type" : "string",
+               "option" : "simple-command",
+               "mandatory" : 1,
+               "multiple" : 0
             }
-         ]
-      }
+         ],
+         "flags" : "simple"
+      },
+      "netaccess" : "yes",
+      "plugin" : "Simple.Script",
+      "id" : "59"
    }
 }

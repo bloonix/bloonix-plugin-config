@@ -1,105 +1,105 @@
 {
+   "statistic" : [
+      {
+         "datatype" : "float",
+         "statkey" : "delay",
+         "alias" : "Delay",
+         "description" : "The roundtrip time, in milliseconds, to receive a reply."
+      },
+      {
+         "alias" : "Offset",
+         "statkey" : "offset",
+         "datatype" : "float",
+         "description" : "The time difference, in milliseconds, between the client server and source."
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "jitter",
+         "alias" : "Jitter",
+         "description" : "The difference, in milliseconds, between two samples."
+      }
+   ],
    "plugin" : {
+      "id" : "71",
+      "abstract" : "NTP time difference",
+      "plugin" : "NTP.Time.Check",
+      "description" : "Check the NTP time difference",
       "datatype" : "statistic",
       "category" : "System,Network,Time",
-      "description" : "Check the NTP time difference",
-      "abstract" : "NTP time difference",
       "command" : "check-ntp-time",
-      "id" : "71",
       "info" : {
-         "options" : [
-            {
-               "option" : "warning",
-               "multiple" : 0,
-               "value_type" : "number",
-               "mandatory" : 0,
-               "value_desc" : "seconds",
-               "name" : "Warning threshold",
-               "default" : 500,
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered."
-            },
-            {
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
-               "name" : "Critical threshold",
-               "default" : 1000,
-               "value_desc" : "seconds",
-               "value_type" : "number",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "option" : "critical"
-            },
-            {
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "name" : "Timeout",
-               "default" : 10,
-               "value_desc" : "seconds",
-               "value_type" : "number",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "option" : "timeout"
-            }
-         ],
          "version" : "0.1",
          "examples" : [
             {
-               "description" : [
-                  "Check the time difference between the client and server in milliseconds."
-               ],
-               "command_line" : "check-ntp-time --warning '1000' --critical '3000'",
                "arguments" : [
                   "warning",
                   1000,
                   "critical",
                   3000
-               ]
+               ],
+               "description" : [
+                  "Check the time difference between the client and server in milliseconds."
+               ],
+               "command_line" : "check-ntp-time --warning '1000' --critical '3000'"
             }
          ],
-         "plugin" : "check-ntp-time",
-         "flags" : ""
-      },
-      "plugin" : "NTP.Time.Check"
-   },
-   "statistic" : [
-      {
-         "description" : "The roundtrip time, in milliseconds, to receive a reply.",
-         "statkey" : "delay",
-         "alias" : "Delay",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Offset",
-         "statkey" : "offset",
-         "description" : "The time difference, in milliseconds, between the client server and source.",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Jitter",
-         "statkey" : "jitter",
-         "description" : "The difference, in milliseconds, between two samples.",
-         "datatype" : "float"
-      }
-   ],
-   "chart" : {
-      "options" : {
-         "series" : [
+         "options" : [
             {
-               "name" : "delay",
-               "color" : "#e9644a"
+               "multiple" : 0,
+               "value_type" : "number",
+               "name" : "Warning threshold",
+               "default" : 500,
+               "mandatory" : 0,
+               "option" : "warning",
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
+               "value_desc" : "seconds"
             },
             {
-               "color" : "#005467",
-               "name" : "offset"
+               "value_desc" : "seconds",
+               "name" : "Critical threshold",
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "default" : 1000,
+               "option" : "critical",
+               "mandatory" : 0,
+               "value_type" : "number",
+               "multiple" : 0
+            },
+            {
+               "multiple" : 0,
+               "value_type" : "number",
+               "name" : "Timeout",
+               "mandatory" : 0,
+               "option" : "timeout",
+               "default" : 10,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "value_desc" : "seconds"
+            }
+         ],
+         "flags" : "",
+         "plugin" : "check-ntp-time"
+      }
+   },
+   "chart" : {
+      "title" : "NTP statistics",
+      "id" : "1",
+      "options" : {
+         "chart-type" : "line",
+         "units" : "null",
+         "ylabel" : "ms",
+         "series" : [
+            {
+               "color" : "#e9644a",
+               "name" : "delay"
+            },
+            {
+               "name" : "offset",
+               "color" : "#005467"
             },
             {
                "color" : "#9a72ad",
                "name" : "jitter"
             }
-         ],
-         "ylabel" : "ms",
-         "units" : "null",
-         "chart-type" : "line"
-      },
-      "title" : "NTP statistics",
-      "id" : "1"
+         ]
+      }
    }
 }

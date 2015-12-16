@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.27
+Version: 0.28
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Wed Dec 16 2015 Jonny Schulz <js@bloonix.de> - 0.28-1
+- Just changed the option order of check-http.
 * Mon Nov 30 2015 Jonny Schulz <js@bloonix.de> - 0.27-1
 - New desc for plugin check-wtrm.
 * Thu Nov 26 2015 Jonny Schulz <js@bloonix.de> - 0.26-1

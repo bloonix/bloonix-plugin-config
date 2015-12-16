@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.28-1) unstable; urgency=low
+
+    * Just changed the option order of check-http.
+
+ -- Jonny Schulz <js@bloonix.de>  Wed, 16 Dec 2015 20:32:37 +0100
+
 bloonix-plugin-config (0.27-1) unstable; urgency=low
 
     * New desc for plugin check-wtrm.
