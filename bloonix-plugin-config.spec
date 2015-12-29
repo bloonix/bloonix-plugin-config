@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.28
+Version: 0.29
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Tue Dec 29 2015 Jonny Schulz <js@bloonix.de> - 0.29-1
+- Plugin check-memstat: new key memavailable and a new chart.
 * Wed Dec 16 2015 Jonny Schulz <js@bloonix.de> - 0.28-1
 - Just changed the option order of check-http.
 * Mon Nov 30 2015 Jonny Schulz <js@bloonix.de> - 0.27-1
