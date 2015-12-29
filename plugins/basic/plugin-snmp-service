@@ -1,13 +1,148 @@
 {
    "plugin" : {
-      "netaccess" : "yes",
-      "command" : "check-snmp-service",
       "id" : "67",
+      "datatype" : "none",
       "info" : {
+         "version" : "0.5",
          "flags" : "",
          "plugin" : "check-snmp-service",
+         "options" : [
+            {
+               "value_type" : "string",
+               "multiple" : 0,
+               "option" : "host",
+               "mandatory" : 0,
+               "default" : "127.0.0.1",
+               "description" : "A hostname or IP address to connect to.",
+               "name" : "Hostname or IP address",
+               "value_desc" : "hostname or ip address"
+            },
+            {
+               "value_desc" : "port",
+               "description" : "A port number to connect to.",
+               "name" : "Port number",
+               "default" : 161,
+               "mandatory" : 0,
+               "option" : "port",
+               "multiple" : 0,
+               "value_type" : "int"
+            },
+            {
+               "value_desc" : "community",
+               "name" : "SNMP community",
+               "description" : "The SNMP community to connect to the host.",
+               "default" : "public",
+               "mandatory" : 0,
+               "option" : "community",
+               "multiple" : 0,
+               "value_type" : "string"
+            },
+            {
+               "value_type" : "string",
+               "multiple" : 0,
+               "option" : "snmp-version",
+               "mandatory" : 0,
+               "default" : 2,
+               "description" : "The SNMP version to use to connect to the host.",
+               "name" : "SNMP version",
+               "value_desc" : "version"
+            },
+            {
+               "mandatory" : 0,
+               "option" : "username",
+               "multiple" : 0,
+               "value_type" : "string",
+               "value_desc" : "username",
+               "name" : "SNMPv3 username",
+               "description" : "The SNMPv3 username.",
+               "default" : null
+            },
+            {
+               "multiple" : 0,
+               "value_type" : "string",
+               "mandatory" : 0,
+               "option" : "authkey",
+               "name" : "SNMPv3 auth key",
+               "description" : "The SNMPv3 auth key.",
+               "default" : null,
+               "value_desc" : "authkey"
+            },
+            {
+               "multiple" : 0,
+               "value_type" : "string",
+               "mandatory" : 0,
+               "option" : "authpassword",
+               "name" : "SNMPv3 auth password",
+               "description" : "The SNMPv3 auth password.",
+               "default" : null,
+               "value_desc" : "authpassword"
+            },
+            {
+               "value_desc" : "authprotocol",
+               "name" : "SNMPv3 auth protocol",
+               "description" : "The SNMPv3 auth protocol.",
+               "default" : null,
+               "mandatory" : 0,
+               "option" : "authprotocol",
+               "multiple" : 0,
+               "value_type" : "string"
+            },
+            {
+               "value_type" : "string",
+               "multiple" : 0,
+               "option" : "privkey",
+               "mandatory" : 0,
+               "default" : null,
+               "name" : "SNMPv3 priv key",
+               "description" : "The SNMPv3 priv key.",
+               "value_desc" : "privkey"
+            },
+            {
+               "value_type" : "string",
+               "multiple" : 0,
+               "option" : "privpassword",
+               "mandatory" : 0,
+               "default" : null,
+               "name" : "SNMPv3 priv password",
+               "description" : "The SNMPv3 priv password.",
+               "value_desc" : "privpassword"
+            },
+            {
+               "mandatory" : 0,
+               "option" : "privprotocol",
+               "multiple" : 0,
+               "value_type" : "string",
+               "value_desc" : "privprotocol",
+               "description" : "The SNMPv3 priv protocol.",
+               "name" : "SNMPv3 priv protocol",
+               "default" : null
+            },
+            {
+               "option" : "service",
+               "mandatory" : 1,
+               "value_type" : "string",
+               "multiple" : 1,
+               "value_desc" : "string",
+               "default" : null,
+               "name" : "Service name to check",
+               "description" : "This is the service name to check."
+            },
+            {
+               "option" : "match",
+               "mandatory" : 0,
+               "default" : null,
+               "value_type" : 0,
+               "multiple" : 0,
+               "name" : "Match the service name as regex",
+               "description" : "Use the service name as a regex."
+            }
+         ],
          "examples" : [
             {
+               "command_line" : "check-snmp-service --host '127.0.0.1' --port '161' --community 'public' --service 'My Service'",
+               "description" : [
+                  "Example to check if the service 'My Service' is alive:"
+               ],
                "arguments" : [
                   "host",
                   "127.0.0.1",
@@ -17,151 +152,16 @@
                   "public",
                   "service",
                   "My Service"
-               ],
-               "description" : [
-                  "Example to check if the service 'My Service' is alive:"
-               ],
-               "command_line" : "check-snmp-service --host '127.0.0.1' --port '161' --community 'public' --service 'My Service'"
-            }
-         ],
-         "version" : "0.5",
-         "options" : [
-            {
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_type" : "string",
-               "default" : "127.0.0.1",
-               "value_desc" : "hostname or ip address",
-               "option" : "host",
-               "description" : "A hostname or IP address to connect to.",
-               "name" : "Hostname or IP address"
-            },
-            {
-               "description" : "A port number to connect to.",
-               "option" : "port",
-               "name" : "Port number",
-               "value_desc" : "port",
-               "default" : 161,
-               "value_type" : "int",
-               "multiple" : 0,
-               "mandatory" : 0
-            },
-            {
-               "description" : "The SNMP community to connect to the host.",
-               "option" : "community",
-               "name" : "SNMP community",
-               "default" : "public",
-               "value_desc" : "community",
-               "value_type" : "string",
-               "multiple" : 0,
-               "mandatory" : 0
-            },
-            {
-               "description" : "The SNMP version to use to connect to the host.",
-               "name" : "SNMP version",
-               "option" : "snmp-version",
-               "default" : 2,
-               "value_desc" : "version",
-               "multiple" : 0,
-               "value_type" : "string",
-               "mandatory" : 0
-            },
-            {
-               "multiple" : 0,
-               "value_type" : "string",
-               "mandatory" : 0,
-               "description" : "The SNMPv3 username.",
-               "option" : "username",
-               "name" : "SNMPv3 username",
-               "value_desc" : "username",
-               "default" : null
-            },
-            {
-               "mandatory" : 0,
-               "value_type" : "string",
-               "multiple" : 0,
-               "default" : null,
-               "value_desc" : "authkey",
-               "description" : "The SNMPv3 auth key.",
-               "option" : "authkey",
-               "name" : "SNMPv3 auth key"
-            },
-            {
-               "value_type" : "string",
-               "multiple" : 0,
-               "mandatory" : 0,
-               "description" : "The SNMPv3 auth password.",
-               "option" : "authpassword",
-               "name" : "SNMPv3 auth password",
-               "default" : null,
-               "value_desc" : "authpassword"
-            },
-            {
-               "default" : null,
-               "value_desc" : "authprotocol",
-               "name" : "SNMPv3 auth protocol",
-               "option" : "authprotocol",
-               "description" : "The SNMPv3 auth protocol.",
-               "mandatory" : 0,
-               "value_type" : "string",
-               "multiple" : 0
-            },
-            {
-               "default" : null,
-               "value_desc" : "privkey",
-               "description" : "The SNMPv3 priv key.",
-               "name" : "SNMPv3 priv key",
-               "option" : "privkey",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_type" : "string"
-            },
-            {
-               "description" : "The SNMPv3 priv password.",
-               "name" : "SNMPv3 priv password",
-               "option" : "privpassword",
-               "default" : null,
-               "value_desc" : "privpassword",
-               "value_type" : "string",
-               "multiple" : 0,
-               "mandatory" : 0
-            },
-            {
-               "value_type" : "string",
-               "multiple" : 0,
-               "mandatory" : 0,
-               "option" : "privprotocol",
-               "description" : "The SNMPv3 priv protocol.",
-               "name" : "SNMPv3 priv protocol",
-               "value_desc" : "privprotocol",
-               "default" : null
-            },
-            {
-               "value_desc" : "string",
-               "default" : null,
-               "description" : "This is the service name to check.",
-               "name" : "Service name to check",
-               "option" : "service",
-               "mandatory" : 1,
-               "value_type" : "string",
-               "multiple" : 1
-            },
-            {
-               "description" : "Use the service name as a regex.",
-               "option" : "match",
-               "name" : "Match the service name as regex",
-               "multiple" : 0,
-               "value_type" : 0,
-               "default" : null,
-               "mandatory" : 0
+               ]
             }
          ]
       },
-      "prefer" : "localhost",
-      "abstract" : "Service check",
-      "datatype" : "none",
       "description" : "Check the status of a service over SNMP.",
+      "netaccess" : "yes",
+      "abstract" : "Service check",
+      "plugin" : "SNMP.ServiceCheck",
       "category" : "System,SNMP",
-      "plugin" : "SNMP.ServiceCheck"
+      "prefer" : "localhost",
+      "command" : "check-snmp-service"
    }
 }

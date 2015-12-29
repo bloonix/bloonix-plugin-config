@@ -1,59 +1,60 @@
 {
    "statistic" : [
       {
+         "description" : "The size of the file in bytes.",
+         "units" : "bytes",
          "statkey" : "size",
          "alias" : "File size",
-         "datatype" : "float",
-         "units" : "bytes",
-         "description" : "The size of the file in bytes."
+         "datatype" : "float"
       },
       {
-         "datatype" : "varchar(10)",
          "description" : "File mode (type and permissions).",
-         "statkey" : "mode"
+         "statkey" : "mode",
+         "datatype" : "varchar(10)"
       },
       {
+         "statkey" : "nlink",
          "description" : "Number of (hard) links to the file.",
-         "datatype" : "bigint",
-         "statkey" : "nlink"
+         "datatype" : "bigint"
       },
       {
-         "description" : "Numeric user ID of file's owner.",
          "datatype" : "varchar(10)",
-         "statkey" : "uid"
+         "statkey" : "uid",
+         "description" : "Numeric user ID of file's owner."
       },
       {
          "description" : "Numeric group ID of file's owner.",
-         "datatype" : "varchar(10)",
-         "statkey" : "gid"
+         "statkey" : "gid",
+         "datatype" : "varchar(10)"
       },
       {
-         "description" : "Last access time in seconds since the epoch.",
          "datatype" : "bigint",
+         "description" : "Last access time in seconds since the epoch.",
          "units" : "unixtime",
          "statkey" : "atime"
       },
       {
-         "statkey" : "diff_atime",
-         "description" : "The time in seconds since the last access to the file.",
-         "datatype" : "bigint",
-         "units" : "unixtime"
-      },
-      {
-         "statkey" : "mtime",
          "datatype" : "bigint",
          "units" : "unixtime",
-         "description" : "Last modify time in seconds since the epoch."
+         "statkey" : "diff_atime",
+         "description" : "The time in seconds since the last access to the file."
       },
       {
-         "statkey" : "diff_mtime",
          "datatype" : "bigint",
+         "description" : "Last modify time in seconds since the epoch.",
+         "units" : "unixtime",
+         "statkey" : "mtime"
+      },
+      {
+         "datatype" : "bigint",
+         "statkey" : "diff_mtime",
          "units" : "unixtime",
          "description" : "The time in seconds since the last modification of the file."
       }
    ],
    "plugin" : {
       "info" : {
+         "version" : "0.2",
          "examples" : [
             {
                "arguments" : [
@@ -64,14 +65,57 @@
                   "critical",
                   "size:gt:5MB"
                ],
+               "command_line" : "check-filestat --file '/var/log/test.log' --warning 'size:gt:1MB' --critical 'size:gt:5MB'",
                "description" : [
                   "NOTE: please create the configuration file '/etc/bloonix/agent/check-filestat.conf' on your server and write all file names into the file (one file per line) that the Bloonix agent is allowed to check!",
                   "",
                   "In this example the file of /var/log/test.log is checked. If the file size is higher than 1MB a warning is triggered. If the file size is higher than 5MB a critical is triggered."
-               ],
-               "command_line" : "check-filestat --file '/var/log/test.log' --warning 'size:gt:1MB' --critical 'size:gt:5MB'"
+               ]
             }
          ],
+         "options" : [
+            {
+               "value_type" : "string",
+               "default" : null,
+               "mandatory" : 1,
+               "name" : "Filename",
+               "value_desc" : "file",
+               "multiple" : 0,
+               "description" : "This is the file name to check.",
+               "option" : "file"
+            },
+            {
+               "multiple" : 1,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "option" : "warning",
+               "value_type" : "string",
+               "name" : "Warning threshold",
+               "mandatory" : 0,
+               "default" : null,
+               "value_desc" : "key:value or key:op:value"
+            },
+            {
+               "value_desc" : "key:value or key:op:value",
+               "value_type" : "string",
+               "default" : null,
+               "mandatory" : 0,
+               "name" : "Critical threshold",
+               "option" : "critical",
+               "multiple" : 1,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information."
+            },
+            {
+               "value_type" : 0,
+               "multiple" : 0,
+               "description" : "Enable this options if it's ok if the file does not exists.",
+               "name" : "Ignore missing file",
+               "default" : null,
+               "mandatory" : 0,
+               "option" : "ignore-missing"
+            }
+         ],
+         "plugin" : "check-filestat",
+         "flags" : "",
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",
@@ -99,12 +143,12 @@
             ],
             "options" : [
                {
-                  "key" : "size",
-                  "unit" : "bytes"
+                  "unit" : "bytes",
+                  "key" : "size"
                },
                {
-                  "key" : "mode",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "mode"
                },
                {
                   "key" : "nlink",
@@ -123,83 +167,39 @@
                   "key" : "atime"
                },
                {
-                  "key" : "diff_atime",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "diff_atime"
                },
                {
                   "unit" : "none",
                   "key" : "mtime"
                },
                {
-                  "key" : "diff_mtime",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "diff_mtime"
                }
             ]
-         },
-         "flags" : "",
-         "options" : [
-            {
-               "value_type" : "string",
-               "default" : null,
-               "mandatory" : 1,
-               "value_desc" : "file",
-               "description" : "This is the file name to check.",
-               "multiple" : 0,
-               "name" : "Filename",
-               "option" : "file"
-            },
-            {
-               "multiple" : 1,
-               "name" : "Warning threshold",
-               "option" : "warning",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_desc" : "key:value or key:op:value",
-               "value_type" : "string",
-               "mandatory" : 0,
-               "default" : null
-            },
-            {
-               "mandatory" : 0,
-               "default" : null,
-               "value_type" : "string",
-               "value_desc" : "key:value or key:op:value",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "option" : "critical",
-               "name" : "Critical threshold",
-               "multiple" : 1
-            },
-            {
-               "default" : null,
-               "mandatory" : 0,
-               "value_type" : 0,
-               "description" : "Enable this options if it's ok if the file does not exists.",
-               "option" : "ignore-missing",
-               "multiple" : 0,
-               "name" : "Ignore missing file"
-            }
-         ],
-         "version" : "0.2",
-         "plugin" : "check-filestat"
+         }
       },
-      "id" : "5",
-      "command" : "check-filestat",
-      "plugin" : "Filestat.Check",
-      "abstract" : "Check filestat",
       "category" : "System,Security",
-      "datatype" : "statistic",
-      "description" : "Check the status of a file."
+      "plugin" : "Filestat.Check",
+      "id" : "5",
+      "description" : "Check the status of a file.",
+      "abstract" : "Check filestat",
+      "command" : "check-filestat",
+      "datatype" : "statistic"
    },
    "chart" : {
-      "title" : "File size",
       "options" : {
-         "units" : "bytes",
-         "chart-type" : "area",
          "ylabel" : "size",
+         "units" : "bytes",
          "series" : {
             "color" : "#005467",
             "name" : "size"
-         }
+         },
+         "chart-type" : "area"
       },
+      "title" : "File size",
       "id" : "1"
    }
 }

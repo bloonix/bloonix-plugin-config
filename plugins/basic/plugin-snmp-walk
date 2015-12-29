@@ -1,145 +1,141 @@
 {
    "plugin" : {
-      "command" : "check-snmp-walk",
-      "prefer" : "localhost",
-      "category" : "System,SNMP",
-      "id" : "69",
       "info" : {
          "options" : [
             {
-               "default" : "127.0.0.1",
                "multiple" : 0,
-               "description" : "A hostname or IP address to connect to.",
-               "mandatory" : 0,
-               "value_desc" : "hostname or ip address",
-               "value_type" : "string",
                "name" : "Hostname or IP address",
-               "option" : "host"
+               "default" : "127.0.0.1",
+               "mandatory" : 0,
+               "option" : "host",
+               "value_desc" : "hostname or ip address",
+               "description" : "A hostname or IP address to connect to.",
+               "value_type" : "string"
             },
             {
                "name" : "Port number",
-               "option" : "port",
                "default" : 161,
-               "value_type" : "int",
                "value_desc" : "port",
+               "option" : "port",
                "mandatory" : 0,
+               "multiple" : 0,
                "description" : "A port number to connect to.",
-               "multiple" : 0
+               "value_type" : "int"
             },
             {
-               "multiple" : 0,
-               "value_type" : "string",
                "description" : "The SNMP community to connect to the host.",
-               "mandatory" : 0,
-               "value_desc" : "community",
+               "value_type" : "string",
                "default" : "public",
                "name" : "SNMP community",
-               "option" : "community"
-            },
-            {
-               "value_desc" : "version",
-               "value_type" : "string",
-               "description" : "The SNMP version to use to connect to the host.",
                "mandatory" : 0,
-               "multiple" : 0,
-               "default" : 2,
-               "name" : "SNMP version",
-               "option" : "snmp-version"
-            },
-            {
-               "default" : null,
-               "value_desc" : "username",
-               "mandatory" : 0,
-               "description" : "The SNMPv3 username.",
-               "value_type" : "string",
-               "multiple" : 0,
-               "option" : "username",
-               "name" : "SNMPv3 username"
-            },
-            {
-               "option" : "authkey",
-               "name" : "SNMPv3 auth key",
-               "default" : null,
-               "mandatory" : 0,
-               "value_desc" : "authkey",
-               "value_type" : "string",
-               "description" : "The SNMPv3 auth key.",
+               "option" : "community",
+               "value_desc" : "community",
                "multiple" : 0
             },
             {
-               "name" : "SNMPv3 auth password",
-               "option" : "authpassword",
-               "default" : null,
-               "multiple" : 0,
-               "mandatory" : 0,
                "value_type" : "string",
-               "value_desc" : "authpassword",
-               "description" : "The SNMPv3 auth password."
+               "description" : "The SNMP version to use to connect to the host.",
+               "multiple" : 0,
+               "option" : "snmp-version",
+               "value_desc" : "version",
+               "mandatory" : 0,
+               "name" : "SNMP version",
+               "default" : 2
             },
             {
-               "option" : "authprotocol",
-               "name" : "SNMPv3 auth protocol",
+               "mandatory" : 0,
+               "option" : "username",
+               "value_desc" : "username",
+               "name" : "SNMPv3 username",
+               "default" : null,
                "multiple" : 0,
-               "value_desc" : "authprotocol",
+               "value_type" : "string",
+               "description" : "The SNMPv3 username."
+            },
+            {
+               "default" : null,
+               "name" : "SNMPv3 auth key",
+               "mandatory" : 0,
+               "option" : "authkey",
+               "value_desc" : "authkey",
+               "multiple" : 0,
+               "description" : "The SNMPv3 auth key.",
+               "value_type" : "string"
+            },
+            {
+               "description" : "The SNMPv3 auth password.",
+               "value_type" : "string",
+               "default" : null,
+               "name" : "SNMPv3 auth password",
+               "mandatory" : 0,
+               "value_desc" : "authpassword",
+               "option" : "authpassword",
+               "multiple" : 0
+            },
+            {
                "value_type" : "string",
                "description" : "The SNMPv3 auth protocol.",
-               "mandatory" : 0,
-               "default" : null
-            },
-            {
-               "name" : "SNMPv3 priv key",
-               "option" : "privkey",
                "multiple" : 0,
-               "description" : "The SNMPv3 priv key.",
-               "value_desc" : "privkey",
-               "value_type" : "string",
                "mandatory" : 0,
-               "default" : null
+               "option" : "authprotocol",
+               "value_desc" : "authprotocol",
+               "default" : null,
+               "name" : "SNMPv3 auth protocol"
             },
             {
+               "multiple" : 0,
+               "mandatory" : 0,
+               "option" : "privkey",
+               "value_desc" : "privkey",
+               "name" : "SNMPv3 priv key",
+               "default" : null,
+               "value_type" : "string",
+               "description" : "The SNMPv3 priv key."
+            },
+            {
+               "mandatory" : 0,
+               "option" : "privpassword",
+               "value_desc" : "privpassword",
+               "name" : "SNMPv3 priv password",
                "default" : null,
                "multiple" : 0,
-               "description" : "The SNMPv3 priv password.",
-               "mandatory" : 0,
                "value_type" : "string",
-               "value_desc" : "privpassword",
-               "option" : "privpassword",
-               "name" : "SNMPv3 priv password"
+               "description" : "The SNMPv3 priv password."
             },
             {
-               "mandatory" : 0,
-               "value_desc" : "privprotocol",
                "description" : "The SNMPv3 priv protocol.",
                "value_type" : "string",
-               "multiple" : 0,
                "default" : null,
                "name" : "SNMPv3 priv protocol",
-               "option" : "privprotocol"
+               "option" : "privprotocol",
+               "value_desc" : "privprotocol",
+               "mandatory" : 0,
+               "multiple" : 0
             },
             {
-               "name" : "The OID to check",
-               "option" : "oid",
-               "default" : null,
-               "multiple" : 0,
+               "value_type" : "string",
                "description" : "The OID to check.",
-               "value_type" : "string",
+               "value_desc" : "string",
+               "option" : "oid",
                "mandatory" : 1,
-               "value_desc" : "string"
+               "default" : null,
+               "name" : "The OID to check",
+               "multiple" : 0
             },
             {
-               "name" : "Search for a string in the snmp table",
-               "option" : "match",
                "description" : "A text string that is expected in the SNMP response for the SNMP table that is checked. The string can be a perl regular expression. If the string is not found a CRITICAL status is triggered.",
-               "value_desc" : "regex",
                "value_type" : "string",
-               "mandatory" : 1,
                "multiple" : 0,
-               "default" : null
+               "name" : "Search for a string in the snmp table",
+               "default" : null,
+               "value_desc" : "regex",
+               "option" : "match",
+               "mandatory" : 1
             }
          ],
+         "plugin" : "check-snmp-walk",
          "examples" : [
             {
-               "command_line" : "check-snmp-walk --host '127.0.0.1' --port '161' --community 'public' --oid '1.3.6.1.4.1.9.9.171.1.2.3.1.7' --match '192.168.10.10'",
                "arguments" : [
                   "host",
                   "127.0.0.1",
@@ -152,19 +148,23 @@
                   "match",
                   "192.168.10.10"
                ],
+               "command_line" : "check-snmp-walk --host '127.0.0.1' --port '161' --community 'public' --oid '1.3.6.1.4.1.9.9.171.1.2.3.1.7' --match '192.168.10.10'",
                "description" : [
                   "Example to check if a VPN connection exists on a Cisco ASA firewall:"
                ]
             }
          ],
-         "version" : "0.3",
          "flags" : "",
-         "plugin" : "check-snmp-walk"
+         "version" : "0.3"
       },
+      "command" : "check-snmp-walk",
       "netaccess" : "yes",
-      "plugin" : "SNMP.Walk.Check",
-      "abstract" : "SNMP oid check",
+      "category" : "System,SNMP",
+      "datatype" : "none",
       "description" : "Search for a string in a SNMP table.",
-      "datatype" : "none"
+      "prefer" : "localhost",
+      "id" : "69",
+      "abstract" : "SNMP oid check",
+      "plugin" : "SNMP.Walk.Check"
    }
 }

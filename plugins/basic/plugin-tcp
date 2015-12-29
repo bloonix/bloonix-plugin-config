@@ -1,17 +1,170 @@
 {
    "statistic" : {
-      "alias" : "Response time",
+      "description" : "Time in milliseconds waiting for response.",
       "units" : "ms",
-      "datatype" : "float",
       "statkey" : "time",
-      "description" : "Time in milliseconds waiting for response."
+      "datatype" : "float",
+      "alias" : "Response time"
+   },
+   "chart" : {
+      "options" : {
+         "units" : "null",
+         "ylabel" : "time in ms",
+         "series" : {
+            "name" : "time",
+            "color" : "#005467"
+         },
+         "chart-type" : "area"
+      },
+      "title" : "TCP connect - response time",
+      "id" : "1"
    },
    "plugin" : {
+      "id" : "13",
+      "command" : "check-tcp",
       "info" : {
-         "flags" : "",
+         "version" : "0.7",
+         "options" : [
+            {
+               "default" : 3,
+               "multiple" : 0,
+               "option" : "warning",
+               "value_type" : "number",
+               "mandatory" : 0,
+               "value_desc" : "seconds",
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
+               "name" : "Warning threshold"
+            },
+            {
+               "multiple" : 0,
+               "default" : 5,
+               "option" : "critical",
+               "value_type" : "number",
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "mandatory" : 0,
+               "value_desc" : "seconds",
+               "name" : "Critical threshold"
+            },
+            {
+               "multiple" : 0,
+               "default" : 10,
+               "value_type" : "number",
+               "option" : "timeout",
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "value_desc" : "seconds",
+               "mandatory" : 0,
+               "name" : "Timeout"
+            },
+            {
+               "value_type" : "string",
+               "option" : "host",
+               "default" : null,
+               "multiple" : 0,
+               "name" : "Hostname or IP address",
+               "value_desc" : "hostname or ip address",
+               "mandatory" : 1,
+               "description" : "A hostname or IP address to connect to."
+            },
+            {
+               "description" : "A port number to connect to.",
+               "value_desc" : "port",
+               "mandatory" : 1,
+               "name" : "Port number",
+               "multiple" : 0,
+               "default" : null,
+               "value_type" : "int",
+               "option" : "port"
+            },
+            {
+               "name" : "Bind to IP address",
+               "mandatory" : 0,
+               "value_desc" : "ipaddr",
+               "description" : "A local IP address to bind to.",
+               "option" : "bind",
+               "value_type" : "string",
+               "default" : null,
+               "multiple" : 0
+            },
+            {
+               "option" : "use-ipv6",
+               "value_type" : 0,
+               "name" : "Use IPv6",
+               "default" : null,
+               "mandatory" : 0,
+               "multiple" : 0,
+               "description" : "Use IPv6 to connect to the host."
+            },
+            {
+               "description" : "Use secure connection via SSL.",
+               "multiple" : 0,
+               "mandatory" : 0,
+               "default" : null,
+               "name" : "Use secure connection via SSL",
+               "value_type" : 0,
+               "option" : "use-ssl"
+            },
+            {
+               "value_desc" : "string",
+               "mandatory" : 0,
+               "description" : "Send a string to the server.",
+               "name" : "Send string",
+               "default" : null,
+               "multiple" : 1,
+               "value_type" : "string",
+               "option" : "send"
+            },
+            {
+               "name" : "Read number of lines",
+               "description" : "A number of lines to read from the servers response. This option only has an effect if the option 'Match string' is set.",
+               "mandatory" : 0,
+               "value_desc" : "count lines",
+               "option" : "lines",
+               "value_type" : "string",
+               "multiple" : 0,
+               "default" : 1
+            },
+            {
+               "value_type" : "string",
+               "option" : "match",
+               "default" : null,
+               "multiple" : 1,
+               "name" : "Match string",
+               "value_desc" : "regex",
+               "mandatory" : 0,
+               "description" : "A string that is expected in the response of the server. If the string is not found then a critical status is triggered. It's possible to add multiple string that are expected, from which only one must be present in the response."
+            },
+            {
+               "option" : "match-all",
+               "value_type" : 0,
+               "name" : "Match all strings",
+               "mandatory" : 0,
+               "default" : null,
+               "multiple" : 0,
+               "description" : "Expect all strings in the server response. The default is that only one string has to be present."
+            },
+            {
+               "name" : "Missed match",
+               "value_desc" : "status",
+               "mandatory" : 0,
+               "description" : "Which status should be returned if the expected strings are not present. Please set on of the following states: OK, WARNING or CRITICAL",
+               "value_type" : "string",
+               "option" : "mismatch",
+               "default" : "CRITICAL",
+               "multiple" : 0
+            },
+            {
+               "multiple" : 0,
+               "default" : null,
+               "value_type" : "string",
+               "option" : "quit",
+               "description" : "A single string to send to the server to close the connection.",
+               "value_desc" : "string",
+               "mandatory" : 0,
+               "name" : "Send a quit string"
+            }
+         ],
          "examples" : [
             {
-               "command_line" : "check-tcp --host 'www.bloonix.de' --port '443' --use-ssl --warning '3' --critical '5' --send 'GET / HTTP/1.1' --send 'Host: bloonix.de' --send 'CRLF' --match 'HTTP/1.1 200 OK'",
                "arguments" : [
                   "host",
                   "www.bloonix.de",
@@ -34,173 +187,20 @@
                ],
                "description" : [
                   "The following example would send a HTTP request to the server and expects a HTTP status code of 200 in the reponse. Note that the string 'CRLF' is replaced with an empty line."
-               ]
+               ],
+               "command_line" : "check-tcp --host 'www.bloonix.de' --port '443' --use-ssl --warning '3' --critical '5' --send 'GET / HTTP/1.1' --send 'Host: bloonix.de' --send 'CRLF' --match 'HTTP/1.1 200 OK'"
             }
          ],
-         "version" : "0.7",
          "plugin" : "check-tcp",
-         "options" : [
-            {
-               "mandatory" : 0,
-               "value_type" : "number",
-               "name" : "Warning threshold",
-               "option" : "warning",
-               "default" : 3,
-               "value_desc" : "seconds",
-               "multiple" : 0,
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered."
-            },
-            {
-               "multiple" : 0,
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
-               "default" : 5,
-               "value_desc" : "seconds",
-               "option" : "critical",
-               "value_type" : "number",
-               "name" : "Critical threshold",
-               "mandatory" : 0
-            },
-            {
-               "option" : "timeout",
-               "default" : 10,
-               "value_desc" : "seconds",
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "multiple" : 0,
-               "mandatory" : 0,
-               "name" : "Timeout",
-               "value_type" : "number"
-            },
-            {
-               "name" : "Hostname or IP address",
-               "value_type" : "string",
-               "mandatory" : 1,
-               "description" : "A hostname or IP address to connect to.",
-               "multiple" : 0,
-               "default" : null,
-               "value_desc" : "hostname or ip address",
-               "option" : "host"
-            },
-            {
-               "default" : null,
-               "value_desc" : "port",
-               "multiple" : 0,
-               "description" : "A port number to connect to.",
-               "option" : "port",
-               "mandatory" : 1,
-               "value_type" : "int",
-               "name" : "Port number"
-            },
-            {
-               "mandatory" : 0,
-               "name" : "Bind to IP address",
-               "value_type" : "string",
-               "value_desc" : "ipaddr",
-               "default" : null,
-               "description" : "A local IP address to bind to.",
-               "multiple" : 0,
-               "option" : "bind"
-            },
-            {
-               "multiple" : 0,
-               "description" : "Use IPv6 to connect to the host.",
-               "default" : null,
-               "value_type" : 0,
-               "option" : "use-ipv6",
-               "name" : "Use IPv6",
-               "mandatory" : 0
-            },
-            {
-               "mandatory" : 0,
-               "value_type" : 0,
-               "name" : "Use secure connection via SSL",
-               "option" : "use-ssl",
-               "default" : null,
-               "multiple" : 0,
-               "description" : "Use secure connection via SSL."
-            },
-            {
-               "default" : null,
-               "value_desc" : "string",
-               "multiple" : 1,
-               "description" : "Send a string to the server.",
-               "option" : "send",
-               "mandatory" : 0,
-               "value_type" : "string",
-               "name" : "Send string"
-            },
-            {
-               "value_type" : "string",
-               "name" : "Read number of lines",
-               "mandatory" : 0,
-               "option" : "lines",
-               "multiple" : 0,
-               "description" : "A number of lines to read from the servers response. This option only has an effect if the option 'Match string' is set.",
-               "value_desc" : "count lines",
-               "default" : 1
-            },
-            {
-               "option" : "match",
-               "value_desc" : "regex",
-               "default" : null,
-               "multiple" : 1,
-               "description" : "A string that is expected in the response of the server. If the string is not found then a critical status is triggered. It's possible to add multiple string that are expected, from which only one must be present in the response.",
-               "mandatory" : 0,
-               "value_type" : "string",
-               "name" : "Match string"
-            },
-            {
-               "mandatory" : 0,
-               "option" : "match-all",
-               "name" : "Match all strings",
-               "value_type" : 0,
-               "default" : null,
-               "description" : "Expect all strings in the server response. The default is that only one string has to be present.",
-               "multiple" : 0
-            },
-            {
-               "mandatory" : 0,
-               "name" : "Missed match",
-               "value_type" : "string",
-               "value_desc" : "status",
-               "default" : "CRITICAL",
-               "description" : "Which status should be returned if the expected strings are not present. Please set on of the following states: OK, WARNING or CRITICAL",
-               "multiple" : 0,
-               "option" : "mismatch"
-            },
-            {
-               "default" : null,
-               "value_desc" : "string",
-               "multiple" : 0,
-               "description" : "A single string to send to the server to close the connection.",
-               "option" : "quit",
-               "mandatory" : 0,
-               "value_type" : "string",
-               "name" : "Send a quit string"
-            }
-         ]
+         "flags" : ""
       },
       "abstract" : "TCP check",
-      "plugin" : "TCP.Check",
-      "datatype" : "statistic",
-      "category" : "Network",
       "description" : "TCP statistics",
-      "command" : "check-tcp",
-      "prefer" : "remote",
+      "plugin" : "TCP.Check",
+      "worldwide" : "yes",
       "netaccess" : "yes",
-      "id" : "13",
-      "worldwide" : "yes"
-   },
-   "chart" : {
-      "title" : "TCP connect - response time",
-      "options" : {
-         "units" : "null",
-         "chart-type" : "area",
-         "ylabel" : "time in ms",
-         "series" : {
-            "name" : "time",
-            "color" : "#005467"
-         }
-      },
-      "id" : "1"
+      "category" : "Network",
+      "prefer" : "remote",
+      "datatype" : "statistic"
    }
 }
