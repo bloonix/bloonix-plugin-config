@@ -1,75 +1,18 @@
 {
-   "statistic" : [
-      {
-         "statkey" : "pgpgin",
-         "description" : "Number of kilobytes the system has paged in from disk per second.",
-         "datatype" : "float",
-         "units" : "kilobytes",
-         "alias" : "Paged in"
-      },
-      {
-         "units" : "kilobytes",
-         "alias" : "Pages out",
-         "statkey" : "pgpgout",
-         "description" : "Number of kilobytes the system has paged out to disk per second.",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Swapped in",
-         "units" : "kilobytes",
-         "description" : "Number of kilobytes the system has swapped in from disk per second.",
-         "datatype" : "float",
-         "statkey" : "pswpin"
-      },
-      {
-         "units" : "kilobytes",
-         "alias" : "Swapped out",
-         "statkey" : "pswpout",
-         "description" : "Number of kilobytes the system has swapped out to disk per second.",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "pgmajfault",
-         "description" : "Number of major faults per second the system required loading a memory page from disk.",
-         "datatype" : "float",
-         "alias" : "Major faults"
-      },
-      {
-         "alias" : "Page faults",
-         "statkey" : "pgfault",
-         "description" : "Number of page faults the system has made per second minor + major.",
-         "datatype" : "float"
-      }
-   ],
    "plugin" : {
-      "command" : "check-pgswstat",
       "id" : "34",
-      "category" : "System,Linux",
-      "abstract" : "Paging/Swaping check",
       "info" : {
+         "version" : "0.8",
+         "plugin" : "check-pgswstat",
          "thresholds" : {
-            "info" : [
-               "How to set warning and critical thresholds:\n\n",
-               "  It's possible to set thresholds for one or more statistic keys.\n",
-               "  The format to add a threshold for a statistic key is:\n\n",
-               "    key:operator:threshold\n\n",
-               "  If no operator is set then the default operator is 'ge'.\n\n",
-               "  The following operators are available:\n\n",
-               "    lt = less than\n",
-               "    le = less than or equal\n",
-               "    gt = greater than\n",
-               "    ge = greater than or equal\n",
-               "    eq = equal\n",
-               "    ne = not equal\n"
-            ],
             "options" : [
                {
                   "key" : "pgpgin",
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "pgpgout"
+                  "key" : "pgpgout",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
@@ -84,44 +27,59 @@
                   "key" : "pgfault"
                },
                {
-                  "key" : "pgmajfault",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "pgmajfault"
                }
+            ],
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
             ]
          },
          "options" : [
             {
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "mandatory" : 0,
                "value_type" : "string",
                "default" : null,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "multiple" : 1,
-               "mandatory" : 0,
                "option" : "warning",
-               "name" : "Warning threshold",
-               "value_desc" : "key:value or key:op:value"
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1,
+               "name" : "Warning threshold"
             },
             {
-               "name" : "Critical threshold",
-               "mandatory" : 0,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "option" : "critical",
                "value_desc" : "key:value or key:op:value",
                "value_type" : "string",
                "default" : null,
+               "mandatory" : 0,
                "multiple" : 1,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information."
+               "name" : "Critical threshold"
             }
          ],
-         "plugin" : "check-pgswstat",
-         "flags" : "",
-         "version" : "0.8"
+         "flags" : ""
       },
-      "plugin" : "Linux.Paging.Check",
+      "category" : "System,Linux",
+      "command" : "check-pgswstat",
       "datatype" : "statistic",
+      "abstract" : "Paging/Swaping check",
+      "plugin" : "Linux.Paging.Check",
       "description" : "Linux paging/swapping statistics."
    },
    "chart" : {
-      "title" : "Linux - pgswstats",
       "id" : "1",
+      "title" : "Linux - pgswstats",
       "options" : {
          "series" : [
             {
@@ -129,8 +87,8 @@
                "color" : "#66c066"
             },
             {
-               "name" : "pgpgout",
-               "color" : "#0000ff"
+               "color" : "#0000ff",
+               "name" : "pgpgout"
             },
             {
                "color" : "#ff6666",
@@ -141,17 +99,59 @@
                "color" : "#bf00bf"
             },
             {
-               "color" : "#ea8f00",
-               "name" : "pgfault"
+               "name" : "pgfault",
+               "color" : "#ea8f00"
             },
             {
-               "color" : "#eacc00",
-               "name" : "pgmajfault"
+               "name" : "pgmajfault",
+               "color" : "#eacc00"
             }
          ],
-         "chart-type" : "area",
+         "units" : "kilobytes",
          "ylabel" : "bytes/s",
-         "units" : "kilobytes"
+         "chart-type" : "area"
       }
-   }
+   },
+   "statistic" : [
+      {
+         "units" : "kilobytes",
+         "statkey" : "pgpgin",
+         "alias" : "Paged in",
+         "datatype" : "float",
+         "description" : "Number of kilobytes the system has paged in from disk per second."
+      },
+      {
+         "alias" : "Pages out",
+         "statkey" : "pgpgout",
+         "datatype" : "float",
+         "description" : "Number of kilobytes the system has paged out to disk per second.",
+         "units" : "kilobytes"
+      },
+      {
+         "alias" : "Swapped in",
+         "statkey" : "pswpin",
+         "description" : "Number of kilobytes the system has swapped in from disk per second.",
+         "datatype" : "float",
+         "units" : "kilobytes"
+      },
+      {
+         "datatype" : "float",
+         "description" : "Number of kilobytes the system has swapped out to disk per second.",
+         "alias" : "Swapped out",
+         "statkey" : "pswpout",
+         "units" : "kilobytes"
+      },
+      {
+         "statkey" : "pgmajfault",
+         "alias" : "Major faults",
+         "datatype" : "float",
+         "description" : "Number of major faults per second the system required loading a memory page from disk."
+      },
+      {
+         "alias" : "Page faults",
+         "statkey" : "pgfault",
+         "description" : "Number of page faults the system has made per second minor + major.",
+         "datatype" : "float"
+      }
+   ]
 }

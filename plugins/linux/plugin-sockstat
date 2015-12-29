@@ -1,32 +1,44 @@
 {
-   "plugin" : {
-      "plugin" : "Linux.Socket.Check",
-      "id" : "40",
-      "info" : {
-         "examples" : [
+   "chart" : {
+      "id" : "1",
+      "title" : "Linux - sockstats",
+      "options" : {
+         "ylabel" : "count",
+         "units" : "null",
+         "chart-type" : "area",
+         "series" : [
             {
-               "arguments" : [
-                  "warning",
-                  "tcp:ge:1000",
-                  "critical",
-                  "tcp:ge:2000"
-               ],
-               "command_line" : "check-sockstat --warning 'tcp:ge:1000' --critical 'tcp:ge:2000'",
-               "description" : [
-                  "An example to check the number of tcp sockets that are in use and trigger",
-                  "",
-                  "- a warning status if more than or equal 1000 tcp sockets are in use",
-                  "- or a critical status if more than or equal 2000 tcp sockets are in use"
-               ]
+               "color" : "#9a72ad",
+               "name" : "tcp"
+            },
+            {
+               "color" : "#ffb244",
+               "name" : "udp"
+            },
+            {
+               "name" : "sockets",
+               "color" : "#e9644a"
+            },
+            {
+               "name" : "ipfrag",
+               "color" : "#005467"
+            },
+            {
+               "name" : "raw",
+               "color" : "#2ba743"
             }
-         ],
+         ]
+      }
+   },
+   "plugin" : {
+      "info" : {
          "flags" : "",
-         "plugin" : "check-sockstat",
+         "version" : "0.6",
          "thresholds" : {
             "options" : [
                {
-                  "key" : "sockets",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "sockets"
                },
                {
                   "key" : "tcp",
@@ -62,95 +74,83 @@
          },
          "options" : [
             {
-               "value_desc" : "key:value or key:op:value",
                "option" : "warning",
-               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1,
                "name" : "Warning threshold",
                "value_type" : "string",
                "mandatory" : 0,
-               "multiple" : 1,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information."
+               "default" : null
             },
             {
-               "multiple" : 1,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "mandatory" : 0,
-               "default" : null,
-               "value_type" : "string",
                "name" : "Critical threshold",
+               "value_type" : "string",
+               "multiple" : 1,
                "value_desc" : "key:value or key:op:value",
+               "default" : null,
+               "mandatory" : 0,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "option" : "critical"
             }
          ],
-         "version" : "0.6"
+         "examples" : [
+            {
+               "description" : [
+                  "An example to check the number of tcp sockets that are in use and trigger",
+                  "",
+                  "- a warning status if more than or equal 1000 tcp sockets are in use",
+                  "- or a critical status if more than or equal 2000 tcp sockets are in use"
+               ],
+               "command_line" : "check-sockstat --warning 'tcp:ge:1000' --critical 'tcp:ge:2000'",
+               "arguments" : [
+                  "warning",
+                  "tcp:ge:1000",
+                  "critical",
+                  "tcp:ge:2000"
+               ]
+            }
+         ],
+         "plugin" : "check-sockstat"
       },
-      "command" : "check-sockstat",
-      "abstract" : "Socket usage check",
-      "category" : "System,Linux",
+      "plugin" : "Linux.Socket.Check",
+      "id" : "40",
       "datatype" : "statistic",
-      "description" : "Linux socket statistics"
+      "category" : "System,Linux",
+      "abstract" : "Socket usage check",
+      "description" : "Linux socket statistics",
+      "command" : "check-sockstat"
    },
    "statistic" : [
       {
-         "datatype" : "bigint",
-         "description" : "Total number of used sockets.",
          "alias" : "Total sockets",
-         "statkey" : "sockets"
+         "statkey" : "sockets",
+         "datatype" : "bigint",
+         "description" : "Total number of used sockets."
       },
       {
          "statkey" : "udp",
          "datatype" : "bigint",
-         "description" : "Number of udp sockets in use.",
-         "alias" : "UDP sockets"
+         "alias" : "UDP sockets",
+         "description" : "Number of udp sockets in use."
       },
       {
          "statkey" : "tcp",
-         "alias" : "TCP sockets",
          "datatype" : "bigint",
+         "alias" : "TCP sockets",
          "description" : "Number of tcp sockets in use."
       },
       {
-         "statkey" : "ipfrag",
-         "alias" : "IP fragments",
          "description" : "Number of ip fragments in use.",
-         "datatype" : "bigint"
+         "statkey" : "ipfrag",
+         "datatype" : "bigint",
+         "alias" : "IP fragments"
       },
       {
+         "statkey" : "raw",
          "datatype" : "bigint",
-         "description" : "Number of raw sockets in use.",
          "alias" : "Raw sockets",
-         "statkey" : "raw"
+         "description" : "Number of raw sockets in use."
       }
-   ],
-   "chart" : {
-      "id" : "1",
-      "title" : "Linux - sockstats",
-      "options" : {
-         "series" : [
-            {
-               "color" : "#9a72ad",
-               "name" : "tcp"
-            },
-            {
-               "color" : "#ffb244",
-               "name" : "udp"
-            },
-            {
-               "color" : "#e9644a",
-               "name" : "sockets"
-            },
-            {
-               "name" : "ipfrag",
-               "color" : "#005467"
-            },
-            {
-               "color" : "#2ba743",
-               "name" : "raw"
-            }
-         ],
-         "chart-type" : "area",
-         "ylabel" : "count",
-         "units" : "null"
-      }
-   }
+   ]
 }

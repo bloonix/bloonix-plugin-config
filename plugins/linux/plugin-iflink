@@ -1,42 +1,42 @@
 {
    "plugin" : {
       "abstract" : "Interface link check",
+      "description" : "Check the link of an interface.",
+      "command" : "check-iflink",
+      "plugin" : "Linux.Interface.Check",
+      "category" : "System,Network,Linux",
+      "id" : "20",
       "info" : {
-         "plugin" : "check-iflink",
+         "options" : [
+            {
+               "value_type" : "string",
+               "description" : "This is the network interface you want to check. As example eth0 or eth1.",
+               "multiple" : 1,
+               "name" : "Network interface",
+               "mandatory" : 0,
+               "default" : null,
+               "option" : "interface",
+               "value_desc" : "interface"
+            }
+         ],
          "examples" : [
             {
                "description" : [
                   "A simple example"
                ],
-               "command_line" : "check-iflink --interface 'eth0' --interface 'eth1'",
                "arguments" : [
                   "interface",
                   "eth0",
                   "interface",
                   "eth1"
-               ]
+               ],
+               "command_line" : "check-iflink --interface 'eth0' --interface 'eth1'"
             }
          ],
-         "options" : [
-            {
-               "value_desc" : "interface",
-               "name" : "Network interface",
-               "mandatory" : 0,
-               "default" : null,
-               "option" : "interface",
-               "multiple" : 1,
-               "value_type" : "string",
-               "description" : "This is the network interface you want to check. As example eth0 or eth1."
-            }
-         ],
-         "flags" : "",
-         "version" : "0.3"
+         "version" : "0.3",
+         "plugin" : "check-iflink",
+         "flags" : ""
       },
-      "plugin" : "Linux.Interface.Check",
-      "datatype" : "none",
-      "category" : "System,Network,Linux",
-      "description" : "Check the link of an interface.",
-      "id" : "20",
-      "command" : "check-iflink"
+      "datatype" : "none"
    }
 }
