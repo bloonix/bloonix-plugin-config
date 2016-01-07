@@ -1,46 +1,46 @@
 {
    "plugin" : {
+      "id" : "38",
+      "datatype" : "none",
+      "category" : "System",
       "info" : {
          "options" : [
             {
-               "name" : "Service name",
-               "mandatory" : 1,
                "default" : null,
-               "value_type" : "string",
                "option" : "service",
+               "value_type" : "string",
+               "mandatory" : 1,
+               "multiple" : 0,
                "value_desc" : "service",
                "description" : "This is the service name you want to check.",
-               "multiple" : 0
+               "name" : "Service name"
             }
          ],
+         "version" : "0.5",
+         "plugin" : "check-service",
+         "flags" : "sudo",
          "examples" : [
             {
                "command_line" : "check-service --service 'httpd'",
-               "arguments" : [
-                  "service",
-                  "httpd"
-               ],
                "description" : [
                   "An example to check service httpd:",
                   "",
                   "- return OK if the return value is 0",
                   "- return CRITICAL if the return value is higher than 0"
+               ],
+               "arguments" : [
+                  "service",
+                  "httpd"
                ]
             }
          ],
-         "flags" : "sudo",
-         "version" : "0.5",
          "info" : [
             "This plugin tries to determine automatically the method to check the status of a service. At first the plugin searchs for 'systemctl', then for 'service' and then the plugin checks if /etc/init.d/service-name exists."
-         ],
-         "plugin" : "check-service"
+         ]
       },
-      "command" : "check-service",
-      "id" : "38",
-      "abstract" : "Service check",
       "description" : "Check the status of a service.",
-      "category" : "System",
-      "datatype" : "none",
-      "plugin" : "Linux.Service.Check"
+      "abstract" : "Service check",
+      "plugin" : "Linux.Service.Check",
+      "command" : "check-service"
    }
 }

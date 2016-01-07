@@ -1,10 +1,6 @@
 {
    "plugin" : {
-      "description" : "This plugin can check the nfs3 server or nfs3 client.",
-      "id" : "30",
-      "datatype" : "none",
       "category" : "System,Filesystem,Linux",
-      "abstract" : "NFS3 check",
       "info" : {
          "thresholds" : {
             "options" : [
@@ -17,8 +13,8 @@
                   "unit" : "none"
                },
                {
-                  "key" : "lookup",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "lookup"
                },
                {
                   "unit" : "none",
@@ -33,20 +29,20 @@
                   "unit" : "none"
                },
                {
-                  "key" : "write",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "write"
                },
                {
                   "key" : "create",
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "mkdir"
+                  "key" : "mkdir",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "symlink"
+                  "key" : "symlink",
+                  "unit" : "none"
                },
                {
                   "key" : "mknod",
@@ -61,8 +57,8 @@
                   "unit" : "none"
                },
                {
-                  "key" : "rename",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "rename"
                },
                {
                   "unit" : "none",
@@ -73,24 +69,24 @@
                   "key" : "readdir"
                },
                {
-                  "key" : "readdirplus",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "readdirplus"
                },
                {
-                  "key" : "fsstat",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "fsstat"
                },
                {
-                  "key" : "fsinfo",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "fsinfo"
                },
                {
                   "unit" : "none",
                   "key" : "pathconf"
                },
                {
-                  "unit" : "none",
-                  "key" : "commit"
+                  "key" : "commit",
+                  "unit" : "none"
                }
             ],
             "info" : [
@@ -108,42 +104,46 @@
                "    ne = not equal\n"
             ]
          },
+         "version" : "0.4",
          "flags" : "",
+         "plugin" : "check-nfs3",
          "options" : [
             {
-               "multiple" : 1,
-               "name" : "Warning threshold",
                "value_type" : "string",
-               "mandatory" : 0,
                "default" : null,
-               "option" : "warning",
+               "name" : "Warning threshold",
+               "multiple" : 1,
                "value_desc" : "key:value or key:op:value",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information."
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "option" : "warning",
+               "mandatory" : 0
             },
             {
+               "value_type" : "string",
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "value_desc" : "key:value or key:op:value",
-               "option" : "critical",
+               "multiple" : 1,
                "default" : null,
-               "mandatory" : 0,
-               "value_type" : "string",
                "name" : "Critical threshold",
-               "multiple" : 1
+               "mandatory" : 0,
+               "option" : "critical"
             },
             {
-               "multiple" : 0,
+               "value_type" : 0,
                "option" : "client",
                "mandatory" : 0,
+               "name" : "Check the client instead the server",
                "default" : null,
                "description" : "By default the server is checked. Enable this option if you want to check the client instead the server.",
-               "name" : "Check the client instead the server",
-               "value_type" : 0
+               "multiple" : 0
             }
-         ],
-         "version" : "0.4",
-         "plugin" : "check-nfs3"
+         ]
       },
+      "datatype" : "none",
+      "id" : "30",
+      "plugin" : "Linux.NFS3.Check",
       "command" : "check-nfs3",
-      "plugin" : "Linux.NFS3.Check"
+      "description" : "This plugin can check the nfs3 server or nfs3 client.",
+      "abstract" : "NFS3 check"
    }
 }

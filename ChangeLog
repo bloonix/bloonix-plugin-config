@@ -1,3 +1,7 @@
+bloonix-plugin-config (0.30) released at 2016-01-07
+
+    * Plugin check-mysql-slave: new parameter verbose-error.
+
 bloonix-plugin-config (0.29) released at 2015-12-29
 
     * Plugin check-memstat: new key memavailable and a new chart.

@@ -1,145 +1,24 @@
 {
-   "statistic" : [
-      {
-         "alias" : "User",
-         "units" : "percent",
-         "description" : "Percentage of CPU utilization at the user level.",
-         "datatype" : "float",
-         "statkey" : "user"
-      },
-      {
-         "description" : "Time spent in user mode with low priority.",
-         "datatype" : "float",
-         "statkey" : "nice",
-         "units" : "percent",
-         "alias" : "Nice"
-      },
-      {
-         "description" : "Percentage of CPU utilization at the system level.",
-         "datatype" : "float",
-         "statkey" : "system",
-         "units" : "percent",
-         "alias" : "System"
-      },
-      {
-         "description" : "Percentage of time the CPU is in idle state.",
-         "statkey" : "idle",
-         "datatype" : "float",
-         "units" : "percent",
-         "alias" : "Idle"
-      },
-      {
-         "units" : "percent",
-         "alias" : "IOwait",
-         "description" : "Percentage of time the CPU is in idle state because an i/o operation is waiting for a disk. This statistic is only available since kernel version 2.5.41.",
-         "datatype" : "float",
-         "statkey" : "iowait"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "irq",
-         "description" : "Percentage of time the CPU is servicing interrupts. This statistic is only available since kernel version 2.6.0-test4.",
-         "alias" : "IRQ",
-         "units" : "percent"
-      },
-      {
-         "description" : "Percentage of time the CPU is servicing softirqs. This statistic is only available since kernel version 2.6.0-test4.",
-         "statkey" : "softirq",
-         "datatype" : "float",
-         "units" : "percent",
-         "alias" : "Soft IRQ"
-      },
-      {
-         "alias" : "Steal",
-         "units" : "percent",
-         "statkey" : "steal",
-         "datatype" : "float",
-         "description" : "Percentage of stolen CPU time, which is the time spent in other operating systems when running in a virtualized environment. This statistic is only available since kernel version 2.6.11."
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "quest",
-         "description" : "Percentage of CPU time, which is the time spent running a virtual CPU for guest operating systems under the control of the Linux kernel. This statistic is only available since kernel version 2.6.24.",
-         "units" : "percent",
-         "alias" : "Quest"
-      },
-      {
-         "description" : "The total usage of the CPU in percent.",
-         "datatype" : "float",
-         "statkey" : "total",
-         "alias" : "Total",
-         "units" : "percent"
-      },
-      {
-         "alias" : "Other",
-         "units" : "percent",
-         "description" : "Summary of unknown fields in /proc/stat.",
-         "datatype" : "float",
-         "statkey" : "other"
-      }
-   ],
-   "chart" : {
-      "options" : {
-         "stack" : "true",
-         "ylabel" : "cpu usage in %",
-         "units" : "null",
-         "series" : [
-            {
-               "color" : "#ffb244",
-               "name" : "system"
-            },
-            {
-               "name" : "user",
-               "color" : "#9a72ad"
-            },
-            {
-               "name" : "iowait",
-               "color" : "#ff0000"
-            },
-            {
-               "name" : "nice",
-               "color" : "#005467"
-            },
-            {
-               "color" : "#2ba743",
-               "name" : "irq"
-            },
-            {
-               "color" : "#7648eb",
-               "name" : "softirq"
-            },
-            {
-               "color" : "#e9644a",
-               "name" : "steal"
-            },
-            {
-               "name" : "quest",
-               "color" : "#666666"
-            },
-            {
-               "color" : "#bf00bf",
-               "name" : "other"
-            }
-         ],
-         "chart-type" : "area"
-      },
-      "id" : "1",
-      "title" : "Linux - cpu usage"
-   },
    "plugin" : {
-      "abstract" : "CPU check",
       "description" : "Linux CPU statistics",
-      "command" : "check-cpustat",
-      "plugin" : "Linux.CPU.Check",
-      "id" : "18",
-      "datatype" : "statistic",
       "category" : "System,Linux",
+      "datatype" : "statistic",
+      "command" : "check-cpustat",
+      "abstract" : "CPU check",
+      "plugin" : "Linux.CPU.Check",
       "info" : {
          "plugin" : "check-cpustat",
-         "version" : "0.8",
-         "flags" : "",
          "examples" : [
             {
+               "description" : [
+                  "The following check configuration would trigger",
+                  "",
+                  "- a warning if the IOwait is equal or higher than 40%",
+                  "- a critical if the IOwait is equal or higher than 60%",
+                  "- a warning if the total CPU usage is equal or higher than 90%",
+                  "- a critical if the total CPU usage is equal or higher than 95%"
+               ],
+               "command_line" : "check-cpustat --warning 'iowait:ge:40' --critical 'iowait:ge:60' --warning 'total:ge:90' --critical 'total:ge:95'",
                "arguments" : [
                   "warning",
                   "iowait:ge:40",
@@ -149,40 +28,33 @@
                   "total:ge:90",
                   "critical",
                   "total:ge:95"
-               ],
-               "command_line" : "check-cpustat --warning 'iowait:ge:40' --critical 'iowait:ge:60' --warning 'total:ge:90' --critical 'total:ge:95'",
-               "description" : [
-                  "The following check configuration would trigger",
-                  "",
-                  "- a warning if the IOwait is equal or higher than 40%",
-                  "- a critical if the IOwait is equal or higher than 60%",
-                  "- a warning if the total CPU usage is equal or higher than 90%",
-                  "- a critical if the total CPU usage is equal or higher than 95%"
                ]
             }
          ],
          "options" : [
             {
-               "value_desc" : "key:value or key:op:value",
                "mandatory" : 0,
                "option" : "warning",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
                "name" : "Warning threshold",
-               "value_type" : "string",
                "default" : null,
-               "multiple" : 1
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1,
+               "value_type" : "string",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information."
             },
             {
-               "default" : null,
+               "mandatory" : 0,
+               "value_desc" : "key:value or key:op:value",
+               "option" : "critical",
                "name" : "Critical threshold",
+               "default" : null,
                "value_type" : "string",
                "multiple" : 1,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "option" : "critical",
-               "value_desc" : "key:value or key:op:value",
-               "mandatory" : 0
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information."
             }
          ],
+         "version" : "0.8",
+         "flags" : "",
          "thresholds" : {
             "options" : [
                {
@@ -202,20 +74,20 @@
                   "key" : "iowait"
                },
                {
-                  "key" : "idle",
-                  "unit" : "percent"
+                  "unit" : "percent",
+                  "key" : "idle"
                },
                {
                   "unit" : "percent",
                   "key" : "irq"
                },
                {
-                  "unit" : "percent",
-                  "key" : "softirq"
+                  "key" : "softirq",
+                  "unit" : "percent"
                },
                {
-                  "unit" : "percent",
-                  "key" : "steal"
+                  "key" : "steal",
+                  "unit" : "percent"
                },
                {
                   "key" : "quest",
@@ -244,6 +116,134 @@
                "  Allowed units for percent: %\n\n"
             ]
          }
+      },
+      "id" : "18"
+   },
+   "chart" : {
+      "title" : "Linux - cpu usage",
+      "id" : "1",
+      "options" : {
+         "chart-type" : "area",
+         "stack" : "true",
+         "series" : [
+            {
+               "color" : "#ffb244",
+               "name" : "system"
+            },
+            {
+               "color" : "#9a72ad",
+               "name" : "user"
+            },
+            {
+               "name" : "iowait",
+               "color" : "#ff0000"
+            },
+            {
+               "name" : "nice",
+               "color" : "#005467"
+            },
+            {
+               "color" : "#2ba743",
+               "name" : "irq"
+            },
+            {
+               "color" : "#7648eb",
+               "name" : "softirq"
+            },
+            {
+               "name" : "steal",
+               "color" : "#e9644a"
+            },
+            {
+               "color" : "#666666",
+               "name" : "quest"
+            },
+            {
+               "name" : "other",
+               "color" : "#bf00bf"
+            }
+         ],
+         "ylabel" : "cpu usage in %",
+         "units" : "null"
       }
-   }
+   },
+   "statistic" : [
+      {
+         "units" : "percent",
+         "description" : "Percentage of CPU utilization at the user level.",
+         "statkey" : "user",
+         "datatype" : "float",
+         "alias" : "User"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "nice",
+         "units" : "percent",
+         "description" : "Time spent in user mode with low priority.",
+         "alias" : "Nice"
+      },
+      {
+         "alias" : "System",
+         "statkey" : "system",
+         "datatype" : "float",
+         "description" : "Percentage of CPU utilization at the system level.",
+         "units" : "percent"
+      },
+      {
+         "alias" : "Idle",
+         "statkey" : "idle",
+         "datatype" : "float",
+         "units" : "percent",
+         "description" : "Percentage of time the CPU is in idle state."
+      },
+      {
+         "statkey" : "iowait",
+         "datatype" : "float",
+         "description" : "Percentage of time the CPU is in idle state because an i/o operation is waiting for a disk. This statistic is only available since kernel version 2.5.41.",
+         "units" : "percent",
+         "alias" : "IOwait"
+      },
+      {
+         "statkey" : "irq",
+         "datatype" : "float",
+         "description" : "Percentage of time the CPU is servicing interrupts. This statistic is only available since kernel version 2.6.0-test4.",
+         "units" : "percent",
+         "alias" : "IRQ"
+      },
+      {
+         "units" : "percent",
+         "description" : "Percentage of time the CPU is servicing softirqs. This statistic is only available since kernel version 2.6.0-test4.",
+         "statkey" : "softirq",
+         "datatype" : "float",
+         "alias" : "Soft IRQ"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "steal",
+         "description" : "Percentage of stolen CPU time, which is the time spent in other operating systems when running in a virtualized environment. This statistic is only available since kernel version 2.6.11.",
+         "units" : "percent",
+         "alias" : "Steal"
+      },
+      {
+         "alias" : "Quest",
+         "statkey" : "quest",
+         "datatype" : "float",
+         "units" : "percent",
+         "description" : "Percentage of CPU time, which is the time spent running a virtual CPU for guest operating systems under the control of the Linux kernel. This statistic is only available since kernel version 2.6.24."
+      },
+      {
+         "units" : "percent",
+         "description" : "The total usage of the CPU in percent.",
+         "datatype" : "float",
+         "statkey" : "total",
+         "alias" : "Total"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "other",
+         "description" : "Summary of unknown fields in /proc/stat.",
+         "units" : "percent",
+         "alias" : "Other"
+      }
+   ]
 }

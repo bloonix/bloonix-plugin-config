@@ -1,235 +1,207 @@
 {
    "statistic" : [
       {
-         "datatype" : "float",
          "statkey" : "read",
          "description" : "READ - Read from File.",
+         "datatype" : "float",
          "alias" : "Read"
       },
       {
-         "datatype" : "float",
-         "statkey" : "write",
          "description" : "WRITE - Write to File.",
-         "alias" : "Write"
+         "statkey" : "write",
+         "alias" : "Write",
+         "datatype" : "float"
       },
       {
-         "alias" : "Commit",
+         "statkey" : "commit",
          "description" : "COMMIT - Commit Cached Data.",
          "datatype" : "float",
-         "statkey" : "commit"
+         "alias" : "Commit"
       },
       {
          "statkey" : "open",
+         "description" : "OPEN - Open a Regular File.",
          "datatype" : "float",
-         "alias" : "Open",
-         "description" : "OPEN - Open a Regular File."
+         "alias" : "Open"
       },
       {
-         "description" : "OPEN_CONFIRM - Confirm Open.",
          "alias" : "Open confirm",
-         "statkey" : "open_confirm",
-         "datatype" : "float"
-      },
-      {
-         "description" : "OPEN_NOATTR",
-         "alias" : "Open no attributes",
-         "statkey" : "open_noattr",
-         "datatype" : "float"
-      },
-      {
-         "description" : "OPEN_DOWNGRADE - Reduce Open File Access.",
-         "alias" : "Reduce open file access",
          "datatype" : "float",
-         "statkey" : "open_downgrade"
+         "description" : "OPEN_CONFIRM - Confirm Open.",
+         "statkey" : "open_confirm"
       },
       {
-         "description" : "CLOSE - Close File.",
+         "statkey" : "open_noattr",
+         "description" : "OPEN_NOATTR",
+         "datatype" : "float",
+         "alias" : "Open no attributes"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Reduce open file access",
+         "statkey" : "open_downgrade",
+         "description" : "OPEN_DOWNGRADE - Reduce Open File Access."
+      },
+      {
          "alias" : "Close file",
-         "statkey" : "close",
-         "datatype" : "float"
+         "datatype" : "float",
+         "description" : "CLOSE - Close File.",
+         "statkey" : "close"
       },
       {
-         "statkey" : "setattr",
          "datatype" : "float",
          "alias" : "Set attributes",
+         "statkey" : "setattr",
          "description" : "SETATTR - Set Attributes."
       },
       {
-         "datatype" : "float",
          "statkey" : "fsinfo",
-         "alias" : "Get filesystem info",
-         "description" : "FSINFO - Get static file system information."
+         "description" : "FSINFO - Get static file system information.",
+         "datatype" : "float",
+         "alias" : "Get filesystem info"
       },
       {
          "statkey" : "renew",
-         "datatype" : "float",
          "description" : "RENEW - Renew a Lease.",
+         "datatype" : "float",
          "alias" : "Renew lease"
       },
       {
+         "datatype" : "float",
          "alias" : "Set client ID",
-         "description" : "SETCLIENTID - Negotiate Clientid.",
          "statkey" : "setclientid",
-         "datatype" : "float"
+         "description" : "SETCLIENTID - Negotiate Clientid."
       },
       {
          "alias" : "Confirm client ID",
-         "description" : "SETCLIENTID_CONFIRM - Confirm Clientid.",
          "datatype" : "float",
+         "description" : "SETCLIENTID_CONFIRM - Confirm Clientid.",
          "statkey" : "setclientid_confirm"
       },
       {
-         "alias" : "Create lock",
+         "statkey" : "lock",
          "description" : "LOCK - Create Lock.",
          "datatype" : "float",
-         "statkey" : "lock"
+         "alias" : "Create lock"
       },
       {
+         "alias" : "Test lock",
          "datatype" : "float",
-         "statkey" : "lockt",
          "description" : "LOCKT - Test For Lock.",
-         "alias" : "Test lock"
+         "statkey" : "lockt"
       },
       {
-         "description" : "LOCKU - Unlock File.",
+         "datatype" : "float",
          "alias" : "Unlock",
-         "datatype" : "float",
-         "statkey" : "locku"
+         "statkey" : "locku",
+         "description" : "LOCKU - Unlock File."
       },
       {
-         "alias" : "Access",
          "description" : "ACCESS - Check Access Rights.",
-         "datatype" : "float",
-         "statkey" : "access"
+         "statkey" : "access",
+         "alias" : "Access",
+         "datatype" : "float"
       },
       {
-         "datatype" : "float",
+         "description" : "GETATTR - Get Attributes.",
          "statkey" : "getattr",
          "alias" : "Get attributes",
-         "description" : "GETATTR - Get Attributes."
+         "datatype" : "float"
       },
       {
          "statkey" : "lookup",
+         "description" : "LOOKUP - Lookup Filename.",
          "datatype" : "float",
-         "alias" : "Lookup filename",
-         "description" : "LOOKUP - Lookup Filename."
+         "alias" : "Lookup filename"
       },
       {
-         "alias" : "Lookup parent directory",
-         "description" : "LOOKUPP - Lookup Parent Directory.",
          "datatype" : "float",
-         "statkey" : "lookupp"
+         "alias" : "Lookup parent directory",
+         "statkey" : "lookupp",
+         "description" : "LOOKUPP - Lookup Parent Directory."
       },
       {
          "description" : "REMOVE - Remove Filesystem Object.",
-         "alias" : "Remove filesystem object",
          "statkey" : "remove",
+         "alias" : "Remove filesystem object",
          "datatype" : "float"
       },
       {
-         "alias" : "Rename",
-         "description" : "RENAME - Rename Directory Entry.",
          "statkey" : "rename",
-         "datatype" : "float"
+         "description" : "RENAME - Rename Directory Entry.",
+         "datatype" : "float",
+         "alias" : "Rename"
       },
       {
-         "alias" : "Create link",
          "description" : "LINK - Create Link to a File.",
-         "datatype" : "float",
-         "statkey" : "link"
+         "statkey" : "link",
+         "alias" : "Create link",
+         "datatype" : "float"
       },
       {
          "statkey" : "symlink",
-         "datatype" : "float",
          "description" : "SYMLINK - Create a symbolic link.",
+         "datatype" : "float",
          "alias" : "Create symbolic link"
       },
       {
-         "description" : "CREATE - Create a Non-Regular File Object.",
+         "datatype" : "float",
          "alias" : "Create",
          "statkey" : "create",
-         "datatype" : "float"
+         "description" : "CREATE - Create a Non-Regular File Object."
       },
       {
-         "description" : "PATHCONF - Retrieve POSIX information.",
          "alias" : "Retrieve POSIX information",
          "datatype" : "float",
+         "description" : "PATHCONF - Retrieve POSIX information.",
          "statkey" : "pathconf"
       },
       {
-         "datatype" : "float",
          "statkey" : "statfs",
          "description" : "STATFS",
+         "datatype" : "float",
          "alias" : "StatFS"
       },
       {
-         "datatype" : "float",
-         "statkey" : "readlink",
          "alias" : "Read link",
-         "description" : "READLINK - Read Symbolic Link."
+         "datatype" : "float",
+         "description" : "READLINK - Read Symbolic Link.",
+         "statkey" : "readlink"
       },
       {
-         "datatype" : "float",
+         "description" : "READDIR - Read Directory.",
          "statkey" : "readdir",
          "alias" : "Read directory",
-         "description" : "READDIR - Read Directory."
+         "datatype" : "float"
       },
       {
          "statkey" : "server_caps",
+         "description" : "SERVER_CAPS",
          "datatype" : "float",
-         "alias" : "Server caps",
-         "description" : "SERVER_CAPS"
+         "alias" : "Server caps"
       },
       {
+         "alias" : "Return delegation",
          "datatype" : "float",
-         "statkey" : "delegreturn",
          "description" : "DELEGRETURN - Return Delegation.",
-         "alias" : "Return delegation"
+         "statkey" : "delegreturn"
       },
       {
+         "alias" : "Get ACL",
          "datatype" : "float",
-         "statkey" : "getacl",
          "description" : "GETACL - Get Access Control List.",
-         "alias" : "Get ACL"
+         "statkey" : "getacl"
       },
       {
-         "datatype" : "float",
-         "statkey" : "setacl",
          "description" : "SETACL - Set Access Control List.",
-         "alias" : "Set ACL"
+         "statkey" : "setacl",
+         "alias" : "Set ACL",
+         "datatype" : "float"
       }
    ],
    "plugin" : {
-      "command" : "check-nfs4-client",
-      "description" : "NFS4 client statistics (see rfc3010)",
-      "category" : "System,Filesystem,Linux",
-      "id" : "32",
+      "plugin" : "Linux.NFS4Client.Check",
       "info" : {
-         "plugin" : "check-nfs4-client",
-         "version" : "0.4",
-         "flags" : "",
-         "options" : [
-            {
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "option" : "warning",
-               "value_type" : "string",
-               "value_desc" : "key:value or key:op:value",
-               "name" : "Warning threshold",
-               "mandatory" : 0,
-               "default" : null,
-               "multiple" : 1
-            },
-            {
-               "multiple" : 1,
-               "default" : null,
-               "option" : "critical",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "name" : "Critical threshold",
-               "mandatory" : 0,
-               "value_desc" : "key:value or key:op:value"
-            }
-         ],
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",
@@ -247,8 +219,8 @@
             ],
             "options" : [
                {
-                  "unit" : "none",
-                  "key" : "read"
+                  "key" : "read",
+                  "unit" : "none"
                },
                {
                   "key" : "write",
@@ -263,20 +235,20 @@
                   "key" : "open"
                },
                {
-                  "key" : "open_confirm",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "open_noattr",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "open_downgrade",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "open_confirm"
                },
                {
                   "unit" : "none",
-                  "key" : "close"
+                  "key" : "open_noattr"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "open_downgrade"
+               },
+               {
+                  "key" : "close",
+                  "unit" : "none"
                },
                {
                   "key" : "setattr",
@@ -295,8 +267,8 @@
                   "unit" : "none"
                },
                {
-                  "key" : "setclientid_confirm",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "setclientid_confirm"
                },
                {
                   "unit" : "none",
@@ -307,16 +279,16 @@
                   "key" : "lockt"
                },
                {
-                  "key" : "locku",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "locku"
                },
                {
-                  "key" : "access",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "access"
                },
                {
-                  "key" : "getattr",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "getattr"
                },
                {
                   "unit" : "none",
@@ -335,8 +307,8 @@
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "link"
+                  "key" : "link",
+                  "unit" : "none"
                },
                {
                   "key" : "symlink",
@@ -347,20 +319,20 @@
                   "unit" : "none"
                },
                {
-                  "key" : "pathconf",
+                  "unit" : "none",
+                  "key" : "pathconf"
+               },
+               {
+                  "key" : "statfs",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "readlink",
                   "unit" : "none"
                },
                {
                   "unit" : "none",
-                  "key" : "statfs"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "readlink"
-               },
-               {
-                  "key" : "readdir",
-                  "unit" : "none"
+                  "key" : "readdir"
                },
                {
                   "unit" : "none",
@@ -371,18 +343,46 @@
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "getacl"
+                  "key" : "getacl",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "setacl"
+                  "key" : "setacl",
+                  "unit" : "none"
                }
             ]
-         }
+         },
+         "plugin" : "check-nfs4-client",
+         "version" : "0.4",
+         "flags" : "",
+         "options" : [
+            {
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value",
+               "value_type" : "string",
+               "option" : "warning",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "default" : null,
+               "name" : "Warning threshold",
+               "mandatory" : 0
+            },
+            {
+               "value_desc" : "key:value or key:op:value",
+               "value_type" : "string",
+               "multiple" : 1,
+               "default" : null,
+               "mandatory" : 0,
+               "name" : "Critical threshold",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "option" : "critical"
+            }
+         ]
       },
-      "plugin" : "Linux.NFS4Client.Check",
       "abstract" : "NFS4 client check",
+      "id" : "32",
+      "command" : "check-nfs4-client",
+      "description" : "NFS4 client statistics (see rfc3010)",
+      "category" : "System,Filesystem,Linux",
       "datatype" : "statistic"
    }
 }
