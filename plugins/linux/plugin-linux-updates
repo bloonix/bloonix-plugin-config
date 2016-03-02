@@ -1,84 +1,84 @@
 {
    "plugin" : {
-      "id" : "23",
       "info" : {
-         "version" : "0.5",
          "plugin" : "check-linux-updates",
          "info" : [
             "This plugin works only on Linux distributions where the tools yum, dnf, apt or zypper are used as package manager. If yum is used, then you have to install the package yum-security. If dnf is used, then you should know that 'dnf updateinfo' is parsed to get a summary of available security updates."
          ],
          "options" : [
             {
-               "mandatory" : 0,
-               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a WARNING is triggered.",
-               "default" : null,
                "name" : "Warning threshold for normal packages",
+               "default" : null,
+               "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a WARNING is triggered.",
                "value_type" : "int",
-               "value_desc" : "count",
+               "option" : "warning",
+               "mandatory" : 0,
                "multiple" : 0,
-               "option" : "warning"
+               "value_desc" : "count"
             },
             {
-               "mandatory" : 0,
+               "name" : "Critical threshold for normal packages",
                "default" : null,
                "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages arei available then a CRITICAL is triggered.",
-               "value_desc" : "count",
+               "value_type" : "int",
                "option" : "critical",
+               "mandatory" : 0,
                "multiple" : 0,
-               "name" : "Critical threshold for normal packages",
-               "value_type" : "int"
+               "value_desc" : "count"
             },
             {
-               "multiple" : 0,
-               "option" : "warning-security",
-               "value_desc" : "count",
-               "value_type" : "int",
                "name" : "Warning threshold for security packages",
                "default" : null,
                "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a WARNING is triggered.",
-               "mandatory" : 0
+               "value_type" : "int",
+               "option" : "warning-security",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "value_desc" : "count"
             },
             {
-               "mandatory" : 0,
+               "name" : "Critical threshold for security packages",
                "default" : null,
                "description" : "Set this value to the maximum number of packages that may be available for an update. If more packages are available then a CRITICAL is triggered.",
-               "value_desc" : "count",
+               "value_type" : "int",
                "option" : "critical-security",
+               "mandatory" : 0,
                "multiple" : 0,
-               "name" : "Critical threshold for security packages",
-               "value_type" : "int"
+               "value_desc" : "count"
             },
             {
-               "value_desc" : "seconds",
-               "option" : "timeout",
-               "multiple" : 0,
                "name" : "Timeout",
-               "value_type" : "number",
-               "mandatory" : 0,
+               "default" : 30,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "default" : 30
+               "value_type" : "number",
+               "option" : "timeout",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "value_desc" : "seconds"
             }
          ],
+         "flags" : "sudo",
+         "version" : "0.5",
          "examples" : [
             {
+               "command_line" : "check-linux-updates --critical-security '1'",
                "arguments" : [
                   "critical-security",
                   1
                ],
-               "command_line" : "check-linux-updates --critical-security '1'",
                "description" : [
                   "Check if updates are available and trigger a critical status if",
                   "there is 1 or more as 1 package for security is available."
                ]
             }
-         ],
-         "flags" : "sudo"
+         ]
       },
-      "description" : "Check if updates are available.",
       "plugin" : "Linux.Updates.Check",
+      "description" : "Check if updates are available.",
+      "id" : "23",
       "category" : "System,Linux,Security",
+      "abstract" : "Linux check updates",
       "command" : "check-linux-updates",
-      "datatype" : "none",
-      "abstract" : "Linux check updates"
+      "datatype" : "none"
    }
 }

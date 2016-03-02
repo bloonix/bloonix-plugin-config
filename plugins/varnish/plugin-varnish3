@@ -4,34 +4,34 @@
          "plugin" : "check-varnish3",
          "options" : [
             {
-               "value" : "key:value or key:op:value",
                "name" : "Warning threshold",
                "default" : null,
                "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
                "value_type" : "string",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value"
             },
             {
-               "value" : "key:value or key:op:value",
                "name" : "Critical threshold",
                "default" : null,
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "value_type" : "string",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value"
             },
             {
-               "value" : "seconds",
                "name" : "Timeout",
                "default" : 10,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "value_type" : "number",
                "option" : "timeout",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             }
          ],
          "flags" : "",

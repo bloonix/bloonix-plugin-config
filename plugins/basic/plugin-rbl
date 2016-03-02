@@ -1,69 +1,60 @@
 {
    "plugin" : {
-      "worldwide" : "no",
-      "prefer" : "remote",
-      "datatype" : "none",
-      "netaccess" : "yes",
-      "command" : "check-rbl",
-      "category" : "Mail",
-      "id" : "70",
-      "plugin" : "RBL.Check",
-      "description" : "Check if a IP or hostname is listed on a blacklist.",
       "info" : {
+         "plugin" : "check-rbl",
          "options" : [
             {
                "name" : "Hostname or IP address",
-               "multiple" : 0,
-               "mandatory" : 1,
+               "default" : null,
+               "description" : "The SMTP server to check.",
                "value_type" : "string",
                "option" : "host",
-               "default" : null,
-               "value_desc" : "hostname or ip address",
-               "description" : "The SMTP server to check."
+               "mandatory" : 1,
+               "multiple" : 0,
+               "value_desc" : "hostname or ip address"
             },
             {
-               "default" : 3,
-               "value_desc" : "seconds",
-               "description" : "A timeout in seconds after a DNS request will be aborted.",
                "name" : "Timeout",
-               "multiple" : 0,
-               "mandatory" : 0,
+               "default" : 3,
+               "description" : "A timeout in seconds after a DNS request will be aborted.",
                "value_type" : "number",
-               "option" : "timeout"
-            },
-            {
-               "multiple" : 0,
-               "name" : "Warning threshold",
+               "option" : "timeout",
                "mandatory" : 0,
-               "option" : "warning",
-               "value_type" : "int",
-               "default" : 0,
-               "value_desc" : "count",
-               "description" : "The the number of blacklisting servers to trigger a CRITICAL status."
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
+               "name" : "Warning threshold",
+               "default" : 0,
+               "description" : "The the number of blacklisting servers to trigger a CRITICAL status.",
+               "value_type" : "int",
+               "option" : "warning",
+               "mandatory" : 0,
                "multiple" : 0,
+               "value_desc" : "count"
+            },
+            {
                "name" : "Critical threshold",
+               "default" : 1,
+               "description" : "The the number of blacklisting servers to trigger a WARNING status.",
                "value_type" : "int",
                "option" : "critical",
                "mandatory" : 0,
-               "value_desc" : "count",
-               "default" : 1,
-               "description" : "The the number of blacklisting servers to trigger a WARNING status."
+               "multiple" : 0,
+               "value_desc" : "count"
             },
             {
-               "description" : "The RBL server to check. It's possible to configure multiple RBL servers.",
+               "name" : "RBL server",
                "default" : null,
-               "value_desc" : "server",
-               "mandatory" : 1,
+               "description" : "The RBL server to check. It's possible to configure multiple RBL servers.",
                "value_type" : "string",
                "option" : "server",
-               "name" : "RBL server",
-               "multiple" : 1
+               "mandatory" : 1,
+               "multiple" : 1,
+               "value_desc" : "server"
             }
          ],
          "flags" : "mid-check-frequency",
-         "plugin" : "check-rbl",
          "version" : "0.1",
          "examples" : [
             {
@@ -92,6 +83,15 @@
             }
          ]
       },
-      "abstract" : "RBL check"
+      "plugin" : "RBL.Check",
+      "prefer" : "remote",
+      "description" : "Check if a IP or hostname is listed on a blacklist.",
+      "worldwide" : "no",
+      "netaccess" : "yes",
+      "abstract" : "RBL check",
+      "id" : "70",
+      "category" : "Mail",
+      "command" : "check-rbl",
+      "datatype" : "none"
    }
 }

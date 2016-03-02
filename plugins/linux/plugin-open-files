@@ -1,6 +1,31 @@
 {
    "plugin" : {
       "info" : {
+         "plugin" : "check-open-files",
+         "options" : [
+            {
+               "name" : "Warning threshold",
+               "default" : 10,
+               "description" : "This is the warning threshold for real free file hanlders in percent. If less than this value in percent are free a warning status is triggered.",
+               "value_type" : "number",
+               "option" : "warning",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "value_desc" : "percent"
+            },
+            {
+               "name" : "Critical threshold",
+               "default" : 5,
+               "description" : "This is the critical threshold for real free file hanlders in percent. If less than this value in percent are free a critical status is triggered.",
+               "value_type" : "number",
+               "option" : "critical",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "value_desc" : "percent"
+            }
+         ],
+         "flags" : "",
+         "version" : "0.5",
          "examples" : [
             {
                "command_line" : "check-open-files --warning '5' --critical '3'",
@@ -14,70 +39,45 @@
                   "Example to check the real free file handlers in percent"
                ]
             }
-         ],
-         "plugin" : "check-open-files",
-         "version" : "0.5",
-         "options" : [
-            {
-               "name" : "Warning threshold",
-               "value_desc" : "percent",
-               "default" : 10,
-               "mandatory" : 0,
-               "description" : "This is the warning threshold for real free file hanlders in percent. If less than this value in percent are free a warning status is triggered.",
-               "multiple" : 0,
-               "value_type" : "number",
-               "option" : "warning"
-            },
-            {
-               "multiple" : 0,
-               "value_type" : "number",
-               "option" : "critical",
-               "value_desc" : "percent",
-               "name" : "Critical threshold",
-               "mandatory" : 0,
-               "default" : 5,
-               "description" : "This is the critical threshold for real free file hanlders in percent. If less than this value in percent are free a critical status is triggered."
-            }
-         ],
-         "flags" : ""
+         ]
       },
-      "command" : "check-open-files",
-      "id" : "33",
+      "plugin" : "Linux.OpenFiles.Check",
       "description" : "Linux file statistics.",
+      "id" : "33",
       "category" : "System,Linux",
       "abstract" : "Open files check",
-      "plugin" : "Linux.OpenFiles.Check",
+      "command" : "check-open-files",
       "datatype" : "statistic"
    },
    "chart" : {
-      "title" : "Linux - filestats",
       "options" : {
          "chart-type" : "area",
-         "units" : "default",
+         "ylabel" : "count",
          "series" : [
             {
                "color" : "#005467",
                "name" : "fh_alloc"
             },
             {
-               "name" : "nr_inodes",
-               "color" : "#e9644a"
+               "color" : "#e9644a",
+               "name" : "nr_inodes"
             },
             {
-               "name" : "nr_free_inodes",
-               "color" : "#2ba743"
+               "color" : "#2ba743",
+               "name" : "nr_free_inodes"
             },
             {
-               "name" : "nr_dentry",
-               "color" : "#9a72ad"
+               "color" : "#9a72ad",
+               "name" : "nr_dentry"
             },
             {
-               "name" : "nr_unused",
-               "color" : "#ffb244"
+               "color" : "#ffb244",
+               "name" : "nr_unused"
             }
          ],
-         "ylabel" : "count"
+         "units" : "default"
       },
+      "title" : "Linux - filestats",
       "id" : "1"
    },
    "statistic" : [
@@ -88,26 +88,26 @@
          "datatype" : "bigint"
       },
       {
-         "datatype" : "bigint",
-         "statkey" : "fh_max",
+         "description" : "Number of maximum file handles.",
          "alias" : "FHs maximum",
-         "description" : "Number of maximum file handles."
+         "statkey" : "fh_max",
+         "datatype" : "bigint"
       },
       {
-         "datatype" : "bigint",
          "description" : "Number of free file handles.",
          "alias" : "FHs free",
-         "statkey" : "fh_free"
+         "statkey" : "fh_free",
+         "datatype" : "bigint"
       },
       {
-         "datatype" : "bigint",
          "description" : "Number of free inodes.",
          "alias" : "Inodes free",
-         "statkey" : "nr_free_inodes"
+         "statkey" : "nr_free_inodes",
+         "datatype" : "bigint"
       },
       {
-         "alias" : "Inodes allocated",
          "description" : "Number of allocated inodes.",
+         "alias" : "Inodes allocated",
          "statkey" : "nr_inodes",
          "datatype" : "bigint"
       },

@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.29
+Version: 0.31
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,10 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Wed Mar 02 2016 Jonny Schulz <js@bloonix.de> - 0.31-1
+- Plugin check-logfile: permit non existent logfile.
+* Thu Jan 07 2016 Jonny Schulz <js@bloonix.de> - 0.30-1
+- Plugin check-mysql-slave: new parameter verbose-error.
 * Tue Dec 29 2015 Jonny Schulz <js@bloonix.de> - 0.29-1
 - Plugin check-memstat: new key memavailable and a new chart.
 * Wed Dec 16 2015 Jonny Schulz <js@bloonix.de> - 0.28-1

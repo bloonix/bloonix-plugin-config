@@ -4,74 +4,74 @@
          "plugin" : "check-lighttpd",
          "options" : [
             {
-               "value" : "url",
                "name" : "URL",
                "default" : "http://localhost/server-status?auto",
                "description" : "This is the URL to call the server-status of Lighttpd. Please enter the full URL with the query string.",
                "value_type" : "string",
                "option" : "url",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "url"
             },
             {
-               "value" : "seconds",
                "name" : "Timeout",
                "default" : 10,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "value_type" : "number",
                "option" : "timeout",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "seconds"
             },
             {
-               "value" : "key:value or key:op:value",
                "name" : "Warning threshold",
                "default" : null,
                "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
                "value_type" : "string",
                "option" : "warning",
                "mandatory" : 0,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value"
             },
             {
-               "value" : "key:value or key:op:value",
                "name" : "Critical threshold",
                "default" : null,
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "value_type" : "string",
                "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 1
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value"
             },
             {
-               "value" : "username",
                "name" : "Username",
                "default" : null,
                "description" : "A username for a HTTP Auth-Basic authentication.",
                "value_type" : "string",
                "option" : "username",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "username"
             },
             {
-               "value" : "password",
                "name" : "Password",
                "default" : null,
                "description" : "A password for a HTTP Auth-Basic authentication.",
                "value_type" : "string",
                "option" : "password",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "password"
             },
             {
-               "value" : "hostname or ip address",
                "name" : "Hostname or IP address",
                "default" : null,
                "description" : "A hostname or IP address to connect to.",
                "value_type" : "string",
                "option" : "host",
                "mandatory" : 0,
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "hostname or ip address"
             },
             {
                "value_type" : 0,

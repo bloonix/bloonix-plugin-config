@@ -1,3 +1,7 @@
+bloonix-plugin-config (0.31) released at 2016-03-02
+
+    * Plugin check-logfile: permit non existent logfile.
+
 bloonix-plugin-config (0.30) released at 2016-01-07
 
     * Plugin check-mysql-slave: new parameter verbose-error.
