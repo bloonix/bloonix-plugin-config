@@ -1,3 +1,7 @@
+bloonix-plugin-config (0.32) released at 2016-03-19
+
+    * New plugin check-proc-status.
+
 bloonix-plugin-config (0.31) released at 2016-03-02
 
     * Plugin check-logfile: permit non existent logfile.

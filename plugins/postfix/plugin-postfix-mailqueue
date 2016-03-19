@@ -1,35 +1,42 @@
 {
    "plugin" : {
+      "id" : "47",
+      "category" : "System,Mail",
+      "datatype" : "statistic",
+      "plugin" : "Postfix.Mailqueue",
+      "description" : "Check the mailqueue of Postfix.",
+      "command" : "check-postfix-mailqueue",
+      "abstract" : "Postfix mailqueue check",
       "info" : {
-         "plugin" : "check-postfix-mailqueue",
          "info" : [
             "The spooldir of postfix is determined by",
             "  postconf -h queue_directory"
          ],
-         "options" : [
-            {
-               "name" : "Warning threshold",
-               "default" : null,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "option" : "warning",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
-            },
-            {
-               "name" : "Critical threshold",
-               "default" : null,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "option" : "critical",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
-            }
-         ],
          "flags" : "sudo",
          "version" : "0.4",
+         "options" : [
+            {
+               "multiple" : 1,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "default" : null,
+               "mandatory" : 0,
+               "option" : "warning",
+               "value_desc" : "key:value or key:op:value",
+               "value_type" : "string",
+               "name" : "Warning threshold"
+            },
+            {
+               "value_desc" : "key:value or key:op:value",
+               "option" : "critical",
+               "mandatory" : 0,
+               "default" : null,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "multiple" : 1,
+               "name" : "Critical threshold",
+               "value_type" : "string"
+            }
+         ],
+         "plugin" : "check-postfix-mailqueue",
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",
@@ -55,25 +62,28 @@
                   "key" : "incoming"
                },
                {
-                  "unit" : "none",
-                  "key" : "active"
+                  "key" : "active",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
                   "key" : "deferred"
                },
                {
-                  "unit" : "none",
-                  "key" : "corrupt"
+                  "key" : "corrupt",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "hold"
+                  "key" : "hold",
+                  "unit" : "none"
                }
             ]
          },
          "examples" : [
             {
+               "description" : [
+                  "Check if the queue 'active' or 'deferred' has more than 5000/10000 mails and return a WARNING or CRITICAL"
+               ],
                "command_line" : "check-postfix-mailqueue --warning 'active:5000' --critical 'active:10000' --warning 'deferred:5000' --critical 'deferred:10000'",
                "arguments" : [
                   "warning",
@@ -84,24 +94,53 @@
                   "deferred:5000",
                   "critical",
                   "deferred:10000"
-               ],
-               "description" : [
-                  "Check if the queue 'active' or 'deferred' has more than 5000/10000 mails and return a WARNING or CRITICAL"
                ]
             }
          ]
-      },
-      "plugin" : "Postfix.Mailqueue",
-      "description" : "Check the mailqueue of Postfix.",
-      "id" : "47",
-      "category" : "System,Mail",
-      "abstract" : "Postfix mailqueue check",
-      "command" : "check-postfix-mailqueue",
-      "datatype" : "statistic"
+      }
    },
+   "statistic" : [
+      {
+         "description" : "Number of total mails in queue.",
+         "datatype" : "bigint",
+         "alias" : "Total",
+         "statkey" : "total"
+      },
+      {
+         "description" : "Number of mails in queue 'incoming'.",
+         "datatype" : "bigint",
+         "statkey" : "incoming",
+         "alias" : "Incoming"
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Active",
+         "statkey" : "active",
+         "description" : "Number of mails in queue 'active'."
+      },
+      {
+         "description" : "Number of mails in queue 'deferred'.",
+         "datatype" : "bigint",
+         "alias" : "Deferred",
+         "statkey" : "deferred"
+      },
+      {
+         "statkey" : "corrupt",
+         "alias" : "Corrupt",
+         "datatype" : "bigint",
+         "description" : "Number of mails in queue 'corrupt'."
+      },
+      {
+         "description" : "Number of mails in queue 'hold'.",
+         "statkey" : "hold",
+         "alias" : "Hold",
+         "datatype" : "bigint"
+      }
+   ],
    "chart" : {
+      "title" : "Postfix mailqueue",
       "options" : {
-         "chart-type" : "area",
+         "units" : "null",
          "ylabel" : "count",
          "series" : [
             {
@@ -113,59 +152,20 @@
                "name" : "active"
             },
             {
-               "color" : "#9a72ad",
-               "name" : "deferred"
+               "name" : "deferred",
+               "color" : "#9a72ad"
             },
             {
                "color" : "#005467",
                "name" : "corrupt"
             },
             {
-               "color" : "#2ba743",
-               "name" : "hold"
+               "name" : "hold",
+               "color" : "#2ba743"
             }
          ],
-         "units" : "null"
+         "chart-type" : "area"
       },
-      "title" : "Postfix mailqueue",
       "id" : "1"
-   },
-   "statistic" : [
-      {
-         "description" : "Number of total mails in queue.",
-         "alias" : "Total",
-         "statkey" : "total",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Number of mails in queue 'incoming'.",
-         "alias" : "Incoming",
-         "statkey" : "incoming",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Number of mails in queue 'active'.",
-         "alias" : "Active",
-         "statkey" : "active",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Number of mails in queue 'deferred'.",
-         "alias" : "Deferred",
-         "statkey" : "deferred",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Number of mails in queue 'corrupt'.",
-         "alias" : "Corrupt",
-         "statkey" : "corrupt",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Number of mails in queue 'hold'.",
-         "alias" : "Hold",
-         "statkey" : "hold",
-         "datatype" : "bigint"
-      }
-   ]
+   }
 }

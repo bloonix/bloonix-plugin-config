@@ -1,91 +1,351 @@
 {
+   "chart" : [
+      {
+         "options" : {
+            "series" : [
+               {
+                  "color" : "#66c066",
+                  "name" : "waitproc"
+               },
+               {
+                  "color" : "#0000ff",
+                  "name" : "startup"
+               },
+               {
+                  "name" : "readreq",
+                  "color" : "#ff6666"
+               },
+               {
+                  "name" : "sendrep",
+                  "color" : "#bf00bf"
+               },
+               {
+                  "name" : "keepalive",
+                  "color" : "#ff0000"
+               },
+               {
+                  "name" : "dnslookup",
+                  "color" : "#7648eb"
+               },
+               {
+                  "name" : "closeconn",
+                  "color" : "#7f7fff"
+               },
+               {
+                  "color" : "#00ffff",
+                  "name" : "loggging"
+               },
+               {
+                  "name" : "gracefin",
+                  "color" : "#000000"
+               },
+               {
+                  "name" : "idleclw",
+                  "color" : "#66c066"
+               }
+            ],
+            "ylabel" : "count",
+            "chart-type" : "area"
+         },
+         "id" : "1",
+         "title" : "Lighttpd - process status"
+      },
+      {
+         "title" : "Lighttpd - workers",
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "idle (-) / busy (+)",
+            "series" : [
+               {
+                  "name" : "busyworkers",
+                  "color" : "#005467"
+               },
+               {
+                  "opposite" : "true",
+                  "color" : "#ff7a0d",
+                  "name" : "idleworker"
+               }
+            ]
+         },
+         "id" : "2"
+      },
+      {
+         "id" : "3",
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "bytes/req (-) - bytes/s (+)",
+            "series" : [
+               {
+                  "color" : "#005467",
+                  "name" : "bytpersec"
+               },
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "bytperreq",
+                  "opposite" : "true"
+               }
+            ],
+            "units" : "bytes"
+         },
+         "title" : "Lighttpd - bytes/s, bytes/req"
+      },
+      {
+         "title" : "Lighttpd - requests",
+         "options" : {
+            "chart-type" : "area",
+            "series" : {
+               "color" : "#005467",
+               "name" : "reqpersec"
+            },
+            "ylabel" : "requests/s"
+         },
+         "id" : "4"
+      }
+   ],
+   "statistic" : [
+      {
+         "description" : "Sending Reply.",
+         "statkey" : "sendrep",
+         "alias" : "Sending reply",
+         "datatype" : "bigint"
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Reading request",
+         "description" : "Reading Request.",
+         "statkey" : "readreq"
+      },
+      {
+         "description" : "Bytes per request.",
+         "statkey" : "bytperreq",
+         "units" : "bytes",
+         "alias" : "Bytes/request",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Keepalive read",
+         "description" : "Keepalive read.",
+         "statkey" : "keepalive"
+      },
+      {
+         "description" : "DNS Lookup.",
+         "statkey" : "dnslookup",
+         "datatype" : "bigint",
+         "alias" : "DNS lookup"
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Idle workers",
+         "description" : "Idle workers.",
+         "statkey" : "idleworker"
+      },
+      {
+         "alias" : "Waiting for connection",
+         "datatype" : "bigint",
+         "description" : "Waiting for Connection.",
+         "statkey" : "waitproc"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Requests/second",
+         "statkey" : "reqpersec",
+         "description" : "Requests per second."
+      },
+      {
+         "description" : "Starting up.",
+         "statkey" : "startup",
+         "alias" : "Starting up",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Bytes per second.",
+         "statkey" : "bytpersec",
+         "units" : "bytes",
+         "alias" : "Bytes/second",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "gracefin",
+         "description" : "Gracefully finishing.",
+         "datatype" : "bigint",
+         "alias" : "Gracefully finishing"
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Idle cleanup",
+         "description" : "Idle cleanup of worker.",
+         "statkey" : "idleclw"
+      },
+      {
+         "description" : "Logging.",
+         "statkey" : "logging",
+         "datatype" : "bigint",
+         "alias" : "Logging"
+      },
+      {
+         "statkey" : "busyworkers",
+         "description" : "Workers currently busy.",
+         "alias" : "Busy workers",
+         "datatype" : "bigint"
+      },
+      {
+         "statkey" : "closeconn",
+         "description" : "Closing connection.",
+         "datatype" : "bigint",
+         "alias" : "Closing connection"
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Open slots",
+         "statkey" : "openslot",
+         "description" : "Open slot with no current process."
+      },
+      {
+         "statkey" : "ttlacc",
+         "description" : "Total accesses processed.",
+         "alias" : "Total accesses",
+         "datatype" : "bigint"
+      },
+      {
+         "alias" : "Total bytes",
+         "datatype" : "bigint",
+         "units" : "bytes",
+         "statkey" : "ttlbyt",
+         "description" : "Total bytes processed."
+      }
+   ],
    "plugin" : {
+      "prefer" : "localhost",
       "info" : {
+         "flags" : "",
          "plugin" : "check-lighttpd",
          "options" : [
             {
-               "name" : "URL",
-               "default" : "http://localhost/server-status?auto",
-               "description" : "This is the URL to call the server-status of Lighttpd. Please enter the full URL with the query string.",
                "value_type" : "string",
+               "mandatory" : 0,
+               "value_desc" : "url",
+               "multiple" : 0,
                "option" : "url",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "url"
+               "name" : "URL",
+               "description" : "This is the URL to call the server-status of Lighttpd. Please enter the full URL with the query string.",
+               "default" : "http://localhost/server-status?auto"
             },
             {
-               "name" : "Timeout",
-               "default" : 10,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "default" : 10,
+               "value_desc" : "seconds",
                "value_type" : "number",
-               "option" : "timeout",
                "mandatory" : 0,
                "multiple" : 0,
-               "value_desc" : "seconds"
+               "name" : "Timeout",
+               "option" : "timeout"
             },
             {
-               "name" : "Warning threshold",
-               "default" : null,
                "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "option" : "warning",
-               "mandatory" : 0,
+               "default" : null,
                "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+               "mandatory" : 0,
+               "value_desc" : "key:value or key:op:value",
+               "value_type" : "string",
+               "name" : "Warning threshold",
+               "option" : "warning"
             },
             {
-               "name" : "Critical threshold",
-               "default" : null,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_desc" : "key:value or key:op:value",
                "value_type" : "string",
-               "option" : "critical",
                "mandatory" : 0,
                "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+               "option" : "critical",
+               "name" : "Critical threshold",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "default" : null
             },
             {
                "name" : "Username",
-               "default" : null,
-               "description" : "A username for a HTTP Auth-Basic authentication.",
-               "value_type" : "string",
                "option" : "username",
-               "mandatory" : 0,
                "multiple" : 0,
-               "value_desc" : "username"
+               "value_desc" : "username",
+               "mandatory" : 0,
+               "value_type" : "string",
+               "default" : null,
+               "description" : "A username for a HTTP Auth-Basic authentication."
             },
             {
                "name" : "Password",
-               "default" : null,
-               "description" : "A password for a HTTP Auth-Basic authentication.",
-               "value_type" : "string",
                "option" : "password",
+               "value_desc" : "password",
+               "value_type" : "string",
                "mandatory" : 0,
                "multiple" : 0,
-               "value_desc" : "password"
+               "default" : null,
+               "description" : "A password for a HTTP Auth-Basic authentication."
             },
             {
                "name" : "Hostname or IP address",
-               "default" : null,
-               "description" : "A hostname or IP address to connect to.",
-               "value_type" : "string",
                "option" : "host",
+               "value_type" : "string",
                "mandatory" : 0,
+               "value_desc" : "hostname or ip address",
                "multiple" : 0,
-               "value_desc" : "hostname or ip address"
+               "default" : null,
+               "description" : "A hostname or IP address to connect to."
             },
             {
-               "value_type" : 0,
-               "name" : "Use IPv6",
-               "option" : "use-ipv6",
-               "mandatory" : 0,
                "multiple" : 0,
+               "description" : "Use IPv6 to connect to the host.",
+               "value_type" : 0,
+               "mandatory" : 0,
+               "option" : "use-ipv6",
                "default" : null,
-               "description" : "Use IPv6 to connect to the host."
+               "name" : "Use IPv6"
             }
          ],
-         "flags" : "",
+         "examples" : [
+            {
+               "description" : [
+                  "Simple example:",
+                  "",
+                  "- return WARNING if idleworker is less than 10",
+                  "- return critical if idleworker is less than 5",
+                  "- return warning if reqpersec is equal or higher than 1000",
+                  "- return critical if reqpersec is equal or higher than 2000"
+               ],
+               "command_line" : "check-lighttpd --url 'http://localhost/server-status?auto' --warning 'idleworker:ge:10' --critical 'idleworker:ge:5' --warning 'reqpersec:ge:1000' --critical 'reqpersec:ge:2000'",
+               "arguments" : [
+                  "url",
+                  "http://localhost/server-status?auto",
+                  "warning",
+                  "idleworker:ge:10",
+                  "critical",
+                  "idleworker:ge:5",
+                  "warning",
+                  "reqpersec:ge:1000",
+                  "critical",
+                  "reqpersec:ge:2000"
+               ]
+            }
+         ],
          "version" : "0.3",
          "thresholds" : {
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "idleworker"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "reqpersec"
+               },
+               {
+                  "key" : "bytperreq",
+                  "unit" : "bytes"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "bytpersec"
+               }
+            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -109,276 +369,16 @@
                "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
                "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
                "    GB = Gigabytes   EB = Exabytes\n\n"
-            ],
-            "options" : [
-               {
-                  "unit" : "none",
-                  "key" : "idleworker"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "reqpersec"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "bytperreq"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "bytpersec"
-               }
             ]
-         },
-         "examples" : [
-            {
-               "command_line" : "check-lighttpd --url 'http://localhost/server-status?auto' --warning 'idleworker:ge:10' --critical 'idleworker:ge:5' --warning 'reqpersec:ge:1000' --critical 'reqpersec:ge:2000'",
-               "arguments" : [
-                  "url",
-                  "http://localhost/server-status?auto",
-                  "warning",
-                  "idleworker:ge:10",
-                  "critical",
-                  "idleworker:ge:5",
-                  "warning",
-                  "reqpersec:ge:1000",
-                  "critical",
-                  "reqpersec:ge:2000"
-               ],
-               "description" : [
-                  "Simple example:",
-                  "",
-                  "- return WARNING if idleworker is less than 10",
-                  "- return critical if idleworker is less than 5",
-                  "- return warning if reqpersec is equal or higher than 1000",
-                  "- return critical if reqpersec is equal or higher than 2000"
-               ]
-            }
-         ]
+         }
       },
-      "plugin" : "Lighttpd.Status",
-      "prefer" : "localhost",
-      "description" : "Lighttpd webserver statistics and process status.",
+      "abstract" : "Lighttpd server status",
       "netaccess" : "yes",
       "id" : "16",
-      "category" : "System,Webserver,Lighttpd",
-      "abstract" : "Lighttpd server status",
       "command" : "check-lighttpd",
-      "datatype" : "statistic"
-   },
-   "chart" : [
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "count",
-            "series" : [
-               {
-                  "color" : "#66c066",
-                  "name" : "waitproc"
-               },
-               {
-                  "color" : "#0000ff",
-                  "name" : "startup"
-               },
-               {
-                  "color" : "#ff6666",
-                  "name" : "readreq"
-               },
-               {
-                  "color" : "#bf00bf",
-                  "name" : "sendrep"
-               },
-               {
-                  "color" : "#ff0000",
-                  "name" : "keepalive"
-               },
-               {
-                  "color" : "#7648eb",
-                  "name" : "dnslookup"
-               },
-               {
-                  "color" : "#7f7fff",
-                  "name" : "closeconn"
-               },
-               {
-                  "color" : "#00ffff",
-                  "name" : "loggging"
-               },
-               {
-                  "color" : "#000000",
-                  "name" : "gracefin"
-               },
-               {
-                  "color" : "#66c066",
-                  "name" : "idleclw"
-               }
-            ]
-         },
-         "title" : "Lighttpd - process status",
-         "id" : "1"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "idle (-) / busy (+)",
-            "series" : [
-               {
-                  "color" : "#005467",
-                  "name" : "busyworkers"
-               },
-               {
-                  "opposite" : "true",
-                  "color" : "#ff7a0d",
-                  "name" : "idleworker"
-               }
-            ]
-         },
-         "title" : "Lighttpd - workers",
-         "id" : "2"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "bytes/req (-) - bytes/s (+)",
-            "series" : [
-               {
-                  "color" : "#005467",
-                  "name" : "bytpersec"
-               },
-               {
-                  "opposite" : "true",
-                  "color" : "#ff7a0d",
-                  "name" : "bytperreq"
-               }
-            ],
-            "units" : "bytes"
-         },
-         "title" : "Lighttpd - bytes/s, bytes/req",
-         "id" : "3"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "requests/s",
-            "series" : {
-               "color" : "#005467",
-               "name" : "reqpersec"
-            }
-         },
-         "title" : "Lighttpd - requests",
-         "id" : "4"
-      }
-   ],
-   "statistic" : [
-      {
-         "description" : "Sending Reply.",
-         "alias" : "Sending reply",
-         "statkey" : "sendrep",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Reading Request.",
-         "alias" : "Reading request",
-         "statkey" : "readreq",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Bytes per request.",
-         "alias" : "Bytes/request",
-         "statkey" : "bytperreq",
-         "units" : "bytes",
-         "datatype" : "float"
-      },
-      {
-         "description" : "Keepalive read.",
-         "alias" : "Keepalive read",
-         "statkey" : "keepalive",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "DNS Lookup.",
-         "alias" : "DNS lookup",
-         "statkey" : "dnslookup",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Idle workers.",
-         "alias" : "Idle workers",
-         "statkey" : "idleworker",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Waiting for Connection.",
-         "alias" : "Waiting for connection",
-         "statkey" : "waitproc",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Requests per second.",
-         "alias" : "Requests/second",
-         "statkey" : "reqpersec",
-         "datatype" : "float"
-      },
-      {
-         "description" : "Starting up.",
-         "alias" : "Starting up",
-         "statkey" : "startup",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Bytes per second.",
-         "alias" : "Bytes/second",
-         "statkey" : "bytpersec",
-         "units" : "bytes",
-         "datatype" : "float"
-      },
-      {
-         "description" : "Gracefully finishing.",
-         "alias" : "Gracefully finishing",
-         "statkey" : "gracefin",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Idle cleanup of worker.",
-         "alias" : "Idle cleanup",
-         "statkey" : "idleclw",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Logging.",
-         "alias" : "Logging",
-         "statkey" : "logging",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Workers currently busy.",
-         "alias" : "Busy workers",
-         "statkey" : "busyworkers",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Closing connection.",
-         "alias" : "Closing connection",
-         "statkey" : "closeconn",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Open slot with no current process.",
-         "alias" : "Open slots",
-         "statkey" : "openslot",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Total accesses processed.",
-         "alias" : "Total accesses",
-         "statkey" : "ttlacc",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Total bytes processed.",
-         "alias" : "Total bytes",
-         "statkey" : "ttlbyt",
-         "units" : "bytes",
-         "datatype" : "bigint"
-      }
-   ]
+      "description" : "Lighttpd webserver statistics and process status.",
+      "category" : "System,Webserver,Lighttpd",
+      "datatype" : "statistic",
+      "plugin" : "Lighttpd.Status"
+   }
 }

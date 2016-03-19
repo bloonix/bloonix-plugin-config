@@ -1,91 +1,1567 @@
 {
-   "plugin" : {
-      "info" : {
-         "plugin" : "check-mysql5",
-         "options" : [
-            {
-               "name" : "Warning threshold",
-               "default" : null,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "option" : "warning",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+   "statistic" : [
+      {
+         "alias" : "Aborted clients",
+         "statkey" : "aborted_clients",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Aborted_clients."
+      },
+      {
+         "statkey" : "aborted_connects",
+         "alias" : "Aborted connects",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Aborted_connects."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Bytes_received.",
+         "units" : "bytes",
+         "datatype" : "float",
+         "alias" : "Bytes received",
+         "statkey" : "bytes_received"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "bytes_sent",
+         "alias" : "Bytes sent",
+         "description" : "See MySQL documentation, statistic variable Bytes_sent.",
+         "units" : "bytes"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Com_alter_table.",
+         "datatype" : "float",
+         "alias" : "Alter",
+         "statkey" : "com_alter_table"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Delete",
+         "statkey" : "com_delete",
+         "description" : "See MySQL documentation, statistic variable Com_delete."
+      },
+      {
+         "alias" : "Drop",
+         "statkey" : "com_drop_table",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Com_drop_table."
+      },
+      {
+         "statkey" : "com_insert",
+         "alias" : "Insert",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Com_insert."
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Lock",
+         "statkey" : "com_lock_tables",
+         "description" : "See MySQL documentation, statistic variable Com_lock_tables."
+      },
+      {
+         "alias" : "Select",
+         "statkey" : "com_select",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Com_select."
+      },
+      {
+         "statkey" : "com_truncate",
+         "alias" : "Truncate",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Com_truncate."
+      },
+      {
+         "statkey" : "com_unlock_tables",
+         "alias" : "Unlock",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Com_unlock_tables."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Com_update.",
+         "datatype" : "float",
+         "statkey" : "com_update",
+         "alias" : "Update"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "connections",
+         "alias" : "Connections",
+         "description" : "See MySQL documentation, statistic variable Connections."
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "ctmp_disk_table",
+         "alias" : "TMP disk tables created",
+         "description" : "See MySQL documentation, statistic variable Created_tmp_disk_tables."
+      },
+      {
+         "alias" : "TMP files created",
+         "statkey" : "ctmp_tmp_files",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Created_tmp_files."
+      },
+      {
+         "statkey" : "ctmp_tmp_tables",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Created_tmp_tables."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Delayed_errors.",
+         "statkey" : "delayed_errors",
+         "alias" : "Delayed errors",
+         "datatype" : "float"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Delayed_insert_threads.",
+         "datatype" : "bigint",
+         "statkey" : "delayed_insert_thrd",
+         "alias" : "Delayed inserts"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Delayed writes",
+         "statkey" : "delayed_writes",
+         "description" : "See MySQL documentation, statistic variable Delayed_writes."
+      },
+      {
+         "datatype" : "bigint",
+         "statkey" : "ibbufpool_pg_data",
+         "alias" : "Pages data",
+         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_pages_data."
+      },
+      {
+         "alias" : "Pages dirty",
+         "statkey" : "ibbufpool_pg_dirty",
+         "datatype" : "bigint",
+         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_pages_dirty."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_pages_flushed.",
+         "datatype" : "bigint",
+         "statkey" : "ibbufpool_pg_flush",
+         "alias" : "Page flushes"
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Free pages",
+         "statkey" : "ibbufpool_pg_free",
+         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_pages_free."
+      },
+      {
+         "alias" : "Total pages",
+         "statkey" : "ibbufpool_pg_total",
+         "datatype" : "bigint",
+         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_pages_total."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_read_ahead_rnd.",
+         "datatype" : "float",
+         "statkey" : "ibbufpool_rah_rnd",
+         "alias" : "Random read aheads"
+      },
+      {
+         "statkey" : "ibbufpool_rah_seq",
+         "alias" : "Sequential read aheads",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_read_ahead_seq."
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "ibbufpool_read_req",
+         "alias" : "Read requests",
+         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_read_requests."
+      },
+      {
+         "statkey" : "ibbufpool_reads",
+         "alias" : "Reads",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_reads."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_wait_free.",
+         "datatype" : "float",
+         "alias" : "Wait free",
+         "statkey" : "ibbufpool_wait_free"
+      },
+      {
+         "alias" : "Write requests",
+         "statkey" : "ibbufpool_write_req",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_write_requests."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Innodb_data_fsyncs.",
+         "datatype" : "float",
+         "statkey" : "ibdata_fsyncs",
+         "alias" : "Fsyncs"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Innodb_data_pending_fsyncs.",
+         "datatype" : "bigint",
+         "alias" : "Pending fsyncs",
+         "statkey" : "ibdata_pend_fsyncs"
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Pending reads",
+         "statkey" : "ibdata_pend_reads",
+         "description" : "See MySQL documentation, statistic variable Innodb_data_pending_reads."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Innodb_data_pending_writes.",
+         "datatype" : "bigint",
+         "alias" : "Pending writes",
+         "statkey" : "ibdata_pend_writes"
+      },
+      {
+         "units" : "bytes",
+         "description" : "See MySQL documentation, statistic variable Innodb_data_read.",
+         "alias" : "Data read",
+         "statkey" : "ibdata_read",
+         "datatype" : "float"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Innodb_data_reads.",
+         "datatype" : "float",
+         "statkey" : "ibdata_reads",
+         "alias" : "Data reads"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Innodb_data_writes.",
+         "statkey" : "ibdata_writes",
+         "alias" : "Data writes",
+         "datatype" : "float"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Innodb_data_written.",
+         "units" : "bytes",
+         "datatype" : "float",
+         "alias" : "Data written",
+         "statkey" : "ibdata_written"
+      },
+      {
+         "alias" : "Page read",
+         "statkey" : "ibdata_pg_read",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Innodb_pages_read."
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "ibdata_pg_written",
+         "alias" : "Pages written",
+         "description" : "See MySQL documentation, statistic variable Innodb_pages_written."
+      },
+      {
+         "alias" : "Current row locks",
+         "statkey" : "ibrow_lock_cur_wait",
+         "datatype" : "bigint",
+         "description" : "See MySQL documentation, statistic variable Innodb_row_lock_current_waits."
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Row lock time",
+         "statkey" : "ibrow_lock_time",
+         "description" : "See MySQL documentation, statistic variable Innodb_row_lock_time."
+      },
+      {
+         "statkey" : "ibrow_lock_time_avg",
+         "alias" : "Row lock average time",
+         "datatype" : "bigint",
+         "description" : "See MySQL documentation, statistic variable Innodb_row_lock_time_avg."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Innodb_row_lock_waits.",
+         "datatype" : "float",
+         "statkey" : "ibrow_lock_waits",
+         "alias" : "Row lock waits"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "ibrows_deleted",
+         "alias" : "Rows deleted",
+         "description" : "See MySQL documentation, statistic variable Innodb_rows_deleted."
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "ibrows_inserted",
+         "alias" : "Rows inserted",
+         "description" : "See MySQL documentation, statistic variable Innodb_rows_inserted."
+      },
+      {
+         "alias" : "Rows read",
+         "statkey" : "ibrows_read",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Innodb_rows_read."
+      },
+      {
+         "statkey" : "ibrows_updated",
+         "alias" : "Rows updated",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Innodb_rows_updated."
+      },
+      {
+         "statkey" : "key_blocks_unused",
+         "alias" : "Blocks unused",
+         "datatype" : "bigint",
+         "description" : "See MySQL documentation, statistic variable Key_blocks_unused."
+      },
+      {
+         "datatype" : "bigint",
+         "statkey" : "key_blocks_used",
+         "alias" : "Blocks used",
+         "description" : "See MySQL documentation, statistic variable Key_blocks_used."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Key_read_requests.",
+         "alias" : "Read requests",
+         "statkey" : "key_read_requests",
+         "datatype" : "float"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Key_reads.",
+         "alias" : "Reads",
+         "statkey" : "key_reads",
+         "datatype" : "float"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Key_write_requests.",
+         "datatype" : "float",
+         "statkey" : "key_write_requests",
+         "alias" : "Write requests"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Key_writes.",
+         "datatype" : "float",
+         "alias" : "Writes",
+         "statkey" : "key_writes"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Max_used_connections.",
+         "datatype" : "bigint",
+         "statkey" : "max_used_conn",
+         "alias" : "Max used connections"
+      },
+      {
+         "statkey" : "open_tables",
+         "alias" : "Open tables",
+         "datatype" : "bigint",
+         "description" : "See MySQL documentation, statistic variable Open_tables."
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "opened_tables",
+         "alias" : "Opened tables",
+         "description" : "See MySQL documentation, statistic variable Opened_tables."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Qcache_free_blocks.",
+         "statkey" : "qc_free_blocks",
+         "alias" : "Free blocks",
+         "datatype" : "bigint"
+      },
+      {
+         "datatype" : "bigint",
+         "statkey" : "qc_free_memory",
+         "alias" : "Free memory",
+         "description" : "See MySQL documentation, statistic variable Qcache_free_memory.",
+         "units" : "bytes"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Qcache_hits.",
+         "datatype" : "float",
+         "alias" : "Hits",
+         "statkey" : "qc_hits"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Qcache_inserts.",
+         "alias" : "Inserts",
+         "statkey" : "qc_inserts",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "qc_lowmem_prunes",
+         "alias" : "Low memory prunes",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Qcache_lowmem_prunes."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Qcache_not_cached.",
+         "datatype" : "float",
+         "alias" : "Not cached",
+         "statkey" : "qc_not_cached"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Qcache_queries_in_cache.",
+         "statkey" : "qc_queries_in_cache",
+         "alias" : "Queries in cache",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Qcache_total_blocks.",
+         "datatype" : "bigint",
+         "statkey" : "qc_total_blocks",
+         "alias" : "Total blocks"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Questions.",
+         "statkey" : "questions",
+         "alias" : "Questions",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "sel_full_join",
+         "alias" : "Full join",
+         "description" : "See MySQL documentation, statistic variable Select_full_join."
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "sel_full_range_join",
+         "alias" : "Full range join",
+         "description" : "See MySQL documentation, statistic variable Select_full_range_join."
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "sel_range",
+         "alias" : "Range",
+         "description" : "See MySQL documentation, statistic variable Select_range."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Select_range_check.",
+         "datatype" : "float",
+         "statkey" : "sel_range_check",
+         "alias" : "Range check"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Select_scan.",
+         "datatype" : "float",
+         "alias" : "Scans",
+         "statkey" : "sel_scan"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Slow_queries.",
+         "datatype" : "float",
+         "alias" : "Slow queries",
+         "statkey" : "slow_queries"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Sort_merge_passes.",
+         "alias" : "Merge passes",
+         "statkey" : "sort_merge_passes",
+         "datatype" : "float"
+      },
+      {
+         "alias" : "Range sorts",
+         "statkey" : "sort_range",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Sort_range."
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Rows sorted",
+         "statkey" : "sort_rows",
+         "description" : "See MySQL documentation, statistic variable Sort_rows."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Sort_scan.",
+         "alias" : "Rows scanned",
+         "statkey" : "sort_scan",
+         "datatype" : "float"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Table_locks_immediate.",
+         "datatype" : "float",
+         "statkey" : "tab_locks_immediate",
+         "alias" : "Immediate locks"
+      },
+      {
+         "statkey" : "tab_locks_waited",
+         "alias" : "Locks waited",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Table_locks_waited."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Threads_cached.",
+         "alias" : "Cached",
+         "statkey" : "threads_cached",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Threads_connected.",
+         "alias" : "Connected",
+         "statkey" : "threads_connected",
+         "datatype" : "bigint"
+      },
+      {
+         "alias" : "Created",
+         "statkey" : "threads_created",
+         "datatype" : "float",
+         "description" : "See MySQL documentation, statistic variable Threads_created."
+      },
+      {
+         "description" : "See MySQL documentation, statistic variable Threads_running.",
+         "datatype" : "bigint",
+         "statkey" : "threads_running",
+         "alias" : "Running"
+      }
+   ],
+   "chart" : [
+      {
+         "id" : "1",
+         "title" : "MySQL - Aborted clients / connects",
+         "options" : {
+            "chart-type" : "area",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "aborted_clients"
+               },
+               {
+                  "name" : "aborted_connects",
+                  "opposite" : "true",
+                  "color" : "#005467"
+               }
+            ],
+            "units" : "null",
+            "ylabel" : "aborts/s"
+         }
+      },
+      {
+         "id" : "2",
+         "title" : "MySQL - Bytes received / sent",
+         "options" : {
+            "ylabel" : "bytes/s",
+            "series" : [
+               {
+                  "name" : "bytes_sent",
+                  "color" : "#005467"
+               },
+               {
+                  "name" : "bytes_received",
+                  "opposite" : "true",
+                  "color" : "#ff7a0d"
+               }
+            ],
+            "chart-type" : "area",
+            "units" : "bytes"
+         }
+      },
+      {
+         "options" : {
+            "ylabel" : "commands/s",
+            "series" : [
+               {
+                  "name" : "com_alter_table",
+                  "color" : "#ffb244"
+               },
+               {
+                  "color" : "#9a72ad",
+                  "name" : "com_drop_table"
+               },
+               {
+                  "color" : "#e9644a",
+                  "name" : "com_lock_tables"
+               },
+               {
+                  "name" : "com_unlock_tables",
+                  "color" : "#005467"
+               }
+            ],
+            "chart-type" : "area",
+            "units" : "null"
+         },
+         "title" : "MySQL - Table commands",
+         "id" : "3"
+      },
+      {
+         "title" : "MySQL - Commands",
+         "id" : "4",
+         "options" : {
+            "chart-type" : "area",
+            "series" : [
+               {
+                  "name" : "com_select",
+                  "color" : "#ffb244"
+               },
+               {
+                  "color" : "#9a72ad",
+                  "name" : "com_insert"
+               },
+               {
+                  "color" : "#e9644a",
+                  "name" : "com_update"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "com_delete"
+               },
+               {
+                  "name" : "com_truncate",
+                  "color" : "#2ba743"
+               }
+            ],
+            "units" : "null",
+            "ylabel" : "commands/s"
+         }
+      },
+      {
+         "options" : {
+            "ylabel" : "connections/s",
+            "chart-type" : "area",
+            "series" : {
+               "name" : "connections",
+               "color" : "#ff7a0d"
             },
-            {
-               "name" : "Critical threshold",
-               "default" : null,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "option" : "critical",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+            "units" : "null"
+         },
+         "title" : "MySQL - Connections",
+         "id" : "5"
+      },
+      {
+         "id" : "6",
+         "title" : "MySQL - Created tmp tables / files",
+         "options" : {
+            "chart-type" : "area",
+            "series" : [
+               {
+                  "name" : "ctmp_disk_table",
+                  "color" : "#ffb244"
+               },
+               {
+                  "name" : "ctmp_tmp_files",
+                  "color" : "#9a72ad"
+               },
+               {
+                  "color" : "#e9644a",
+                  "name" : "ctmp_tmp_tables"
+               }
+            ],
+            "units" : "null",
+            "ylabel" : "created/s"
+         }
+      },
+      {
+         "id" : "7",
+         "title" : "MySQL - Delayed errors / writes",
+         "options" : {
+            "units" : "null",
+            "chart-type" : "area",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "delayed_errors"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "delayed_writes",
+                  "opposite" : "true"
+               }
+            ],
+            "ylabel" : "delays/s"
+         }
+      },
+      {
+         "id" : "8",
+         "title" : "MySQL - Delayed insert threads",
+         "options" : {
+            "series" : {
+               "name" : "delayed_insert_thrd",
+               "color" : "#005467"
             },
-            {
-               "name" : "Hostname or IP address",
-               "default" : null,
-               "description" : "A hostname or IP address to connect to.",
-               "value_type" : "string",
-               "option" : "host",
-               "mandatory" : 1,
-               "multiple" : 0,
-               "value_desc" : "hostname or ip address"
+            "chart-type" : "area",
+            "units" : "null",
+            "ylabel" : "delays"
+         }
+      },
+      {
+         "title" : "MySQL - Innodb buffer pool pages",
+         "id" : "9",
+         "options" : {
+            "units" : "default",
+            "chart-type" : "area",
+            "series" : [
+               {
+                  "name" : "ibbufpool_pg_data",
+                  "color" : "#ffb244"
+               },
+               {
+                  "color" : "#9a72ad",
+                  "name" : "ibbufpool_pg_dirty"
+               },
+               {
+                  "color" : "#e9644a",
+                  "name" : "ibbufpool_pg_flush"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "ibbufpool_pg_total"
+               },
+               {
+                  "name" : "ibbufpool_pg_free",
+                  "color" : "#2ba743"
+               }
+            ],
+            "ylabel" : "pages"
+         }
+      },
+      {
+         "options" : {
+            "ylabel" : "read/s",
+            "units" : "default",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "ibbufpool_rah_rnd"
+               },
+               {
+                  "opposite" : "true",
+                  "name" : "ibbufpool_rah_seq",
+                  "color" : "#005467"
+               }
+            ],
+            "chart-type" : "area"
+         },
+         "title" : "MySQL - Innodb buffer pool read ahead rnd / seq",
+         "id" : "10"
+      },
+      {
+         "id" : "11",
+         "title" : "MySQL - Innodb buffer pool",
+         "options" : {
+            "units" : "bytes",
+            "series" : [
+               {
+                  "name" : "ibbufpool_read_req",
+                  "color" : "#ffb244"
+               },
+               {
+                  "color" : "#9a72ad",
+                  "name" : "ibbufpool_reads"
+               },
+               {
+                  "color" : "#e9644a",
+                  "name" : "ibbufpool_wait_free"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "ibbufpool_write_req"
+               }
+            ],
+            "chart-type" : "area",
+            "ylabel" : "count/s"
+         }
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "series" : {
+               "color" : "#005467",
+               "name" : "ibdata_fsyncs"
             },
-            {
-               "name" : "Port number",
-               "default" : 3306,
-               "description" : "A port number to connect to.",
-               "value_type" : "int",
-               "option" : "port",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "port"
+            "units" : "default",
+            "ylabel" : "fsyncs/s"
+         },
+         "id" : "12",
+         "title" : "MySQL - Innodb data fsyncs"
+      },
+      {
+         "options" : {
+            "ylabel" : "count",
+            "units" : "default",
+            "chart-type" : "area",
+            "series" : [
+               {
+                  "name" : "ibdata_pend_fsyncs",
+                  "color" : "#ffb244"
+               },
+               {
+                  "name" : "ibdata_pend_reads",
+                  "color" : "#9a72ad"
+               },
+               {
+                  "color" : "#e9644a",
+                  "name" : "ibdata_pend_writes"
+               }
+            ]
+         },
+         "title" : "MySQL - Innodb data pendings",
+         "id" : "13"
+      },
+      {
+         "id" : "14",
+         "title" : "MySQL - Innodb data read / written",
+         "options" : {
+            "units" : "bytes",
+            "series" : [
+               {
+                  "name" : "ibdata_read",
+                  "color" : "#ff7a0d"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "ibdata_written",
+                  "opposite" : "true"
+               }
+            ],
+            "chart-type" : "area",
+            "ylabel" : "bytes/s"
+         }
+      },
+      {
+         "options" : {
+            "ylabel" : "count/s",
+            "units" : "default",
+            "chart-type" : "area",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "ibdata_reads"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "ibdata_writes",
+                  "opposite" : "true"
+               }
+            ]
+         },
+         "id" : "15",
+         "title" : "MySQL - Innodb data reads / writes"
+      },
+      {
+         "options" : {
+            "series" : [
+               {
+                  "name" : "ibdata_pg_read",
+                  "color" : "#ff7a0d"
+               },
+               {
+                  "opposite" : "true",
+                  "name" : "ibdata_pg_written",
+                  "color" : "#005467"
+               }
+            ],
+            "chart-type" : "area",
+            "units" : "default",
+            "ylabel" : "pages/s"
+         },
+         "title" : "MySQL - Innodb pages read / written",
+         "id" : "16"
+      },
+      {
+         "options" : {
+            "series" : {
+               "color" : "#005467",
+               "name" : "ibrow_lock_cur_wait"
             },
-            {
-               "name" : "Secret file",
-               "default" : null,
-               "description" : "This is the secret file with the username and password to connect to the service.",
-               "value_type" : "string",
-               "option" : "secret-file",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "filename"
+            "chart-type" : "area",
+            "units" : "default",
+            "ylabel" : "lock waits"
+         },
+         "id" : "17",
+         "title" : "MySQL - Innodb row lock current waits"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "series" : {
+               "color" : "#005467",
+               "name" : "ibrow_lock_time"
             },
-            {
-               "name" : "Username",
-               "default" : null,
-               "description" : "The username to use for the login.",
-               "value_type" : "string",
-               "option" : "username",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "username"
-            },
-            {
-               "name" : "Password",
-               "default" : null,
-               "description" : "The password for the user to login.",
-               "value_type" : "string",
-               "option" : "password",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "password"
-            },
-            {
-               "value_type" : 0,
-               "name" : "Use secure connection via SSL",
-               "option" : "use-ssl",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "default" : null,
-               "description" : "Use secure connection via SSL."
+            "units" : "default",
+            "ylabel" : "wasted time in milliseconds"
+         },
+         "id" : "18",
+         "title" : "MySQL - Innodb row lock time"
+      },
+      {
+         "options" : {
+            "ylabel" : "average in milliseconds",
+            "units" : "null",
+            "chart-type" : "area",
+            "series" : {
+               "name" : "ibrow_lock_time_avg",
+               "color" : "#ff7a0d"
             }
-         ],
-         "flags" : "",
-         "version" : "0.8",
+         },
+         "title" : "MySQL - Innodb row lock time avg",
+         "id" : "19"
+      },
+      {
+         "options" : {
+            "units" : "null",
+            "series" : {
+               "color" : "#005467",
+               "name" : "ibrow_lock_waits"
+            },
+            "chart-type" : "area",
+            "ylabel" : "waits/s"
+         },
+         "title" : "MySQL - Innodb row lock waits",
+         "id" : "20"
+      },
+      {
+         "id" : "21",
+         "title" : "MySQL - Innodb rows",
+         "options" : {
+            "ylabel" : "rows/s",
+            "units" : "null",
+            "chart-type" : "line",
+            "series" : [
+               {
+                  "color" : "#ffb244",
+                  "name" : "ibrows_deleted"
+               },
+               {
+                  "name" : "ibrows_inserted",
+                  "color" : "#9a72ad"
+               },
+               {
+                  "name" : "ibrows_updated",
+                  "color" : "#e9644a"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "ibrows_read"
+               }
+            ]
+         }
+      },
+      {
+         "id" : "22",
+         "title" : "MySQL - Key blocks unused / used",
+         "options" : {
+            "ylabel" : "blocks",
+            "series" : [
+               {
+                  "name" : "key_blocks_used",
+                  "color" : "#005467"
+               },
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "key_blocks_unused"
+               }
+            ],
+            "chart-type" : "area",
+            "units" : "default"
+         }
+      },
+      {
+         "id" : "23",
+         "title" : "MySQL - Key read / write requests",
+         "options" : {
+            "units" : "default",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "key_write_requests"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "key_read_requests",
+                  "opposite" : "true"
+               }
+            ],
+            "chart-type" : "area",
+            "ylabel" : "requests/s"
+         }
+      },
+      {
+         "options" : {
+            "ylabel" : "count/s",
+            "units" : "default",
+            "chart-type" : "area",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "key_reads"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "key_writes",
+                  "opposite" : "true"
+               }
+            ]
+         },
+         "id" : "24",
+         "title" : "MySQL - Key reads / writes"
+      },
+      {
+         "id" : "25",
+         "title" : "MySQL - Max used connections",
+         "options" : {
+            "chart-type" : "area",
+            "series" : {
+               "name" : "max_used_conn",
+               "color" : "#ff7a0d"
+            },
+            "units" : "null",
+            "ylabel" : "connections"
+         }
+      },
+      {
+         "options" : {
+            "ylabel" : "count",
+            "series" : {
+               "color" : "#ff7a0d",
+               "name" : "open_tables"
+            },
+            "chart-type" : "area",
+            "units" : "null"
+         },
+         "title" : "MySQL - Open tables",
+         "id" : "26"
+      },
+      {
+         "options" : {
+            "ylabel" : "opened/s",
+            "units" : "null",
+            "chart-type" : "area",
+            "series" : {
+               "name" : "opened_tables",
+               "color" : "#ff7a0d"
+            }
+         },
+         "title" : "MySQL - Opened tables",
+         "id" : "27"
+      },
+      {
+         "options" : {
+            "units" : "default",
+            "series" : {
+               "color" : "#ff7a0d",
+               "name" : "qc_free_blocks"
+            },
+            "chart-type" : "area",
+            "ylabel" : "blocks"
+         },
+         "id" : "28",
+         "title" : "MySQL - Qcache blocks"
+      },
+      {
+         "title" : "MySQL - Qcache free memory",
+         "id" : "29",
+         "options" : {
+            "ylabel" : "bytes",
+            "series" : {
+               "color" : "#005467",
+               "name" : "qc_free_memory"
+            },
+            "chart-type" : "area",
+            "units" : "bytes"
+         }
+      },
+      {
+         "options" : {
+            "series" : [
+               {
+                  "name" : "qc_hits",
+                  "color" : "#ffb244"
+               },
+               {
+                  "name" : "qc_inserts",
+                  "color" : "#9a72ad"
+               },
+               {
+                  "name" : "qc_lowmem_prunes",
+                  "color" : "#e9644a"
+               },
+               {
+                  "name" : "qc_not_cached",
+                  "color" : "#005467"
+               }
+            ],
+            "chart-type" : "line",
+            "units" : "default",
+            "ylabel" : "count/s"
+         },
+         "id" : "30",
+         "title" : "MySQL - Qcache hits"
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "series" : {
+               "color" : "#005467",
+               "name" : "qc_queries_in_cache"
+            },
+            "units" : "default",
+            "ylabel" : "cached queries"
+         },
+         "id" : "31",
+         "title" : "MySQL - Qcache queries in cache"
+      },
+      {
+         "options" : {
+            "ylabel" : "questions/s",
+            "series" : {
+               "color" : "#005467",
+               "name" : "questions"
+            },
+            "chart-type" : "area",
+            "units" : "default"
+         },
+         "title" : "MySQL - Questions",
+         "id" : "32"
+      },
+      {
+         "id" : "33",
+         "title" : "MySQL - Selects",
+         "options" : {
+            "ylabel" : "selects/s",
+            "chart-type" : "line",
+            "series" : [
+               {
+                  "color" : "#ffb244",
+                  "name" : "sel_full_join"
+               },
+               {
+                  "name" : "sel_full_range_join",
+                  "color" : "#9a72ad"
+               },
+               {
+                  "color" : "#e9644a",
+                  "name" : "sel_range"
+               },
+               {
+                  "name" : "sel_range_check",
+                  "color" : "#005467"
+               },
+               {
+                  "color" : "#2ba743",
+                  "name" : "sel_scan"
+               }
+            ],
+            "units" : "null"
+         }
+      },
+      {
+         "options" : {
+            "series" : {
+               "name" : "slow_queries",
+               "color" : "#005467"
+            },
+            "chart-type" : "area",
+            "units" : "null",
+            "ylabel" : "queries/s"
+         },
+         "id" : "34",
+         "title" : "MySQL - Slow queries"
+      },
+      {
+         "options" : {
+            "ylabel" : "sorts/s",
+            "units" : "null",
+            "series" : [
+               {
+                  "color" : "#ffb244",
+                  "name" : "sort_merge_passes"
+               },
+               {
+                  "color" : "#9a72ad",
+                  "name" : "sort_range"
+               },
+               {
+                  "color" : "#e9644a",
+                  "name" : "sort_rows"
+               },
+               {
+                  "name" : "sort_scan",
+                  "color" : "#005467"
+               }
+            ],
+            "chart-type" : "area"
+         },
+         "title" : "MySQL - Sorts",
+         "id" : "35"
+      },
+      {
+         "options" : {
+            "units" : "null",
+            "chart-type" : "area",
+            "series" : [
+               {
+                  "color" : "#005467",
+                  "name" : "tab_locks_waited"
+               },
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "tab_locks_immediate",
+                  "opposite" : "true"
+               }
+            ],
+            "ylabel" : "locks/s"
+         },
+         "title" : "MySQL - Table locks",
+         "id" : "36"
+      },
+      {
+         "title" : "MySQL - Threads",
+         "id" : "37",
+         "options" : {
+            "units" : "null",
+            "chart-type" : "line",
+            "series" : [
+               {
+                  "name" : "threads_cached",
+                  "color" : "#ffb244"
+               },
+               {
+                  "color" : "#9a72ad",
+                  "name" : "threads_connected"
+               },
+               {
+                  "name" : "threads_created",
+                  "color" : "#e9644a"
+               },
+               {
+                  "color" : "#005467",
+                  "name" : "threads_running"
+               }
+            ],
+            "ylabel" : "threads"
+         }
+      }
+   ],
+   "plugin" : {
+      "prefer" : "localhost",
+      "plugin" : "MySQL5.Status",
+      "description" : "MySQL innodb and myisam statistics.",
+      "command" : "check-mysql5",
+      "category" : "Database,MySQL",
+      "info" : {
          "thresholds" : {
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "ibrow_lock_waits"
+               },
+               {
+                  "key" : "ibdata_pend_fsyncs",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "qc_free_memory"
+               },
+               {
+                  "key" : "sel_range",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "ibrow_lock_time",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "aborted_connects"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "key_blocks_used"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibdata_pend_reads"
+               },
+               {
+                  "key" : "key_reads",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "threads_cached",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "sel_full_range_join"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibdata_pg_written"
+               },
+               {
+                  "key" : "ibdata_written",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibbufpool_pg_total"
+               },
+               {
+                  "key" : "bytes_sent",
+                  "unit" : "bytes"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibbufpool_wait_free"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "bytes_received"
+               },
+               {
+                  "key" : "ibrow_lock_time_avg",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "delayed_errors"
+               },
+               {
+                  "key" : "qc_lowmem_prunes",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "sort_merge_passes"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "key_write_requests"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "tab_locks_immediate"
+               },
+               {
+                  "key" : "threads_created",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "qc_queries_in_cache",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "slow_queries"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibrows_inserted"
+               },
+               {
+                  "key" : "sel_scan",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "com_lock_tables"
+               },
+               {
+                  "key" : "qc_total_blocks",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "ibbufpool_pg_data",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibrows_deleted"
+               },
+               {
+                  "key" : "ibbufpool_pg_free",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "questions"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibdata_reads"
+               },
+               {
+                  "key" : "com_delete",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibdata_read"
+               },
+               {
+                  "key" : "qc_hits",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "opened_tables"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "aborted_clients"
+               },
+               {
+                  "key" : "com_insert",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "sort_scan",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "ctmp_tmp_files",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "ibbufpool_rah_rnd",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "sel_full_join",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "ibrows_read",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "delayed_insert_thrd",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibbufpool_rah_seq"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "max_used_conn"
+               },
+               {
+                  "key" : "ibdata_fsyncs",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "qc_inserts"
+               },
+               {
+                  "key" : "ctmp_disk_table",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibdata_pend_writes"
+               },
+               {
+                  "key" : "threads_running",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "com_truncate",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "open_tables"
+               },
+               {
+                  "key" : "ibbufpool_write_req",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibbufpool_read_req"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibdata_pg_read"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "qc_not_cached"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "com_unlock_tables"
+               },
+               {
+                  "key" : "com_select",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "key_writes",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "qc_free_blocks"
+               },
+               {
+                  "key" : "com_drop_table",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "key_read_requests"
+               },
+               {
+                  "key" : "com_alter_table",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "connections",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "threads_connected",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibbufpool_pg_flush"
+               },
+               {
+                  "key" : "ctmp_tmp_tables",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "sort_range"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "sort_rows"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibdata_writes"
+               },
+               {
+                  "key" : "ibbufpool_pg_dirty",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "tab_locks_waited",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "delayed_writes",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "com_update",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "key_blocks_unused"
+               },
+               {
+                  "key" : "sel_range_check",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibrows_updated"
+               },
+               {
+                  "key" : "ibbufpool_reads",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "ibrow_lock_cur_wait"
+               }
+            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -109,342 +1585,9 @@
                "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
                "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
                "    GB = Gigabytes   EB = Exabytes\n\n"
-            ],
-            "options" : [
-               {
-                  "unit" : "none",
-                  "key" : "threads_connected"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibbufpool_pg_total"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "qc_lowmem_prunes"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "com_delete"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "key_read_requests"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "bytes_received"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "delayed_errors"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibdata_pend_reads"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibrow_lock_time_avg"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "sel_full_range_join"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "key_writes"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibrow_lock_time"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "connections"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "sort_merge_passes"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "sel_range"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "open_tables"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "com_truncate"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibrows_updated"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibbufpool_rah_rnd"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "slow_queries"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "sel_scan"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibrows_deleted"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "questions"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "threads_created"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "qc_not_cached"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "com_unlock_tables"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "tab_locks_immediate"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "aborted_connects"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "com_insert"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "tab_locks_waited"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "threads_cached"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "bytes_sent"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibdata_fsyncs"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "sel_full_join"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "key_write_requests"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibdata_written"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibdata_pend_writes"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "max_used_conn"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "aborted_clients"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "delayed_writes"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "sel_range_check"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "opened_tables"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibrow_lock_cur_wait"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "qc_free_blocks"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "qc_free_memory"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "key_blocks_unused"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibrows_inserted"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "com_update"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibbufpool_rah_seq"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ctmp_tmp_files"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "qc_inserts"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibbufpool_pg_data"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibbufpool_pg_free"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibdata_pg_written"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibbufpool_pg_flush"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibdata_writes"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibdata_pg_read"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "key_reads"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "sort_rows"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibbufpool_reads"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "delayed_insert_thrd"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "sort_range"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibbufpool_read_req"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "sort_scan"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "com_lock_tables"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ctmp_disk_table"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "com_alter_table"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibbufpool_write_req"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ctmp_tmp_tables"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "qc_queries_in_cache"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibdata_pend_fsyncs"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "com_select"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibrows_read"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibbufpool_pg_dirty"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "threads_running"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "com_drop_table"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibdata_read"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibbufpool_wait_free"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibrow_lock_waits"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "key_blocks_used"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "ibdata_reads"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "qc_total_blocks"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "qc_hits"
-               }
             ]
          },
+         "plugin" : "check-mysql5",
          "examples" : [
             {
                "command_line" : "check-mysql5 --username 'bloonix' --password 'bloonix' --warning 'slow_queries:5' --critical 'slow_queries:10' --warning 'aborted_connects:5' --critical 'aborted_connects:10'",
@@ -467,7 +1610,6 @@
                ]
             },
             {
-               "command_line" : "check-mysql5 --secret-file 'mysql.conf'",
                "arguments" : [
                   "secret-file",
                   "mysql.conf"
@@ -481,1239 +1623,97 @@
                   "",
                   "    username=root",
                   "    password=secret"
-               ]
+               ],
+               "command_line" : "check-mysql5 --secret-file 'mysql.conf'"
             }
-         ]
+         ],
+         "version" : "0.8",
+         "options" : [
+            {
+               "option" : "warning",
+               "value_type" : "string",
+               "mandatory" : 0,
+               "default" : null,
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "name" : "Warning threshold"
+            },
+            {
+               "default" : null,
+               "multiple" : 1,
+               "option" : "critical",
+               "value_type" : "string",
+               "mandatory" : 0,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_desc" : "key:value or key:op:value",
+               "name" : "Critical threshold"
+            },
+            {
+               "default" : null,
+               "multiple" : 0,
+               "option" : "host",
+               "mandatory" : 1,
+               "value_type" : "string",
+               "description" : "A hostname or IP address to connect to.",
+               "value_desc" : "hostname or ip address",
+               "name" : "Hostname or IP address"
+            },
+            {
+               "value_desc" : "port",
+               "description" : "A port number to connect to.",
+               "name" : "Port number",
+               "default" : 3306,
+               "multiple" : 0,
+               "option" : "port",
+               "mandatory" : 0,
+               "value_type" : "int"
+            },
+            {
+               "multiple" : 0,
+               "default" : null,
+               "mandatory" : 0,
+               "value_type" : "string",
+               "option" : "secret-file",
+               "name" : "Secret file",
+               "value_desc" : "filename",
+               "description" : "This is the secret file with the username and password to connect to the service."
+            },
+            {
+               "multiple" : 0,
+               "default" : null,
+               "value_type" : "string",
+               "mandatory" : 0,
+               "option" : "username",
+               "name" : "Username",
+               "description" : "The username to use for the login.",
+               "value_desc" : "username"
+            },
+            {
+               "description" : "The password for the user to login.",
+               "value_desc" : "password",
+               "name" : "Password",
+               "option" : "password",
+               "mandatory" : 0,
+               "value_type" : "string",
+               "default" : null,
+               "multiple" : 0
+            },
+            {
+               "option" : "use-ssl",
+               "description" : "Use secure connection via SSL.",
+               "name" : "Use secure connection via SSL",
+               "value_type" : 0,
+               "mandatory" : 0,
+               "default" : null,
+               "multiple" : 0
+            }
+         ],
+         "flags" : ""
       },
-      "plugin" : "MySQL5.Status",
-      "prefer" : "localhost",
-      "description" : "MySQL innodb and myisam statistics.",
       "netaccess" : "yes",
-      "id" : "42",
-      "category" : "Database,MySQL",
+      "datatype" : "statistic",
       "abstract" : "MySQL check",
-      "command" : "check-mysql5",
-      "datatype" : "statistic"
-   },
-   "chart" : [
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "aborts/s",
-            "series" : [
-               {
-                  "color" : "#ff7a0d",
-                  "name" : "aborted_clients"
-               },
-               {
-                  "opposite" : "true",
-                  "color" : "#005467",
-                  "name" : "aborted_connects"
-               }
-            ],
-            "units" : "null"
-         },
-         "title" : "MySQL - Aborted clients / connects",
-         "id" : "1"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "bytes/s",
-            "series" : [
-               {
-                  "color" : "#005467",
-                  "name" : "bytes_sent"
-               },
-               {
-                  "opposite" : "true",
-                  "color" : "#ff7a0d",
-                  "name" : "bytes_received"
-               }
-            ],
-            "units" : "bytes"
-         },
-         "title" : "MySQL - Bytes received / sent",
-         "id" : "2"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "commands/s",
-            "series" : [
-               {
-                  "color" : "#ffb244",
-                  "name" : "com_alter_table"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "com_drop_table"
-               },
-               {
-                  "color" : "#e9644a",
-                  "name" : "com_lock_tables"
-               },
-               {
-                  "color" : "#005467",
-                  "name" : "com_unlock_tables"
-               }
-            ],
-            "units" : "null"
-         },
-         "title" : "MySQL - Table commands",
-         "id" : "3"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "commands/s",
-            "series" : [
-               {
-                  "color" : "#ffb244",
-                  "name" : "com_select"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "com_insert"
-               },
-               {
-                  "color" : "#e9644a",
-                  "name" : "com_update"
-               },
-               {
-                  "color" : "#005467",
-                  "name" : "com_delete"
-               },
-               {
-                  "color" : "#2ba743",
-                  "name" : "com_truncate"
-               }
-            ],
-            "units" : "null"
-         },
-         "title" : "MySQL - Commands",
-         "id" : "4"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "connections/s",
-            "series" : {
-               "color" : "#ff7a0d",
-               "name" : "connections"
-            },
-            "units" : "null"
-         },
-         "title" : "MySQL - Connections",
-         "id" : "5"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "created/s",
-            "series" : [
-               {
-                  "color" : "#ffb244",
-                  "name" : "ctmp_disk_table"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "ctmp_tmp_files"
-               },
-               {
-                  "color" : "#e9644a",
-                  "name" : "ctmp_tmp_tables"
-               }
-            ],
-            "units" : "null"
-         },
-         "title" : "MySQL - Created tmp tables / files",
-         "id" : "6"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "delays/s",
-            "series" : [
-               {
-                  "color" : "#ff7a0d",
-                  "name" : "delayed_errors"
-               },
-               {
-                  "opposite" : "true",
-                  "color" : "#005467",
-                  "name" : "delayed_writes"
-               }
-            ],
-            "units" : "null"
-         },
-         "title" : "MySQL - Delayed errors / writes",
-         "id" : "7"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "delays",
-            "series" : {
-               "color" : "#005467",
-               "name" : "delayed_insert_thrd"
-            },
-            "units" : "null"
-         },
-         "title" : "MySQL - Delayed insert threads",
-         "id" : "8"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "pages",
-            "series" : [
-               {
-                  "color" : "#ffb244",
-                  "name" : "ibbufpool_pg_data"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "ibbufpool_pg_dirty"
-               },
-               {
-                  "color" : "#e9644a",
-                  "name" : "ibbufpool_pg_flush"
-               },
-               {
-                  "color" : "#005467",
-                  "name" : "ibbufpool_pg_total"
-               },
-               {
-                  "color" : "#2ba743",
-                  "name" : "ibbufpool_pg_free"
-               }
-            ],
-            "units" : "default"
-         },
-         "title" : "MySQL - Innodb buffer pool pages",
-         "id" : "9"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "read/s",
-            "series" : [
-               {
-                  "color" : "#ff7a0d",
-                  "name" : "ibbufpool_rah_rnd"
-               },
-               {
-                  "opposite" : "true",
-                  "color" : "#005467",
-                  "name" : "ibbufpool_rah_seq"
-               }
-            ],
-            "units" : "default"
-         },
-         "title" : "MySQL - Innodb buffer pool read ahead rnd / seq",
-         "id" : "10"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "count/s",
-            "series" : [
-               {
-                  "color" : "#ffb244",
-                  "name" : "ibbufpool_read_req"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "ibbufpool_reads"
-               },
-               {
-                  "color" : "#e9644a",
-                  "name" : "ibbufpool_wait_free"
-               },
-               {
-                  "color" : "#005467",
-                  "name" : "ibbufpool_write_req"
-               }
-            ],
-            "units" : "bytes"
-         },
-         "title" : "MySQL - Innodb buffer pool",
-         "id" : "11"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "fsyncs/s",
-            "series" : {
-               "color" : "#005467",
-               "name" : "ibdata_fsyncs"
-            },
-            "units" : "default"
-         },
-         "title" : "MySQL - Innodb data fsyncs",
-         "id" : "12"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "count",
-            "series" : [
-               {
-                  "color" : "#ffb244",
-                  "name" : "ibdata_pend_fsyncs"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "ibdata_pend_reads"
-               },
-               {
-                  "color" : "#e9644a",
-                  "name" : "ibdata_pend_writes"
-               }
-            ],
-            "units" : "default"
-         },
-         "title" : "MySQL - Innodb data pendings",
-         "id" : "13"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "bytes/s",
-            "series" : [
-               {
-                  "color" : "#ff7a0d",
-                  "name" : "ibdata_read"
-               },
-               {
-                  "opposite" : "true",
-                  "color" : "#005467",
-                  "name" : "ibdata_written"
-               }
-            ],
-            "units" : "bytes"
-         },
-         "title" : "MySQL - Innodb data read / written",
-         "id" : "14"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "count/s",
-            "series" : [
-               {
-                  "color" : "#ff7a0d",
-                  "name" : "ibdata_reads"
-               },
-               {
-                  "opposite" : "true",
-                  "color" : "#005467",
-                  "name" : "ibdata_writes"
-               }
-            ],
-            "units" : "default"
-         },
-         "title" : "MySQL - Innodb data reads / writes",
-         "id" : "15"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "pages/s",
-            "series" : [
-               {
-                  "color" : "#ff7a0d",
-                  "name" : "ibdata_pg_read"
-               },
-               {
-                  "opposite" : "true",
-                  "color" : "#005467",
-                  "name" : "ibdata_pg_written"
-               }
-            ],
-            "units" : "default"
-         },
-         "title" : "MySQL - Innodb pages read / written",
-         "id" : "16"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "lock waits",
-            "series" : {
-               "color" : "#005467",
-               "name" : "ibrow_lock_cur_wait"
-            },
-            "units" : "default"
-         },
-         "title" : "MySQL - Innodb row lock current waits",
-         "id" : "17"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "wasted time in milliseconds",
-            "series" : {
-               "color" : "#005467",
-               "name" : "ibrow_lock_time"
-            },
-            "units" : "default"
-         },
-         "title" : "MySQL - Innodb row lock time",
-         "id" : "18"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "average in milliseconds",
-            "series" : {
-               "color" : "#ff7a0d",
-               "name" : "ibrow_lock_time_avg"
-            },
-            "units" : "null"
-         },
-         "title" : "MySQL - Innodb row lock time avg",
-         "id" : "19"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "waits/s",
-            "series" : {
-               "color" : "#005467",
-               "name" : "ibrow_lock_waits"
-            },
-            "units" : "null"
-         },
-         "title" : "MySQL - Innodb row lock waits",
-         "id" : "20"
-      },
-      {
-         "options" : {
-            "chart-type" : "line",
-            "ylabel" : "rows/s",
-            "series" : [
-               {
-                  "color" : "#ffb244",
-                  "name" : "ibrows_deleted"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "ibrows_inserted"
-               },
-               {
-                  "color" : "#e9644a",
-                  "name" : "ibrows_updated"
-               },
-               {
-                  "color" : "#005467",
-                  "name" : "ibrows_read"
-               }
-            ],
-            "units" : "null"
-         },
-         "title" : "MySQL - Innodb rows",
-         "id" : "21"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "blocks",
-            "series" : [
-               {
-                  "color" : "#005467",
-                  "name" : "key_blocks_used"
-               },
-               {
-                  "color" : "#ff7a0d",
-                  "name" : "key_blocks_unused"
-               }
-            ],
-            "units" : "default"
-         },
-         "title" : "MySQL - Key blocks unused / used",
-         "id" : "22"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "requests/s",
-            "series" : [
-               {
-                  "color" : "#ff7a0d",
-                  "name" : "key_write_requests"
-               },
-               {
-                  "opposite" : "true",
-                  "color" : "#005467",
-                  "name" : "key_read_requests"
-               }
-            ],
-            "units" : "default"
-         },
-         "title" : "MySQL - Key read / write requests",
-         "id" : "23"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "count/s",
-            "series" : [
-               {
-                  "color" : "#ff7a0d",
-                  "name" : "key_reads"
-               },
-               {
-                  "color" : "#005467",
-                  "opposite" : "true",
-                  "name" : "key_writes"
-               }
-            ],
-            "units" : "default"
-         },
-         "title" : "MySQL - Key reads / writes",
-         "id" : "24"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "connections",
-            "series" : {
-               "color" : "#ff7a0d",
-               "name" : "max_used_conn"
-            },
-            "units" : "null"
-         },
-         "title" : "MySQL - Max used connections",
-         "id" : "25"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "count",
-            "series" : {
-               "color" : "#ff7a0d",
-               "name" : "open_tables"
-            },
-            "units" : "null"
-         },
-         "title" : "MySQL - Open tables",
-         "id" : "26"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "opened/s",
-            "series" : {
-               "color" : "#ff7a0d",
-               "name" : "opened_tables"
-            },
-            "units" : "null"
-         },
-         "title" : "MySQL - Opened tables",
-         "id" : "27"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "blocks",
-            "series" : {
-               "color" : "#ff7a0d",
-               "name" : "qc_free_blocks"
-            },
-            "units" : "default"
-         },
-         "title" : "MySQL - Qcache blocks",
-         "id" : "28"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "bytes",
-            "series" : {
-               "color" : "#005467",
-               "name" : "qc_free_memory"
-            },
-            "units" : "bytes"
-         },
-         "title" : "MySQL - Qcache free memory",
-         "id" : "29"
-      },
-      {
-         "options" : {
-            "chart-type" : "line",
-            "ylabel" : "count/s",
-            "series" : [
-               {
-                  "color" : "#ffb244",
-                  "name" : "qc_hits"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "qc_inserts"
-               },
-               {
-                  "color" : "#e9644a",
-                  "name" : "qc_lowmem_prunes"
-               },
-               {
-                  "color" : "#005467",
-                  "name" : "qc_not_cached"
-               }
-            ],
-            "units" : "default"
-         },
-         "title" : "MySQL - Qcache hits",
-         "id" : "30"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "cached queries",
-            "series" : {
-               "color" : "#005467",
-               "name" : "qc_queries_in_cache"
-            },
-            "units" : "default"
-         },
-         "title" : "MySQL - Qcache queries in cache",
-         "id" : "31"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "questions/s",
-            "series" : {
-               "color" : "#005467",
-               "name" : "questions"
-            },
-            "units" : "default"
-         },
-         "title" : "MySQL - Questions",
-         "id" : "32"
-      },
-      {
-         "options" : {
-            "chart-type" : "line",
-            "ylabel" : "selects/s",
-            "series" : [
-               {
-                  "color" : "#ffb244",
-                  "name" : "sel_full_join"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "sel_full_range_join"
-               },
-               {
-                  "color" : "#e9644a",
-                  "name" : "sel_range"
-               },
-               {
-                  "color" : "#005467",
-                  "name" : "sel_range_check"
-               },
-               {
-                  "color" : "#2ba743",
-                  "name" : "sel_scan"
-               }
-            ],
-            "units" : "null"
-         },
-         "title" : "MySQL - Selects",
-         "id" : "33"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "queries/s",
-            "series" : {
-               "color" : "#005467",
-               "name" : "slow_queries"
-            },
-            "units" : "null"
-         },
-         "title" : "MySQL - Slow queries",
-         "id" : "34"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "sorts/s",
-            "series" : [
-               {
-                  "color" : "#ffb244",
-                  "name" : "sort_merge_passes"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "sort_range"
-               },
-               {
-                  "color" : "#e9644a",
-                  "name" : "sort_rows"
-               },
-               {
-                  "color" : "#005467",
-                  "name" : "sort_scan"
-               }
-            ],
-            "units" : "null"
-         },
-         "title" : "MySQL - Sorts",
-         "id" : "35"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "ylabel" : "locks/s",
-            "series" : [
-               {
-                  "color" : "#005467",
-                  "name" : "tab_locks_waited"
-               },
-               {
-                  "opposite" : "true",
-                  "color" : "#ff7a0d",
-                  "name" : "tab_locks_immediate"
-               }
-            ],
-            "units" : "null"
-         },
-         "title" : "MySQL - Table locks",
-         "id" : "36"
-      },
-      {
-         "options" : {
-            "chart-type" : "line",
-            "ylabel" : "threads",
-            "series" : [
-               {
-                  "color" : "#ffb244",
-                  "name" : "threads_cached"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "threads_connected"
-               },
-               {
-                  "color" : "#e9644a",
-                  "name" : "threads_created"
-               },
-               {
-                  "color" : "#005467",
-                  "name" : "threads_running"
-               }
-            ],
-            "units" : "null"
-         },
-         "title" : "MySQL - Threads",
-         "id" : "37"
-      }
-   ],
-   "statistic" : [
-      {
-         "description" : "See MySQL documentation, statistic variable Aborted_clients.",
-         "alias" : "Aborted clients",
-         "statkey" : "aborted_clients",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Aborted_connects.",
-         "alias" : "Aborted connects",
-         "statkey" : "aborted_connects",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Bytes_received.",
-         "alias" : "Bytes received",
-         "statkey" : "bytes_received",
-         "units" : "bytes",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Bytes_sent.",
-         "alias" : "Bytes sent",
-         "statkey" : "bytes_sent",
-         "units" : "bytes",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Com_alter_table.",
-         "alias" : "Alter",
-         "statkey" : "com_alter_table",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Com_delete.",
-         "alias" : "Delete",
-         "statkey" : "com_delete",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Com_drop_table.",
-         "alias" : "Drop",
-         "statkey" : "com_drop_table",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Com_insert.",
-         "alias" : "Insert",
-         "statkey" : "com_insert",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Com_lock_tables.",
-         "alias" : "Lock",
-         "statkey" : "com_lock_tables",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Com_select.",
-         "alias" : "Select",
-         "statkey" : "com_select",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Com_truncate.",
-         "alias" : "Truncate",
-         "statkey" : "com_truncate",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Com_unlock_tables.",
-         "alias" : "Unlock",
-         "statkey" : "com_unlock_tables",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Com_update.",
-         "alias" : "Update",
-         "statkey" : "com_update",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Connections.",
-         "alias" : "Connections",
-         "statkey" : "connections",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Created_tmp_disk_tables.",
-         "alias" : "TMP disk tables created",
-         "statkey" : "ctmp_disk_table",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Created_tmp_files.",
-         "alias" : "TMP files created",
-         "statkey" : "ctmp_tmp_files",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Created_tmp_tables.",
-         "statkey" : "ctmp_tmp_tables",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Delayed_errors.",
-         "alias" : "Delayed errors",
-         "statkey" : "delayed_errors",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Delayed_insert_threads.",
-         "alias" : "Delayed inserts",
-         "statkey" : "delayed_insert_thrd",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Delayed_writes.",
-         "alias" : "Delayed writes",
-         "statkey" : "delayed_writes",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_pages_data.",
-         "alias" : "Pages data",
-         "statkey" : "ibbufpool_pg_data",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_pages_dirty.",
-         "alias" : "Pages dirty",
-         "statkey" : "ibbufpool_pg_dirty",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_pages_flushed.",
-         "alias" : "Page flushes",
-         "statkey" : "ibbufpool_pg_flush",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_pages_free.",
-         "alias" : "Free pages",
-         "statkey" : "ibbufpool_pg_free",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_pages_total.",
-         "alias" : "Total pages",
-         "statkey" : "ibbufpool_pg_total",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_read_ahead_rnd.",
-         "alias" : "Random read aheads",
-         "statkey" : "ibbufpool_rah_rnd",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_read_ahead_seq.",
-         "alias" : "Sequential read aheads",
-         "statkey" : "ibbufpool_rah_seq",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_read_requests.",
-         "alias" : "Read requests",
-         "statkey" : "ibbufpool_read_req",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_reads.",
-         "alias" : "Reads",
-         "statkey" : "ibbufpool_reads",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_wait_free.",
-         "alias" : "Wait free",
-         "statkey" : "ibbufpool_wait_free",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_buffer_pool_write_requests.",
-         "alias" : "Write requests",
-         "statkey" : "ibbufpool_write_req",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_data_fsyncs.",
-         "alias" : "Fsyncs",
-         "statkey" : "ibdata_fsyncs",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_data_pending_fsyncs.",
-         "alias" : "Pending fsyncs",
-         "statkey" : "ibdata_pend_fsyncs",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_data_pending_reads.",
-         "alias" : "Pending reads",
-         "statkey" : "ibdata_pend_reads",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_data_pending_writes.",
-         "alias" : "Pending writes",
-         "statkey" : "ibdata_pend_writes",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_data_read.",
-         "alias" : "Data read",
-         "statkey" : "ibdata_read",
-         "units" : "bytes",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_data_reads.",
-         "alias" : "Data reads",
-         "statkey" : "ibdata_reads",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_data_writes.",
-         "alias" : "Data writes",
-         "statkey" : "ibdata_writes",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_data_written.",
-         "alias" : "Data written",
-         "statkey" : "ibdata_written",
-         "units" : "bytes",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_pages_read.",
-         "alias" : "Page read",
-         "statkey" : "ibdata_pg_read",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_pages_written.",
-         "alias" : "Pages written",
-         "statkey" : "ibdata_pg_written",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_row_lock_current_waits.",
-         "alias" : "Current row locks",
-         "statkey" : "ibrow_lock_cur_wait",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_row_lock_time.",
-         "alias" : "Row lock time",
-         "statkey" : "ibrow_lock_time",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_row_lock_time_avg.",
-         "alias" : "Row lock average time",
-         "statkey" : "ibrow_lock_time_avg",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_row_lock_waits.",
-         "alias" : "Row lock waits",
-         "statkey" : "ibrow_lock_waits",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_rows_deleted.",
-         "alias" : "Rows deleted",
-         "statkey" : "ibrows_deleted",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_rows_inserted.",
-         "alias" : "Rows inserted",
-         "statkey" : "ibrows_inserted",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_rows_read.",
-         "alias" : "Rows read",
-         "statkey" : "ibrows_read",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Innodb_rows_updated.",
-         "alias" : "Rows updated",
-         "statkey" : "ibrows_updated",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Key_blocks_unused.",
-         "alias" : "Blocks unused",
-         "statkey" : "key_blocks_unused",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Key_blocks_used.",
-         "alias" : "Blocks used",
-         "statkey" : "key_blocks_used",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Key_read_requests.",
-         "alias" : "Read requests",
-         "statkey" : "key_read_requests",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Key_reads.",
-         "alias" : "Reads",
-         "statkey" : "key_reads",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Key_write_requests.",
-         "alias" : "Write requests",
-         "statkey" : "key_write_requests",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Key_writes.",
-         "alias" : "Writes",
-         "statkey" : "key_writes",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Max_used_connections.",
-         "alias" : "Max used connections",
-         "statkey" : "max_used_conn",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Open_tables.",
-         "alias" : "Open tables",
-         "statkey" : "open_tables",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Opened_tables.",
-         "alias" : "Opened tables",
-         "statkey" : "opened_tables",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Qcache_free_blocks.",
-         "alias" : "Free blocks",
-         "statkey" : "qc_free_blocks",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Qcache_free_memory.",
-         "alias" : "Free memory",
-         "statkey" : "qc_free_memory",
-         "units" : "bytes",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Qcache_hits.",
-         "alias" : "Hits",
-         "statkey" : "qc_hits",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Qcache_inserts.",
-         "alias" : "Inserts",
-         "statkey" : "qc_inserts",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Qcache_lowmem_prunes.",
-         "alias" : "Low memory prunes",
-         "statkey" : "qc_lowmem_prunes",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Qcache_not_cached.",
-         "alias" : "Not cached",
-         "statkey" : "qc_not_cached",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Qcache_queries_in_cache.",
-         "alias" : "Queries in cache",
-         "statkey" : "qc_queries_in_cache",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Qcache_total_blocks.",
-         "alias" : "Total blocks",
-         "statkey" : "qc_total_blocks",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Questions.",
-         "alias" : "Questions",
-         "statkey" : "questions",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Select_full_join.",
-         "alias" : "Full join",
-         "statkey" : "sel_full_join",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Select_full_range_join.",
-         "alias" : "Full range join",
-         "statkey" : "sel_full_range_join",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Select_range.",
-         "alias" : "Range",
-         "statkey" : "sel_range",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Select_range_check.",
-         "alias" : "Range check",
-         "statkey" : "sel_range_check",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Select_scan.",
-         "alias" : "Scans",
-         "statkey" : "sel_scan",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Slow_queries.",
-         "alias" : "Slow queries",
-         "statkey" : "slow_queries",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Sort_merge_passes.",
-         "alias" : "Merge passes",
-         "statkey" : "sort_merge_passes",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Sort_range.",
-         "alias" : "Range sorts",
-         "statkey" : "sort_range",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Sort_rows.",
-         "alias" : "Rows sorted",
-         "statkey" : "sort_rows",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Sort_scan.",
-         "alias" : "Rows scanned",
-         "statkey" : "sort_scan",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Table_locks_immediate.",
-         "alias" : "Immediate locks",
-         "statkey" : "tab_locks_immediate",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Table_locks_waited.",
-         "alias" : "Locks waited",
-         "statkey" : "tab_locks_waited",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Threads_cached.",
-         "alias" : "Cached",
-         "statkey" : "threads_cached",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Threads_connected.",
-         "alias" : "Connected",
-         "statkey" : "threads_connected",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Threads_created.",
-         "alias" : "Created",
-         "statkey" : "threads_created",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See MySQL documentation, statistic variable Threads_running.",
-         "alias" : "Running",
-         "statkey" : "threads_running",
-         "datatype" : "bigint"
-      }
-   ]
+      "id" : "42"
+   }
 }

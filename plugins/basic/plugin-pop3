@@ -1,148 +1,148 @@
 {
+   "chart" : {
+      "id" : "1",
+      "title" : "POP3 connect - response time",
+      "options" : {
+         "series" : {
+            "color" : "#005467",
+            "name" : "time"
+         },
+         "ylabel" : "time in ms",
+         "units" : "null",
+         "chart-type" : "area"
+      }
+   },
    "plugin" : {
+      "abstract" : "POP3 check",
+      "plugin" : "POP3.Check",
+      "category" : "Network,Mail",
+      "worldwide" : "yes",
+      "id" : "10",
+      "prefer" : "remote",
       "info" : {
          "plugin" : "check-pop3",
          "options" : [
             {
                "name" : "Warning threshold",
-               "default" : 3,
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "value_type" : "number",
+               "default" : 3,
                "option" : "warning",
                "mandatory" : 0,
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "multiple" : 0,
                "value_desc" : "seconds"
             },
             {
-               "name" : "Critical threshold",
-               "default" : 5,
                "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
-               "value_type" : "number",
-               "option" : "critical",
-               "mandatory" : 0,
                "multiple" : 0,
-               "value_desc" : "seconds"
+               "value_desc" : "seconds",
+               "name" : "Critical threshold",
+               "value_type" : "number",
+               "mandatory" : 0,
+               "option" : "critical",
+               "default" : 5
             },
             {
-               "name" : "Timeout",
-               "default" : 10,
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "value_type" : "number",
+               "default" : 10,
                "option" : "timeout",
                "mandatory" : 0,
+               "name" : "Timeout",
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "multiple" : 0,
                "value_desc" : "seconds"
             },
             {
-               "name" : "Hostname or IP address",
-               "default" : null,
                "description" : "A hostname or IP address to connect to.",
+               "multiple" : 0,
+               "value_desc" : "hostname or ip address",
                "value_type" : "string",
                "option" : "host",
+               "default" : null,
                "mandatory" : 1,
-               "multiple" : 0,
-               "value_desc" : "hostname or ip address"
+               "name" : "Hostname or IP address"
             },
             {
-               "name" : "Port number",
-               "default" : null,
+               "multiple" : 0,
+               "value_desc" : "port",
                "description" : "A port number to connect to.",
-               "value_type" : "int",
-               "option" : "port",
                "mandatory" : 1,
-               "multiple" : 0,
-               "value_desc" : "port"
+               "option" : "port",
+               "default" : null,
+               "value_type" : "int",
+               "name" : "Port number"
             },
             {
-               "name" : "Bind to IP address",
-               "default" : null,
+               "multiple" : 0,
+               "value_desc" : "ipaddr",
                "description" : "A local IP address to bind to.",
-               "value_type" : "string",
+               "default" : null,
                "option" : "bind",
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "ipaddr"
+               "value_type" : "string",
+               "name" : "Bind to IP address"
             },
             {
-               "value_type" : 0,
-               "name" : "Use IPv6",
+               "multiple" : 0,
+               "mandatory" : 0,
                "option" : "use-ipv6",
-               "mandatory" : 0,
-               "multiple" : 0,
                "default" : null,
-               "description" : "Use IPv6 to connect to the host."
-            },
-            {
                "value_type" : 0,
-               "name" : "Use secure connection via SSL",
-               "option" : "use-ssl",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "default" : null,
-               "description" : "Use secure connection via SSL."
+               "description" : "Use IPv6 to connect to the host.",
+               "name" : "Use IPv6"
             },
             {
-               "name" : "Username",
-               "default" : null,
-               "description" : "The username to use for the login.",
+               "name" : "Use secure connection via SSL",
+               "value_type" : 0,
+               "description" : "Use secure connection via SSL.",
+               "multiple" : 0,
+               "mandatory" : 0,
+               "option" : "use-ssl",
+               "default" : null
+            },
+            {
                "value_type" : "string",
                "option" : "username",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "username"
-            },
-            {
-               "name" : "Password",
                "default" : null,
-               "description" : "The password for the user to login.",
-               "value_type" : "string",
-               "option" : "password",
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "password"
+               "name" : "Username",
+               "description" : "The username to use for the login.",
+               "value_desc" : "username",
+               "multiple" : 0
             },
             {
-               "value_type" : 0,
+               "value_type" : "string",
+               "mandatory" : 0,
+               "default" : null,
+               "option" : "password",
+               "name" : "Password",
+               "description" : "The password for the user to login.",
+               "value_desc" : "password",
+               "multiple" : 0
+            },
+            {
                "name" : "Use APOP",
+               "default" : null,
                "option" : "apop",
                "mandatory" : 0,
                "multiple" : 0,
-               "default" : null,
+               "value_type" : 0,
                "description" : "Use apop to login."
             }
          ],
-         "flags" : "",
-         "version" : "0.8"
+         "version" : "0.8",
+         "flags" : ""
       },
-      "plugin" : "POP3.Check",
-      "prefer" : "remote",
-      "description" : "POP3 connect statistics",
-      "worldwide" : "yes",
       "netaccess" : "yes",
-      "abstract" : "POP3 check",
-      "id" : "10",
-      "category" : "Network,Mail",
-      "command" : "check-pop3",
-      "datatype" : "statistic"
-   },
-   "chart" : {
-      "options" : {
-         "chart-type" : "area",
-         "ylabel" : "time in ms",
-         "series" : {
-            "color" : "#005467",
-            "name" : "time"
-         },
-         "units" : "null"
-      },
-      "title" : "POP3 connect - response time",
-      "id" : "1"
+      "datatype" : "statistic",
+      "description" : "POP3 connect statistics",
+      "command" : "check-pop3"
    },
    "statistic" : {
-      "description" : "Time in milliseconds waiting for response.",
       "alias" : "Response time",
-      "statkey" : "time",
       "units" : "ms",
-      "datatype" : "float"
+      "datatype" : "float",
+      "description" : "Time in milliseconds waiting for response.",
+      "statkey" : "time"
    }
 }

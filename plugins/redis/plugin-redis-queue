@@ -1,23 +1,14 @@
 {
-   "plugin" : {
-      "info" : {
-         "status" : "UNKNOWN",
-         "message" : "invalid value type 'integer'"
-      },
-      "plugin" : "Redis.Queue.Check",
-      "prefer" : "localhost",
-      "description" : "Check the size of a redis queue.",
-      "netaccess" : "yes",
-      "id" : "49",
-      "category" : "System,Caching,Redis",
-      "abstract" : "Redis check queue",
-      "command" : "check-redis-queue",
-      "datatype" : "statistic"
+   "statistic" : {
+      "description" : "The size of a redis queue.",
+      "datatype" : "bigint",
+      "statkey" : "size",
+      "alias" : "Size"
    },
    "chart" : {
       "options" : {
-         "chart-type" : "area",
          "ylabel" : "size",
+         "chart-type" : "area",
          "series" : {
             "color" : "#005467",
             "name" : "size"
@@ -26,10 +17,19 @@
       "title" : "Redis - queue size",
       "id" : "1"
    },
-   "statistic" : {
-      "description" : "The size of a redis queue.",
-      "alias" : "Size",
-      "statkey" : "size",
-      "datatype" : "bigint"
+   "plugin" : {
+      "datatype" : "statistic",
+      "prefer" : "localhost",
+      "abstract" : "Redis check queue",
+      "info" : {
+         "status" : "UNKNOWN",
+         "message" : "invalid value type 'integer'"
+      },
+      "command" : "check-redis-queue",
+      "id" : "49",
+      "category" : "System,Caching,Redis",
+      "plugin" : "Redis.Queue.Check",
+      "description" : "Check the size of a redis queue.",
+      "netaccess" : "yes"
    }
 }

@@ -1,83 +1,83 @@
 {
-   "plugin" : {
-      "info" : {
-         "plugin" : "check-wtrm",
-         "info" : [
-            "Please install PhantomJS on the server where the plugin is exexuted. Install the command phantomjs to /usr/lib/bloonix/bin, /usr/local/lib/bloonix/bin or to a path of the PATH variable.\n\nNote that PhantomJS does not validate SSL certificates. If you want to validate SSL certificates, then use a HTTP check instead."
-         ],
-         "options" : [
-            {
-               "name" : "workflow",
-               "default" : null,
-               "description" : "This is the workflow to simulate end-users on the website.",
-               "value_type" : "array",
-               "option" : "workflow",
-               "mandatory" : 1,
-               "multiple" : 0,
-               "value_desc" : "workflow"
-            },
-            {
-               "name" : "Warning threshold",
-               "default" : null,
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
-               "value_type" : "number",
-               "option" : "warning",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "seconds"
-            },
-            {
-               "name" : "Critical threshold",
-               "default" : null,
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
-               "value_type" : "number",
-               "option" : "critical",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "seconds"
-            },
-            {
-               "name" : "Timeout",
-               "default" : 30,
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "value_type" : "number",
-               "option" : "timeout",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "seconds"
-            }
-         ],
-         "flags" : "",
-         "version" : null
-      },
-      "plugin" : "WebTransaction",
-      "prefer" : "remote",
-      "description" : "Simulation of end-users on the website.",
-      "netaccess" : "yes",
-      "id" : "58",
-      "category" : "HTTP,Webserver",
-      "abstract" : "Web transaction",
-      "command" : "check-wtrm",
-      "datatype" : "statistic"
-   },
    "chart" : {
+      "id" : "1",
       "options" : {
-         "chart-type" : "area",
+         "units" : "null",
          "ylabel" : "time in ms",
+         "chart-type" : "area",
          "series" : {
             "color" : "#005467",
             "name" : "time"
-         },
-         "units" : "null"
+         }
       },
-      "title" : "Web transaction - runtime",
-      "id" : "1"
+      "title" : "Web transaction - runtime"
    },
    "statistic" : {
-      "description" : "Time in milliseconds to complete the transaction.",
-      "alias" : "Execution time",
-      "statkey" : "time",
       "units" : "ms",
-      "datatype" : "float"
+      "statkey" : "time",
+      "datatype" : "float",
+      "description" : "Time in milliseconds to complete the transaction.",
+      "alias" : "Execution time"
+   },
+   "plugin" : {
+      "category" : "HTTP,Webserver",
+      "description" : "Simulation of end-users on the website.",
+      "info" : {
+         "info" : [
+            "Please install PhantomJS on the server where the plugin is exexuted. Install the command phantomjs to /usr/lib/bloonix/bin, /usr/local/lib/bloonix/bin or to a path of the PATH variable.\n\nNote that PhantomJS does not validate SSL certificates. If you want to validate SSL certificates, then use a HTTP check instead."
+         ],
+         "flags" : "",
+         "version" : null,
+         "options" : [
+            {
+               "option" : "workflow",
+               "description" : "This is the workflow to simulate end-users on the website.",
+               "name" : "workflow",
+               "multiple" : 0,
+               "value_desc" : "workflow",
+               "value_type" : "array",
+               "mandatory" : 1,
+               "default" : null
+            },
+            {
+               "default" : null,
+               "value_type" : "number",
+               "mandatory" : 0,
+               "value_desc" : "seconds",
+               "multiple" : 0,
+               "name" : "Warning threshold",
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
+               "option" : "warning"
+            },
+            {
+               "value_desc" : "seconds",
+               "value_type" : "number",
+               "mandatory" : 0,
+               "default" : null,
+               "option" : "critical",
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "name" : "Critical threshold",
+               "multiple" : 0
+            },
+            {
+               "multiple" : 0,
+               "name" : "Timeout",
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "option" : "timeout",
+               "default" : 30,
+               "value_type" : "number",
+               "mandatory" : 0,
+               "value_desc" : "seconds"
+            }
+         ],
+         "plugin" : "check-wtrm"
+      },
+      "datatype" : "statistic",
+      "abstract" : "Web transaction",
+      "command" : "check-wtrm",
+      "netaccess" : "yes",
+      "prefer" : "remote",
+      "id" : "58",
+      "plugin" : "WebTransaction"
    }
 }

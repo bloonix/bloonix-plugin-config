@@ -1,90 +1,109 @@
 {
    "plugin" : {
       "info" : {
+         "flags" : "",
          "plugin" : "check-nginx",
+         "version" : "0.4",
+         "examples" : [
+            {
+               "arguments" : [
+                  "url",
+                  "http://localhost/nginx_status",
+                  "warning",
+                  "connections:ge:200",
+                  "critical",
+                  "connections:ge:300"
+               ],
+               "command_line" : "check-nginx --url 'http://localhost/nginx_status' --warning 'connections:ge:200' --critical 'connections:ge:300'",
+               "description" : [
+                  "Simple example:",
+                  "",
+                  "- trigger a WARNING if connections higher than 200",
+                  "- trigger a CRITICAL if connections higher than 300"
+               ]
+            }
+         ],
          "options" : [
             {
-               "name" : "URL",
-               "default" : "http://localhost/nginx_status",
+               "value_desc" : "url",
                "description" : "This is the URL to call the server-status of Apache. Please enter the full URL with the query string.",
+               "default" : "http://localhost/nginx_status",
+               "name" : "URL",
                "value_type" : "string",
-               "option" : "url",
-               "mandatory" : 1,
                "multiple" : 0,
-               "value_desc" : "url"
+               "option" : "url",
+               "mandatory" : 1
             },
             {
                "name" : "Timeout",
+               "value_desc" : "seconds",
                "default" : 10,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "value_type" : "number",
                "option" : "timeout",
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "seconds"
+               "value_type" : "number",
+               "multiple" : 0
             },
             {
-               "name" : "Warning threshold",
-               "default" : null,
+               "value_desc" : "key:value or key:op:value",
                "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "default" : null,
+               "name" : "Warning threshold",
                "value_type" : "string",
-               "option" : "warning",
-               "mandatory" : 0,
                "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+               "option" : "warning",
+               "mandatory" : 0
             },
             {
-               "name" : "Critical threshold",
-               "default" : null,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
                "option" : "critical",
                "mandatory" : 0,
                "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
+               "value_type" : "string",
+               "name" : "Critical threshold",
+               "value_desc" : "key:value or key:op:value",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "default" : null
             },
             {
+               "mandatory" : 0,
+               "option" : "username",
+               "value_type" : "string",
+               "multiple" : 0,
                "name" : "Username",
                "default" : null,
                "description" : "A username for a HTTP Auth-Basic authentication.",
-               "value_type" : "string",
-               "option" : "username",
-               "mandatory" : 0,
-               "multiple" : 0,
                "value_desc" : "username"
             },
             {
                "name" : "Password",
+               "value_desc" : "password",
                "default" : null,
                "description" : "A password for a HTTP Auth-Basic authentication.",
-               "value_type" : "string",
                "option" : "password",
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "password"
+               "value_type" : "string",
+               "multiple" : 0
             },
             {
-               "name" : "Hostname or IP address",
-               "default" : null,
-               "description" : "A hostname or IP address to connect to.",
-               "value_type" : "string",
-               "option" : "host",
                "mandatory" : 0,
+               "option" : "host",
+               "value_type" : "string",
                "multiple" : 0,
+               "name" : "Hostname or IP address",
+               "description" : "A hostname or IP address to connect to.",
+               "default" : null,
                "value_desc" : "hostname or ip address"
             },
             {
-               "value_type" : 0,
+               "mandatory" : 0,
                "name" : "Use IPv6",
                "option" : "use-ipv6",
-               "mandatory" : 0,
-               "multiple" : 0,
+               "description" : "Use IPv6 to connect to the host.",
                "default" : null,
-               "description" : "Use IPv6 to connect to the host."
+               "value_type" : 0,
+               "multiple" : 0
             }
          ],
-         "flags" : "",
-         "version" : "0.4",
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",
@@ -110,12 +129,12 @@
                   "key" : "accepts"
                },
                {
-                  "unit" : "none",
-                  "key" : "requests"
+                  "key" : "requests",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "reading"
+                  "key" : "reading",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
@@ -126,42 +145,26 @@
                   "key" : "waiting"
                }
             ]
-         },
-         "examples" : [
-            {
-               "command_line" : "check-nginx --url 'http://localhost/nginx_status' --warning 'connections:ge:200' --critical 'connections:ge:300'",
-               "arguments" : [
-                  "url",
-                  "http://localhost/nginx_status",
-                  "warning",
-                  "connections:ge:200",
-                  "critical",
-                  "connections:ge:300"
-               ],
-               "description" : [
-                  "Simple example:",
-                  "",
-                  "- trigger a WARNING if connections higher than 200",
-                  "- trigger a CRITICAL if connections higher than 300"
-               ]
-            }
-         ]
+         }
       },
       "plugin" : "Nginx.Check",
-      "prefer" : "localhost",
-      "description" : "Nginx statistics",
-      "netaccess" : "yes",
-      "id" : "44",
-      "category" : "System,Webserver,Nginx",
-      "abstract" : "Nginx server status",
       "command" : "check-nginx",
-      "datatype" : "statistic"
+      "abstract" : "Nginx server status",
+      "datatype" : "statistic",
+      "id" : "44",
+      "netaccess" : "yes",
+      "description" : "Nginx statistics",
+      "prefer" : "localhost",
+      "category" : "System,Webserver,Nginx"
    },
    "chart" : [
       {
+         "id" : "1",
+         "title" : "Nginx - worker connection status",
          "options" : {
-            "chart-type" : "area",
+            "units" : "null",
             "ylabel" : "count",
+            "chart-type" : "area",
             "series" : [
                {
                   "color" : "#ffdc00",
@@ -175,16 +178,12 @@
                   "color" : "#ff5c00",
                   "name" : "waiting"
                }
-            ],
-            "units" : "null"
-         },
-         "title" : "Nginx - worker connection status",
-         "id" : "1"
+            ]
+         }
       },
       {
+         "title" : "Nginx - connections/s",
          "options" : {
-            "chart-type" : "area",
-            "ylabel" : "connections/s",
             "series" : [
                {
                   "color" : "#005467",
@@ -195,67 +194,68 @@
                   "name" : "accepts"
                }
             ],
+            "chart-type" : "area",
+            "ylabel" : "connections/s",
             "units" : "null"
          },
-         "title" : "Nginx - connections/s",
          "id" : "2"
       },
       {
+         "id" : "3",
          "options" : {
-            "chart-type" : "area",
-            "ylabel" : "requests/s",
             "series" : {
                "color" : "#005467",
                "name" : "requests"
             },
+            "ylabel" : "requests/s",
+            "chart-type" : "area",
             "units" : "null"
          },
-         "title" : "Nginx - requests/s",
-         "id" : "3"
+         "title" : "Nginx - requests/s"
       }
    ],
    "statistic" : [
       {
-         "description" : "Number of all open connections including connections to backends.",
+         "datatype" : "bigint",
          "alias" : "Connections",
          "statkey" : "connections",
-         "datatype" : "bigint"
+         "description" : "Number of all open connections including connections to backends."
       },
       {
-         "description" : "Accepted connections per second.",
+         "datatype" : "float",
          "alias" : "Accepted",
-         "statkey" : "accepts",
-         "datatype" : "float"
+         "description" : "Accepted connections per second.",
+         "statkey" : "accepts"
       },
       {
-         "description" : "Handled connections per seconds.",
+         "datatype" : "float",
          "alias" : "Handled connections",
-         "statkey" : "handled",
-         "datatype" : "float"
+         "description" : "Handled connections per seconds.",
+         "statkey" : "handled"
       },
       {
+         "statkey" : "requests",
          "description" : "Handled requests per second.",
          "alias" : "Requests",
-         "statkey" : "requests",
          "datatype" : "float"
       },
       {
-         "description" : "Current worker that reads request header.",
+         "datatype" : "bigint",
          "alias" : "Reading",
          "statkey" : "reading",
-         "datatype" : "bigint"
+         "description" : "Current worker that reads request header."
       },
       {
-         "description" : "Current worker that reads request body, processes request, or writes response to a client.",
+         "datatype" : "bigint",
          "alias" : "Writing",
-         "statkey" : "writing",
-         "datatype" : "bigint"
+         "description" : "Current worker that reads request body, processes request, or writes response to a client.",
+         "statkey" : "writing"
       },
       {
-         "description" : "Current worker in keep alive status.",
+         "datatype" : "bigint",
          "alias" : "Waiting",
          "statkey" : "waiting",
-         "datatype" : "bigint"
+         "description" : "Current worker in keep alive status."
       }
    ]
 }

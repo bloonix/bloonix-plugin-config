@@ -1,106 +1,105 @@
 {
    "plugin" : {
+      "category" : "Database,MySQL",
+      "abstract" : "MySQL replication check",
+      "command" : "check-mysql-slave",
+      "id" : "43",
+      "description" : "Check the status of a master-slave replication.",
+      "prefer" : "localhost",
       "info" : {
-         "plugin" : "check-mysql-slave",
+         "flags" : "",
          "options" : [
             {
-               "name" : "Warning threshold",
-               "default" : 3000,
-               "description" : "This is the warning threshold for maximum number of seconds the slave is allowed to be behind the master.",
-               "value_type" : "number",
                "option" : "warning",
                "mandatory" : 0,
+               "default" : 3000,
+               "value_desc" : "seconds",
+               "name" : "Warning threshold",
+               "value_type" : "number",
                "multiple" : 0,
-               "value_desc" : "seconds"
+               "description" : "This is the warning threshold for maximum number of seconds the slave is allowed to be behind the master."
             },
             {
-               "name" : "Critical threshold",
-               "default" : 5000,
-               "description" : "This is the critical threshold for maximum number of seconds the slave is allowed to be behind the master.",
-               "value_type" : "number",
                "option" : "critical",
                "mandatory" : 0,
+               "description" : "This is the critical threshold for maximum number of seconds the slave is allowed to be behind the master.",
+               "default" : 5000,
+               "value_desc" : "seconds",
+               "value_type" : "number",
                "multiple" : 0,
-               "value_desc" : "seconds"
+               "name" : "Critical threshold"
             },
             {
-               "name" : "Secret file",
-               "default" : null,
                "description" : "This is the secret file with the username and password to connect to the service.",
+               "value_desc" : "filename",
+               "default" : null,
                "value_type" : "string",
-               "option" : "secret-file",
-               "mandatory" : 0,
                "multiple" : 0,
-               "value_desc" : "filename"
+               "name" : "Secret file",
+               "mandatory" : 0,
+               "option" : "secret-file"
             },
             {
-               "name" : "Username",
-               "default" : null,
                "description" : "The username to use for the login.",
+               "multiple" : 0,
+               "name" : "Username",
                "value_type" : "string",
+               "default" : null,
+               "value_desc" : "username",
                "option" : "username",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "username"
+               "mandatory" : 0
             },
             {
+               "default" : null,
+               "value_desc" : "password",
+               "value_type" : "string",
                "name" : "Password",
-               "default" : null,
+               "multiple" : 0,
                "description" : "The password for the user to login.",
-               "value_type" : "string",
                "option" : "password",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "password"
+               "mandatory" : 0
             },
             {
-               "name" : "Hostname or IP address",
-               "default" : null,
                "description" : "A hostname or IP address to connect to.",
+               "name" : "Hostname or IP address",
                "value_type" : "string",
-               "option" : "host",
-               "mandatory" : 1,
                "multiple" : 0,
-               "value_desc" : "hostname or ip address"
-            },
-            {
-               "name" : "Port number",
-               "default" : 3306,
-               "description" : "A port number to connect to.",
-               "value_type" : "int",
-               "option" : "port",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "port"
-            },
-            {
-               "value_type" : 0,
-               "name" : "Use secure connection via SSL",
-               "option" : "use-ssl",
-               "mandatory" : 0,
-               "multiple" : 0,
+               "value_desc" : "hostname or ip address",
                "default" : null,
+               "mandatory" : 1,
+               "option" : "host"
+            },
+            {
+               "default" : 3306,
+               "value_desc" : "port",
+               "multiple" : 0,
+               "value_type" : "int",
+               "name" : "Port number",
+               "description" : "A port number to connect to.",
+               "option" : "port",
+               "mandatory" : 0
+            },
+            {
+               "default" : null,
+               "option" : "use-ssl",
+               "value_type" : 0,
+               "mandatory" : 0,
+               "multiple" : 0,
+               "name" : "Use secure connection via SSL",
                "description" : "Use secure connection via SSL."
             },
             {
+               "description" : "Show Last_Error in the status message if the slave is not running.",
                "value_type" : 0,
-               "name" : "Verbose error",
-               "option" : "verbose-error",
-               "mandatory" : 0,
                "multiple" : 0,
-               "default" : null,
-               "description" : "Show Last_Error in the status message if the slave is not running."
+               "name" : "Verbose error",
+               "mandatory" : 0,
+               "option" : "verbose-error",
+               "default" : null
             }
          ],
-         "flags" : "",
-         "version" : "0.4",
          "examples" : [
             {
-               "command_line" : "check-mysql-slave --secret-file 'mysql.conf'",
-               "arguments" : [
-                  "secret-file",
-                  "mysql.conf"
-               ],
                "description" : [
                   "To read the username and password from a configuration file it's possible to use the option 'secret-file'. The path to the file is hard set to:",
                   "",
@@ -110,18 +109,19 @@
                   "",
                   "    username=root",
                   "    password=secret"
+               ],
+               "command_line" : "check-mysql-slave --secret-file 'mysql.conf'",
+               "arguments" : [
+                  "secret-file",
+                  "mysql.conf"
                ]
             }
-         ]
+         ],
+         "plugin" : "check-mysql-slave",
+         "version" : "0.4"
       },
+      "datatype" : "none",
       "plugin" : "MySQL.SlaveStatus",
-      "prefer" : "localhost",
-      "description" : "Check the status of a master-slave replication.",
-      "netaccess" : "yes",
-      "id" : "43",
-      "category" : "Database,MySQL",
-      "abstract" : "MySQL replication check",
-      "command" : "check-mysql-slave",
-      "datatype" : "none"
+      "netaccess" : "yes"
    }
 }

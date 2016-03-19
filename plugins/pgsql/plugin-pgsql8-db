@@ -1,98 +1,102 @@
 {
+   "statistic" : [
+      {
+         "datatype" : "float",
+         "description" : "See PostgreSQL documentation, statistic table pg_statio_user_tables (heap_blks_read + idx_blks_read + toast_blks_read + tidx_blks_read).",
+         "alias" : "Block hits",
+         "statkey" : "blks_hit"
+      },
+      {
+         "alias" : "Blocks read",
+         "description" : "See PostgreSQL documentation, statistic table pg_statio_user_tables (heap_blks_hit + idx_blks_hit + toast_blks_hit + tidx_blks_hit).",
+         "datatype" : "float",
+         "statkey" : "blks_read"
+      },
+      {
+         "statkey" : "blks_hitratio",
+         "datatype" : "float",
+         "description" : "Block hit ratio.",
+         "alias" : "Block hit ratio"
+      },
+      {
+         "datatype" : "bigint",
+         "description" : "See PostgreSQL documentation, statistic table pg_locks.",
+         "alias" : "Exclusive locks",
+         "statkey" : "exlocks"
+      },
+      {
+         "datatype" : "bigint",
+         "description" : "See PostgreSQL documentation, statistic table pg_locks.",
+         "alias" : "Shared locks",
+         "statkey" : "shrlocks"
+      },
+      {
+         "datatype" : "bigint",
+         "description" : "See PostgreSQL documentation, statistic table pg_locks.",
+         "alias" : "Locks",
+         "statkey" : "locks"
+      },
+      {
+         "statkey" : "n_tup_ins",
+         "alias" : "Inserts",
+         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
+         "datatype" : "float"
+      },
+      {
+         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
+         "alias" : "Updates",
+         "datatype" : "float",
+         "statkey" : "n_tup_upd"
+      },
+      {
+         "statkey" : "n_tup_del",
+         "datatype" : "float",
+         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
+         "alias" : "Deletes"
+      },
+      {
+         "statkey" : "seq_scan",
+         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
+         "alias" : "Scans",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "seq_tup_read",
+         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
+         "alias" : "Reads",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "idx_scan",
+         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
+         "alias" : "Scans",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
+         "alias" : "Fetches",
+         "statkey" : "idx_tup_fetch"
+      },
+      {
+         "statkey" : "xact_commit",
+         "datatype" : "float",
+         "alias" : "Commits",
+         "description" : "See PostgreSQL documentation, statistic table pg_stat_database."
+      },
+      {
+         "description" : "See PostgreSQL documentation, statistic table pg_stat_database.",
+         "alias" : "Rollbacks",
+         "datatype" : "float",
+         "statkey" : "xact_rollback"
+      }
+   ],
    "plugin" : {
+      "category" : "Database,PostgreSQL",
+      "description" : "PostgreSQL statistics",
+      "command" : "check-pgsql8-db",
+      "netaccess" : "yes",
       "info" : {
-         "plugin" : "check-pgsql8-db",
-         "options" : [
-            {
-               "name" : "Warning threshold",
-               "default" : null,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "option" : "warning",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
-            },
-            {
-               "name" : "Critical threshold",
-               "default" : null,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "option" : "critical",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value"
-            },
-            {
-               "name" : "Hostname or IP address",
-               "default" : null,
-               "description" : "A hostname or IP address to connect to.",
-               "value_type" : "string",
-               "option" : "host",
-               "mandatory" : 1,
-               "multiple" : 0,
-               "value_desc" : "hostname or ip address"
-            },
-            {
-               "name" : "Port number",
-               "default" : 5432,
-               "description" : "A port number to connect to.",
-               "value_type" : "int",
-               "option" : "port",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "port"
-            },
-            {
-               "name" : "Username",
-               "default" : null,
-               "description" : "The username to use for the login.",
-               "value_type" : "string",
-               "option" : "username",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "username"
-            },
-            {
-               "name" : "Password",
-               "default" : null,
-               "description" : "The password for the user to login.",
-               "value_type" : "string",
-               "option" : "password",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "password"
-            },
-            {
-               "name" : "Secret file",
-               "default" : null,
-               "description" : "This is the secret file with the username and password to connect to the service.",
-               "value_type" : "string",
-               "option" : "secret-file",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "filename"
-            },
-            {
-               "name" : "Database",
-               "default" : null,
-               "description" : "Set the database to connect to.",
-               "value_type" : "string",
-               "option" : "database",
-               "mandatory" : 1,
-               "multiple" : 0,
-               "value_desc" : "database"
-            },
-            {
-               "value_type" : 0,
-               "name" : "Use secure connection via SSL",
-               "option" : "use-ssl",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "default" : null,
-               "description" : "Use secure connection via SSL."
-            }
-         ],
          "flags" : "",
          "version" : "0.7",
          "thresholds" : {
@@ -138,20 +142,20 @@
                   "key" : "seq_tup_read"
                },
                {
-                  "unit" : "none",
-                  "key" : "idx_scan"
+                  "key" : "idx_scan",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
                   "key" : "idx_tup_fetch"
                },
                {
-                  "unit" : "none",
-                  "key" : "exlocks"
+                  "key" : "exlocks",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "shrlocks"
+                  "key" : "shrlocks",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
@@ -162,26 +166,29 @@
                   "key" : "xact_commit"
                },
                {
-                  "unit" : "none",
-                  "key" : "xact_rollback"
+                  "key" : "xact_rollback",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "blks_hit"
+                  "key" : "blks_hit",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "blks_read"
+                  "key" : "blks_read",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "blks_hitratio"
+                  "key" : "blks_hitratio",
+                  "unit" : "none"
                }
             ]
          },
+         "plugin" : "check-pgsql8-db",
          "examples" : [
             {
-               "command_line" : "check-pgsql8-db --username 'bloonix' --password 'bloonix' --database 'bloonix' --warning 'exlocks:100' --critical 'exlocks:150'",
+               "description" : [
+                  "A simple example to check the PostgreSQL status"
+               ],
                "arguments" : [
                   "username",
                   "bloonix",
@@ -194,16 +201,9 @@
                   "critical",
                   "exlocks:150"
                ],
-               "description" : [
-                  "A simple example to check the PostgreSQL status"
-               ]
+               "command_line" : "check-pgsql8-db --username 'bloonix' --password 'bloonix' --database 'bloonix' --warning 'exlocks:100' --critical 'exlocks:150'"
             },
             {
-               "command_line" : "check-pgsql8-db --secret-file 'pgsql.conf'",
-               "arguments" : [
-                  "secret-file",
-                  "pgsql.conf"
-               ],
                "description" : [
                   "To read the username and password from a configuration file it's possible to use the option 'secret-file'. The path to the file is hard set to:",
                   "",
@@ -213,240 +213,240 @@
                   "",
                   "    username=root",
                   "    password=secret"
-               ]
+               ],
+               "arguments" : [
+                  "secret-file",
+                  "pgsql.conf"
+               ],
+               "command_line" : "check-pgsql8-db --secret-file 'pgsql.conf'"
+            }
+         ],
+         "options" : [
+            {
+               "default" : null,
+               "value_desc" : "key:value or key:op:value",
+               "name" : "Warning threshold",
+               "mandatory" : 0,
+               "multiple" : 1,
+               "option" : "warning",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string"
+            },
+            {
+               "mandatory" : 0,
+               "name" : "Critical threshold",
+               "default" : null,
+               "value_desc" : "key:value or key:op:value",
+               "option" : "critical",
+               "multiple" : 1,
+               "value_type" : "string",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information."
+            },
+            {
+               "value_type" : "string",
+               "description" : "A hostname or IP address to connect to.",
+               "option" : "host",
+               "multiple" : 0,
+               "mandatory" : 1,
+               "name" : "Hostname or IP address",
+               "default" : null,
+               "value_desc" : "hostname or ip address"
+            },
+            {
+               "description" : "A port number to connect to.",
+               "value_type" : "int",
+               "multiple" : 0,
+               "option" : "port",
+               "default" : 5432,
+               "value_desc" : "port",
+               "name" : "Port number",
+               "mandatory" : 0
+            },
+            {
+               "option" : "username",
+               "multiple" : 0,
+               "mandatory" : 0,
+               "value_desc" : "username",
+               "default" : null,
+               "name" : "Username",
+               "value_type" : "string",
+               "description" : "The username to use for the login."
+            },
+            {
+               "value_desc" : "password",
+               "default" : null,
+               "name" : "Password",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "option" : "password",
+               "description" : "The password for the user to login.",
+               "value_type" : "string"
+            },
+            {
+               "value_type" : "string",
+               "description" : "This is the secret file with the username and password to connect to the service.",
+               "option" : "secret-file",
+               "multiple" : 0,
+               "mandatory" : 0,
+               "name" : "Secret file",
+               "value_desc" : "filename",
+               "default" : null
+            },
+            {
+               "multiple" : 0,
+               "option" : "database",
+               "value_desc" : "database",
+               "name" : "Database",
+               "default" : null,
+               "mandatory" : 1,
+               "description" : "Set the database to connect to.",
+               "value_type" : "string"
+            },
+            {
+               "description" : "Use secure connection via SSL.",
+               "multiple" : 0,
+               "option" : "use-ssl",
+               "value_type" : 0,
+               "default" : null,
+               "name" : "Use secure connection via SSL",
+               "mandatory" : 0
             }
          ]
       },
-      "plugin" : "PostgreSQL.DatabaseStatus",
-      "prefer" : "localhost",
-      "description" : "PostgreSQL statistics",
-      "netaccess" : "yes",
-      "id" : "45",
-      "category" : "Database,PostgreSQL",
       "abstract" : "PostgreSQL database check",
-      "command" : "check-pgsql8-db",
-      "datatype" : "statistic"
+      "datatype" : "statistic",
+      "prefer" : "localhost",
+      "id" : "45",
+      "plugin" : "PostgreSQL.DatabaseStatus"
    },
    "chart" : [
       {
          "options" : {
-            "chart-type" : "area",
             "ylabel" : "bocks read/s - block hit/s",
+            "chart-type" : "area",
             "series" : [
                {
                   "color" : "#005467",
                   "name" : "blks_hit"
                },
                {
-                  "color" : "#ff7a0d",
-                  "name" : "blks_read"
+                  "name" : "blks_read",
+                  "color" : "#ff7a0d"
                }
             ],
             "units" : "default"
          },
-         "title" : "PostgreSQL - block hits",
-         "id" : "1"
+         "id" : "1",
+         "title" : "PostgreSQL - block hits"
       },
       {
+         "id" : "2",
          "options" : {
-            "chart-type" : "area",
             "ylabel" : "ratio",
+            "chart-type" : "area",
             "series" : {
                "color" : "#005467",
                "name" : "blks_hitratio"
             },
             "units" : "default"
          },
-         "title" : "PostgreSQL - block hit ratio",
-         "id" : "2"
+         "title" : "PostgreSQL - block hit ratio"
       },
       {
+         "id" : "3",
          "options" : {
-            "chart-type" : "area",
             "ylabel" : "blks_read/s - blks_hit/s",
+            "units" : "default",
             "series" : [
                {
-                  "color" : "#005467",
-                  "name" : "blks_hit"
+                  "name" : "blks_hit",
+                  "color" : "#005467"
                },
                {
-                  "color" : "#ff7a0d",
-                  "name" : "blks_read"
+                  "name" : "blks_read",
+                  "color" : "#ff7a0d"
                }
             ],
-            "units" : "default"
+            "chart-type" : "area"
          },
-         "title" : "PostgreSQL - data hits",
-         "id" : "3"
+         "title" : "PostgreSQL - data hits"
       },
       {
+         "id" : "4",
          "options" : {
-            "chart-type" : "area",
             "ylabel" : "commit/s - rollback/s",
+            "units" : "default",
             "series" : [
                {
-                  "color" : "#005467",
-                  "name" : "xact_rollback"
+                  "name" : "xact_rollback",
+                  "color" : "#005467"
                },
                {
                   "color" : "#ff7a0d",
                   "name" : "xact_commit"
                }
             ],
-            "units" : "default"
+            "chart-type" : "area"
          },
-         "title" : "PostgreSQL - commits/rollbacks",
-         "id" : "4"
+         "title" : "PostgreSQL - commits/rollbacks"
       },
       {
+         "title" : "PostgreSQL - locks",
+         "id" : "5",
          "options" : {
-            "chart-type" : "area",
             "ylabel" : "locks",
+            "chart-type" : "area",
+            "units" : "null",
             "series" : [
                {
-                  "color" : "#005467",
-                  "name" : "exlocks"
+                  "name" : "exlocks",
+                  "color" : "#005467"
                },
                {
                   "color" : "#ff7a0d",
                   "name" : "shrlocks"
                }
-            ],
-            "units" : "null"
-         },
-         "title" : "PostgreSQL - locks",
-         "id" : "5"
+            ]
+         }
       },
       {
+         "id" : "6",
          "options" : {
-            "chart-type" : "area",
             "ylabel" : "queries",
             "series" : [
                {
-                  "color" : "#ffb244",
-                  "name" : "n_tup_ins"
+                  "name" : "n_tup_ins",
+                  "color" : "#ffb244"
                },
                {
                   "color" : "#9a72ad",
                   "name" : "n_tup_upd"
                },
                {
-                  "color" : "#005467",
-                  "name" : "n_tup_del"
+                  "name" : "n_tup_del",
+                  "color" : "#005467"
                },
                {
                   "color" : "#e9644a",
                   "name" : "seq_scan"
                },
                {
-                  "color" : "#2ba743",
-                  "name" : "seq_tup_read"
+                  "name" : "seq_tup_read",
+                  "color" : "#2ba743"
                },
                {
-                  "color" : "#7648eb",
-                  "name" : "idx_scan"
+                  "name" : "idx_scan",
+                  "color" : "#7648eb"
                },
                {
-                  "color" : "#7f7fff",
-                  "name" : "idx_tup_fetch"
+                  "name" : "idx_tup_fetch",
+                  "color" : "#7f7fff"
                }
             ],
-            "units" : "default"
+            "units" : "default",
+            "chart-type" : "area"
          },
-         "title" : "PostgreSQL - queries",
-         "id" : "6"
-      }
-   ],
-   "statistic" : [
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_statio_user_tables (heap_blks_read + idx_blks_read + toast_blks_read + tidx_blks_read).",
-         "alias" : "Block hits",
-         "statkey" : "blks_hit",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_statio_user_tables (heap_blks_hit + idx_blks_hit + toast_blks_hit + tidx_blks_hit).",
-         "alias" : "Blocks read",
-         "statkey" : "blks_read",
-         "datatype" : "float"
-      },
-      {
-         "description" : "Block hit ratio.",
-         "alias" : "Block hit ratio",
-         "statkey" : "blks_hitratio",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_locks.",
-         "alias" : "Exclusive locks",
-         "statkey" : "exlocks",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_locks.",
-         "alias" : "Shared locks",
-         "statkey" : "shrlocks",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_locks.",
-         "alias" : "Locks",
-         "statkey" : "locks",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
-         "alias" : "Inserts",
-         "statkey" : "n_tup_ins",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
-         "alias" : "Updates",
-         "statkey" : "n_tup_upd",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
-         "alias" : "Deletes",
-         "statkey" : "n_tup_del",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
-         "alias" : "Scans",
-         "statkey" : "seq_scan",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
-         "alias" : "Reads",
-         "statkey" : "seq_tup_read",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
-         "alias" : "Scans",
-         "statkey" : "idx_scan",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_stat_all_tables.",
-         "alias" : "Fetches",
-         "statkey" : "idx_tup_fetch",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_stat_database.",
-         "alias" : "Commits",
-         "statkey" : "xact_commit",
-         "datatype" : "float"
-      },
-      {
-         "description" : "See PostgreSQL documentation, statistic table pg_stat_database.",
-         "alias" : "Rollbacks",
-         "statkey" : "xact_rollback",
-         "datatype" : "float"
+         "title" : "PostgreSQL - queries"
       }
    ]
 }
