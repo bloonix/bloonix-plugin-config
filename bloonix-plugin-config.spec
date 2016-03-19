@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.31
+Version: 0.32
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Sat Mar 19 2016 Jonny Schulz <js@bloonix.de> - 0.32-1
+- New plugin check-proc-status.
 * Wed Mar 02 2016 Jonny Schulz <js@bloonix.de> - 0.31-1
 - Plugin check-logfile: permit non existent logfile.
 * Thu Jan 07 2016 Jonny Schulz <js@bloonix.de> - 0.30-1

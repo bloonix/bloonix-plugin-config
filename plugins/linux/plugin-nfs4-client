@@ -1,47 +1,7 @@
 {
    "plugin" : {
-      "datatype" : "statistic",
-      "id" : "32",
       "info" : {
-         "plugin" : "check-nfs4-client",
-         "options" : [
-            {
-               "value_type" : "string",
-               "mandatory" : 0,
-               "name" : "Warning threshold",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "default" : null,
-               "option" : "warning",
-               "value_desc" : "key:value or key:op:value",
-               "multiple" : 1
-            },
-            {
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value",
-               "name" : "Critical threshold",
-               "mandatory" : 0,
-               "value_type" : "string",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "default" : null,
-               "option" : "critical"
-            }
-         ],
-         "version" : "0.4",
          "thresholds" : {
-            "info" : [
-               "How to set warning and critical thresholds:\n\n",
-               "  It's possible to set thresholds for one or more statistic keys.\n",
-               "  The format to add a threshold for a statistic key is:\n\n",
-               "    key:operator:threshold\n\n",
-               "  If no operator is set then the default operator is 'ge'.\n\n",
-               "  The following operators are available:\n\n",
-               "    lt = less than\n",
-               "    le = less than or equal\n",
-               "    gt = greater than\n",
-               "    ge = greater than or equal\n",
-               "    eq = equal\n",
-               "    ne = not equal\n"
-            ],
             "options" : [
                {
                   "key" : "read",
@@ -60,12 +20,12 @@
                   "key" : "open"
                },
                {
-                  "key" : "open_confirm",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "open_confirm"
                },
                {
-                  "unit" : "none",
-                  "key" : "open_noattr"
+                  "key" : "open_noattr",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
@@ -76,24 +36,24 @@
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "setattr"
-               },
-               {
-                  "key" : "fsinfo",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "renew",
+                  "key" : "setattr",
                   "unit" : "none"
                },
                {
                   "unit" : "none",
-                  "key" : "setclientid"
+                  "key" : "fsinfo"
                },
                {
-                  "key" : "setclientid_confirm",
+                  "unit" : "none",
+                  "key" : "renew"
+               },
+               {
+                  "key" : "setclientid",
                   "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "setclientid_confirm"
                },
                {
                   "unit" : "none",
@@ -104,8 +64,8 @@
                   "unit" : "none"
                },
                {
-                  "key" : "locku",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "locku"
                },
                {
                   "unit" : "none",
@@ -120,131 +80,171 @@
                   "unit" : "none"
                },
                {
+                  "key" : "lookup_root",
+                  "unit" : "none"
+               },
+               {
                   "unit" : "none",
-                  "key" : "lookup_root"
+                  "key" : "remove"
                },
                {
-                  "key" : "remove",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "rename",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "rename"
                },
                {
                   "unit" : "none",
                   "key" : "link"
                },
                {
-                  "unit" : "none",
-                  "key" : "symlink"
+                  "key" : "symlink",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "create"
-               },
-               {
-                  "key" : "pathconf",
+                  "key" : "create",
                   "unit" : "none"
                },
                {
                   "unit" : "none",
-                  "key" : "statfs"
+                  "key" : "pathconf"
                },
                {
-                  "unit" : "none",
-                  "key" : "readlink"
+                  "key" : "statfs",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "readlink",
+                  "unit" : "none"
                },
                {
                   "key" : "readdir",
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "server_caps"
+                  "key" : "server_caps",
+                  "unit" : "none"
                },
                {
-                  "key" : "delegreturn",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "delegreturn"
                },
                {
                   "unit" : "none",
                   "key" : "getacl"
                },
                {
-                  "unit" : "none",
-                  "key" : "setacl"
+                  "key" : "setacl",
+                  "unit" : "none"
                }
+            ],
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
             ]
          },
-         "flags" : ""
+         "version" : "0.4",
+         "flags" : "",
+         "options" : [
+            {
+               "mandatory" : 0,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "option" : "warning",
+               "default" : null,
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1,
+               "value_type" : "string",
+               "name" : "Warning threshold"
+            },
+            {
+               "mandatory" : 0,
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1,
+               "name" : "Critical threshold",
+               "value_type" : "string",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "option" : "critical",
+               "default" : null
+            }
+         ],
+         "plugin" : "check-nfs4-client"
       },
-      "abstract" : "NFS4 client check",
-      "description" : "NFS4 client statistics (see rfc3010)",
-      "category" : "System,Filesystem,Linux",
+      "command" : "check-nfs4-client",
+      "id" : "32",
       "plugin" : "Linux.NFS4Client.Check",
-      "command" : "check-nfs4-client"
+      "abstract" : "NFS4 client check",
+      "category" : "System,Filesystem,Linux",
+      "datatype" : "statistic",
+      "description" : "NFS4 client statistics (see rfc3010)"
    },
    "statistic" : [
       {
-         "alias" : "Read",
          "description" : "READ - Read from File.",
-         "statkey" : "read",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Write",
-         "description" : "WRITE - Write to File.",
-         "statkey" : "write",
-         "datatype" : "float"
+         "datatype" : "float",
+         "alias" : "Read",
+         "statkey" : "read"
       },
       {
          "datatype" : "float",
+         "alias" : "Write",
+         "statkey" : "write",
+         "description" : "WRITE - Write to File."
+      },
+      {
          "description" : "COMMIT - Commit Cached Data.",
+         "datatype" : "float",
          "alias" : "Commit",
          "statkey" : "commit"
       },
       {
          "datatype" : "float",
+         "alias" : "Open",
          "statkey" : "open",
-         "description" : "OPEN - Open a Regular File.",
-         "alias" : "Open"
+         "description" : "OPEN - Open a Regular File."
       },
       {
-         "description" : "OPEN_CONFIRM - Confirm Open.",
          "statkey" : "open_confirm",
          "alias" : "Open confirm",
-         "datatype" : "float"
+         "datatype" : "float",
+         "description" : "OPEN_CONFIRM - Confirm Open."
       },
       {
          "statkey" : "open_noattr",
-         "description" : "OPEN_NOATTR",
+         "datatype" : "float",
          "alias" : "Open no attributes",
-         "datatype" : "float"
+         "description" : "OPEN_NOATTR"
       },
       {
+         "description" : "OPEN_DOWNGRADE - Reduce Open File Access.",
          "datatype" : "float",
          "alias" : "Reduce open file access",
-         "description" : "OPEN_DOWNGRADE - Reduce Open File Access.",
          "statkey" : "open_downgrade"
       },
       {
-         "datatype" : "float",
          "description" : "CLOSE - Close File.",
+         "statkey" : "close",
          "alias" : "Close file",
-         "statkey" : "close"
+         "datatype" : "float"
       },
       {
-         "description" : "SETATTR - Set Attributes.",
          "statkey" : "setattr",
+         "datatype" : "float",
          "alias" : "Set attributes",
-         "datatype" : "float"
+         "description" : "SETATTR - Set Attributes."
       },
       {
          "description" : "FSINFO - Get static file system information.",
-         "statkey" : "fsinfo",
          "alias" : "Get filesystem info",
-         "datatype" : "float"
+         "datatype" : "float",
+         "statkey" : "fsinfo"
       },
       {
          "description" : "RENEW - Renew a Lease.",
@@ -253,136 +253,136 @@
          "datatype" : "float"
       },
       {
-         "statkey" : "setclientid",
          "description" : "SETCLIENTID - Negotiate Clientid.",
+         "datatype" : "float",
          "alias" : "Set client ID",
-         "datatype" : "float"
+         "statkey" : "setclientid"
       },
       {
-         "description" : "SETCLIENTID_CONFIRM - Confirm Clientid.",
          "statkey" : "setclientid_confirm",
+         "datatype" : "float",
          "alias" : "Confirm client ID",
-         "datatype" : "float"
+         "description" : "SETCLIENTID_CONFIRM - Confirm Clientid."
       },
       {
-         "alias" : "Create lock",
          "description" : "LOCK - Create Lock.",
-         "statkey" : "lock",
-         "datatype" : "float"
+         "datatype" : "float",
+         "alias" : "Create lock",
+         "statkey" : "lock"
       },
       {
-         "datatype" : "float",
-         "statkey" : "lockt",
          "description" : "LOCKT - Test For Lock.",
-         "alias" : "Test lock"
-      },
-      {
-         "alias" : "Unlock",
-         "description" : "LOCKU - Unlock File.",
-         "statkey" : "locku",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "access",
-         "description" : "ACCESS - Check Access Rights.",
-         "alias" : "Access",
-         "datatype" : "float"
-      },
-      {
-         "description" : "GETATTR - Get Attributes.",
-         "statkey" : "getattr",
-         "alias" : "Get attributes",
-         "datatype" : "float"
-      },
-      {
+         "alias" : "Test lock",
          "datatype" : "float",
-         "statkey" : "lookup",
+         "statkey" : "lockt"
+      },
+      {
+         "statkey" : "locku",
+         "alias" : "Unlock",
+         "datatype" : "float",
+         "description" : "LOCKU - Unlock File."
+      },
+      {
+         "alias" : "Access",
+         "datatype" : "float",
+         "statkey" : "access",
+         "description" : "ACCESS - Check Access Rights."
+      },
+      {
+         "statkey" : "getattr",
+         "datatype" : "float",
+         "alias" : "Get attributes",
+         "description" : "GETATTR - Get Attributes."
+      },
+      {
          "description" : "LOOKUP - Lookup Filename.",
-         "alias" : "Lookup filename"
+         "datatype" : "float",
+         "alias" : "Lookup filename",
+         "statkey" : "lookup"
       },
       {
          "description" : "LOOKUPP - Lookup Parent Directory.",
          "statkey" : "lookupp",
-         "alias" : "Lookup parent directory",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Remove filesystem object",
-         "description" : "REMOVE - Remove Filesystem Object.",
-         "statkey" : "remove",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "rename",
-         "description" : "RENAME - Rename Directory Entry.",
-         "alias" : "Rename",
-         "datatype" : "float"
-      },
-      {
          "datatype" : "float",
+         "alias" : "Lookup parent directory"
+      },
+      {
+         "description" : "REMOVE - Remove Filesystem Object.",
+         "datatype" : "float",
+         "alias" : "Remove filesystem object",
+         "statkey" : "remove"
+      },
+      {
+         "description" : "RENAME - Rename Directory Entry.",
+         "statkey" : "rename",
+         "datatype" : "float",
+         "alias" : "Rename"
+      },
+      {
          "description" : "LINK - Create Link to a File.",
+         "datatype" : "float",
          "alias" : "Create link",
          "statkey" : "link"
       },
       {
+         "alias" : "Create symbolic link",
          "datatype" : "float",
-         "description" : "SYMLINK - Create a symbolic link.",
          "statkey" : "symlink",
-         "alias" : "Create symbolic link"
+         "description" : "SYMLINK - Create a symbolic link."
       },
       {
-         "datatype" : "float",
-         "description" : "CREATE - Create a Non-Regular File Object.",
          "alias" : "Create",
-         "statkey" : "create"
-      },
-      {
          "datatype" : "float",
+         "statkey" : "create",
+         "description" : "CREATE - Create a Non-Regular File Object."
+      },
+      {
+         "statkey" : "pathconf",
          "alias" : "Retrieve POSIX information",
-         "description" : "PATHCONF - Retrieve POSIX information.",
-         "statkey" : "pathconf"
+         "datatype" : "float",
+         "description" : "PATHCONF - Retrieve POSIX information."
       },
       {
-         "description" : "STATFS",
-         "alias" : "StatFS",
          "statkey" : "statfs",
-         "datatype" : "float"
+         "alias" : "StatFS",
+         "datatype" : "float",
+         "description" : "STATFS"
       },
       {
-         "description" : "READLINK - Read Symbolic Link.",
          "statkey" : "readlink",
+         "datatype" : "float",
          "alias" : "Read link",
-         "datatype" : "float"
+         "description" : "READLINK - Read Symbolic Link."
       },
       {
-         "alias" : "Read directory",
          "description" : "READDIR - Read Directory.",
-         "statkey" : "readdir",
-         "datatype" : "float"
+         "datatype" : "float",
+         "alias" : "Read directory",
+         "statkey" : "readdir"
       },
       {
          "statkey" : "server_caps",
-         "description" : "SERVER_CAPS",
-         "alias" : "Server caps",
-         "datatype" : "float"
-      },
-      {
          "datatype" : "float",
-         "alias" : "Return delegation",
-         "description" : "DELEGRETURN - Return Delegation.",
-         "statkey" : "delegreturn"
+         "alias" : "Server caps",
+         "description" : "SERVER_CAPS"
       },
       {
-         "alias" : "Get ACL",
+         "description" : "DELEGRETURN - Return Delegation.",
+         "statkey" : "delegreturn",
+         "datatype" : "float",
+         "alias" : "Return delegation"
+      },
+      {
          "description" : "GETACL - Get Access Control List.",
          "statkey" : "getacl",
+         "alias" : "Get ACL",
          "datatype" : "float"
       },
       {
          "datatype" : "float",
          "alias" : "Set ACL",
-         "description" : "SETACL - Set Access Control List.",
-         "statkey" : "setacl"
+         "statkey" : "setacl",
+         "description" : "SETACL - Set Access Control List."
       }
    ]
 }
