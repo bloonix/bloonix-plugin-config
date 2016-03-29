@@ -1,35 +1,24 @@
 {
-   "chart" : {
-      "id" : "1",
-      "options" : {
-         "ylabel" : "loadavg",
-         "series" : [
-            {
-               "name" : "avg1",
-               "color" : "#e9644a"
-            },
-            {
-               "name" : "avg5",
-               "color" : "#005467"
-            },
-            {
-               "name" : "avg15",
-               "color" : "#9a72ad"
-            }
-         ],
-         "chart-type" : "line",
-         "units" : "null"
-      },
-      "title" : "Linux - loadavg"
-   },
    "plugin" : {
-      "id" : "24",
-      "datatype" : "statistic",
       "description" : "Linux load average",
-      "abstract" : "Load average check",
-      "command" : "check-loadavg",
+      "datatype" : "statistic",
       "info" : {
+         "version" : "0.6",
          "thresholds" : {
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "avg1"
+               },
+               {
+                  "key" : "avg5",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "avg15"
+               }
+            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -43,58 +32,17 @@
                "    ge = greater than or equal\n",
                "    eq = equal\n",
                "    ne = not equal\n"
-            ],
-            "options" : [
-               {
-                  "key" : "avg1",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "avg5",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "avg15",
-                  "unit" : "none"
-               }
             ]
          },
-         "plugin" : "check-loadavg",
-         "options" : [
-            {
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "value_desc" : "key:value or key:op:value",
-               "multiple" : 1,
-               "default" : null,
-               "name" : "Warning threshold",
-               "option" : "warning",
-               "mandatory" : 0
-            },
-            {
-               "value_type" : "string",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "name" : "Critical threshold",
-               "default" : null,
-               "value_desc" : "key:value or key:op:value",
-               "multiple" : 1,
-               "mandatory" : 0,
-               "option" : "critical"
-            },
-            {
-               "multiple" : 0,
-               "default" : null,
-               "description" : "Enable this option if you want that the avg threshold is multiplicatied with the number of CPUs (threads). As example if your server has 8 threads and if you set avg1 to 4, then the threshold is 32 (8 * 4). The number of available CPUs is checked in /proc/stat (cpuN).",
-               "name" : "Per CPU",
-               "value_type" : 0,
-               "option" : "per-cpu",
-               "mandatory" : 0
-            }
-         ],
-         "flags" : "",
-         "version" : "0.6",
          "examples" : [
             {
+               "description" : [
+                  "An example to check the load average and trigger",
+                  "",
+                  "- a warning if avg1 or avg5 is equal or higher than 20",
+                  "- a critical if avg1 or avg5 is equal or higher than 50"
+               ],
+               "command_line" : "check-loadavg --warning 'avg1:ge:20' --critical 'avg1:ge:50' --warning 'avg5:ge:20' --critical 'avg5:ge:50'",
                "arguments" : [
                   "warning",
                   "avg1:ge:20",
@@ -104,41 +52,93 @@
                   "avg5:ge:20",
                   "critical",
                   "avg5:ge:50"
-               ],
-               "description" : [
-                  "An example to check the load average and trigger",
-                  "",
-                  "- a warning if avg1 or avg5 is equal or higher than 20",
-                  "- a critical if avg1 or avg5 is equal or higher than 50"
-               ],
-               "command_line" : "check-loadavg --warning 'avg1:ge:20' --critical 'avg1:ge:50' --warning 'avg5:ge:20' --critical 'avg5:ge:50'"
+               ]
             }
-         ]
+         ],
+         "plugin" : "check-loadavg",
+         "options" : [
+            {
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "option" : "warning",
+               "value_desc" : "key:value or key:op:value",
+               "mandatory" : 0,
+               "name" : "Warning threshold",
+               "multiple" : 1
+            },
+            {
+               "default" : null,
+               "multiple" : 1,
+               "name" : "Critical threshold",
+               "option" : "critical",
+               "value_desc" : "key:value or key:op:value",
+               "value_type" : "string",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "mandatory" : 0
+            },
+            {
+               "name" : "Per CPU",
+               "multiple" : 0,
+               "mandatory" : 0,
+               "value_type" : 0,
+               "description" : "Enable this option if you want that the avg threshold is multiplicatied with the number of CPUs (threads). As example if your server has 8 threads and if you set avg1 to 4, then the threshold is 32 (8 * 4). The number of available CPUs is checked in /proc/stat (cpuN).",
+               "option" : "per-cpu",
+               "default" : null
+            }
+         ],
+         "flags" : ""
       },
+      "command" : "check-loadavg",
+      "abstract" : "Load average check",
+      "category" : "System,Linux",
       "plugin" : "Linux.LoadAVG.Check",
-      "category" : "System,Linux"
+      "id" : "24"
    },
    "statistic" : [
       {
          "alias" : "Load average last 15 minutes",
+         "description" : "The average processor workload of the last fifteen minutes.",
          "datatype" : "float",
          "units" : "null",
-         "description" : "The average processor workload of the last fifteen minutes.",
          "statkey" : "avg15"
       },
       {
-         "units" : "null",
-         "description" : "The average processor workload of the last five minutes.",
+         "alias" : "Load average last 5 minutes",
          "statkey" : "avg5",
+         "description" : "The average processor workload of the last five minutes.",
          "datatype" : "float",
-         "alias" : "Load average last 5 minutes"
+         "units" : "null"
       },
       {
          "description" : "The average processor workload of the last minute.",
+         "datatype" : "float",
          "units" : "null",
          "statkey" : "avg1",
-         "alias" : "Load average last minute",
-         "datatype" : "float"
+         "alias" : "Load average last minute"
       }
-   ]
+   ],
+   "chart" : {
+      "id" : "1",
+      "title" : "Linux - loadavg",
+      "options" : {
+         "series" : [
+            {
+               "color" : "#e9644a",
+               "name" : "avg1"
+            },
+            {
+               "color" : "#005467",
+               "name" : "avg5"
+            },
+            {
+               "color" : "#9a72ad",
+               "name" : "avg15"
+            }
+         ],
+         "units" : "null",
+         "chart-type" : "line",
+         "ylabel" : "loadavg"
+      }
+   }
 }

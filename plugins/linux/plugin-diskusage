@@ -1,76 +1,122 @@
 {
    "statistic" : [
       {
+         "statkey" : "usage",
          "units" : "kilobytes",
-         "datatype" : "bigint",
-         "description" : "The used disk space in kilobytes.",
          "alias" : "Usage",
-         "statkey" : "usage"
+         "datatype" : "bigint",
+         "description" : "The used disk space in kilobytes."
       },
       {
+         "alias" : "Disk name",
+         "datatype" : "varchar(100)",
          "description" : "The disk name.",
-         "datatype" : "varchar(100)",
-         "statkey" : "disk",
-         "alias" : "Disk name"
+         "statkey" : "disk"
       },
       {
-         "description" : "The free disk space in kilobytes.",
          "datatype" : "bigint",
-         "units" : "kilobytes",
-         "statkey" : "free",
-         "alias" : "Free"
-      },
-      {
-         "units" : "percent",
-         "datatype" : "bigint",
-         "description" : "The free disk space in percent.",
          "alias" : "Free",
-         "statkey" : "freeper"
+         "description" : "The free disk space in kilobytes.",
+         "statkey" : "free",
+         "units" : "kilobytes"
       },
       {
-         "statkey" : "usageper",
-         "alias" : "Usage",
+         "datatype" : "bigint",
+         "alias" : "Free",
+         "description" : "The free disk space in percent.",
+         "statkey" : "freeper",
+         "units" : "percent"
+      },
+      {
          "description" : "The used disk space in percent.",
+         "alias" : "Usage",
          "datatype" : "bigint",
-         "units" : "percent"
-      },
-      {
-         "description" : "The free inodes in percent.",
          "units" : "percent",
-         "datatype" : "bigint",
-         "statkey" : "ifreeper",
-         "alias" : "Inodes free"
+         "statkey" : "usageper"
       },
       {
-         "statkey" : "iusageper",
-         "alias" : "Inodes used",
-         "description" : "The used inodes in percent.",
+         "alias" : "Inodes free",
          "datatype" : "bigint",
+         "description" : "The free inodes in percent.",
+         "statkey" : "ifreeper",
          "units" : "percent"
       },
       {
-         "alias" : "Mountpoint",
-         "statkey" : "mountpoint",
-         "datatype" : "varchar(100)",
-         "description" : "The moint point of the disk."
+         "description" : "The used inodes in percent.",
+         "alias" : "Inodes used",
+         "datatype" : "bigint",
+         "units" : "percent",
+         "statkey" : "iusageper"
       },
       {
-         "statkey" : "total",
+         "description" : "The moint point of the disk.",
+         "alias" : "Mountpoint",
+         "datatype" : "varchar(100)",
+         "statkey" : "mountpoint"
+      },
+      {
          "alias" : "Total",
+         "datatype" : "bigint",
          "description" : "The total size of the disk.",
-         "units" : "kilobytes",
-         "datatype" : "bigint"
+         "statkey" : "total",
+         "units" : "kilobytes"
       }
    ],
    "plugin" : {
-      "plugin" : "Linux.Disk.Check",
-      "command" : "check-diskusage",
-      "datatype" : "statistic",
-      "abstract" : "Diskusage check",
-      "category" : "System,Linux",
       "info" : {
          "version" : "0.7",
-         "plugin" : "check-diskusage",
+         "options" : [
+            {
+               "value_type" : "string",
+               "option" : "mountpoint",
+               "multiple" : 0,
+               "description" : "This is the mountpoint where a filesystem is mounted on. As example /var or a simple / for the root mountpoint.",
+               "name" : "Mountpoint",
+               "mandatory" : 1,
+               "value_desc" : "mountpoint",
+               "default" : null
+            },
+            {
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value",
+               "default" : null,
+               "mandatory" : 0,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "name" : "Warning threshold",
+               "value_type" : "string",
+               "option" : "warning"
+            },
+            {
+               "option" : "critical",
+               "value_type" : "string",
+               "default" : null,
+               "value_desc" : "key:value or key:op:value",
+               "mandatory" : 0,
+               "name" : "Critical threshold",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "multiple" : 1
+            }
+         ],
+         "examples" : [
+            {
+               "arguments" : [
+                  "mountpoint",
+                  "/home",
+                  "warning",
+                  "usageper:ge:90",
+                  "critical",
+                  "usageper:ge:95",
+                  "warning",
+                  "iusageper:ge:90",
+                  "critical",
+                  "iusageper:ge:95"
+               ],
+               "command_line" : "check-diskusage --mountpoint '/home' --warning 'usageper:ge:90' --critical 'usageper:ge:95' --warning 'iusageper:ge:90' --critical 'iusageper:ge:95'",
+               "description" : [
+                  "A simple example to check the home mountpoint - if /home exists as a filesystem mountpoint"
+               ]
+            }
+         ],
          "thresholds" : {
             "options" : [
                {
@@ -78,24 +124,24 @@
                   "unit" : "percent"
                },
                {
-                  "unit" : "percent",
-                  "key" : "freeper"
+                  "key" : "freeper",
+                  "unit" : "percent"
                },
                {
                   "key" : "usage",
                   "unit" : "bytes"
                },
                {
-                  "unit" : "bytes",
-                  "key" : "free"
+                  "key" : "free",
+                  "unit" : "bytes"
                },
                {
                   "key" : "ifreeper",
                   "unit" : "percent"
                },
                {
-                  "key" : "iusageper",
-                  "unit" : "percent"
+                  "unit" : "percent",
+                  "key" : "iusageper"
                }
             ],
             "info" : [
@@ -124,74 +170,28 @@
                "  Allowed units for percent: %\n\n"
             ]
          },
-         "flags" : "",
-         "options" : [
-            {
-               "mandatory" : 1,
-               "option" : "mountpoint",
-               "default" : null,
-               "value_type" : "string",
-               "value_desc" : "mountpoint",
-               "description" : "This is the mountpoint where a filesystem is mounted on. As example /var or a simple / for the root mountpoint.",
-               "name" : "Mountpoint",
-               "multiple" : 0
-            },
-            {
-               "value_type" : "string",
-               "default" : null,
-               "name" : "Warning threshold",
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "option" : "warning",
-               "mandatory" : 0
-            },
-            {
-               "default" : null,
-               "value_type" : "string",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_desc" : "key:value or key:op:value",
-               "multiple" : 1,
-               "name" : "Critical threshold",
-               "mandatory" : 0,
-               "option" : "critical"
-            }
-         ],
-         "examples" : [
-            {
-               "arguments" : [
-                  "mountpoint",
-                  "/home",
-                  "warning",
-                  "usageper:ge:90",
-                  "critical",
-                  "usageper:ge:95",
-                  "warning",
-                  "iusageper:ge:90",
-                  "critical",
-                  "iusageper:ge:95"
-               ],
-               "description" : [
-                  "A simple example to check the home mountpoint - if /home exists as a filesystem mountpoint"
-               ],
-               "command_line" : "check-diskusage --mountpoint '/home' --warning 'usageper:ge:90' --critical 'usageper:ge:95' --warning 'iusageper:ge:90' --critical 'iusageper:ge:95'"
-            }
-         ]
+         "plugin" : "check-diskusage",
+         "flags" : ""
       },
+      "command" : "check-diskusage",
+      "datatype" : "statistic",
+      "id" : "19",
       "description" : "Linux disk usage",
-      "id" : "19"
+      "category" : "System,Linux",
+      "plugin" : "Linux.Disk.Check",
+      "abstract" : "Diskusage check"
    },
    "chart" : {
+      "id" : "1",
+      "title" : "Linux - diskusage",
       "options" : {
-         "ylabel" : "disk usage in %",
+         "units" : "null",
          "chart-type" : "area",
          "series" : {
-            "name" : "usageper",
-            "color" : "#005467"
+            "color" : "#005467",
+            "name" : "usageper"
          },
-         "units" : "null"
-      },
-      "title" : "Linux - diskusage",
-      "id" : "1"
+         "ylabel" : "disk usage in %"
+      }
    }
 }

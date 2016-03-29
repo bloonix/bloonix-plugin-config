@@ -1,190 +1,173 @@
 {
-   "chart" : {
-      "title" : "HTTP request - response time",
-      "options" : {
-         "series" : {
-            "color" : "#005467",
-            "name" : "time"
-         },
-         "chart-type" : "area",
-         "ylabel" : "time in ms",
-         "units" : "null"
-      },
-      "id" : "1"
-   },
    "plugin" : {
-      "abstract" : "HTTP check",
       "description" : "HTTP request statistics",
       "plugin" : "HTTP.Check",
-      "netaccess" : "yes",
-      "command" : "check-http",
-      "worldwide" : "yes",
       "datatype" : "statistic",
+      "category" : "Network,Webserver,HTTP",
+      "command" : "check-http",
+      "abstract" : "HTTP check",
       "info" : {
-         "version" : "0.15",
-         "plugin" : "check-http",
-         "flags" : "",
          "options" : [
             {
+               "value_type" : "string",
                "mandatory" : 1,
+               "multiple" : 0,
                "example" : "http://www.bloonix.de/",
-               "description" : "This is the HTTP or HTTPS request you want to check. Please enter the full URL with the query string.",
-               "option" : "url",
-               "multiple" : 0,
-               "name" : "URL",
                "value_desc" : "url",
-               "value_type" : "string",
-               "default" : null
+               "option" : "url",
+               "description" : "This is the HTTP or HTTPS request you want to check. Please enter the full URL with the query string.",
+               "default" : null,
+               "name" : "URL"
             },
             {
-               "option" : "host",
-               "description" : "A IP address to force the check to connect to. This is very useful if your web page runs behind a loadbalancer and if you want to check a specific IP address.",
-               "mandatory" : 0,
+               "default" : null,
                "name" : "IP address",
+               "description" : "A IP address to force the check to connect to. This is very useful if your web page runs behind a loadbalancer and if you want to check a specific IP address.",
+               "option" : "host",
                "value_desc" : "ipaddr",
-               "value_type" : "string",
-               "default" : null,
-               "multiple" : 0
-            },
-            {
-               "default" : null,
-               "value_type" : "string",
-               "name" : "Check a string in the HTTP header",
-               "value_desc" : "regex",
                "multiple" : 0,
-               "option" : "match-header",
-               "description" : "A text string that is expected in the HTTP header. If the text string is not present then a critical status is returned.",
-               "example" : "^HTTP/1.1 200 OK",
+               "value_type" : "string",
                "mandatory" : 0
             },
             {
+               "description" : "A text string that is expected in the HTTP header. If the text string is not present then a critical status is returned.",
                "default" : null,
+               "name" : "Check a string in the HTTP header",
+               "multiple" : 0,
+               "example" : "^HTTP/1.1 200 OK",
                "value_desc" : "regex",
                "value_type" : "string",
-               "name" : "Check a string in the HTTP content",
-               "multiple" : 0,
-               "description" : "A text string that is expected in the HTTP content. It is recommended to check the content because it's possible that the webserver responses is a blank site but an successful http return code. If the text string is not present then a critical status is returned.",
-               "option" : "match",
                "mandatory" : 0,
-               "example" : "Impress"
+               "option" : "match-header"
             },
             {
-               "description" : "A text string that is not expected in the HTTP content. If the string is present then a critical status is returned.",
-               "option" : "match-error",
                "mandatory" : 0,
+               "value_type" : "string",
+               "example" : "Impress",
+               "multiple" : 0,
+               "value_desc" : "regex",
+               "option" : "match",
+               "description" : "A text string that is expected in the HTTP content. It is recommended to check the content because it's possible that the webserver responses is a blank site but an successful http return code. If the text string is not present then a critical status is returned.",
+               "default" : null,
+               "name" : "Check a string in the HTTP content"
+            },
+            {
+               "option" : "match-error",
+               "value_type" : "string",
+               "mandatory" : 0,
+               "multiple" : 0,
                "value_desc" : "regex",
                "name" : "Check for errors in the HTTP content",
-               "value_type" : "string",
                "default" : null,
-               "multiple" : 0
-            },
-            {
-               "option" : "warning",
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
-               "mandatory" : 0,
-               "default" : 3,
-               "value_type" : "number",
-               "value_desc" : "seconds",
-               "name" : "Warning threshold",
-               "multiple" : 0
+               "description" : "A text string that is not expected in the HTTP content. If the string is present then a critical status is returned."
             },
             {
                "multiple" : 0,
-               "default" : 5,
-               "value_type" : "number",
-               "name" : "Critical threshold",
                "value_desc" : "seconds",
                "mandatory" : 0,
-               "option" : "critical",
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered."
+               "value_type" : "number",
+               "option" : "warning",
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
+               "default" : 3,
+               "name" : "Warning threshold"
             },
             {
                "value_desc" : "seconds",
+               "multiple" : 0,
+               "value_type" : "number",
+               "mandatory" : 0,
+               "option" : "critical",
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "name" : "Critical threshold",
+               "default" : 5
+            },
+            {
+               "option" : "timeout",
+               "value_desc" : "seconds",
+               "multiple" : 0,
+               "mandatory" : 0,
                "value_type" : "number",
                "name" : "Timeout",
                "default" : 10,
-               "multiple" : 0,
-               "option" : "timeout",
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "mandatory" : 0
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered."
             },
             {
-               "mandatory" : 0,
-               "multiple" : 0,
-               "name" : "Use IPv6",
-               "value_type" : 0,
-               "description" : "Use IPv6 to connect to the host.",
+               "option" : "use-ipv6",
                "default" : null,
-               "option" : "use-ipv6"
+               "name" : "Use IPv6",
+               "multiple" : 0,
+               "description" : "Use IPv6 to connect to the host.",
+               "mandatory" : 0,
+               "value_type" : 0
             },
             {
-               "multiple" : 0,
-               "name" : "Username",
+               "option" : "username",
+               "mandatory" : 0,
                "value_type" : "string",
                "value_desc" : "username",
+               "multiple" : 0,
                "default" : null,
-               "mandatory" : 0,
-               "description" : "A username for a HTTP Auth-Basic authentication.",
-               "option" : "username"
+               "name" : "Username",
+               "description" : "A username for a HTTP Auth-Basic authentication."
             },
             {
-               "default" : null,
+               "option" : "password",
+               "mandatory" : 0,
                "value_type" : "string",
                "value_desc" : "password",
-               "name" : "Password",
                "multiple" : 0,
-               "description" : "A password for a HTTP Auth-Basic authentication.",
-               "option" : "password",
-               "mandatory" : 0
+               "name" : "Password",
+               "default" : null,
+               "description" : "A password for a HTTP Auth-Basic authentication."
             },
             {
                "name" : "POST data",
-               "value_type" : "string",
-               "value_desc" : "data",
                "default" : null,
-               "multiple" : 0,
-               "option" : "data",
                "description" : "Data you want to send as post data to the webserver. The data should be formatted in the way the webserver expects the data.",
+               "option" : "data",
+               "value_desc" : "data",
+               "multiple" : 0,
+               "value_type" : "string",
                "mandatory" : 0
             },
             {
-               "description" : "Check the expiration date of a certificate. As value the number of days are set before the certificate will expire. The format is 'days,days' where the first number of days is the warning threshold and the second number of days is the critical threshold.",
                "option" : "certificate",
+               "value_type" : "string",
                "mandatory" : 0,
-               "example" : "7,3",
-               "default" : null,
                "value_desc" : "warning-days,critical-days",
-               "value_type" : "string",
+               "multiple" : 0,
+               "example" : "7,3",
                "name" : "SSL certificate check",
-               "multiple" : 0
-            },
-            {
-               "default" : "Bloonix Plugin Check-HTTP",
-               "name" : "User-Agent",
-               "value_desc" : "user-agent",
-               "value_type" : "string",
-               "multiple" : 0,
-               "description" : "Set the user agent of the curl request.",
-               "option" : "user-agent",
-               "mandatory" : 0
-            },
-            {
-               "option" : "verbose-status",
-               "name" : "Verbose status",
-               "value_type" : 0,
-               "description" : "Add the http header and content to status output.",
                "default" : null,
+               "description" : "Check the expiration date of a certificate. As value the number of days are set before the certificate will expire. The format is 'days,days' where the first number of days is the warning threshold and the second number of days is the critical threshold."
+            },
+            {
+               "option" : "user-agent",
+               "value_type" : "string",
                "mandatory" : 0,
+               "multiple" : 0,
+               "value_desc" : "user-agent",
+               "name" : "User-Agent",
+               "default" : "Bloonix Plugin Check-HTTP",
+               "description" : "Set the user agent of the curl request."
+            },
+            {
+               "name" : "Verbose status",
+               "default" : null,
+               "option" : "verbose-status",
+               "value_type" : 0,
+               "mandatory" : 0,
+               "description" : "Add the http header and content to status output.",
                "multiple" : 0
             },
             {
-               "mandatory" : 0,
-               "multiple" : 0,
+               "default" : null,
+               "name" : "Verbose error",
                "option" : "verbose-error",
                "value_type" : 0,
-               "name" : "Verbose error",
+               "mandatory" : 0,
                "description" : "Add the http header and content to status output but only\nif the status is not OK.",
-               "default" : null
+               "multiple" : 0
             }
          ],
          "examples" : [
@@ -222,17 +205,34 @@
                ],
                "command_line" : "check-http --url 'https://www.bloonix.de/' --certificate '7,3' --warning '3' --critical '5'"
             }
-         ]
+         ],
+         "plugin" : "check-http",
+         "flags" : "",
+         "version" : "0.15"
       },
       "id" : "7",
-      "category" : "Network,Webserver,HTTP",
-      "prefer" : "remote"
+      "prefer" : "remote",
+      "worldwide" : "yes",
+      "netaccess" : "yes"
    },
    "statistic" : {
-      "alias" : "Response time",
-      "description" : "Time in milliseconds waiting for response.",
+      "units" : "ms",
       "statkey" : "time",
       "datatype" : "float",
-      "units" : "ms"
+      "description" : "Time in milliseconds waiting for response.",
+      "alias" : "Response time"
+   },
+   "chart" : {
+      "id" : "1",
+      "title" : "HTTP request - response time",
+      "options" : {
+         "series" : {
+            "color" : "#005467",
+            "name" : "time"
+         },
+         "ylabel" : "time in ms",
+         "chart-type" : "area",
+         "units" : "null"
+      }
    }
 }

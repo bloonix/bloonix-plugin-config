@@ -1,37 +1,37 @@
 {
    "plugin" : {
-      "plugin" : "Network.MTR.Check",
-      "command" : "check-mtr",
       "category" : "System,Linux",
-      "description" : "Monitor the route to a host via MTR.",
+      "abstract" : "Traceroute",
       "id" : "27",
       "datatype" : "table",
-      "abstract" : "Traceroute",
+      "command" : "check-mtr",
+      "plugin" : "Network.MTR.Check",
+      "description" : "Monitor the route to a host via MTR.",
       "info" : {
          "flags" : "",
-         "version" : "0.2",
          "options" : [
             {
-               "value_desc" : "hostname or ip address",
-               "mandatory" : 1,
                "multiple" : 0,
-               "option" : "host",
-               "value_type" : "string",
-               "default" : null,
                "description" : "A hostname or IP address to connect to.",
-               "name" : "Hostname or IP address"
+               "default" : null,
+               "value_desc" : "hostname or ip address",
+               "value_type" : "string",
+               "mandatory" : 1,
+               "name" : "Hostname or IP address",
+               "option" : "host"
             },
             {
-               "option" : "timeout",
-               "multiple" : 0,
-               "mandatory" : 0,
                "value_desc" : "seconds",
+               "value_type" : "number",
+               "mandatory" : 0,
+               "option" : "timeout",
                "name" : "Timeout",
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "default" : 30,
-               "value_type" : "number"
+               "multiple" : 0,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered."
             }
          ],
+         "version" : "0.2",
          "plugin" : "check-mtr"
       }
    }

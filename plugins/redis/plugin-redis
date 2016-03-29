@@ -1,69 +1,234 @@
 {
+   "statistic" : [
+      {
+         "datatype" : "bigint",
+         "description" : "The number of clients currently connected.",
+         "statkey" : "connected_clients",
+         "alias" : "Connected"
+      },
+      {
+         "alias" : "Blocked",
+         "statkey" : "blocked_clients",
+         "description" : "The number of clients pending on a blocking call (BLPOP, BRPOP, BRPOPLPUSH).",
+         "datatype" : "bigint"
+      },
+      {
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "alias" : "Used memory",
+         "description" : "The total number of bytes allocated by Redis using its allocator.",
+         "statkey" : "used_memory"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Connections",
+         "statkey" : "connections",
+         "description" : "The number of connections per second."
+      },
+      {
+         "description" : "The number of requests per second.",
+         "statkey" : "requests",
+         "alias" : "Requests",
+         "datatype" : "float"
+      },
+      {
+         "alias" : "Expired",
+         "statkey" : "expired",
+         "description" : "The number of key expiration events per second.",
+         "datatype" : "float"
+      },
+      {
+         "alias" : "Evicted",
+         "description" : "The number of evicted keys due to maxmemory limit per second.",
+         "statkey" : "evicted",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Hits",
+         "statkey" : "hits",
+         "description" : "The number of successful lookup of keys in the main dictionary per second."
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Misses",
+         "statkey" : "misses",
+         "description" : "The number of failed lookup of keys in the main dictionary per second."
+      },
+      {
+         "alias" : "Hit ratio",
+         "description" : "The hit ratio (hits / total * 100).",
+         "statkey" : "hitratio",
+         "datatype" : "float"
+      },
+      {
+         "alias" : "Miss ratio",
+         "description" : "The miss ratio (misses / total * 100).",
+         "statkey" : "missratio",
+         "datatype" : "float"
+      }
+   ],
+   "chart" : [
+      {
+         "title" : "Redis - connected and blocked clients",
+         "id" : "1",
+         "options" : {
+            "series" : [
+               {
+                  "color" : "#005467",
+                  "name" : "connected_clients"
+               },
+               {
+                  "opposite" : "true",
+                  "color" : "#ff7a0d",
+                  "name" : "blocked_clients"
+               }
+            ],
+            "ylabel" : "count",
+            "chart-type" : "area"
+         }
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "series" : {
+               "color" : "#005467",
+               "name" : "used_memory"
+            },
+            "units" : "bytes",
+            "ylabel" : "bytes"
+         },
+         "id" : "2",
+         "title" : "Redis - used memory"
+      },
+      {
+         "id" : "3",
+         "title" : "Redis - request and connections",
+         "options" : {
+            "ylabel" : "count/s",
+            "series" : [
+               {
+                  "name" : "requests",
+                  "color" : "#005467"
+               },
+               {
+                  "opposite" : "true",
+                  "color" : "#ff7a0d",
+                  "name" : "connections"
+               }
+            ],
+            "chart-type" : "area"
+         }
+      },
+      {
+         "options" : {
+            "series" : [
+               {
+                  "name" : "hits",
+                  "color" : "#e9644a"
+               },
+               {
+                  "color" : "#ffb244",
+                  "name" : "misses"
+               },
+               {
+                  "name" : "expired",
+                  "color" : "#9a72ad"
+               },
+               {
+                  "name" : "evicted",
+                  "color" : "#005467"
+               }
+            ],
+            "ylabel" : "count/s",
+            "chart-type" : "area"
+         },
+         "title" : "Redis - key statistics",
+         "id" : "4"
+      },
+      {
+         "id" : "5",
+         "title" : "Redis - hit and miss ratio",
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "ratio",
+            "series" : [
+               {
+                  "name" : "hitratio",
+                  "color" : "#005467"
+               },
+               {
+                  "name" : "missratio",
+                  "color" : "#ff7a0d",
+                  "opposite" : "true"
+               }
+            ]
+         }
+      }
+   ],
    "plugin" : {
-      "command" : "check-redis",
-      "category" : "System,Caching,Redis",
+      "prefer" : "localhost",
       "id" : "48",
+      "command" : "check-redis",
       "info" : {
+         "plugin" : "check-redis",
+         "flags" : "",
          "options" : [
             {
-               "option" : "host",
                "name" : "Hostname or IP address",
-               "multiple" : 0,
                "default" : "127.0.0.1",
-               "description" : "A hostname or IP address to connect to.",
                "mandatory" : 0,
+               "description" : "A hostname or IP address to connect to.",
                "value_desc" : "hostname or ip address",
-               "value_type" : "string"
+               "option" : "host",
+               "value_type" : "string",
+               "multiple" : 0
             },
             {
+               "value_desc" : "port",
                "option" : "port",
                "multiple" : 0,
-               "name" : "Port number",
-               "mandatory" : 0,
-               "default" : 6379,
+               "value_type" : "int",
                "description" : "A port number to connect to.",
-               "value_desc" : "port",
-               "value_type" : "int"
+               "default" : 6379,
+               "mandatory" : 0,
+               "name" : "Port number"
             },
             {
-               "option" : "timeout",
-               "multiple" : 0,
-               "name" : "Timeout",
-               "mandatory" : 0,
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "default" : 10,
                "value_type" : "number",
-               "value_desc" : "seconds"
-            },
-            {
+               "multiple" : 0,
+               "option" : "timeout",
+               "value_desc" : "seconds",
                "mandatory" : 0,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "default" : null,
-               "value_type" : "string",
-               "value_desc" : "key:value or key:op:value",
-               "option" : "warning",
-               "multiple" : 1,
-               "name" : "Warning threshold"
+               "name" : "Timeout",
+               "default" : 10,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered."
             },
             {
+               "multiple" : 1,
+               "value_type" : "string",
+               "option" : "warning",
+               "value_desc" : "key:value or key:op:value",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "mandatory" : 0,
+               "name" : "Warning threshold",
+               "default" : null
+            },
+            {
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "mandatory" : 0,
+               "default" : null,
                "name" : "Critical threshold",
                "multiple" : 1,
-               "option" : "critical",
-               "value_desc" : "key:value or key:op:value",
                "value_type" : "string",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "default" : null,
-               "mandatory" : 0
+               "option" : "critical",
+               "value_desc" : "key:value or key:op:value"
             }
          ],
-         "plugin" : "check-redis",
          "version" : "0.2",
          "examples" : [
             {
                "command_line" : "check-redis --host '127.0.0.1' --port '6379' --timeout '10' --warning 'hitratio:lt:97' --critical 'hitratio:lt:95'",
-               "description" : [
-                  "Check Redis"
-               ],
                "arguments" : [
                   "host",
                   "127.0.0.1",
@@ -75,10 +240,12 @@
                   "hitratio:lt:97",
                   "critical",
                   "hitratio:lt:95"
+               ],
+               "description" : [
+                  "Check Redis"
                ]
             }
          ],
-         "flags" : "",
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",
@@ -88,7 +255,7 @@
                "  or if a unit makes sense\n\n",
                "    key:operator:threshold + UNIT\n\n",
                "  where the unit can be in ",
-               "bytes or percent",
+               "percent or bytes",
                ".\n\n",
                "  If no operator is set then the default operator is 'ge'.\n\n",
                "  The following operators are available:\n\n",
@@ -99,11 +266,11 @@
                "    eq = equal\n",
                "    ne = not equal\n",
                "\n",
+               "  Allowed units for percent: %\n\n",
                "  Allowed units for bytes:\n\n",
                "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
                "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
-               "    GB = Gigabytes   EB = Exabytes\n\n",
-               "  Allowed units for percent: %\n\n"
+               "    GB = Gigabytes   EB = Exabytes\n\n"
             ],
             "options" : [
                {
@@ -119,32 +286,32 @@
                   "key" : "used_memory"
                },
                {
-                  "unit" : "none",
-                  "key" : "connections"
+                  "key" : "connections",
+                  "unit" : "none"
                },
                {
                   "key" : "requests",
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "expired"
+                  "key" : "expired",
+                  "unit" : "none"
                },
                {
                   "key" : "evicted",
                   "unit" : "none"
                },
                {
-                  "key" : "hits",
+                  "unit" : "none",
+                  "key" : "hits"
+               },
+               {
+                  "key" : "misses",
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "misses"
-               },
-               {
-                  "unit" : "percent",
-                  "key" : "hitratio"
+                  "key" : "hitratio",
+                  "unit" : "percent"
                },
                {
                   "unit" : "percent",
@@ -153,178 +320,11 @@
             ]
          }
       },
+      "category" : "System,Caching,Redis",
       "description" : "Redis statistics",
-      "netaccess" : "yes",
       "plugin" : "Redis.Check",
-      "datatype" : "statistic",
       "abstract" : "Redis check",
-      "prefer" : "localhost"
-   },
-   "statistic" : [
-      {
-         "statkey" : "connected_clients",
-         "description" : "The number of clients currently connected.",
-         "datatype" : "bigint",
-         "alias" : "Connected"
-      },
-      {
-         "alias" : "Blocked",
-         "datatype" : "bigint",
-         "description" : "The number of clients pending on a blocking call (BLPOP, BRPOP, BRPOPLPUSH).",
-         "statkey" : "blocked_clients"
-      },
-      {
-         "statkey" : "used_memory",
-         "description" : "The total number of bytes allocated by Redis using its allocator.",
-         "units" : "bytes",
-         "datatype" : "bigint",
-         "alias" : "Used memory"
-      },
-      {
-         "statkey" : "connections",
-         "description" : "The number of connections per second.",
-         "datatype" : "float",
-         "alias" : "Connections"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Requests",
-         "statkey" : "requests",
-         "description" : "The number of requests per second."
-      },
-      {
-         "statkey" : "expired",
-         "description" : "The number of key expiration events per second.",
-         "alias" : "Expired",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Evicted",
-         "datatype" : "float",
-         "description" : "The number of evicted keys due to maxmemory limit per second.",
-         "statkey" : "evicted"
-      },
-      {
-         "description" : "The number of successful lookup of keys in the main dictionary per second.",
-         "statkey" : "hits",
-         "alias" : "Hits",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "misses",
-         "description" : "The number of failed lookup of keys in the main dictionary per second.",
-         "datatype" : "float",
-         "alias" : "Misses"
-      },
-      {
-         "alias" : "Hit ratio",
-         "datatype" : "float",
-         "description" : "The hit ratio (hits / total * 100).",
-         "statkey" : "hitratio"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Miss ratio",
-         "statkey" : "missratio",
-         "description" : "The miss ratio (misses / total * 100)."
-      }
-   ],
-   "chart" : [
-      {
-         "options" : {
-            "series" : [
-               {
-                  "color" : "#005467",
-                  "name" : "connected_clients"
-               },
-               {
-                  "name" : "blocked_clients",
-                  "opposite" : "true",
-                  "color" : "#ff7a0d"
-               }
-            ],
-            "chart-type" : "area",
-            "ylabel" : "count"
-         },
-         "id" : "1",
-         "title" : "Redis - connected and blocked clients"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "series" : {
-               "color" : "#005467",
-               "name" : "used_memory"
-            },
-            "ylabel" : "bytes",
-            "units" : "bytes"
-         },
-         "title" : "Redis - used memory",
-         "id" : "2"
-      },
-      {
-         "id" : "3",
-         "title" : "Redis - request and connections",
-         "options" : {
-            "chart-type" : "area",
-            "series" : [
-               {
-                  "name" : "requests",
-                  "color" : "#005467"
-               },
-               {
-                  "name" : "connections",
-                  "opposite" : "true",
-                  "color" : "#ff7a0d"
-               }
-            ],
-            "ylabel" : "count/s"
-         }
-      },
-      {
-         "options" : {
-            "ylabel" : "count/s",
-            "series" : [
-               {
-                  "name" : "hits",
-                  "color" : "#e9644a"
-               },
-               {
-                  "color" : "#ffb244",
-                  "name" : "misses"
-               },
-               {
-                  "color" : "#9a72ad",
-                  "name" : "expired"
-               },
-               {
-                  "color" : "#005467",
-                  "name" : "evicted"
-               }
-            ],
-            "chart-type" : "area"
-         },
-         "title" : "Redis - key statistics",
-         "id" : "4"
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "series" : [
-               {
-                  "name" : "hitratio",
-                  "color" : "#005467"
-               },
-               {
-                  "name" : "missratio",
-                  "color" : "#ff7a0d",
-                  "opposite" : "true"
-               }
-            ],
-            "ylabel" : "ratio"
-         },
-         "title" : "Redis - hit and miss ratio",
-         "id" : "5"
-      }
-   ]
+      "datatype" : "statistic",
+      "netaccess" : "yes"
+   }
 }

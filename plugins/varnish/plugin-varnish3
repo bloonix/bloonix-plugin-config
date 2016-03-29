@@ -1,17 +1,504 @@
 {
+   "statistic" : [
+      {
+         "description" : "Client connections accepted",
+         "statkey" : "client_conn",
+         "alias" : "Client connections accepted",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "client_drop",
+         "description" : "Connection dropped, no sess/wrk",
+         "alias" : "Connection dropped, no sess/wrk",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Client requests received",
+         "statkey" : "client_req",
+         "datatype" : "float",
+         "alias" : "Client requests received"
+      },
+      {
+         "description" : "Cache hits",
+         "statkey" : "cache_hit",
+         "datatype" : "float",
+         "alias" : "Cache hits"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Cache hits for pass",
+         "statkey" : "cache_hitpass",
+         "description" : "Cache hits for pass"
+      },
+      {
+         "description" : "Cache misses",
+         "statkey" : "cache_miss",
+         "datatype" : "float",
+         "alias" : "Cache misses"
+      },
+      {
+         "description" : "Cache hit ratio",
+         "statkey" : "cache_hit_ratio",
+         "alias" : "Cache hit ratio",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "cache_hitpass_ratio",
+         "description" : "Cache hitpass ratio",
+         "alias" : "Cache hitpass ratio",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "cache_miss_ratio",
+         "description" : "Cache miss ratio",
+         "alias" : "Cache miss ratio",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "backend_conn",
+         "description" : "Backend conn. success",
+         "datatype" : "float",
+         "alias" : "Backend conn. success"
+      },
+      {
+         "statkey" : "backend_unhealthy",
+         "description" : "Backend conn. not attempted",
+         "alias" : "Backend conn. not attempted",
+         "datatype" : "float"
+      },
+      {
+         "alias" : "Backend conn. too many",
+         "datatype" : "float",
+         "statkey" : "backend_busy",
+         "description" : "Backend conn. too many"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Backend conn. failures",
+         "description" : "Backend conn. failures",
+         "statkey" : "backend_fail"
+      },
+      {
+         "statkey" : "backend_reuse",
+         "description" : "Backend conn. reuses",
+         "datatype" : "float",
+         "alias" : "Backend conn. reuses"
+      },
+      {
+         "alias" : "Backend conn. was closed",
+         "datatype" : "float",
+         "description" : "Backend conn. was closed",
+         "statkey" : "backend_toolate"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Backend conn. recycles",
+         "description" : "Backend conn. recycles",
+         "statkey" : "backend_recycle"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Backend conn. retry",
+         "statkey" : "backend_retry",
+         "description" : "Backend conn. retry"
+      },
+      {
+         "description" : "Backend requests made",
+         "statkey" : "backend_req",
+         "datatype" : "float",
+         "alias" : "Backend requests made"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Fetch failed",
+         "statkey" : "fetch_failed",
+         "description" : "Fetch failed"
+      },
+      {
+         "alias" : "N struct sess_mem",
+         "datatype" : "float",
+         "units" : "bytes",
+         "statkey" : "n_sess_mem",
+         "description" : "N struct sess_mem"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "N struct sess_mem",
+         "description" : "N struct sess_mem",
+         "statkey" : "n_sess"
+      },
+      {
+         "alias" : "N struct object",
+         "datatype" : "float",
+         "statkey" : "n_object",
+         "description" : "N struct object"
+      },
+      {
+         "statkey" : "n_objectcore",
+         "description" : "N struct objectcore",
+         "datatype" : "float",
+         "alias" : "N struct objectcore"
+      },
+      {
+         "description" : "N struct objecthead",
+         "statkey" : "n_objecthead",
+         "datatype" : "float",
+         "alias" : "N struct objecthead"
+      },
+      {
+         "alias" : "N worker threads",
+         "datatype" : "float",
+         "description" : "N worker threads",
+         "statkey" : "n_wrk"
+      },
+      {
+         "description" : "N worker threads created",
+         "statkey" : "n_wrk_create",
+         "alias" : "N worker threads created",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "n_wrk_failed",
+         "description" : "N worker threads not created",
+         "datatype" : "float",
+         "alias" : "N worker threads not created"
+      },
+      {
+         "description" : "N worker threads limited",
+         "statkey" : "n_wrk_max",
+         "alias" : "N worker threads limited",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "n_wrk_lqueue",
+         "description" : "work request queue length",
+         "alias" : "work request queue length",
+         "datatype" : "float"
+      },
+      {
+         "description" : "N dropped work requests",
+         "statkey" : "n_wrk_drop",
+         "datatype" : "float",
+         "alias" : "N dropped work requests"
+      },
+      {
+         "alias" : "N backends",
+         "datatype" : "float",
+         "statkey" : "n_backend",
+         "description" : "N backends"
+      },
+      {
+         "description" : "N expired objects",
+         "statkey" : "n_expired",
+         "datatype" : "float",
+         "alias" : "N expired objects"
+      },
+      {
+         "description" : "N LRU nuked objects",
+         "statkey" : "n_lru_nuked",
+         "alias" : "N LRU nuked objects",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "n_lru_moved",
+         "description" : "N LRU moved objects",
+         "datatype" : "float",
+         "alias" : "N LRU moved objects"
+      },
+      {
+         "alias" : "HTTP header overflows",
+         "datatype" : "float",
+         "description" : "HTTP header overflows",
+         "statkey" : "losthdr"
+      },
+      {
+         "statkey" : "n_objsendfile",
+         "description" : "Objects sent with sendfile",
+         "alias" : "Objects sent with sendfile",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "n_objwrite",
+         "description" : "Objects sent with write",
+         "alias" : "Objects sent with write",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Objects overflowing workspace",
+         "statkey" : "n_objoverflow",
+         "datatype" : "float",
+         "alias" : "Objects overflowing workspace"
+      },
+      {
+         "statkey" : "s_pipe",
+         "description" : "Total pipe",
+         "datatype" : "float",
+         "alias" : "Total pipe"
+      },
+      {
+         "statkey" : "s_pass",
+         "description" : "Total pass",
+         "datatype" : "float",
+         "alias" : "Total pass"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Total header bytes",
+         "units" : "bytes",
+         "statkey" : "s_hdrbytes",
+         "description" : "Total header bytes"
+      },
+      {
+         "description" : "Total body bytes",
+         "statkey" : "s_bodybytes",
+         "units" : "bytes",
+         "datatype" : "float",
+         "alias" : "Total body bytes"
+      },
+      {
+         "statkey" : "sess_closed",
+         "description" : "Session Closed",
+         "alias" : "Session Closed",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Session Pipeline",
+         "description" : "Session Pipeline",
+         "statkey" : "sess_pipeline"
+      },
+      {
+         "statkey" : "sess_readahead",
+         "description" : "Session Read Ahead",
+         "alias" : "Session Read Ahead",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Session Linger",
+         "statkey" : "sess_linger",
+         "description" : "Session Linger"
+      },
+      {
+         "alias" : "Session herd",
+         "datatype" : "float",
+         "statkey" : "sess_herd",
+         "description" : "Session herd"
+      },
+      {
+         "description" : "SHM records",
+         "statkey" : "shm_records",
+         "units" : "bytes",
+         "datatype" : "float",
+         "alias" : "SHM records"
+      },
+      {
+         "units" : "bytes",
+         "alias" : "SHM writes",
+         "datatype" : "float",
+         "description" : "SHM writes",
+         "statkey" : "shm_writes"
+      },
+      {
+         "statkey" : "shm_flushes",
+         "description" : "SHM flushes due to overflow",
+         "alias" : "SHM flushes due to overflow",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "shm_cont",
+         "description" : "SHM MTX contention",
+         "datatype" : "float",
+         "alias" : "SHM MTX contention"
+      },
+      {
+         "alias" : "SHM cycles through buffer",
+         "datatype" : "float",
+         "description" : "SHM cycles through buffer",
+         "statkey" : "shm_cycles"
+      },
+      {
+         "alias" : "SMS allocator requests",
+         "datatype" : "float",
+         "description" : "SMS allocator requests",
+         "statkey" : "sms_nreq"
+      },
+      {
+         "units" : "bytes",
+         "alias" : "SMS outstanding bytes",
+         "datatype" : "float",
+         "description" : "SMS outstanding bytes",
+         "statkey" : "sms_nbytes"
+      },
+      {
+         "description" : "N vcl total",
+         "statkey" : "n_vcl",
+         "datatype" : "float",
+         "alias" : "N vcl total"
+      },
+      {
+         "statkey" : "n_vcl_avail",
+         "description" : "N vcl available",
+         "datatype" : "float",
+         "alias" : "N vcl available"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "N vcl discarded",
+         "statkey" : "n_vcl_discard",
+         "description" : "N vcl discarded"
+      },
+      {
+         "statkey" : "n_ban",
+         "description" : "N total active bans",
+         "datatype" : "float",
+         "alias" : "N total active bans"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "N new bans added",
+         "description" : "N new bans added",
+         "statkey" : "n_ban_add"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "N old bans deleted",
+         "statkey" : "n_ban_retire",
+         "description" : "N old bans deleted"
+      },
+      {
+         "alias" : "N objects tested",
+         "datatype" : "float",
+         "description" : "N objects tested",
+         "statkey" : "n_ban_obj_test"
+      },
+      {
+         "description" : "N regexps tested against",
+         "statkey" : "n_ban_re_test",
+         "datatype" : "float",
+         "alias" : "N regexps tested against"
+      },
+      {
+         "description" : "N duplicate bans removed",
+         "statkey" : "n_ban_dups",
+         "alias" : "N duplicate bans removed",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "HCB Lookups without lock",
+         "description" : "HCB Lookups without lock",
+         "statkey" : "hcb_nolock"
+      },
+      {
+         "alias" : "HCB Lookups with lock",
+         "datatype" : "float",
+         "description" : "HCB Lookups with lock",
+         "statkey" : "hcb_lock"
+      },
+      {
+         "statkey" : "hcb_insert",
+         "description" : "HCB Inserts",
+         "alias" : "HCB Inserts",
+         "datatype" : "float"
+      },
+      {
+         "description" : "ESI parse errors (unlock)",
+         "statkey" : "esi_errors",
+         "datatype" : "float",
+         "alias" : "ESI parse errors"
+      },
+      {
+         "description" : "ESI parse warnings (unlock)",
+         "statkey" : "esi_warnings",
+         "datatype" : "float",
+         "alias" : "ESI parse warnings"
+      },
+      {
+         "statkey" : "accept_fail",
+         "description" : "Accept failures",
+         "datatype" : "float",
+         "alias" : "Accept failures"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Connection dropped late",
+         "statkey" : "client_drop_late",
+         "description" : "Connection dropped late"
+      },
+      {
+         "alias" : "Client uptime",
+         "datatype" : "float",
+         "description" : "Client uptime",
+         "statkey" : "uptime"
+      },
+      {
+         "statkey" : "n_gzip",
+         "description" : "Gzip operations",
+         "alias" : "Gzip operations",
+         "datatype" : "float"
+      },
+      {
+         "alias" : "Gunzip operations",
+         "datatype" : "float",
+         "statkey" : "n_gunzip",
+         "description" : "Gunzip operations"
+      },
+      {
+         "statkey" : "sma_s0_c_fail",
+         "description" : "Allocator failures",
+         "datatype" : "float",
+         "alias" : "Allocator failures"
+      },
+      {
+         "units" : "bytes",
+         "alias" : "Bytes outstanding",
+         "datatype" : "float",
+         "description" : "Bytes outstanding",
+         "statkey" : "sma_s0_g_bytes"
+      },
+      {
+         "units" : "bytes",
+         "alias" : "Bytes available",
+         "datatype" : "float",
+         "description" : "Bytes available",
+         "statkey" : "sma_s0_g_space"
+      },
+      {
+         "statkey" : "sma_transient_c_fail",
+         "description" : "Allocator failures",
+         "datatype" : "float",
+         "alias" : "Allocator failures"
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Bytes outstanding",
+         "units" : "bytes",
+         "statkey" : "sma_transient_g_bytes",
+         "description" : "Bytes outstanding"
+      },
+      {
+         "description" : "Bytes available",
+         "statkey" : "sma_transient_space",
+         "units" : "bytes",
+         "alias" : "Bytes available",
+         "datatype" : "float"
+      }
+   ],
    "chart" : [
       {
+         "id" : "1",
          "options" : {
-            "ylabel" : "count",
             "chart-type" : "area",
+            "ylabel" : "count",
             "series" : [
                {
                   "name" : "client_conn",
                   "color" : "#e9644a"
                },
                {
-                  "name" : "client_req",
-                  "color" : "#ffb244"
+                  "color" : "#ffb244",
+                  "name" : "client_req"
                },
                {
                   "name" : "cache_hit",
@@ -22,49 +509,46 @@
                   "color" : "#005467"
                },
                {
-                  "color" : "#2ba743",
-                  "name" : "cache_miss"
+                  "name" : "cache_miss",
+                  "color" : "#2ba743"
                },
                {
-                  "color" : "#7648eb",
-                  "name" : "backend_conn"
+                  "name" : "backend_conn",
+                  "color" : "#7648eb"
                },
                {
-                  "color" : "#7f7fff",
-                  "name" : "backend_unhealthy"
+                  "name" : "backend_unhealthy",
+                  "color" : "#7f7fff"
                }
             ]
          },
-         "id" : "1",
          "title" : "Varnish - request rate"
       },
       {
+         "id" : "2",
          "options" : {
+            "chart-type" : "area",
             "ylabel" : "ratio",
             "series" : [
                {
-                  "color" : "#ffb244",
-                  "name" : "cache_hit_ratio"
+                  "name" : "cache_hit_ratio",
+                  "color" : "#ffb244"
                },
                {
                   "color" : "#ff7a0d",
                   "name" : "cache_hitpass_ratio"
                },
                {
-                  "color" : "#e9644a",
-                  "name" : "cache_miss_ratio"
+                  "name" : "cache_miss_ratio",
+                  "color" : "#e9644a"
                }
-            ],
-            "chart-type" : "area"
+            ]
          },
-         "title" : "Varnish - hit and miss ratio",
-         "id" : "2"
+         "title" : "Varnish - hit and miss ratio"
       },
       {
          "id" : "3",
-         "title" : "Varnish - backend traffic",
          "options" : {
-            "ylabel" : "traffic",
             "series" : [
                {
                   "color" : "#ffb244",
@@ -87,36 +571,38 @@
                   "name" : "backend_reuse"
                },
                {
-                  "name" : "backend_recycle",
-                  "color" : "#7648eb"
+                  "color" : "#7648eb",
+                  "name" : "backend_recycle"
                },
                {
-                  "name" : "backend_unused",
-                  "color" : "#7f7fff"
+                  "color" : "#7f7fff",
+                  "name" : "backend_unused"
                },
                {
+                  "name" : "backend_req",
                   "opposite" : "true",
-                  "color" : "#ff7a0d",
-                  "name" : "backend_req"
+                  "color" : "#ff7a0d"
                }
             ],
-            "chart-type" : "area"
-         }
+            "chart-type" : "area",
+            "ylabel" : "traffic"
+         },
+         "title" : "Varnish - backend traffic"
       },
       {
-         "title" : "Varnish - number of objects",
          "id" : "4",
+         "title" : "Varnish - number of objects",
          "options" : {
-            "ylabel" : "number",
             "chart-type" : "area",
+            "ylabel" : "number",
             "series" : [
                {
-                  "name" : "n_object",
-                  "color" : "#ffb244"
+                  "color" : "#ffb244",
+                  "name" : "n_object"
                },
                {
-                  "color" : "#005467",
-                  "name" : "n_objcore"
+                  "name" : "n_objcore",
+                  "color" : "#005467"
                },
                {
                   "color" : "#e9644a",
@@ -126,27 +612,27 @@
          }
       },
       {
-         "id" : "5",
-         "title" : "Varnish - transfer rates",
          "options" : {
-            "ylabel" : "bytes/s",
             "series" : [
                {
                   "color" : "#ff7a0d",
                   "name" : "s_hdrbytes"
                },
                {
-                  "name" : "s_bodybytes",
-                  "color" : "#e9644a"
+                  "color" : "#e9644a",
+                  "name" : "s_bodybytes"
                }
             ],
+            "ylabel" : "bytes/s",
             "chart-type" : "area"
-         }
+         },
+         "title" : "Varnish - transfer rates",
+         "id" : "5"
       },
       {
          "title" : "Varnish - thread status",
-         "id" : "6",
          "options" : {
+            "ylabel" : "count",
             "chart-type" : "area",
             "series" : [
                {
@@ -154,12 +640,12 @@
                   "name" : "n_wrk"
                },
                {
-                  "color" : "#9a72ad",
-                  "name" : "n_wrk_create"
+                  "name" : "n_wrk_create",
+                  "color" : "#9a72ad"
                },
                {
-                  "color" : "#005467",
-                  "name" : "n_wrk_failed"
+                  "name" : "n_wrk_failed",
+                  "color" : "#005467"
                },
                {
                   "name" : "n_wrk_max",
@@ -173,13 +659,11 @@
                   "color" : "#7648eb",
                   "name" : "n_wrk_drop"
                }
-            ],
-            "ylabel" : "count"
-         }
+            ]
+         },
+         "id" : "6"
       },
       {
-         "id" : "7",
-         "title" : "Varnish - memory usage",
          "options" : {
             "series" : [
                {
@@ -187,12 +671,12 @@
                   "name" : "sms_nbytes"
                },
                {
-                  "color" : "#9a72ad",
-                  "name" : "sma_s0_g_bytes"
+                  "name" : "sma_s0_g_bytes",
+                  "color" : "#9a72ad"
                },
                {
-                  "name" : "sma_s0_g_space",
-                  "color" : "#005467"
+                  "color" : "#005467",
+                  "name" : "sma_s0_g_space"
                },
                {
                   "name" : "sma_transient_g_bytes",
@@ -203,43 +687,42 @@
                   "name" : "sma_transient_space"
                }
             ],
-            "chart-type" : "area",
-            "ylabel" : "bytes"
-         }
+            "ylabel" : "bytes",
+            "chart-type" : "area"
+         },
+         "title" : "Varnish - memory usage",
+         "id" : "7"
       },
       {
-         "id" : "8",
-         "title" : "Varnish - misbehaviours",
          "options" : {
-            "ylabel" : "count",
             "series" : [
                {
                   "name" : "client_drop",
                   "color" : "#e9644a"
                },
                {
-                  "color" : "#ffb244",
-                  "name" : "backend_unhealthy"
+                  "name" : "backend_unhealthy",
+                  "color" : "#ffb244"
                },
                {
-                  "name" : "backend_busy",
-                  "color" : "#9a72ad"
+                  "color" : "#9a72ad",
+                  "name" : "backend_busy"
                },
                {
                   "name" : "fetch_failed",
                   "color" : "#005467"
                },
                {
-                  "color" : "#2ba743",
-                  "name" : "n_wrk_failed"
+                  "name" : "n_wrk_failed",
+                  "color" : "#2ba743"
                },
                {
                   "color" : "#7648eb",
                   "name" : "n_wrk_max"
                },
                {
-                  "color" : "#7f7fff",
-                  "name" : "n_wrk_drop"
+                  "name" : "n_wrk_drop",
+                  "color" : "#7f7fff"
                },
                {
                   "color" : "#1c6d16",
@@ -250,41 +733,43 @@
                   "color" : "#bf00bf"
                },
                {
-                  "name" : "n_objoverflow",
-                  "color" : "#275487"
+                  "color" : "#275487",
+                  "name" : "n_objoverflow"
                },
                {
-                  "name" : "client_drop_late",
-                  "color" : "#666666"
+                  "color" : "#666666",
+                  "name" : "client_drop_late"
                },
                {
                   "name" : "client_drop_late",
                   "color" : "#cc8e36"
                }
             ],
-            "chart-type" : "area"
-         }
+            "chart-type" : "area",
+            "ylabel" : "count"
+         },
+         "title" : "Varnish - misbehaviours",
+         "id" : "8"
       },
       {
-         "title" : "Varnish - esi errors",
          "id" : "9",
+         "title" : "Varnish - esi errors",
          "options" : {
             "ylabel" : "count",
+            "chart-type" : "area",
             "series" : [
                {
-                  "color" : "#ff7a0d",
-                  "name" : "esi_warnings"
+                  "name" : "esi_warnings",
+                  "color" : "#ff7a0d"
                },
                {
-                  "name" : "esi_errors",
-                  "color" : "#e9644a"
+                  "color" : "#e9644a",
+                  "name" : "esi_errors"
                }
-            ],
-            "chart-type" : "area"
+            ]
          }
       },
       {
-         "id" : "10",
          "title" : "Varnish - vcl and bans",
          "options" : {
             "series" : [
@@ -297,12 +782,12 @@
                   "name" : "n_vcl"
                },
                {
-                  "name" : "n_vcl_avail",
-                  "color" : "#9a72ad"
+                  "color" : "#9a72ad",
+                  "name" : "n_vcl_avail"
                },
                {
-                  "name" : "n_vcl_discard",
-                  "color" : "#005467"
+                  "color" : "#005467",
+                  "name" : "n_vcl_discard"
                },
                {
                   "opposite" : "true",
@@ -315,50 +800,54 @@
                   "name" : "n_ban_add"
                },
                {
-                  "opposite" : "true",
                   "name" : "n_ban_retire",
-                  "color" : "#9a72ad"
+                  "color" : "#9a72ad",
+                  "opposite" : "true"
                },
                {
-                  "opposite" : "true",
+                  "name" : "n_ban_obj_test",
                   "color" : "#005467",
-                  "name" : "n_ban_obj_test"
+                  "opposite" : "true"
                },
                {
-                  "opposite" : "true",
                   "color" : "#2ba743",
+                  "opposite" : "true",
                   "name" : "n_ban_re_test"
                },
                {
-                  "color" : "#7648eb",
                   "name" : "n_ban_dups",
-                  "opposite" : "true"
+                  "opposite" : "true",
+                  "color" : "#7648eb"
                }
             ],
-            "chart-type" : "area",
-            "ylabel" : "count"
-         }
+            "ylabel" : "count",
+            "chart-type" : "area"
+         },
+         "id" : "10"
       },
       {
+         "id" : "11",
          "options" : {
-            "ylabel" : "count",
-            "chart-type" : "area",
             "series" : [
                {
                   "name" : "n_lru_moved",
                   "color" : "#ff7a0d"
                },
                {
-                  "name" : "n_lru_saved",
-                  "color" : "#e9644a"
+                  "color" : "#e9644a",
+                  "name" : "n_lru_saved"
                }
-            ]
+            ],
+            "chart-type" : "area",
+            "ylabel" : "count"
          },
-         "title" : "Varnish - lru activity",
-         "id" : "11"
+         "title" : "Varnish - lru activity"
       },
       {
+         "id" : "12",
+         "title" : "Varnish - Shared memory activity",
          "options" : {
+            "chart-type" : "area",
             "ylabel" : "count",
             "series" : [
                {
@@ -366,43 +855,357 @@
                   "color" : "#ffb244"
                },
                {
-                  "name" : "shm_cont",
-                  "color" : "#005467"
+                  "color" : "#005467",
+                  "name" : "shm_cont"
                },
                {
-                  "name" : "shm_cycles",
-                  "color" : "#e9644a"
+                  "color" : "#e9644a",
+                  "name" : "shm_cycles"
                }
-            ],
-            "chart-type" : "area"
-         },
-         "id" : "12",
-         "title" : "Varnish - Shared memory activity"
+            ]
+         }
       },
       {
+         "title" : "Varnish - Shared memory writes and records",
          "options" : {
+            "chart-type" : "area",
+            "ylabel" : "count",
             "series" : [
                {
                   "color" : "#ffb244",
                   "name" : "shm_records"
                },
                {
-                  "color" : "#005467",
-                  "name" : "shm_writes"
+                  "name" : "shm_writes",
+                  "color" : "#005467"
                }
-            ],
-            "chart-type" : "area",
-            "ylabel" : "count"
+            ]
          },
-         "title" : "Varnish - Shared memory writes and records",
          "id" : "13"
       }
    ],
    "plugin" : {
-      "command" : "check-varnish3",
-      "category" : "System,Webserver,Varnish",
       "info" : {
+         "version" : "0.1",
          "thresholds" : {
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "cache_hit_ratio"
+               },
+               {
+                  "key" : "cache_hitpass_ratio",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "cache_miss_ratio"
+               },
+               {
+                  "key" : "backend_conn",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_wrk"
+               },
+               {
+                  "key" : "n_ban_retire",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "shm_records",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "client_conn",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "sess_pipeline"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "backend_req"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "shm_cont"
+               },
+               {
+                  "key" : "n_objwrite",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "esi_warnings",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_lru_nuked"
+               },
+               {
+                  "key" : "hcb_nolock",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_ban"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "cache_hit"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_objoverflow"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "esi_errors"
+               },
+               {
+                  "key" : "backend_unhealthy",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "n_ban_obj_test",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_vcl_avail"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "shm_cycles"
+               },
+               {
+                  "key" : "shm_writes",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "n_backend",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "sms_nbytes"
+               },
+               {
+                  "key" : "backend_recycle",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "s_pipe",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "n_wrk_max",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_expired"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "cache_hitpass"
+               },
+               {
+                  "key" : "client_req",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "client_drop_late"
+               },
+               {
+                  "key" : "fetch_failed",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "sma_transient_g_bytes"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_sess"
+               },
+               {
+                  "key" : "client_drop",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "losthdr",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "uptime"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "hcb_insert"
+               },
+               {
+                  "key" : "sma_s0_g_space",
+                  "unit" : "bytes"
+               },
+               {
+                  "key" : "n_vcl_discard",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "s_hdrbytes"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_gunzip"
+               },
+               {
+                  "key" : "sess_linger",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "accept_fail"
+               },
+               {
+                  "key" : "n_ban_add",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "n_gzip",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "hcb_lock",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "sma_s0_c_fail",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "shm_flushes"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "backend_fail"
+               },
+               {
+                  "key" : "sms_nreq",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "sma_transient_c_fail"
+               },
+               {
+                  "key" : "n_ban_re_test",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "sess_readahead",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "s_bodybytes"
+               },
+               {
+                  "key" : "n_wrk_drop",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "sess_closed",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "backend_busy"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "s_pass"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_sess_mem"
+               },
+               {
+                  "key" : "cache_miss",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "n_wrk_failed",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "n_ban_dups",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "backend_reuse"
+               },
+               {
+                  "key" : "backend_retry",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_object"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_vcl"
+               },
+               {
+                  "key" : "n_lru_moved",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "sess_herd"
+               },
+               {
+                  "key" : "backend_toolate",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "sma_transient_space"
+               },
+               {
+                  "key" : "n_objecthead",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "n_objsendfile",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "n_objectcore",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "sma_s0_g_bytes",
+                  "unit" : "bytes"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_wrk_lqueue"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "n_wrk_create"
+               }
+            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -426,866 +1229,63 @@
                "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
                "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
                "    GB = Gigabytes   EB = Exabytes\n\n"
-            ],
-            "options" : [
-               {
-                  "unit" : "none",
-                  "key" : "cache_hit_ratio"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "cache_hitpass_ratio"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "cache_miss_ratio"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "shm_cycles"
-               },
-               {
-                  "key" : "sma_transient_g_bytes",
-                  "unit" : "bytes"
-               },
-               {
-                  "key" : "hcb_lock",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "s_pass"
-               },
-               {
-                  "key" : "n_vcl_avail",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "sma_s0_c_fail",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "uptime"
-               },
-               {
-                  "key" : "esi_errors",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "backend_recycle",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "esi_warnings"
-               },
-               {
-                  "key" : "n_wrk_lqueue",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "client_drop_late",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "s_bodybytes",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "client_req",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "n_vcl_discard",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "cache_miss"
-               },
-               {
-                  "key" : "backend_fail",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "n_ban_add"
-               },
-               {
-                  "key" : "client_conn",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "n_ban_dups",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "n_wrk_create",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "n_wrk_failed"
-               },
-               {
-                  "key" : "n_wrk_max",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "n_wrk"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "backend_unhealthy"
-               },
-               {
-                  "key" : "sess_pipeline",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "sms_nbytes"
-               },
-               {
-                  "key" : "cache_hit",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "sma_transient_space"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "n_ban_re_test"
-               },
-               {
-                  "key" : "n_object",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "s_hdrbytes",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "n_objwrite",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "n_objecthead"
-               },
-               {
-                  "key" : "n_sess_mem",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "n_ban",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "backend_retry",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "sma_s0_g_bytes",
-                  "unit" : "bytes"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "n_gzip"
-               },
-               {
-                  "key" : "n_ban_retire",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "sess_linger",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "sma_transient_c_fail"
-               },
-               {
-                  "key" : "n_gunzip",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "sess_closed",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "backend_conn"
-               },
-               {
-                  "key" : "client_drop",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "s_pipe",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "sess_herd",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "sms_nreq"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "hcb_insert"
-               },
-               {
-                  "key" : "n_objoverflow",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "cache_hitpass",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "losthdr",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "sess_readahead",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "shm_flushes"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "accept_fail"
-               },
-               {
-                  "key" : "n_lru_moved",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "backend_reuse",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "n_sess",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "shm_cont",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "backend_toolate"
-               },
-               {
-                  "key" : "n_expired",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "hcb_nolock"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "n_wrk_drop"
-               },
-               {
-                  "key" : "n_objsendfile",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "sma_s0_g_space"
-               },
-               {
-                  "key" : "shm_records",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "n_backend",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "shm_writes"
-               },
-               {
-                  "key" : "n_lru_nuked",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "n_ban_obj_test",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "n_vcl",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "backend_req"
-               },
-               {
-                  "key" : "backend_busy",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "n_objectcore",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "fetch_failed"
-               }
             ]
          },
-         "plugin" : "check-varnish3",
-         "flags" : "",
-         "options" : [
-            {
-               "mandatory" : 0,
-               "default" : null,
-               "multiple" : 1,
-               "value_type" : "string",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_desc" : "key:value or key:op:value",
-               "name" : "Warning threshold",
-               "option" : "warning"
-            },
-            {
-               "multiple" : 1,
-               "value_type" : "string",
-               "mandatory" : 0,
-               "default" : null,
-               "option" : "critical",
-               "value_desc" : "key:value or key:op:value",
-               "name" : "Critical threshold",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information."
-            },
-            {
-               "option" : "timeout",
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "value_desc" : "seconds",
-               "name" : "Timeout",
-               "mandatory" : 0,
-               "default" : 10,
-               "multiple" : 0,
-               "value_type" : "number"
-            }
-         ],
-         "version" : "0.1",
          "examples" : [
             {
                "description" : [
                   "Check Varnish cache"
                ],
-               "command_line" : "check-varnish3 --warning 'cache_hit_ratio:lt:95' --warning 'cache_hitpass_ratio:lt:95'",
                "arguments" : [
                   "warning",
                   "cache_hit_ratio:lt:95",
                   "warning",
                   "cache_hitpass_ratio:lt:95"
-               ]
+               ],
+               "command_line" : "check-varnish3 --warning 'cache_hit_ratio:lt:95' --warning 'cache_hitpass_ratio:lt:95'"
             }
-         ]
+         ],
+         "plugin" : "check-varnish3",
+         "options" : [
+            {
+               "mandatory" : 0,
+               "multiple" : 1,
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_type" : "string",
+               "value_desc" : "key:value or key:op:value",
+               "name" : "Warning threshold",
+               "option" : "warning"
+            },
+            {
+               "option" : "critical",
+               "name" : "Critical threshold",
+               "value_desc" : "key:value or key:op:value",
+               "value_type" : "string",
+               "multiple" : 1,
+               "mandatory" : 0,
+               "default" : null,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information."
+            },
+            {
+               "default" : 10,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "value_type" : "number",
+               "value_desc" : "seconds",
+               "name" : "Timeout",
+               "option" : "timeout"
+            }
+         ],
+         "flags" : ""
       },
-      "plugin" : "Varnish.Check",
+      "command" : "check-varnish3",
+      "category" : "System,Webserver,Varnish",
       "description" : "Varnish statistics",
       "abstract" : "Varnish server status",
       "datatype" : "statistic",
-      "id" : "51"
-   },
-   "statistic" : [
-      {
-         "datatype" : "float",
-         "statkey" : "client_conn",
-         "description" : "Client connections accepted",
-         "alias" : "Client connections accepted"
-      },
-      {
-         "statkey" : "client_drop",
-         "description" : "Connection dropped, no sess/wrk",
-         "alias" : "Connection dropped, no sess/wrk",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "client_req",
-         "description" : "Client requests received",
-         "alias" : "Client requests received"
-      },
-      {
-         "datatype" : "float",
-         "description" : "Cache hits",
-         "statkey" : "cache_hit",
-         "alias" : "Cache hits"
-      },
-      {
-         "description" : "Cache hits for pass",
-         "statkey" : "cache_hitpass",
-         "alias" : "Cache hits for pass",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "cache_miss",
-         "description" : "Cache misses",
-         "alias" : "Cache misses",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Cache hit ratio",
-         "description" : "Cache hit ratio",
-         "statkey" : "cache_hit_ratio"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "cache_hitpass_ratio",
-         "description" : "Cache hitpass ratio",
-         "alias" : "Cache hitpass ratio"
-      },
-      {
-         "alias" : "Cache miss ratio",
-         "description" : "Cache miss ratio",
-         "statkey" : "cache_miss_ratio",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Backend conn. success",
-         "statkey" : "backend_conn",
-         "description" : "Backend conn. success",
-         "datatype" : "float"
-      },
-      {
-         "description" : "Backend conn. not attempted",
-         "statkey" : "backend_unhealthy",
-         "alias" : "Backend conn. not attempted",
-         "datatype" : "float"
-      },
-      {
-         "description" : "Backend conn. too many",
-         "statkey" : "backend_busy",
-         "alias" : "Backend conn. too many",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Backend conn. failures",
-         "description" : "Backend conn. failures",
-         "statkey" : "backend_fail"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "backend_reuse",
-         "description" : "Backend conn. reuses",
-         "alias" : "Backend conn. reuses"
-      },
-      {
-         "alias" : "Backend conn. was closed",
-         "statkey" : "backend_toolate",
-         "description" : "Backend conn. was closed",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "backend_recycle",
-         "description" : "Backend conn. recycles",
-         "alias" : "Backend conn. recycles"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Backend conn. retry",
-         "description" : "Backend conn. retry",
-         "statkey" : "backend_retry"
-      },
-      {
-         "alias" : "Backend requests made",
-         "description" : "Backend requests made",
-         "statkey" : "backend_req",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "fetch_failed",
-         "description" : "Fetch failed",
-         "alias" : "Fetch failed",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "units" : "bytes",
-         "statkey" : "n_sess_mem",
-         "description" : "N struct sess_mem",
-         "alias" : "N struct sess_mem"
-      },
-      {
-         "alias" : "N struct sess_mem",
-         "statkey" : "n_sess",
-         "description" : "N struct sess_mem",
-         "datatype" : "float"
-      },
-      {
-         "description" : "N struct object",
-         "statkey" : "n_object",
-         "alias" : "N struct object",
-         "datatype" : "float"
-      },
-      {
-         "description" : "N struct objectcore",
-         "statkey" : "n_objectcore",
-         "alias" : "N struct objectcore",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "N struct objecthead",
-         "description" : "N struct objecthead",
-         "statkey" : "n_objecthead"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "N worker threads",
-         "description" : "N worker threads",
-         "statkey" : "n_wrk"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "n_wrk_create",
-         "description" : "N worker threads created",
-         "alias" : "N worker threads created"
-      },
-      {
-         "statkey" : "n_wrk_failed",
-         "description" : "N worker threads not created",
-         "alias" : "N worker threads not created",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "n_wrk_max",
-         "description" : "N worker threads limited",
-         "alias" : "N worker threads limited",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "n_wrk_lqueue",
-         "description" : "work request queue length",
-         "alias" : "work request queue length",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "N dropped work requests",
-         "statkey" : "n_wrk_drop",
-         "description" : "N dropped work requests",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "N backends",
-         "description" : "N backends",
-         "statkey" : "n_backend",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "N expired objects",
-         "statkey" : "n_expired",
-         "description" : "N expired objects"
-      },
-      {
-         "alias" : "N LRU nuked objects",
-         "description" : "N LRU nuked objects",
-         "statkey" : "n_lru_nuked",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "description" : "N LRU moved objects",
-         "statkey" : "n_lru_moved",
-         "alias" : "N LRU moved objects"
-      },
-      {
-         "alias" : "HTTP header overflows",
-         "description" : "HTTP header overflows",
-         "statkey" : "losthdr",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Objects sent with sendfile",
-         "description" : "Objects sent with sendfile",
-         "statkey" : "n_objsendfile"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Objects sent with write",
-         "description" : "Objects sent with write",
-         "statkey" : "n_objwrite"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Objects overflowing workspace",
-         "statkey" : "n_objoverflow",
-         "description" : "Objects overflowing workspace"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "s_pipe",
-         "description" : "Total pipe",
-         "alias" : "Total pipe"
-      },
-      {
-         "datatype" : "float",
-         "description" : "Total pass",
-         "statkey" : "s_pass",
-         "alias" : "Total pass"
-      },
-      {
-         "statkey" : "s_hdrbytes",
-         "description" : "Total header bytes",
-         "alias" : "Total header bytes",
-         "datatype" : "float",
-         "units" : "bytes"
-      },
-      {
-         "alias" : "Total body bytes",
-         "statkey" : "s_bodybytes",
-         "description" : "Total body bytes",
-         "units" : "bytes",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Session Closed",
-         "description" : "Session Closed",
-         "statkey" : "sess_closed",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "sess_pipeline",
-         "description" : "Session Pipeline",
-         "alias" : "Session Pipeline",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "description" : "Session Read Ahead",
-         "statkey" : "sess_readahead",
-         "alias" : "Session Read Ahead"
-      },
-      {
-         "datatype" : "float",
-         "description" : "Session Linger",
-         "statkey" : "sess_linger",
-         "alias" : "Session Linger"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Session herd",
-         "statkey" : "sess_herd",
-         "description" : "Session herd"
-      },
-      {
-         "alias" : "SHM records",
-         "description" : "SHM records",
-         "statkey" : "shm_records",
-         "units" : "bytes",
-         "datatype" : "float"
-      },
-      {
-         "units" : "bytes",
-         "datatype" : "float",
-         "alias" : "SHM writes",
-         "description" : "SHM writes",
-         "statkey" : "shm_writes"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "SHM flushes due to overflow",
-         "statkey" : "shm_flushes",
-         "description" : "SHM flushes due to overflow"
-      },
-      {
-         "description" : "SHM MTX contention",
-         "statkey" : "shm_cont",
-         "alias" : "SHM MTX contention",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "description" : "SHM cycles through buffer",
-         "statkey" : "shm_cycles",
-         "alias" : "SHM cycles through buffer"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "sms_nreq",
-         "description" : "SMS allocator requests",
-         "alias" : "SMS allocator requests"
-      },
-      {
-         "units" : "bytes",
-         "datatype" : "float",
-         "alias" : "SMS outstanding bytes",
-         "description" : "SMS outstanding bytes",
-         "statkey" : "sms_nbytes"
-      },
-      {
-         "alias" : "N vcl total",
-         "description" : "N vcl total",
-         "statkey" : "n_vcl",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "N vcl available",
-         "statkey" : "n_vcl_avail",
-         "description" : "N vcl available",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "description" : "N vcl discarded",
-         "statkey" : "n_vcl_discard",
-         "alias" : "N vcl discarded"
-      },
-      {
-         "description" : "N total active bans",
-         "statkey" : "n_ban",
-         "alias" : "N total active bans",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "N new bans added",
-         "description" : "N new bans added",
-         "statkey" : "n_ban_add"
-      },
-      {
-         "alias" : "N old bans deleted",
-         "statkey" : "n_ban_retire",
-         "description" : "N old bans deleted",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "N objects tested",
-         "statkey" : "n_ban_obj_test",
-         "description" : "N objects tested"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "N regexps tested against",
-         "statkey" : "n_ban_re_test",
-         "description" : "N regexps tested against"
-      },
-      {
-         "statkey" : "n_ban_dups",
-         "description" : "N duplicate bans removed",
-         "alias" : "N duplicate bans removed",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "HCB Lookups without lock",
-         "description" : "HCB Lookups without lock",
-         "statkey" : "hcb_nolock",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "description" : "HCB Lookups with lock",
-         "statkey" : "hcb_lock",
-         "alias" : "HCB Lookups with lock"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "HCB Inserts",
-         "description" : "HCB Inserts",
-         "statkey" : "hcb_insert"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "ESI parse errors",
-         "statkey" : "esi_errors",
-         "description" : "ESI parse errors (unlock)"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "esi_warnings",
-         "description" : "ESI parse warnings (unlock)",
-         "alias" : "ESI parse warnings"
-      },
-      {
-         "description" : "Accept failures",
-         "statkey" : "accept_fail",
-         "alias" : "Accept failures",
-         "datatype" : "float"
-      },
-      {
-         "description" : "Connection dropped late",
-         "statkey" : "client_drop_late",
-         "alias" : "Connection dropped late",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "uptime",
-         "description" : "Client uptime",
-         "alias" : "Client uptime",
-         "datatype" : "float"
-      },
-      {
-         "description" : "Gzip operations",
-         "statkey" : "n_gzip",
-         "alias" : "Gzip operations",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Gunzip operations",
-         "description" : "Gunzip operations",
-         "statkey" : "n_gunzip"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Allocator failures",
-         "statkey" : "sma_s0_c_fail",
-         "description" : "Allocator failures"
-      },
-      {
-         "statkey" : "sma_s0_g_bytes",
-         "description" : "Bytes outstanding",
-         "alias" : "Bytes outstanding",
-         "datatype" : "float",
-         "units" : "bytes"
-      },
-      {
-         "description" : "Bytes available",
-         "statkey" : "sma_s0_g_space",
-         "alias" : "Bytes available",
-         "datatype" : "float",
-         "units" : "bytes"
-      },
-      {
-         "alias" : "Allocator failures",
-         "description" : "Allocator failures",
-         "statkey" : "sma_transient_c_fail",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Bytes outstanding",
-         "description" : "Bytes outstanding",
-         "statkey" : "sma_transient_g_bytes",
-         "units" : "bytes",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "units" : "bytes",
-         "statkey" : "sma_transient_space",
-         "description" : "Bytes available",
-         "alias" : "Bytes available"
-      }
-   ]
+      "id" : "51",
+      "plugin" : "Varnish.Check"
+   }
 }

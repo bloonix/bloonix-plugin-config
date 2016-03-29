@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.33-1) unstable; urgency=low
+
+    * Extra release because the gpg key of bloonix is updated.
+
+ -- Jonny Schulz <js@bloonix.de>  Tue, 29 Mar 2016 02:43:10 +0200
+
 bloonix-plugin-config (0.32-1) unstable; urgency=low
 
     * New plugin check-proc-status.

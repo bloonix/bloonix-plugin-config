@@ -1,60 +1,60 @@
 {
    "plugin" : {
       "abstract" : "LSI raid check",
-      "category" : "System,RAID,Disk,Linux",
       "command" : "check-lsi-raid",
-      "datatype" : "none",
-      "plugin" : "Linux.RAID.LSI.Check",
       "id" : "61",
-      "description" : "Check the raid health with megacli or storcli.",
       "info" : {
-         "flags" : "sudo",
-         "plugin" : "check-lsi-raid",
-         "options" : [
-            {
-               "name" : "The number of other errors to ignore",
-               "default" : 0,
-               "mandatory" : 0,
-               "option" : "ignore-other-errors",
-               "value_desc" : "number",
-               "value_type" : "int",
-               "multiple" : 0,
-               "description" : "The number of other errors to ignore and to return status OK."
-            },
-            {
-               "description" : "The number of media errors to ignore and to return status OK.",
-               "multiple" : 0,
-               "value_desc" : "number",
-               "option" : "ignore-media-errors",
-               "value_type" : "int",
-               "name" : "The number of media errors to ignore",
-               "mandatory" : 0,
-               "default" : 0
-            },
-            {
-               "mandatory" : 0,
-               "default" : 0,
-               "name" : "The number of predictive failures to ignore",
-               "value_type" : "int",
-               "value_desc" : "number",
-               "option" : "ignore-predictive-failures",
-               "multiple" : 0,
-               "description" : "The number of predictive failures to ignore and to return status OK."
-            },
-            {
-               "option" : "force-storcli",
-               "value_type" : 0,
-               "name" : "Force StorCli",
-               "default" : null,
-               "mandatory" : 0,
-               "multiple" : 0,
-               "description" : "Force the usage of the StorCli tool instead of MegaCli. By default MegaCli is used if if both is installed."
-            }
-         ],
          "info" : [
             "This plugin checks the status of all disks on all raid controllers that are found. In addition the battery status is checked and the temperature of the battery. The commands MegaCli, MegaCli64, storcli or storcli64 are used to check the status of the RAID. Please install the tools to the path /usr/bin, /opt/MegaRAID/MegaCli or /opt/MegaRAID/storcli."
          ],
-         "version" : "0.2"
-      }
+         "plugin" : "check-lsi-raid",
+         "options" : [
+            {
+               "option" : "ignore-other-errors",
+               "description" : "The number of other errors to ignore and to return status OK.",
+               "default" : 0,
+               "value_desc" : "number",
+               "value_type" : "int",
+               "mandatory" : 0,
+               "name" : "The number of other errors to ignore",
+               "multiple" : 0
+            },
+            {
+               "mandatory" : 0,
+               "value_type" : "int",
+               "name" : "The number of media errors to ignore",
+               "multiple" : 0,
+               "value_desc" : "number",
+               "default" : 0,
+               "option" : "ignore-media-errors",
+               "description" : "The number of media errors to ignore and to return status OK."
+            },
+            {
+               "option" : "ignore-predictive-failures",
+               "description" : "The number of predictive failures to ignore and to return status OK.",
+               "default" : 0,
+               "value_desc" : "number",
+               "value_type" : "int",
+               "name" : "The number of predictive failures to ignore",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "multiple" : 0,
+               "default" : null,
+               "name" : "Force StorCli",
+               "value_type" : 0,
+               "mandatory" : 0,
+               "option" : "force-storcli",
+               "description" : "Force the usage of the StorCli tool instead of MegaCli. By default MegaCli is used if if both is installed."
+            }
+         ],
+         "version" : "0.2",
+         "flags" : "sudo"
+      },
+      "datatype" : "none",
+      "description" : "Check the raid health with megacli or storcli.",
+      "plugin" : "Linux.RAID.LSI.Check",
+      "category" : "System,RAID,Disk,Linux"
    }
 }

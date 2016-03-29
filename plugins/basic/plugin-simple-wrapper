@@ -1,42 +1,42 @@
 {
    "plugin" : {
-      "category" : "Simple",
-      "command" : "check-simple-wrapper",
-      "datatype" : "none",
-      "description" : "Check a service with a simple script.",
-      "prefer" : "localhost",
-      "id" : "59",
+      "netaccess" : "yes",
       "info" : {
+         "plugin" : "check-simple-wrapper",
+         "flags" : "simple",
+         "version" : "0.2",
          "examples" : [
             {
-               "description" : [
-                  "Using simple checks is very simple. Just enter the full command:"
-               ],
-               "command_line" : "check-simple-wrapper --simple-command 'check_this_or_that -H 127.0.0.1 -w 4 -c 5'",
                "arguments" : [
                   "simple-command",
                   "check_this_or_that -H 127.0.0.1 -w 4 -c 5"
-               ]
+               ],
+               "description" : [
+                  "Using simple checks is very simple. Just enter the full command:"
+               ],
+               "command_line" : "check-simple-wrapper --simple-command 'check_this_or_that -H 127.0.0.1 -w 4 -c 5'"
             }
          ],
-         "flags" : "simple",
          "options" : [
             {
                "name" : "Command",
+               "multiple" : 0,
+               "value_desc" : "string",
                "option" : "simple-command",
+               "mandatory" : 1,
                "description" : "Enter the complete command with arguments but without\nthe path to the script. Note that single quotes, backticks\nand backslashes are not allowed characters. Command example:\ncheck_this_or_that -H 127.0.0.1 -w 4 -c 5",
                "value_type" : "string",
-               "value_desc" : "string",
-               "default" : null,
-               "multiple" : 0,
-               "mandatory" : 1
+               "default" : null
             }
-         ],
-         "plugin" : "check-simple-wrapper",
-         "version" : "0.2"
+         ]
       },
+      "command" : "check-simple-wrapper",
+      "description" : "Check a service with a simple script.",
+      "id" : "59",
+      "category" : "Simple",
+      "prefer" : "localhost",
+      "datatype" : "none",
       "plugin" : "Simple.Script",
-      "abstract" : "Simple check script",
-      "netaccess" : "yes"
+      "abstract" : "Simple check script"
    }
 }

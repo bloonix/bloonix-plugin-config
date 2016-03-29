@@ -1,116 +1,73 @@
 {
    "statistic" : [
       {
-         "statkey" : "used",
-         "description" : "The used disk space in kilobytes.",
-         "alias" : "Used",
-         "units" : "kilobytes",
-         "datatype" : "bigint"
-      },
-      {
-         "statkey" : "disk",
-         "description" : "The disk name.",
-         "datatype" : "varchar(20)",
-         "alias" : "Disk name"
-      },
-      {
-         "statkey" : "free",
-         "description" : "The free disk space in kilobytes.",
-         "alias" : "Free",
-         "units" : "kilobytes",
-         "datatype" : "bigint"
-      },
-      {
-         "units" : "percent",
-         "datatype" : "float",
-         "alias" : "Used",
-         "description" : "The used disk space in percent.",
-         "statkey" : "usedper"
-      },
-      {
-         "description" : "The free disk space in percent.",
-         "alias" : "Free",
-         "units" : "percent",
-         "datatype" : "float",
-         "statkey" : "freeper"
-      },
-      {
-         "statkey" : "total",
-         "description" : "The total size of the disk.",
          "datatype" : "bigint",
+         "alias" : "Used",
          "units" : "kilobytes",
-         "alias" : "Total"
+         "description" : "The used disk space in kilobytes.",
+         "statkey" : "used"
+      },
+      {
+         "datatype" : "varchar(20)",
+         "alias" : "Disk name",
+         "description" : "The disk name.",
+         "statkey" : "disk"
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Free",
+         "units" : "kilobytes",
+         "description" : "The free disk space in kilobytes.",
+         "statkey" : "free"
+      },
+      {
+         "datatype" : "float",
+         "description" : "The used disk space in percent.",
+         "statkey" : "usedper",
+         "units" : "percent",
+         "alias" : "Used"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "freeper",
+         "description" : "The free disk space in percent.",
+         "units" : "percent",
+         "alias" : "Free"
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Total",
+         "description" : "The total size of the disk.",
+         "statkey" : "total",
+         "units" : "kilobytes"
       }
    ],
    "chart" : {
       "title" : "Disk usage",
       "id" : "1",
       "options" : {
-         "chart-type" : "area",
          "ylabel" : "disk used in %",
          "units" : "null",
          "series" : {
             "color" : "#005467",
             "name" : "usedper"
-         }
+         },
+         "chart-type" : "area"
       }
    },
    "plugin" : {
-      "abstract" : "Diskusage check",
-      "plugin" : "SNMP.Disk",
-      "id" : "63",
-      "category" : "System,SNMP",
       "netaccess" : "yes",
-      "datatype" : "statistic",
+      "plugin" : "SNMP.Disk",
+      "category" : "System,SNMP",
       "description" : "Check the usage of disks.",
+      "abstract" : "Diskusage check",
       "info" : {
-         "thresholds" : {
-            "info" : [
-               "How to set warning and critical thresholds:\n\n",
-               "  It's possible to set thresholds for one or more statistic keys.\n",
-               "  The format to add a threshold for a statistic key is:\n\n",
-               "    key:operator:threshold\n\n",
-               "  or if a unit makes sense\n\n",
-               "    key:operator:threshold + UNIT\n\n",
-               "  where the unit can be in ",
-               "percent or bytes",
-               ".\n\n",
-               "  If no operator is set then the default operator is 'ge'.\n\n",
-               "  The following operators are available:\n\n",
-               "    lt = less than\n",
-               "    le = less than or equal\n",
-               "    gt = greater than\n",
-               "    ge = greater than or equal\n",
-               "    eq = equal\n",
-               "    ne = not equal\n",
-               "\n",
-               "  Allowed units for percent: %\n\n",
-               "  Allowed units for bytes:\n\n",
-               "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
-               "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
-               "    GB = Gigabytes   EB = Exabytes\n\n"
-            ],
-            "options" : [
-               {
-                  "unit" : "percent",
-                  "key" : "usedper"
-               },
-               {
-                  "key" : "freeper",
-                  "unit" : "percent"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "used"
-               },
-               {
-                  "key" : "free",
-                  "unit" : "bytes"
-               }
-            ]
-         },
          "examples" : [
             {
+               "description" : [
+                  "Example to check if the free space of disk C: is lower than 10%/5%:"
+               ],
+               "command_line" : "check-snmp-disk --host '127.0.0.1' --port '161' --community 'public' --disk 'C:' --warning 'freeper:lt:10%' --critical 'freeper:lt:5%'",
                "arguments" : [
                   "host",
                   "127.0.0.1",
@@ -124,17 +81,10 @@
                   "freeper:lt:10%",
                   "critical",
                   "freeper:lt:5%"
-               ],
-               "description" : [
-                  "Example to check if the free space of disk C: is lower than 10%/5%:"
-               ],
-               "command_line" : "check-snmp-disk --host '127.0.0.1' --port '161' --community 'public' --disk 'C:' --warning 'freeper:lt:10%' --critical 'freeper:lt:5%'"
+               ]
             },
             {
                "command_line" : "check-snmp-disk --host '127.0.0.1' --port '161' --community 'public' --disk 'C:' --warning 'free:lt:2000MB' --critical 'free:lt:1000MB'",
-               "description" : [
-                  "Example to check if the free space of disk C: is lower than 2000MB/1000MB:"
-               ],
                "arguments" : [
                   "host",
                   "127.0.0.1",
@@ -148,156 +98,206 @@
                   "free:lt:2000MB",
                   "critical",
                   "free:lt:1000MB"
+               ],
+               "description" : [
+                  "Example to check if the free space of disk C: is lower than 2000MB/1000MB:"
                ]
             }
          ],
          "flags" : "",
+         "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  or if a unit makes sense\n\n",
+               "    key:operator:threshold + UNIT\n\n",
+               "  where the unit can be in ",
+               "bytes or percent",
+               ".\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n",
+               "\n",
+               "  Allowed units for bytes:\n\n",
+               "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
+               "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
+               "    GB = Gigabytes   EB = Exabytes\n\n",
+               "  Allowed units for percent: %\n\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "percent",
+                  "key" : "usedper"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "freeper"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "used"
+               },
+               {
+                  "key" : "free",
+                  "unit" : "bytes"
+               }
+            ]
+         },
          "plugin" : "check-snmp-disk",
-         "version" : "0.4",
          "options" : [
             {
-               "value_type" : "string",
-               "option" : "disk",
-               "value_desc" : "disk",
                "multiple" : 0,
-               "mandatory" : 1,
                "description" : "This is the disk you want to check. As example 'C:' or '/' for the root filesystem.",
+               "option" : "disk",
+               "mandatory" : 1,
+               "value_desc" : "disk",
+               "value_type" : "string",
                "name" : "Drive/Disk",
                "default" : null
             },
             {
+               "default" : "127.0.0.1",
                "value_type" : "string",
-               "multiple" : 0,
-               "value_desc" : "hostname or ip address",
+               "name" : "Hostname or IP address",
                "mandatory" : 0,
                "option" : "host",
-               "description" : "A hostname or IP address to connect to.",
-               "name" : "Hostname or IP address",
-               "default" : "127.0.0.1"
+               "value_desc" : "hostname or ip address",
+               "multiple" : 0,
+               "description" : "A hostname or IP address to connect to."
             },
             {
+               "option" : "port",
+               "mandatory" : 0,
+               "value_desc" : "port",
+               "multiple" : 0,
                "description" : "A port number to connect to.",
                "default" : 161,
                "name" : "Port number",
-               "value_type" : "int",
-               "option" : "port",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "port"
+               "value_type" : "int"
             },
             {
-               "description" : "The SNMP community to connect to the host.",
                "name" : "SNMP community",
-               "default" : "public",
                "value_type" : "string",
+               "default" : "public",
                "multiple" : 0,
-               "value_desc" : "community",
+               "description" : "The SNMP community to connect to the host.",
+               "option" : "community",
                "mandatory" : 0,
-               "option" : "community"
+               "value_desc" : "community"
             },
             {
-               "name" : "SNMP version",
-               "default" : 2,
-               "description" : "The SNMP version to use to connect to the host.",
-               "option" : "snmp-version",
-               "multiple" : 0,
                "value_desc" : "version",
+               "option" : "snmp-version",
                "mandatory" : 0,
-               "value_type" : "string"
+               "description" : "The SNMP version to use to connect to the host.",
+               "multiple" : 0,
+               "default" : 2,
+               "value_type" : "string",
+               "name" : "SNMP version"
             },
             {
+               "description" : "The SNMPv3 username.",
                "multiple" : 0,
                "value_desc" : "username",
-               "mandatory" : 0,
                "option" : "username",
+               "mandatory" : 0,
                "value_type" : "string",
                "name" : "SNMPv3 username",
-               "default" : null,
-               "description" : "The SNMPv3 username."
+               "default" : null
             },
             {
+               "default" : null,
+               "name" : "SNMPv3 auth key",
                "value_type" : "string",
-               "mandatory" : 0,
                "value_desc" : "authkey",
-               "multiple" : 0,
+               "mandatory" : 0,
                "option" : "authkey",
                "description" : "The SNMPv3 auth key.",
-               "default" : null,
-               "name" : "SNMPv3 auth key"
+               "multiple" : 0
             },
             {
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "authpassword",
-               "option" : "authpassword",
-               "value_type" : "string",
                "default" : null,
                "name" : "SNMPv3 auth password",
+               "value_type" : "string",
+               "mandatory" : 0,
+               "option" : "authpassword",
+               "value_desc" : "authpassword",
+               "multiple" : 0,
                "description" : "The SNMPv3 auth password."
             },
             {
-               "description" : "The SNMPv3 auth protocol.",
-               "name" : "SNMPv3 auth protocol",
-               "default" : null,
-               "value_type" : "string",
+               "mandatory" : 0,
                "option" : "authprotocol",
                "value_desc" : "authprotocol",
                "multiple" : 0,
-               "mandatory" : 0
+               "description" : "The SNMPv3 auth protocol.",
+               "default" : null,
+               "value_type" : "string",
+               "name" : "SNMPv3 auth protocol"
             },
             {
+               "name" : "SNMPv3 priv key",
+               "value_type" : "string",
+               "default" : null,
+               "multiple" : 0,
+               "description" : "The SNMPv3 priv key.",
                "option" : "privkey",
                "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "privkey",
-               "value_type" : "string",
-               "default" : null,
-               "name" : "SNMPv3 priv key",
-               "description" : "The SNMPv3 priv key."
+               "value_desc" : "privkey"
             },
             {
-               "value_type" : "string",
-               "option" : "privpassword",
                "value_desc" : "privpassword",
-               "multiple" : 0,
+               "option" : "privpassword",
                "mandatory" : 0,
                "description" : "The SNMPv3 priv password.",
-               "name" : "SNMPv3 priv password",
-               "default" : null
-            },
-            {
-               "value_type" : "string",
                "multiple" : 0,
-               "value_desc" : "privprotocol",
-               "mandatory" : 0,
-               "option" : "privprotocol",
-               "description" : "The SNMPv3 priv protocol.",
-               "name" : "SNMPv3 priv protocol",
-               "default" : null
+               "default" : null,
+               "value_type" : "string",
+               "name" : "SNMPv3 priv password"
             },
             {
-               "name" : "Warning threshold",
                "default" : null,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "option" : "warning",
-               "multiple" : 1,
+               "value_type" : "string",
+               "name" : "SNMPv3 priv protocol",
+               "option" : "privprotocol",
+               "mandatory" : 0,
+               "value_desc" : "privprotocol",
+               "multiple" : 0,
+               "description" : "The SNMPv3 priv protocol."
+            },
+            {
                "value_desc" : "key:value or key:op:value",
                "mandatory" : 0,
+               "option" : "warning",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "multiple" : 1,
+               "default" : null,
+               "name" : "Warning threshold",
                "value_type" : "string"
             },
             {
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "default" : null,
                "name" : "Critical threshold",
                "value_type" : "string",
                "mandatory" : 0,
-               "multiple" : 1,
+               "option" : "critical",
                "value_desc" : "key:value or key:op:value",
-               "option" : "critical"
+               "multiple" : 1,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information."
             }
-         ]
+         ],
+         "version" : "0.4"
       },
-      "command" : "check-snmp-disk",
-      "prefer" : "localhost"
+      "prefer" : "localhost",
+      "datatype" : "statistic",
+      "id" : "63",
+      "command" : "check-snmp-disk"
    }
 }

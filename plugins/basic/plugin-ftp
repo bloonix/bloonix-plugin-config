@@ -1,90 +1,104 @@
 {
-   "statistic" : {
-      "description" : "Time in milliseconds waiting for response or to login.",
-      "alias" : "Response time",
-      "statkey" : "time",
-      "units" : "ms",
-      "datatype" : "float"
+   "chart" : {
+      "options" : {
+         "series" : {
+            "name" : "time",
+            "color" : "#005467"
+         },
+         "ylabel" : "time in ms",
+         "units" : "null",
+         "chart-type" : "area"
+      },
+      "id" : "1",
+      "title" : "FTP connect - response time"
    },
    "plugin" : {
       "prefer" : "remote",
+      "command" : "check-ftp",
+      "id" : "6",
+      "plugin" : "FTP.Check",
+      "category" : "Network",
+      "datatype" : "statistic",
+      "abstract" : "FTP check",
+      "netaccess" : "yes",
       "info" : {
-         "plugin" : "check-ftp",
          "options" : [
             {
+               "value_type" : "number",
+               "default" : 3,
                "multiple" : 0,
                "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
-               "option" : "warning",
-               "default" : 3,
                "name" : "Warning threshold",
                "mandatory" : 0,
-               "value_type" : "number",
-               "value_desc" : "seconds"
-            },
-            {
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
-               "multiple" : 0,
-               "value_type" : "number",
-               "name" : "Critical threshold",
-               "mandatory" : 0,
-               "default" : 5,
-               "option" : "critical",
-               "value_desc" : "seconds"
-            },
-            {
                "value_desc" : "seconds",
-               "default" : 10,
-               "option" : "timeout",
-               "name" : "Timeout",
-               "mandatory" : 0,
-               "value_type" : "number",
-               "multiple" : 0,
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered."
+               "option" : "warning"
             },
             {
+               "option" : "critical",
+               "value_desc" : "seconds",
+               "mandatory" : 0,
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "name" : "Critical threshold",
                "multiple" : 0,
-               "description" : "A hostname or IP address to connect to.",
-               "value_desc" : "hostname or ip address",
-               "default" : null,
+               "default" : 5,
+               "value_type" : "number"
+            },
+            {
+               "mandatory" : 0,
+               "value_desc" : "seconds",
+               "option" : "timeout",
+               "multiple" : 0,
+               "default" : 10,
+               "name" : "Timeout",
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "value_type" : "number"
+            },
+            {
                "option" : "host",
+               "value_desc" : "hostname or ip address",
                "mandatory" : 1,
+               "value_type" : "string",
                "name" : "Hostname or IP address",
-               "value_type" : "string"
+               "description" : "A hostname or IP address to connect to.",
+               "multiple" : 0,
+               "default" : null
             },
             {
                "value_desc" : "username",
-               "mandatory" : 0,
-               "name" : "Username",
                "option" : "username",
-               "default" : null,
-               "value_type" : "string",
+               "mandatory" : 0,
+               "description" : "The username to use for the login.",
+               "name" : "Username",
                "multiple" : 0,
-               "description" : "The username to use for the login."
+               "default" : null,
+               "value_type" : "string"
             },
             {
+               "value_type" : "string",
                "multiple" : 0,
-               "description" : "The password for the user to login.",
-               "option" : "password",
                "default" : null,
+               "description" : "The password for the user to login.",
                "name" : "Password",
                "mandatory" : 0,
-               "value_type" : "string",
-               "value_desc" : "password"
+               "value_desc" : "password",
+               "option" : "password"
             },
             {
+               "option" : "use-ssl",
+               "value_type" : 0,
+               "mandatory" : 0,
+               "name" : "Use secure connection via SSL",
                "description" : "Use secure connection via SSL.",
                "multiple" : 0,
-               "value_type" : 0,
-               "name" : "Use secure connection via SSL",
-               "mandatory" : 0,
-               "default" : null,
-               "option" : "use-ssl"
+               "default" : null
             }
          ],
          "flags" : "",
          "version" : "0.3",
+         "plugin" : "check-ftp",
          "examples" : [
             {
+               "command_line" : "check-ftp --host 'www.bloonix.de' --warning '3' --critical '5' --username 'bloonix' --password 'secret'",
                "arguments" : [
                   "host",
                   "www.bloonix.de",
@@ -97,34 +111,20 @@
                   "password",
                   "secret"
                ],
-               "command_line" : "check-ftp --host 'www.bloonix.de' --warning '3' --critical '5' --username 'bloonix' --password 'secret'",
                "description" : [
                   "A simple FTP login check"
                ]
             }
          ]
       },
-      "description" : "FTP statistics",
-      "plugin" : "FTP.Check",
-      "abstract" : "FTP check",
-      "category" : "Network",
-      "id" : "6",
-      "netaccess" : "yes",
-      "datatype" : "statistic",
-      "command" : "check-ftp",
-      "worldwide" : "yes"
+      "worldwide" : "yes",
+      "description" : "FTP statistics"
    },
-   "chart" : {
-      "options" : {
-         "units" : "null",
-         "series" : {
-            "color" : "#005467",
-            "name" : "time"
-         },
-         "ylabel" : "time in ms",
-         "chart-type" : "area"
-      },
-      "title" : "FTP connect - response time",
-      "id" : "1"
+   "statistic" : {
+      "description" : "Time in milliseconds waiting for response or to login.",
+      "units" : "ms",
+      "datatype" : "float",
+      "statkey" : "time",
+      "alias" : "Response time"
    }
 }
