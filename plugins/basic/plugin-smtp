@@ -1,165 +1,174 @@
 {
    "chart" : {
-      "title" : "SMTP - time to send a mail",
       "options" : {
-         "units" : "null",
-         "series" : {
-            "color" : "#005467",
-            "name" : "time"
-         },
          "chart-type" : "area",
-         "ylabel" : "time in ms"
+         "series" : {
+            "name" : "time",
+            "color" : "#005467"
+         },
+         "ylabel" : "time in ms",
+         "units" : "null"
       },
-      "id" : "1"
+      "id" : "1",
+      "title" : "SMTP - time to send a mail"
+   },
+   "statistic" : {
+      "alias" : "Response time",
+      "description" : "Time in milliseconds to send a mail.",
+      "units" : "ms",
+      "statkey" : "time",
+      "datatype" : "float"
    },
    "plugin" : {
-      "worldwide" : "yes",
-      "command" : "check-smtp",
-      "plugin" : "SMTP.Check",
-      "abstract" : "SMTP check",
-      "prefer" : "remote",
-      "description" : "SMTP connect statistics",
       "id" : "11",
       "netaccess" : "yes",
       "datatype" : "statistic",
+      "prefer" : "remote",
+      "description" : "SMTP connect statistics",
+      "plugin" : "SMTP.Check",
+      "category" : "Network,Mail",
+      "worldwide" : "yes",
+      "abstract" : "SMTP check",
       "info" : {
          "options" : [
             {
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
-               "name" : "Warning threshold",
                "multiple" : 0,
-               "value_type" : "number",
+               "name" : "Warning threshold",
                "mandatory" : 0,
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "default" : 3,
-               "option" : "warning",
-               "value_desc" : "seconds"
+               "value_type" : "number",
+               "value_desc" : "seconds",
+               "option" : "warning"
             },
             {
+               "mandatory" : 0,
+               "multiple" : 0,
+               "name" : "Critical threshold",
                "option" : "critical",
                "value_desc" : "seconds",
-               "multiple" : 0,
-               "mandatory" : 0,
                "value_type" : "number",
                "default" : 5,
-               "name" : "Critical threshold",
                "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered."
             },
             {
+               "name" : "Timeout",
                "multiple" : 0,
-               "default" : 10,
-               "value_type" : "number",
                "mandatory" : 0,
                "value_desc" : "seconds",
                "option" : "timeout",
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "name" : "Timeout"
+               "default" : 10,
+               "value_type" : "number"
             },
             {
                "description" : "A hostname or IP address to connect to.",
-               "name" : "Hostname or IP address",
+               "default" : null,
+               "value_type" : "string",
                "value_desc" : "hostname or ip address",
                "option" : "host",
-               "default" : null,
-               "mandatory" : 1,
-               "value_type" : "string",
+               "name" : "Hostname or IP address",
+               "multiple" : 0,
+               "mandatory" : 1
+            },
+            {
+               "option" : "port",
+               "value_desc" : "port",
+               "value_type" : "int",
+               "default" : 25,
+               "description" : "A port number to connect to.",
+               "mandatory" : 0,
+               "name" : "Port number",
                "multiple" : 0
             },
             {
-               "description" : "A port number to connect to.",
-               "name" : "Port number",
-               "value_type" : "int",
                "mandatory" : 0,
-               "default" : 25,
                "multiple" : 0,
-               "option" : "port",
-               "value_desc" : "port"
-            },
-            {
-               "value_desc" : "ipaddr",
-               "option" : "bind",
-               "multiple" : 0,
-               "default" : null,
-               "value_type" : "string",
-               "mandatory" : 0,
                "name" : "Bind to IP address",
-               "description" : "A local IP address to bind to."
-            },
-            {
-               "multiple" : 0,
-               "mandatory" : 0,
-               "value_type" : 0,
                "default" : null,
-               "option" : "use-ssl",
-               "description" : "Use secure connection via SSL.",
-               "name" : "Use secure connection via SSL"
-            },
-            {
-               "option" : "username",
-               "value_desc" : "username",
-               "multiple" : 0,
-               "mandatory" : 0,
                "value_type" : "string",
-               "default" : null,
-               "description" : "The username to use for the login.",
-               "name" : "Username"
+               "description" : "A local IP address to bind to.",
+               "option" : "bind",
+               "value_desc" : "ipaddr"
             },
             {
+               "name" : "Use secure connection via SSL",
                "multiple" : 0,
+               "description" : "Use secure connection via SSL.",
                "default" : null,
+               "value_type" : 0,
                "mandatory" : 0,
+               "option" : "use-ssl"
+            },
+            {
+               "mandatory" : 0,
+               "multiple" : 0,
+               "name" : "Username",
+               "default" : null,
+               "value_type" : "string",
+               "description" : "The username to use for the login.",
+               "option" : "username",
+               "value_desc" : "username"
+            },
+            {
+               "name" : "Password",
+               "multiple" : 0,
+               "mandatory" : 0,
+               "description" : "The password for the user to login.",
+               "default" : null,
                "value_type" : "string",
                "value_desc" : "password",
-               "option" : "password",
-               "name" : "Password",
-               "description" : "The password for the user to login."
+               "option" : "password"
             },
             {
-               "name" : "Mail from",
-               "description" : "Set this options if you want that a 'MAIL FROM' will be sent.",
-               "option" : "from",
-               "value_desc" : "mail-from",
-               "multiple" : 0,
+               "description" : "Set this option if you want that a 'MAIL FROM' will be sent.",
                "value_type" : "string",
-               "mandatory" : 0,
-               "default" : null
+               "default" : null,
+               "value_desc" : "mail-from",
+               "option" : "from",
+               "name" : "Mail from",
+               "multiple" : 0,
+               "mandatory" : 0
             },
             {
-               "mandatory" : 0,
+               "value_desc" : "mail-to",
+               "option" : "to",
+               "description" : "Set this option if you want that a 'RCPT TO' will be sent.",
                "value_type" : "string",
                "default" : null,
                "multiple" : 0,
-               "option" : "to",
-               "value_desc" : "mail-to",
                "name" : "Mail to",
-               "description" : "Set this options if you want that a 'RCPT TO' will be sent."
+               "mandatory" : 0
             },
             {
                "description" : "Set this option to modify the subject of the e-mail.\nAllowed characters: a-zA-Z_0-9 and whitespaces",
-               "name" : "The subject of the mail",
-               "option" : "subject",
-               "value_desc" : "subject",
-               "multiple" : 0,
                "value_type" : "string",
-               "mandatory" : 0,
-               "default" : "Bloonix test mail"
+               "default" : "Bloonix test mail",
+               "value_desc" : "subject",
+               "option" : "subject",
+               "multiple" : 0,
+               "name" : "The subject of the mail",
+               "mandatory" : 0
             },
             {
+               "name" : "Send the mail to the mailbox?",
+               "description" : "Set this option if you want that a e-mail is really send\nto the mail account. By default it will only be checked\nif the 'MAIL FROM' and 'RCPT TO' commands are sucessfully\nsend.",
                "multiple" : 0,
+               "default" : null,
                "value_type" : 0,
                "mandatory" : 0,
-               "default" : null,
-               "option" : "send-mail",
-               "name" : "Send the mail to the mailbox?",
-               "description" : "Set this option if you want that a e-mail is really send\nto the mail account. By default it will only be checked\nif the 'MAIL FROM' and 'RCPT TO' commands are sucessfully\nsend."
+               "option" : "send-mail"
             }
          ],
          "flags" : "",
+         "plugin" : "check-smtp",
+         "version" : "0.9",
          "examples" : [
             {
+               "command_line" : "check-smtp --host 'mx.host.domain' --warning '5' --critical '8'",
                "description" : [
                   "Just a simple SMTP connection to your mail server:"
                ],
-               "command_line" : "check-smtp --host 'mx.host.domain' --warning '5' --critical '8'",
                "arguments" : [
                   "host",
                   "mx.host.domain",
@@ -170,9 +179,6 @@
                ]
             },
             {
-               "description" : [
-                  "Login to the SMTP server with username and password:"
-               ],
                "arguments" : [
                   "host",
                   "mx.host.domain",
@@ -184,6 +190,9 @@
                   "bloonix",
                   "password",
                   "secret"
+               ],
+               "description" : [
+                  "Login to the SMTP server with username and password:"
                ],
                "command_line" : "check-smtp --host 'mx.host.domain' --warning '5' --critical '8' --username 'bloonix' --password 'secret'"
             },
@@ -209,17 +218,8 @@
                   null
                ]
             }
-         ],
-         "version" : "0.9",
-         "plugin" : "check-smtp"
+         ]
       },
-      "category" : "Network,Mail"
-   },
-   "statistic" : {
-      "statkey" : "time",
-      "datatype" : "float",
-      "description" : "Time in milliseconds to send a mail.",
-      "alias" : "Response time",
-      "units" : "ms"
+      "command" : "check-smtp"
    }
 }

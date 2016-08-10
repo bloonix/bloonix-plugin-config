@@ -1,105 +1,105 @@
 {
    "chart" : [
       {
+         "id" : "1",
          "options" : {
-            "chart-type" : "area",
             "series" : [
                {
                   "color" : "#ffb244",
                   "name" : "active"
                },
                {
-                  "color" : "#005467",
-                  "name" : "passive"
+                  "name" : "passive",
+                  "color" : "#005467"
                },
                {
                   "name" : "failed",
                   "color" : "#e9644a"
                }
             ],
-            "ylabel" : "connections/s",
-            "units" : "default"
+            "chart-type" : "area",
+            "units" : "default",
+            "ylabel" : "connections/s"
          },
-         "title" : "Linux netstat - connections/s",
-         "id" : "1"
+         "title" : "Linux netstat - connections/s"
       },
       {
          "title" : "Linux netstat - established connections/s",
          "id" : "2",
          "options" : {
+            "ylabel" : "established",
             "units" : "default",
             "series" : {
-               "name" : "established",
-               "color" : "#005467"
+               "color" : "#005467",
+               "name" : "established"
             },
-            "ylabel" : "established",
             "chart-type" : "area"
          }
       },
       {
-         "id" : "3",
          "title" : "Linux netstat - connection resets/s",
          "options" : {
+            "ylabel" : "recv/s (-) / sent/s (+)",
             "units" : "default",
             "chart-type" : "area",
-            "ylabel" : "recv/s (-) / sent/s (+)",
             "series" : [
                {
                   "name" : "sent_resets",
                   "color" : "#005467"
                },
                {
-                  "name" : "recv_resets",
                   "opposite" : "true",
-                  "color" : "#ff7a0d"
+                  "color" : "#ff7a0d",
+                  "name" : "recv_resets"
                }
             ]
-         }
+         },
+         "id" : "3"
       },
       {
-         "id" : "4",
          "title" : "Linux netstat - udp packets/s",
+         "id" : "4",
          "options" : {
-            "ylabel" : "recv/s (-) / sent/s (+)",
+            "units" : "default",
             "series" : [
                {
                   "name" : "sent_udp_pcks",
                   "color" : "#005467"
                },
                {
-                  "color" : "#ff7a0d",
                   "name" : "recv_udp_pcks",
+                  "color" : "#ff7a0d",
                   "opposite" : "true"
                }
             ],
             "chart-type" : "area",
-            "units" : "default"
+            "ylabel" : "recv/s (-) / sent/s (+)"
          }
       },
       {
+         "title" : "Linux netstat - current connections",
+         "id" : "5",
          "options" : {
-            "units" : "null",
-            "ylabel" : "connections",
             "series" : [
                {
                   "color" : "#e9644a",
                   "name" : "established"
                },
                {
-                  "name" : "syn_send",
-                  "color" : "#ffb244"
+                  "color" : "#ffb244",
+                  "name" : "syn_send"
                },
                {
-                  "color" : "#9a72ad",
-                  "name" : "syn_recv"
+                  "name" : "syn_recv",
+                  "color" : "#9a72ad"
                },
                {
                   "color" : "#005467",
                   "name" : "fin_wait1"
                },
                {
-                  "name" : "fin_wait2",
-                  "color" : "#2ba743"
+                  "color" : "#2ba743",
+                  "name" : "fin_wait2"
                },
                {
                   "color" : "#7648eb",
@@ -110,75 +110,171 @@
                   "name" : "close"
                },
                {
-                  "color" : "#1c6d16",
-                  "name" : "close_wait"
+                  "name" : "close_wait",
+                  "color" : "#1c6d16"
                },
                {
-                  "color" : "#bf00bf",
-                  "name" : "last_ack"
+                  "name" : "last_ack",
+                  "color" : "#bf00bf"
                },
                {
-                  "color" : "#275487",
-                  "name" : "closing"
+                  "name" : "closing",
+                  "color" : "#275487"
                },
                {
                   "color" : "#666666",
                   "name" : "unknown"
                }
             ],
-            "chart-type" : "area"
-         },
-         "id" : "5",
-         "title" : "Linux netstat - current connections"
+            "chart-type" : "area",
+            "units" : "null",
+            "ylabel" : "connections"
+         }
+      }
+   ],
+   "statistic" : [
+      {
+         "statkey" : "active",
+         "description" : "Number of active connections per second.",
+         "alias" : "Active",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of passive connections per second.",
+         "statkey" : "passive",
+         "datatype" : "float",
+         "alias" : "Passive"
+      },
+      {
+         "alias" : "Failed",
+         "datatype" : "float",
+         "statkey" : "failed",
+         "description" : "Number of failed connections per second."
+      },
+      {
+         "alias" : "Received resets",
+         "datatype" : "float",
+         "statkey" : "recv_resets",
+         "description" : "Number of connection resets received per second."
+      },
+      {
+         "alias" : "Sent resets",
+         "datatype" : "float",
+         "statkey" : "sent_resets",
+         "description" : "Number of connection resets sent per second."
+      },
+      {
+         "statkey" : "recv_udp_pcks",
+         "description" : "Number of udp packets received per second.",
+         "alias" : "Received UDP packets",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Number of udp packets sent per second.",
+         "statkey" : "sent_udp_pcks",
+         "alias" : "Sent UDP packets",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "recv_udp_errs",
+         "description" : "Number of udp packet receive errors per second.",
+         "alias" : "Received UDP errors",
+         "datatype" : "float"
+      },
+      {
+         "description" : "ESTABLISHED - The socket has an established connection.",
+         "statkey" : "established",
+         "datatype" : "bigint",
+         "alias" : "Established"
+      },
+      {
+         "alias" : "SYN sent",
+         "datatype" : "bigint",
+         "statkey" : "syn_send",
+         "description" : "SYN_SENT - The socket is actively attempting to establish a connection."
+      },
+      {
+         "statkey" : "syn_recv",
+         "description" : "SYN_RECV - A connection request has been received from the network.",
+         "datatype" : "bigint",
+         "alias" : "SYN received"
+      },
+      {
+         "alias" : "FIN wait1",
+         "datatype" : "bigint",
+         "statkey" : "fin_wait1",
+         "description" : "FIN_WAIT1 - The socket is closed, and the connection is shutting down."
+      },
+      {
+         "alias" : "FIN wait2",
+         "datatype" : "bigint",
+         "description" : "FIN_WAIT2 - Connection is closed, and the socket is waiting for a shutdown from the remote end.",
+         "statkey" : "fin_wait2"
+      },
+      {
+         "alias" : "Time wait",
+         "datatype" : "bigint",
+         "description" : "TIME_WAIT - The socket is waiting after close to handle packets still in the network.",
+         "statkey" : "time_wait"
+      },
+      {
+         "alias" : "Close",
+         "datatype" : "bigint",
+         "description" : "CLOSE - The socket is not being used.",
+         "statkey" : "close"
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Close wait",
+         "description" : "CLOSE_WAIT - The remote end has shut down, waiting for the socket to close.",
+         "statkey" : "close_wait"
+      },
+      {
+         "alias" : "Last ACK",
+         "datatype" : "bigint",
+         "description" : "LAST_ACK - The remote end has shut down, and the socket is closed. Waiting for acknowledgement.",
+         "statkey" : "last_ack"
+      },
+      {
+         "alias" : "Closing",
+         "datatype" : "bigint",
+         "statkey" : "closing",
+         "description" : "CLOSING - Both sockets are shut down but we still don't have all our data sent."
+      },
+      {
+         "datatype" : "bigint",
+         "alias" : "Unknown",
+         "description" : "UNKNOWN - The state of the socket is unknown.",
+         "statkey" : "unknown"
       }
    ],
    "plugin" : {
+      "datatype" : "statistic",
+      "command" : "check-netstat",
       "info" : {
-         "plugin" : "check-netstat",
-         "examples" : [
-            {
-               "description" : [
-                  "An example to check the current established connections and trigger",
-                  "",
-                  "- a warning status if the number of established connections is higher than or equal 500",
-                  "- or a critical status if the number of established connections is higher than or equal 700"
-               ],
-               "command_line" : "check-netstat --warning 'established:ge:500' --critical 'established:ge:750'",
-               "arguments" : [
-                  "warning",
-                  "established:ge:500",
-                  "critical",
-                  "established:ge:750"
-               ]
-            }
-         ],
-         "flags" : "",
-         "info" : [
-            "The command 'netstat' is used to check the network statistics."
-         ],
-         "version" : "0.8",
          "options" : [
             {
                "mandatory" : 0,
-               "default" : null,
-               "value_desc" : "key:value or key:op:value",
-               "name" : "Warning threshold",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
                "option" : "warning",
+               "default" : null,
                "multiple" : 1,
-               "value_type" : "string"
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "name" : "Warning threshold",
+               "value_type" : "string",
+               "value_desc" : "key:value or key:op:value"
             },
             {
-               "default" : null,
-               "value_desc" : "key:value or key:op:value",
-               "name" : "Critical threshold",
                "mandatory" : 0,
-               "value_type" : "string",
                "option" : "critical",
+               "default" : null,
+               "multiple" : 1,
+               "name" : "Critical threshold",
+               "value_type" : "string",
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "multiple" : 1
+               "value_desc" : "key:value or key:op:value"
             }
          ],
+         "plugin" : "check-netstat",
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",
@@ -196,8 +292,8 @@
             ],
             "options" : [
                {
-                  "unit" : "none",
-                  "key" : "recv_resets"
+                  "key" : "recv_resets",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
@@ -216,20 +312,20 @@
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "passive"
+                  "key" : "passive",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "failed"
+                  "key" : "failed",
+                  "unit" : "none"
                },
                {
                   "key" : "established",
                   "unit" : "none"
                },
                {
-                  "key" : "syn_send",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "syn_send"
                },
                {
                   "unit" : "none",
@@ -240,8 +336,8 @@
                   "key" : "fin_wait1"
                },
                {
-                  "key" : "fin_wait2",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "fin_wait2"
                },
                {
                   "unit" : "none",
@@ -264,134 +360,38 @@
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "unknown"
+                  "key" : "unknown",
+                  "unit" : "none"
                }
             ]
-         }
+         },
+         "examples" : [
+            {
+               "description" : [
+                  "An example to check the current established connections and trigger",
+                  "",
+                  "- a warning status if the number of established connections is higher than or equal 500",
+                  "- or a critical status if the number of established connections is higher than or equal 700"
+               ],
+               "arguments" : [
+                  "warning",
+                  "established:ge:500",
+                  "critical",
+                  "established:ge:750"
+               ],
+               "command_line" : "check-netstat --warning 'established:ge:500' --critical 'established:ge:750'"
+            }
+         ],
+         "flags" : "",
+         "version" : "0.8",
+         "info" : [
+            "The command 'netstat' is used to check the network statistics."
+         ]
       },
-      "category" : "System,Network,Linux",
       "abstract" : "Netstat check",
+      "id" : "28",
       "plugin" : "Linux.Netstat.Check",
       "description" : "Linux netstat statistics",
-      "command" : "check-netstat",
-      "datatype" : "statistic",
-      "id" : "28"
-   },
-   "statistic" : [
-      {
-         "description" : "Number of active connections per second.",
-         "alias" : "Active",
-         "statkey" : "active",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "passive",
-         "alias" : "Passive",
-         "description" : "Number of passive connections per second.",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Failed",
-         "description" : "Number of failed connections per second.",
-         "statkey" : "failed"
-      },
-      {
-         "statkey" : "recv_resets",
-         "description" : "Number of connection resets received per second.",
-         "alias" : "Received resets",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "sent_resets",
-         "alias" : "Sent resets",
-         "description" : "Number of connection resets sent per second.",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Received UDP packets",
-         "description" : "Number of udp packets received per second.",
-         "statkey" : "recv_udp_pcks"
-      },
-      {
-         "datatype" : "float",
-         "description" : "Number of udp packets sent per second.",
-         "alias" : "Sent UDP packets",
-         "statkey" : "sent_udp_pcks"
-      },
-      {
-         "statkey" : "recv_udp_errs",
-         "description" : "Number of udp packet receive errors per second.",
-         "alias" : "Received UDP errors",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "established",
-         "alias" : "Established",
-         "description" : "ESTABLISHED - The socket has an established connection.",
-         "datatype" : "bigint"
-      },
-      {
-         "statkey" : "syn_send",
-         "alias" : "SYN sent",
-         "description" : "SYN_SENT - The socket is actively attempting to establish a connection.",
-         "datatype" : "bigint"
-      },
-      {
-         "alias" : "SYN received",
-         "description" : "SYN_RECV - A connection request has been received from the network.",
-         "statkey" : "syn_recv",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "FIN_WAIT1 - The socket is closed, and the connection is shutting down.",
-         "alias" : "FIN wait1",
-         "statkey" : "fin_wait1",
-         "datatype" : "bigint"
-      },
-      {
-         "alias" : "FIN wait2",
-         "description" : "FIN_WAIT2 - Connection is closed, and the socket is waiting for a shutdown from the remote end.",
-         "statkey" : "fin_wait2",
-         "datatype" : "bigint"
-      },
-      {
-         "datatype" : "bigint",
-         "statkey" : "time_wait",
-         "alias" : "Time wait",
-         "description" : "TIME_WAIT - The socket is waiting after close to handle packets still in the network."
-      },
-      {
-         "datatype" : "bigint",
-         "statkey" : "close",
-         "description" : "CLOSE - The socket is not being used.",
-         "alias" : "Close"
-      },
-      {
-         "datatype" : "bigint",
-         "alias" : "Close wait",
-         "description" : "CLOSE_WAIT - The remote end has shut down, waiting for the socket to close.",
-         "statkey" : "close_wait"
-      },
-      {
-         "datatype" : "bigint",
-         "alias" : "Last ACK",
-         "description" : "LAST_ACK - The remote end has shut down, and the socket is closed. Waiting for acknowledgement.",
-         "statkey" : "last_ack"
-      },
-      {
-         "statkey" : "closing",
-         "alias" : "Closing",
-         "description" : "CLOSING - Both sockets are shut down but we still don't have all our data sent.",
-         "datatype" : "bigint"
-      },
-      {
-         "datatype" : "bigint",
-         "statkey" : "unknown",
-         "description" : "UNKNOWN - The state of the socket is unknown.",
-         "alias" : "Unknown"
-      }
-   ]
+      "category" : "System,Network,Linux"
+   }
 }

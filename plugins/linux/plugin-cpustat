@@ -1,171 +1,117 @@
 {
    "statistic" : [
       {
-         "description" : "Percentage of CPU utilization at the user level.",
-         "units" : "percent",
          "alias" : "User",
-         "statkey" : "user",
-         "datatype" : "float"
+         "units" : "percent",
+         "description" : "Percentage of CPU utilization at the user level.",
+         "datatype" : "float",
+         "statkey" : "user"
       },
       {
          "alias" : "Nice",
-         "statkey" : "nice",
+         "units" : "percent",
          "datatype" : "float",
          "description" : "Time spent in user mode with low priority.",
-         "units" : "percent"
+         "statkey" : "nice"
       },
       {
          "units" : "percent",
-         "description" : "Percentage of CPU utilization at the system level.",
-         "datatype" : "float",
+         "alias" : "System",
          "statkey" : "system",
-         "alias" : "System"
-      },
-      {
-         "description" : "Percentage of time the CPU is in idle state.",
-         "units" : "percent",
-         "alias" : "Idle",
-         "statkey" : "idle",
+         "description" : "Percentage of CPU utilization at the system level.",
          "datatype" : "float"
       },
       {
+         "description" : "Percentage of time the CPU is in idle state.",
          "datatype" : "float",
-         "alias" : "IOwait",
+         "statkey" : "idle",
+         "alias" : "Idle",
+         "units" : "percent"
+      },
+      {
+         "datatype" : "float",
+         "description" : "Percentage of time the CPU is in idle state because an i/o operation is waiting for a disk. This statistic is only available since kernel version 2.5.41.",
          "statkey" : "iowait",
-         "units" : "percent",
-         "description" : "Percentage of time the CPU is in idle state because an i/o operation is waiting for a disk. This statistic is only available since kernel version 2.5.41."
+         "alias" : "IOwait",
+         "units" : "percent"
       },
       {
+         "alias" : "IRQ",
          "units" : "percent",
-         "description" : "Percentage of time the CPU is servicing interrupts. This statistic is only available since kernel version 2.6.0-test4.",
-         "datatype" : "float",
          "statkey" : "irq",
-         "alias" : "IRQ"
+         "description" : "Percentage of time the CPU is servicing interrupts. This statistic is only available since kernel version 2.6.0-test4.",
+         "datatype" : "float"
       },
       {
-         "units" : "percent",
          "description" : "Percentage of time the CPU is servicing softirqs. This statistic is only available since kernel version 2.6.0-test4.",
          "datatype" : "float",
          "statkey" : "softirq",
-         "alias" : "Soft IRQ"
-      },
-      {
-         "datatype" : "float",
-         "alias" : "Steal",
-         "statkey" : "steal",
-         "units" : "percent",
-         "description" : "Percentage of stolen CPU time, which is the time spent in other operating systems when running in a virtualized environment. This statistic is only available since kernel version 2.6.11."
-      },
-      {
-         "statkey" : "quest",
-         "alias" : "Quest",
-         "datatype" : "float",
-         "description" : "Percentage of CPU time, which is the time spent running a virtual CPU for guest operating systems under the control of the Linux kernel. This statistic is only available since kernel version 2.6.24.",
+         "alias" : "Soft IRQ",
          "units" : "percent"
+      },
+      {
+         "alias" : "Steal",
+         "units" : "percent",
+         "datatype" : "float",
+         "description" : "Percentage of stolen CPU time, which is the time spent in other operating systems when running in a virtualized environment. This statistic is only available since kernel version 2.6.11.",
+         "statkey" : "steal"
+      },
+      {
+         "units" : "percent",
+         "alias" : "Quest",
+         "description" : "Percentage of CPU time, which is the time spent running a virtual CPU for guest operating systems under the control of the Linux kernel. This statistic is only available since kernel version 2.6.24.",
+         "statkey" : "quest",
+         "datatype" : "float"
       },
       {
          "alias" : "Total",
-         "statkey" : "total",
-         "datatype" : "float",
+         "units" : "percent",
          "description" : "The total usage of the CPU in percent.",
-         "units" : "percent"
+         "datatype" : "float",
+         "statkey" : "total"
       },
       {
-         "units" : "percent",
-         "description" : "Summary of unknown fields in /proc/stat.",
-         "datatype" : "float",
          "alias" : "Other",
-         "statkey" : "other"
+         "units" : "percent",
+         "statkey" : "other",
+         "description" : "Summary of unknown fields in /proc/stat.",
+         "datatype" : "float"
       }
    ],
-   "chart" : {
-      "options" : {
-         "chart-type" : "area",
-         "ylabel" : "cpu usage in %",
-         "units" : "null",
-         "series" : [
-            {
-               "name" : "system",
-               "color" : "#ffb244"
-            },
-            {
-               "color" : "#9a72ad",
-               "name" : "user"
-            },
-            {
-               "name" : "iowait",
-               "color" : "#ff0000"
-            },
-            {
-               "name" : "nice",
-               "color" : "#005467"
-            },
-            {
-               "color" : "#2ba743",
-               "name" : "irq"
-            },
-            {
-               "color" : "#7648eb",
-               "name" : "softirq"
-            },
-            {
-               "name" : "steal",
-               "color" : "#e9644a"
-            },
-            {
-               "color" : "#666666",
-               "name" : "quest"
-            },
-            {
-               "color" : "#bf00bf",
-               "name" : "other"
-            }
-         ],
-         "stack" : "true"
-      },
-      "title" : "Linux - cpu usage",
-      "id" : "1"
-   },
    "plugin" : {
-      "description" : "Linux CPU statistics",
-      "plugin" : "Linux.CPU.Check",
-      "category" : "System,Linux",
-      "abstract" : "CPU check",
-      "command" : "check-cpustat",
+      "id" : "18",
       "datatype" : "statistic",
+      "description" : "Linux CPU statistics",
+      "abstract" : "CPU check",
       "info" : {
+         "plugin" : "check-cpustat",
          "options" : [
             {
-               "mandatory" : 0,
-               "multiple" : 1,
+               "value_type" : "string",
+               "name" : "Warning threshold",
                "option" : "warning",
                "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
                "value_desc" : "key:value or key:op:value",
                "default" : null,
-               "value_type" : "string",
-               "name" : "Warning threshold"
+               "mandatory" : 0,
+               "multiple" : 1
             },
             {
-               "value_type" : "string",
-               "name" : "Critical threshold",
+               "mandatory" : 0,
                "default" : null,
                "value_desc" : "key:value or key:op:value",
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "multiple" : 1,
+               "value_type" : "string",
                "option" : "critical",
-               "mandatory" : 0
+               "name" : "Critical threshold",
+               "multiple" : 1
             }
          ],
+         "flags" : "",
+         "version" : "0.8",
          "examples" : [
             {
-               "description" : [
-                  "The following check configuration would trigger",
-                  "",
-                  "- a warning if the IOwait is equal or higher than 40%",
-                  "- a critical if the IOwait is equal or higher than 60%",
-                  "- a warning if the total CPU usage is equal or higher than 90%",
-                  "- a critical if the total CPU usage is equal or higher than 95%"
-               ],
+               "command_line" : "check-cpustat --warning 'iowait:ge:40' --critical 'iowait:ge:60' --warning 'total:ge:90' --critical 'total:ge:95'",
                "arguments" : [
                   "warning",
                   "iowait:ge:40",
@@ -176,12 +122,55 @@
                   "critical",
                   "total:ge:95"
                ],
-               "command_line" : "check-cpustat --warning 'iowait:ge:40' --critical 'iowait:ge:60' --warning 'total:ge:90' --critical 'total:ge:95'"
+               "description" : [
+                  "The following check configuration would trigger",
+                  "",
+                  "- a warning if the IOwait is equal or higher than 40%",
+                  "- a critical if the IOwait is equal or higher than 60%",
+                  "- a warning if the total CPU usage is equal or higher than 90%",
+                  "- a critical if the total CPU usage is equal or higher than 95%"
+               ]
             }
          ],
-         "plugin" : "check-cpustat",
-         "flags" : "",
          "thresholds" : {
+            "options" : [
+               {
+                  "key" : "user",
+                  "unit" : "percent"
+               },
+               {
+                  "key" : "system",
+                  "unit" : "percent"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "total"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "iowait"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "idle"
+               },
+               {
+                  "key" : "irq",
+                  "unit" : "percent"
+               },
+               {
+                  "key" : "softirq",
+                  "unit" : "percent"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "steal"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "quest"
+               }
+            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -202,48 +191,59 @@
                "    ne = not equal\n",
                "\n",
                "  Allowed units for percent: %\n\n"
-            ],
-            "options" : [
-               {
-                  "unit" : "percent",
-                  "key" : "user"
-               },
-               {
-                  "key" : "system",
-                  "unit" : "percent"
-               },
-               {
-                  "unit" : "percent",
-                  "key" : "total"
-               },
-               {
-                  "unit" : "percent",
-                  "key" : "iowait"
-               },
-               {
-                  "unit" : "percent",
-                  "key" : "idle"
-               },
-               {
-                  "unit" : "percent",
-                  "key" : "irq"
-               },
-               {
-                  "unit" : "percent",
-                  "key" : "softirq"
-               },
-               {
-                  "key" : "steal",
-                  "unit" : "percent"
-               },
-               {
-                  "key" : "quest",
-                  "unit" : "percent"
-               }
             ]
-         },
-         "version" : "0.8"
+         }
       },
-      "id" : "18"
+      "category" : "System,Linux",
+      "plugin" : "Linux.CPU.Check",
+      "command" : "check-cpustat"
+   },
+   "chart" : {
+      "title" : "Linux - cpu usage",
+      "options" : {
+         "ylabel" : "cpu usage in %",
+         "series" : [
+            {
+               "name" : "system",
+               "color" : "#ffb244"
+            },
+            {
+               "color" : "#9a72ad",
+               "name" : "user"
+            },
+            {
+               "name" : "iowait",
+               "color" : "#ff0000"
+            },
+            {
+               "color" : "#005467",
+               "name" : "nice"
+            },
+            {
+               "name" : "irq",
+               "color" : "#2ba743"
+            },
+            {
+               "name" : "softirq",
+               "color" : "#7648eb"
+            },
+            {
+               "color" : "#e9644a",
+               "name" : "steal"
+            },
+            {
+               "name" : "quest",
+               "color" : "#666666"
+            },
+            {
+               "color" : "#bf00bf",
+               "name" : "other"
+            }
+         ],
+         "units" : "null",
+         "chart-type" : "area",
+         "stack" : "true"
+      },
+      "id" : "1"
    }
 }

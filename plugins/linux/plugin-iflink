@@ -1,42 +1,42 @@
 {
    "plugin" : {
-      "plugin" : "Linux.Interface.Check",
-      "abstract" : "Interface link check",
-      "description" : "Check the link of an interface.",
-      "datatype" : "none",
-      "id" : "20",
       "command" : "check-iflink",
+      "category" : "System,Network,Linux",
+      "description" : "Check the link of an interface.",
+      "abstract" : "Interface link check",
+      "id" : "20",
+      "plugin" : "Linux.Interface.Check",
+      "datatype" : "none",
       "info" : {
+         "version" : "0.3",
+         "plugin" : "check-iflink",
+         "options" : [
+            {
+               "mandatory" : 0,
+               "value_desc" : "interface",
+               "name" : "Network interface",
+               "default" : null,
+               "multiple" : 1,
+               "option" : "interface",
+               "value_type" : "string",
+               "description" : "This is the network interface you want to check. As example eth0 or eth1."
+            }
+         ],
          "examples" : [
             {
+               "description" : [
+                  "A simple example"
+               ],
+               "command_line" : "check-iflink --interface 'eth0' --interface 'eth1'",
                "arguments" : [
                   "interface",
                   "eth0",
                   "interface",
                   "eth1"
-               ],
-               "description" : [
-                  "A simple example"
-               ],
-               "command_line" : "check-iflink --interface 'eth0' --interface 'eth1'"
+               ]
             }
          ],
-         "plugin" : "check-iflink",
-         "options" : [
-            {
-               "value_type" : "string",
-               "option" : "interface",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "name" : "Network interface",
-               "description" : "This is the network interface you want to check. As example eth0 or eth1.",
-               "default" : null,
-               "value_desc" : "interface"
-            }
-         ],
-         "flags" : "",
-         "version" : "0.3"
-      },
-      "category" : "System,Network,Linux"
+         "flags" : ""
+      }
    }
 }

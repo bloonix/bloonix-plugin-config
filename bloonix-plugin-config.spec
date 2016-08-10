@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.33
+Version: 0.34
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Wed Aug 10 2016 Jonny Schulz <js@bloonix.de> - 0.34-1
+- Fixed colors of plugin-nfs4.
 * Tue Mar 29 2016 Jonny Schulz <js@bloonix.de> - 0.33-1
 - Extra release because the gpg key of bloonix is updated.
 * Sat Mar 19 2016 Jonny Schulz <js@bloonix.de> - 0.32-1

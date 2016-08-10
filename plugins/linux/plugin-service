@@ -1,13 +1,29 @@
 {
    "plugin" : {
-      "datatype" : "none",
-      "abstract" : "Service check",
-      "description" : "Check the status of a service.",
-      "plugin" : "Linux.Service.Check",
       "command" : "check-service",
-      "id" : "38",
+      "description" : "Check the status of a service.",
+      "abstract" : "Service check",
       "category" : "System",
+      "id" : "38",
+      "datatype" : "none",
       "info" : {
+         "flags" : "sudo",
+         "plugin" : "check-service",
+         "info" : [
+            "This plugin tries to determine automatically the method to check the status of a service. At first the plugin searchs for 'systemctl', then for 'service' and then the plugin checks if /etc/init.d/service-name exists."
+         ],
+         "options" : [
+            {
+               "default" : null,
+               "name" : "Service name",
+               "option" : "service",
+               "mandatory" : 1,
+               "value_desc" : "service",
+               "multiple" : 0,
+               "description" : "This is the service name you want to check.",
+               "value_type" : "string"
+            }
+         ],
          "examples" : [
             {
                "command_line" : "check-service --service 'httpd'",
@@ -23,24 +39,8 @@
                ]
             }
          ],
-         "flags" : "sudo",
-         "plugin" : "check-service",
-         "version" : "0.5",
-         "info" : [
-            "This plugin tries to determine automatically the method to check the status of a service. At first the plugin searchs for 'systemctl', then for 'service' and then the plugin checks if /etc/init.d/service-name exists."
-         ],
-         "options" : [
-            {
-               "name" : "Service name",
-               "description" : "This is the service name you want to check.",
-               "value_type" : "string",
-               "value_desc" : "service",
-               "multiple" : 0,
-               "mandatory" : 1,
-               "option" : "service",
-               "default" : null
-            }
-         ]
-      }
+         "version" : "0.5"
+      },
+      "plugin" : "Linux.Service.Check"
    }
 }

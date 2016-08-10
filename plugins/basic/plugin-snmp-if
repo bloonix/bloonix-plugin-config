@@ -1,202 +1,218 @@
 {
    "plugin" : {
       "plugin" : "SNMP.Interface",
-      "category" : "Network,SNMP",
-      "netaccess" : "yes",
       "info" : {
-         "version" : "0.3",
-         "examples" : [
-            {
-               "description" : [
-                  "Monitor the interface eth0 (1.3.6.1.2.1.31.1.1.1.1) of a linux system:"
-               ],
-               "command_line" : "check-snmp-if --interface 'eth0' --host '127.0.0.1' --port '161' --community 'public' --snmp-version '1'",
-               "arguments" : [
-                  "interface",
-                  "eth0",
-                  "host",
-                  "127.0.0.1",
-                  "port",
-                  161,
-                  "community",
-                  "public",
-                  "snmp-version",
-                  1
-               ]
-            },
-            {
-               "arguments" : [
-                  "interface",
-                  10,
-                  "host",
-                  "127.0.0.1",
-                  "port",
-                  161,
-                  "community",
-                  "public",
-                  "snmp-version",
-                  1
-               ],
-               "command_line" : "check-snmp-if --interface '10' --host '127.0.0.1' --port '161' --community 'public' --snmp-version '1'",
-               "description" : [
-                  "Monitor the interface 10 (1.3.6.1.2.1.2.2.1.2.10) of a cisco switch:"
-               ]
-            }
-         ],
+         "plugin" : "check-snmp-if",
          "options" : [
             {
-               "value_type" : "string",
-               "mandatory" : 1,
-               "default" : null,
                "value_desc" : "interface",
-               "multiple" : 0,
+               "mandatory" : 1,
                "description" : "This is the network interface you want to check. The interface name should be the last digit of ifDescr (1.3.6.1.2.1.2.2.1.2.X) or the string that is found in ifName (1.3.6.1.2.1.31.1.1.1.1).",
-               "option" : "interface",
-               "name" : "Network interface"
+               "default" : null,
+               "multiple" : 0,
+               "value_type" : "string",
+               "name" : "Network interface",
+               "option" : "interface"
             },
             {
                "mandatory" : 0,
-               "value_type" : "string",
-               "value_desc" : "hostname or ip address",
-               "default" : "127.0.0.1",
-               "multiple" : 0,
                "description" : "A hostname or IP address to connect to.",
-               "option" : "host",
-               "name" : "Hostname or IP address"
+               "value_desc" : "hostname or ip address",
+               "multiple" : 0,
+               "default" : "127.0.0.1",
+               "name" : "Hostname or IP address",
+               "value_type" : "string",
+               "option" : "host"
             },
             {
-               "default" : 161,
+               "description" : "A port number to connect to.",
+               "mandatory" : 0,
                "value_desc" : "port",
                "multiple" : 0,
-               "mandatory" : 0,
-               "value_type" : "int",
-               "option" : "port",
+               "default" : 161,
                "name" : "Port number",
-               "description" : "A port number to connect to."
+               "value_type" : "int",
+               "option" : "port"
             },
             {
-               "value_desc" : "community",
                "default" : "public",
                "multiple" : 0,
                "mandatory" : 0,
-               "value_type" : "string",
+               "description" : "The SNMP community to connect to the host.",
+               "value_desc" : "community",
                "option" : "community",
                "name" : "SNMP community",
-               "description" : "The SNMP community to connect to the host."
+               "value_type" : "string"
             },
             {
-               "description" : "The SNMP version to use to connect to the host.",
+               "value_type" : "string",
                "name" : "SNMP version",
                "option" : "snmp-version",
-               "value_type" : "string",
+               "value_desc" : "version",
+               "description" : "The SNMP version to use to connect to the host.",
                "mandatory" : 0,
                "multiple" : 0,
-               "default" : 2,
-               "value_desc" : "version"
+               "default" : 2
             },
             {
+               "description" : "The SNMPv3 username.",
                "mandatory" : 0,
-               "value_type" : "string",
-               "default" : null,
                "value_desc" : "username",
                "multiple" : 0,
-               "description" : "The SNMPv3 username.",
-               "option" : "username",
-               "name" : "SNMPv3 username"
+               "default" : null,
+               "value_type" : "string",
+               "name" : "SNMPv3 username",
+               "option" : "username"
             },
             {
-               "mandatory" : 0,
+               "option" : "authkey",
+               "name" : "SNMPv3 auth key",
                "value_type" : "string",
                "multiple" : 0,
                "default" : null,
-               "value_desc" : "authkey",
                "description" : "The SNMPv3 auth key.",
-               "name" : "SNMPv3 auth key",
-               "option" : "authkey"
+               "mandatory" : 0,
+               "value_desc" : "authkey"
             },
             {
-               "name" : "SNMPv3 auth password",
-               "option" : "authpassword",
+               "value_desc" : "authpassword",
+               "mandatory" : 0,
                "description" : "The SNMPv3 auth password.",
                "multiple" : 0,
                "default" : null,
-               "value_desc" : "authpassword",
-               "mandatory" : 0,
-               "value_type" : "string"
+               "value_type" : "string",
+               "name" : "SNMPv3 auth password",
+               "option" : "authpassword"
             },
             {
-               "description" : "The SNMPv3 auth protocol.",
+               "value_type" : "string",
                "name" : "SNMPv3 auth protocol",
                "option" : "authprotocol",
+               "description" : "The SNMPv3 auth protocol.",
                "mandatory" : 0,
-               "value_type" : "string",
+               "value_desc" : "authprotocol",
                "multiple" : 0,
-               "default" : null,
-               "value_desc" : "authprotocol"
+               "default" : null
             },
             {
-               "multiple" : 0,
-               "default" : null,
                "value_desc" : "privkey",
-               "value_type" : "string",
                "mandatory" : 0,
+               "description" : "The SNMPv3 priv key.",
+               "multiple" : 0,
+               "default" : null,
                "name" : "SNMPv3 priv key",
-               "option" : "privkey",
-               "description" : "The SNMPv3 priv key."
-            },
-            {
-               "default" : null,
-               "value_desc" : "privpassword",
-               "multiple" : 0,
                "value_type" : "string",
-               "mandatory" : 0,
-               "option" : "privpassword",
-               "name" : "SNMPv3 priv password",
-               "description" : "The SNMPv3 priv password."
+               "option" : "privkey"
             },
             {
-               "default" : null,
-               "value_desc" : "privprotocol",
-               "multiple" : 0,
+               "value_desc" : "privpassword",
+               "description" : "The SNMPv3 priv password.",
                "mandatory" : 0,
+               "default" : null,
+               "multiple" : 0,
+               "name" : "SNMPv3 priv password",
+               "value_type" : "string",
+               "option" : "privpassword"
+            },
+            {
+               "name" : "SNMPv3 priv protocol",
                "value_type" : "string",
                "option" : "privprotocol",
-               "name" : "SNMPv3 priv protocol",
-               "description" : "The SNMPv3 priv protocol."
-            },
-            {
-               "option" : "warning",
-               "name" : "Warning threshold",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "default" : null,
-               "value_desc" : "key:value or key:op:value",
-               "multiple" : 1,
-               "value_type" : "string",
-               "mandatory" : 0
-            },
-            {
-               "name" : "Critical threshold",
-               "option" : "critical",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "multiple" : 1,
-               "default" : null,
-               "value_desc" : "key:value or key:op:value",
+               "description" : "The SNMPv3 priv protocol.",
                "mandatory" : 0,
-               "value_type" : "string"
-            },
-            {
-               "value_type" : 0,
-               "description" : "This flag enables to check if the status of ifAdminStatus is different from ifOperStatus. That means that if ifAdminStatus is configured to be up then ifOperStatus must also been up.",
-               "mandatory" : 0,
+               "value_desc" : "privprotocol",
                "default" : null,
-               "option" : "crit-if-not-up",
-               "name" : "Trigger a CRITICAL if not 'up'",
                "multiple" : 0
+            },
+            {
+               "default" : null,
+               "multiple" : 1,
+               "value_desc" : "key:value or key:op:value",
+               "mandatory" : 0,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "option" : "warning",
+               "value_type" : "string",
+               "name" : "Warning threshold"
+            },
+            {
+               "mandatory" : 0,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1,
+               "default" : null,
+               "name" : "Critical threshold",
+               "value_type" : "string",
+               "option" : "critical"
+            },
+            {
+               "mandatory" : 0,
+               "value_type" : 0,
+               "name" : "Trigger a CRITICAL if not 'up'",
+               "description" : "This flag enables to check if the status of ifAdminStatus is different from ifOperStatus. That means that if ifAdminStatus is configured to be up then ifOperStatus must also been up.",
+               "multiple" : 0,
+               "option" : "crit-if-not-up",
+               "default" : null
             }
          ],
-         "flags" : "",
-         "plugin" : "check-snmp-if",
          "thresholds" : {
+            "options" : [
+               {
+                  "key" : "in_discards",
+                  "unit" : "bytes"
+               },
+               {
+                  "key" : "in_errors",
+                  "unit" : "bytes"
+               },
+               {
+                  "key" : "out_discards",
+                  "unit" : "bytes"
+               },
+               {
+                  "key" : "out_errors",
+                  "unit" : "bytes"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "in_octets"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "in_ucast_pkts"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "in_nucast_pkts"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "in_multicast_pkts"
+               },
+               {
+                  "key" : "in_broadcast_pkts",
+                  "unit" : "bytes"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "out_octets"
+               },
+               {
+                  "key" : "out_ucast_pkts",
+                  "unit" : "bytes"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "out_nucast_pkts"
+               },
+               {
+                  "key" : "out_multicast_pkts",
+                  "unit" : "bytes"
+               },
+               {
+                  "key" : "out_broadcast_pkts",
+                  "unit" : "bytes"
+               }
+            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -220,248 +236,234 @@
                "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
                "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
                "    GB = Gigabytes   EB = Exabytes\n\n"
-            ],
-            "options" : [
-               {
-                  "unit" : "bytes",
-                  "key" : "in_discards"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "in_errors"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "out_discards"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "out_errors"
-               },
-               {
-                  "key" : "in_octets",
-                  "unit" : "bytes"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "in_ucast_pkts"
-               },
-               {
-                  "key" : "in_nucast_pkts",
-                  "unit" : "bytes"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "in_multicast_pkts"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "in_broadcast_pkts"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "out_octets"
-               },
-               {
-                  "key" : "out_ucast_pkts",
-                  "unit" : "bytes"
-               },
-               {
-                  "key" : "out_nucast_pkts",
-                  "unit" : "bytes"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "out_multicast_pkts"
-               },
-               {
-                  "key" : "out_broadcast_pkts",
-                  "unit" : "bytes"
-               }
             ]
-         }
+         },
+         "examples" : [
+            {
+               "arguments" : [
+                  "interface",
+                  "eth0",
+                  "host",
+                  "127.0.0.1",
+                  "port",
+                  161,
+                  "community",
+                  "public",
+                  "snmp-version",
+                  1
+               ],
+               "command_line" : "check-snmp-if --interface 'eth0' --host '127.0.0.1' --port '161' --community 'public' --snmp-version '1'",
+               "description" : [
+                  "Monitor the interface eth0 (1.3.6.1.2.1.31.1.1.1.1) of a linux system:"
+               ]
+            },
+            {
+               "command_line" : "check-snmp-if --interface '10' --host '127.0.0.1' --port '161' --community 'public' --snmp-version '1'",
+               "arguments" : [
+                  "interface",
+                  10,
+                  "host",
+                  "127.0.0.1",
+                  "port",
+                  161,
+                  "community",
+                  "public",
+                  "snmp-version",
+                  1
+               ],
+               "description" : [
+                  "Monitor the interface 10 (1.3.6.1.2.1.2.2.1.2.10) of a cisco switch:"
+               ]
+            }
+         ],
+         "flags" : "",
+         "version" : "0.3"
       },
-      "description" : "Check the interfaces of routers and switches.",
-      "datatype" : "statistic",
-      "id" : "12",
+      "netaccess" : "yes",
+      "category" : "Network,SNMP",
       "abstract" : "Check snmp-if",
+      "command" : "check-snmp-if",
+      "description" : "Check the interfaces of routers and switches.",
+      "id" : "12",
       "prefer" : "localhost",
-      "command" : "check-snmp-if"
+      "datatype" : "statistic"
    },
    "statistic" : [
       {
-         "datatype" : "varchar(20)",
-         "units" : "bytes",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.7",
          "statkey" : "admin_status",
+         "units" : "bytes",
+         "datatype" : "varchar(20)",
+         "description" : "OID 1.3.6.1.2.1.2.2.1.7",
          "alias" : "ifAdminStatus"
       },
       {
+         "datatype" : "varchar(20)",
+         "units" : "bytes",
          "statkey" : "oper_status",
          "alias" : "ifOperStatus",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.8",
-         "datatype" : "varchar(20)",
-         "units" : "bytes"
+         "description" : "OID 1.3.6.1.2.1.2.2.1.8"
       },
       {
          "units" : "bytes",
-         "datatype" : "float",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.13",
          "statkey" : "in_discards",
-         "alias" : "ifInDiscards"
+         "datatype" : "float",
+         "alias" : "ifInDiscards",
+         "description" : "OID 1.3.6.1.2.1.2.2.1.13"
       },
       {
          "statkey" : "in_errors",
-         "alias" : "ifInErrors",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.14",
+         "units" : "bytes",
          "datatype" : "float",
+         "description" : "OID 1.3.6.1.2.1.2.2.1.14",
+         "alias" : "ifInErrors"
+      },
+      {
+         "units" : "bytes",
+         "statkey" : "out_discards",
+         "datatype" : "float",
+         "alias" : "ifOutDiscards",
+         "description" : "OID 1.3.6.1.2.1.2.2.1.19"
+      },
+      {
+         "description" : "OID 1.3.6.1.2.1.2.2.1.20",
+         "alias" : "ifOutErrors",
+         "datatype" : "float",
+         "statkey" : "out_errors",
          "units" : "bytes"
       },
       {
-         "datatype" : "float",
-         "units" : "bytes",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.19",
-         "statkey" : "out_discards",
-         "alias" : "ifOutDiscards"
-      },
-      {
-         "alias" : "ifOutErrors",
-         "statkey" : "out_errors",
-         "datatype" : "float",
-         "units" : "bytes",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.20"
-      },
-      {
          "alias" : "ifInOctets",
+         "description" : "OID 1.3.6.1.2.1.2.2.1.10, 1.3.6.1.2.1.31.1.1.1.6",
+         "units" : "bytes",
          "statkey" : "in_octets",
-         "datatype" : "float",
-         "units" : "bytes",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.10, 1.3.6.1.2.1.31.1.1.1.6"
-      },
-      {
-         "units" : "bytes",
-         "datatype" : "float",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.11, 1.3.6.1.2.1.31.1.1.1.7",
-         "alias" : "ifInUcastPkts",
-         "statkey" : "in_ucast_pkts"
-      },
-      {
-         "datatype" : "float",
-         "units" : "bytes",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.12",
-         "alias" : "ifInNUcastPkts",
-         "statkey" : "in_nucast_pkts"
-      },
-      {
-         "statkey" : "out_octets",
-         "alias" : "ifOutOctets",
-         "units" : "bytes",
-         "datatype" : "float",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.16, 1.3.6.1.2.1.31.1.1.1.10"
-      },
-      {
-         "datatype" : "float",
-         "units" : "bytes",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.17, 1.3.6.1.2.1.31.1.1.1.11",
-         "statkey" : "out_ucast_pkts",
-         "alias" : "ifOutUcastPkts"
-      },
-      {
-         "units" : "bytes",
-         "datatype" : "float",
-         "description" : "OID 1.3.6.1.2.1.2.2.1.18",
-         "alias" : "ifOutNUcastPkts",
-         "statkey" : "out_nucast_pkts"
-      },
-      {
-         "alias" : "ifHCInBroadcastPkts",
-         "statkey" : "in_broadcast_pkts",
-         "description" : "OID 1.3.6.1.2.1.31.1.1.1.9",
-         "units" : "bytes",
          "datatype" : "float"
       },
       {
-         "description" : "OID 1.3.6.1.2.1.31.1.1.1.8",
+         "description" : "OID 1.3.6.1.2.1.2.2.1.11, 1.3.6.1.2.1.31.1.1.1.7",
+         "alias" : "ifInUcastPkts",
+         "datatype" : "float",
+         "statkey" : "in_ucast_pkts",
+         "units" : "bytes"
+      },
+      {
+         "alias" : "ifInNUcastPkts",
+         "description" : "OID 1.3.6.1.2.1.2.2.1.12",
+         "units" : "bytes",
+         "statkey" : "in_nucast_pkts",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "units" : "bytes",
+         "statkey" : "out_octets",
+         "alias" : "ifOutOctets",
+         "description" : "OID 1.3.6.1.2.1.2.2.1.16, 1.3.6.1.2.1.31.1.1.1.10"
+      },
+      {
+         "units" : "bytes",
+         "statkey" : "out_ucast_pkts",
+         "datatype" : "float",
+         "alias" : "ifOutUcastPkts",
+         "description" : "OID 1.3.6.1.2.1.2.2.1.17, 1.3.6.1.2.1.31.1.1.1.11"
+      },
+      {
+         "alias" : "ifOutNUcastPkts",
+         "description" : "OID 1.3.6.1.2.1.2.2.1.18",
+         "units" : "bytes",
+         "statkey" : "out_nucast_pkts",
+         "datatype" : "float"
+      },
+      {
+         "alias" : "ifHCInBroadcastPkts",
+         "description" : "OID 1.3.6.1.2.1.31.1.1.1.9",
+         "units" : "bytes",
+         "statkey" : "in_broadcast_pkts",
+         "datatype" : "float"
+      },
+      {
          "datatype" : "float",
          "units" : "bytes",
          "statkey" : "in_multicast_pkts",
-         "alias" : "ifHCInMulticastPkts"
+         "alias" : "ifHCInMulticastPkts",
+         "description" : "OID 1.3.6.1.2.1.31.1.1.1.8"
       },
       {
+         "datatype" : "float",
+         "units" : "bytes",
          "statkey" : "out_multicast_pkts",
          "alias" : "ifHCOutMulticastPkts",
-         "units" : "bytes",
-         "datatype" : "float",
          "description" : "OID 1.3.6.1.2.1.31.1.1.1.12"
       },
       {
-         "statkey" : "out_broadcast_pkts",
+         "description" : "OID 1.3.6.1.2.1.31.1.1.1.13",
          "alias" : "ifHCOutBroadcastPkts",
-         "units" : "bytes",
          "datatype" : "float",
-         "description" : "OID 1.3.6.1.2.1.31.1.1.1.13"
+         "statkey" : "out_broadcast_pkts",
+         "units" : "bytes"
       }
    ],
    "chart" : [
       {
+         "id" : "1",
+         "title" : "SNMP if - errors, discards",
          "options" : {
-            "chart-type" : "area",
+            "ylabel" : "packets in(+) / out(-)",
             "series" : [
                {
-                  "name" : "in_errors",
-                  "color" : "#9a72ad"
+                  "color" : "#9a72ad",
+                  "name" : "in_errors"
                },
                {
                   "name" : "in_discards",
                   "color" : "#e9644a"
                },
                {
+                  "name" : "out_errors",
                   "color" : "#ffb244",
-                  "opposite" : "true",
-                  "name" : "out_errors"
+                  "opposite" : "true"
                },
                {
-                  "name" : "out_discards",
                   "opposite" : "true",
+                  "name" : "out_discards",
                   "color" : "#2ba743"
                }
             ],
-            "ylabel" : "packets in(+) / out(-)",
+            "chart-type" : "area",
             "units" : "default"
-         },
-         "title" : "SNMP if - errors, discards",
-         "id" : "1"
-      },
-      {
-         "title" : "SNMP if - in/out octets",
-         "id" : "2",
-         "options" : {
-            "ylabel" : "octets",
-            "units" : "bytes_to_bits",
-            "series" : [
-               {
-                  "name" : "in_octets",
-                  "color" : "#005467"
-               },
-               {
-                  "color" : "#ff7a0d",
-                  "opposite" : "true",
-                  "name" : "out_octets"
-               }
-            ],
-            "chart-type" : "area"
          }
       },
       {
          "options" : {
+            "units" : "bytes_to_bits",
+            "chart-type" : "area",
+            "series" : [
+               {
+                  "color" : "#005467",
+                  "name" : "in_octets"
+               },
+               {
+                  "opposite" : "true",
+                  "name" : "out_octets",
+                  "color" : "#ff7a0d"
+               }
+            ],
+            "ylabel" : "octets"
+         },
+         "title" : "SNMP if - in/out octets",
+         "id" : "2"
+      },
+      {
+         "title" : "SNMP if - multicast, broadcast",
+         "options" : {
+            "ylabel" : "packets in(+) / out(-)",
             "series" : [
                {
                   "color" : "#ffb244",
                   "name" : "in_ucast_pkts"
                },
                {
-                  "color" : "#9a72ad",
-                  "name" : "in_nucast_pkts"
+                  "name" : "in_nucast_pkts",
+                  "color" : "#9a72ad"
                },
                {
                   "name" : "in_multicast_pkts",
@@ -472,32 +474,30 @@
                   "name" : "in_broadcast_pkts"
                },
                {
-                  "name" : "out_ucast_pkts",
                   "color" : "#ffb244",
+                  "name" : "out_ucast_pkts",
                   "opposite" : "true"
                },
                {
-                  "name" : "out_nucast_pkts",
                   "color" : "#9a72ad",
+                  "name" : "out_nucast_pkts",
                   "opposite" : "true"
                },
                {
-                  "opposite" : "true",
+                  "name" : "out_multicast_pkts",
                   "color" : "#005467",
-                  "name" : "out_multicast_pkts"
+                  "opposite" : "true"
                },
                {
                   "color" : "#e9644a",
-                  "opposite" : "true",
-                  "name" : "out_broadcast_pkts"
+                  "name" : "out_broadcast_pkts",
+                  "opposite" : "true"
                }
             ],
             "chart-type" : "area",
-            "ylabel" : "packets in(+) / out(-)",
             "units" : "default"
          },
-         "id" : "3",
-         "title" : "SNMP if - multicast, broadcast"
+         "id" : "3"
       }
    ]
 }

@@ -1,89 +1,28 @@
 {
-   "statistic" : [
-      {
-         "description" : "Total size of memory in bytes.",
-         "units" : "bytes",
-         "alias" : "Total memory",
-         "statkey" : "memtotal",
-         "datatype" : "bigint"
-      },
-      {
-         "statkey" : "memfree",
-         "alias" : "Free",
-         "datatype" : "bigint",
-         "description" : "Total size of free memory in bytes.",
-         "units" : "bytes"
-      },
-      {
-         "alias" : "Used",
-         "statkey" : "memused",
-         "datatype" : "bigint",
-         "description" : "Total size of real used memory in bytes.",
-         "units" : "bytes"
-      },
-      {
-         "description" : "Total size of used memory in percent.",
-         "units" : "percent",
-         "statkey" : "memusedper",
-         "alias" : "Used",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Total swap",
-         "statkey" : "swaptotal",
-         "datatype" : "bigint",
-         "description" : "Total size of swap space in bytes.",
-         "units" : "bytes"
-      },
-      {
-         "statkey" : "swapfree",
-         "alias" : "Free",
-         "datatype" : "bigint",
-         "description" : "Total size of swap space is free in bytes.",
-         "units" : "bytes"
-      },
-      {
-         "statkey" : "swapused",
-         "alias" : "Used",
-         "datatype" : "bigint",
-         "description" : "Total size of swap space is used is bytes.",
-         "units" : "bytes"
-      },
-      {
-         "datatype" : "float",
-         "statkey" : "swapusedper",
-         "alias" : "Used",
-         "units" : "percent",
-         "description" : "Total size of swap space is used in percent."
-      }
-   ],
    "chart" : [
       {
-         "title" : "Memory and swap usage in %",
+         "id" : "1",
          "options" : {
-            "chart-type" : "area",
             "series" : [
                {
                   "color" : "#005467",
                   "name" : "memusedper"
                },
                {
-                  "name" : "swapusedper",
-                  "color" : "#ff7a0d"
+                  "color" : "#ff7a0d",
+                  "name" : "swapusedper"
                }
             ],
             "units" : "null",
+            "chart-type" : "area",
             "ylabel" : "percent %"
          },
-         "id" : "1"
+         "title" : "Memory and swap usage in %"
       },
       {
          "title" : "Memory usage",
-         "id" : "2",
          "options" : {
-            "ylabel" : "bytes",
             "units" : "bytes",
-            "chart-type" : "area",
             "series" : [
                {
                   "name" : "memused",
@@ -93,56 +32,253 @@
                   "name" : "memfree",
                   "color" : "#ff7a0d"
                }
-            ]
-         }
+            ],
+            "chart-type" : "area",
+            "ylabel" : "bytes"
+         },
+         "id" : "2"
+      }
+   ],
+   "statistic" : [
+      {
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "alias" : "Total memory",
+         "statkey" : "memtotal",
+         "description" : "Total size of memory in bytes."
+      },
+      {
+         "description" : "Total size of free memory in bytes.",
+         "statkey" : "memfree",
+         "datatype" : "bigint",
+         "alias" : "Free",
+         "units" : "bytes"
+      },
+      {
+         "units" : "bytes",
+         "alias" : "Used",
+         "datatype" : "bigint",
+         "statkey" : "memused",
+         "description" : "Total size of real used memory in bytes."
+      },
+      {
+         "datatype" : "float",
+         "alias" : "Used",
+         "units" : "percent",
+         "description" : "Total size of used memory in percent.",
+         "statkey" : "memusedper"
+      },
+      {
+         "statkey" : "swaptotal",
+         "description" : "Total size of swap space in bytes.",
+         "units" : "bytes",
+         "alias" : "Total swap",
+         "datatype" : "bigint"
+      },
+      {
+         "statkey" : "swapfree",
+         "description" : "Total size of swap space is free in bytes.",
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "alias" : "Free"
+      },
+      {
+         "description" : "Total size of swap space is used is bytes.",
+         "statkey" : "swapused",
+         "alias" : "Used",
+         "datatype" : "bigint",
+         "units" : "bytes"
+      },
+      {
+         "statkey" : "swapusedper",
+         "description" : "Total size of swap space is used in percent.",
+         "units" : "percent",
+         "alias" : "Used",
+         "datatype" : "float"
       }
    ],
    "plugin" : {
-      "datatype" : "statistic",
-      "command" : "check-snmp-mem",
-      "prefer" : "localhost",
       "description" : "Check the memory usage.",
-      "abstract" : "Memory check",
-      "plugin" : "SNMP.Memory",
-      "id" : "64",
       "info" : {
-         "examples" : [
+         "options" : [
             {
-               "command_line" : "check-snmp-mem --warning 'memusedper:ge:90' --critical 'memusedper:ge:95'",
-               "arguments" : [
-                  "warning",
-                  "memusedper:ge:90",
-                  "critical",
-                  "memusedper:ge:95"
-               ],
-               "description" : [
-                  "A simple example to check the memory usage and trigger a warning if the usage is higher than 90% or trigger a critical if the usage is higher than 95%:"
-               ]
+               "value_type" : "string",
+               "default" : "127.0.0.1",
+               "name" : "Hostname or IP address",
+               "description" : "A hostname or IP address to connect to.",
+               "value_desc" : "hostname or ip address",
+               "multiple" : 0,
+               "option" : "host",
+               "mandatory" : 0
+            },
+            {
+               "value_type" : "int",
+               "default" : 161,
+               "name" : "Port number",
+               "value_desc" : "port",
+               "description" : "A port number to connect to.",
+               "multiple" : 0,
+               "option" : "port",
+               "mandatory" : 0
+            },
+            {
+               "multiple" : 0,
+               "option" : "community",
+               "mandatory" : 0,
+               "description" : "The SNMP community to connect to the host.",
+               "value_desc" : "community",
+               "default" : "public",
+               "name" : "SNMP community",
+               "value_type" : "string"
+            },
+            {
+               "value_type" : "string",
+               "value_desc" : "version",
+               "description" : "The SNMP version to use to connect to the host.",
+               "name" : "SNMP version",
+               "default" : 2,
+               "mandatory" : 0,
+               "option" : "snmp-version",
+               "multiple" : 0
+            },
+            {
+               "multiple" : 0,
+               "option" : "username",
+               "mandatory" : 0,
+               "value_type" : "string",
+               "default" : null,
+               "name" : "SNMPv3 username",
+               "value_desc" : "username",
+               "description" : "The SNMPv3 username."
+            },
+            {
+               "value_desc" : "authkey",
+               "description" : "The SNMPv3 auth key.",
+               "name" : "SNMPv3 auth key",
+               "default" : null,
+               "value_type" : "string",
+               "option" : "authkey",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value_type" : "string",
+               "default" : null,
+               "name" : "SNMPv3 auth password",
+               "description" : "The SNMPv3 auth password.",
+               "value_desc" : "authpassword",
+               "multiple" : 0,
+               "mandatory" : 0,
+               "option" : "authpassword"
+            },
+            {
+               "mandatory" : 0,
+               "option" : "authprotocol",
+               "multiple" : 0,
+               "description" : "The SNMPv3 auth protocol.",
+               "value_desc" : "authprotocol",
+               "name" : "SNMPv3 auth protocol",
+               "default" : null,
+               "value_type" : "string"
+            },
+            {
+               "value_type" : "string",
+               "default" : null,
+               "name" : "SNMPv3 priv key",
+               "description" : "The SNMPv3 priv key.",
+               "value_desc" : "privkey",
+               "multiple" : 0,
+               "option" : "privkey",
+               "mandatory" : 0
+            },
+            {
+               "value_type" : "string",
+               "name" : "SNMPv3 priv password",
+               "default" : null,
+               "description" : "The SNMPv3 priv password.",
+               "value_desc" : "privpassword",
+               "option" : "privpassword",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value_type" : "string",
+               "value_desc" : "privprotocol",
+               "description" : "The SNMPv3 priv protocol.",
+               "default" : null,
+               "name" : "SNMPv3 priv protocol",
+               "multiple" : 0,
+               "mandatory" : 0,
+               "option" : "privprotocol"
+            },
+            {
+               "name" : "Warning threshold",
+               "default" : null,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_desc" : "key:value or key:op:value",
+               "value_type" : "string",
+               "mandatory" : 0,
+               "option" : "warning",
+               "multiple" : 1
+            },
+            {
+               "value_type" : "string",
+               "value_desc" : "key:value or key:op:value",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "default" : null,
+               "name" : "Critical threshold",
+               "multiple" : 1,
+               "mandatory" : 0,
+               "option" : "critical"
             }
          ],
          "flags" : "",
-         "version" : "0.4",
          "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  or if a unit makes sense\n\n",
+               "    key:operator:threshold + UNIT\n\n",
+               "  where the unit can be in ",
+               "percent or bytes",
+               ".\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n",
+               "\n",
+               "  Allowed units for percent: %\n\n",
+               "  Allowed units for bytes:\n\n",
+               "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
+               "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
+               "    GB = Gigabytes   EB = Exabytes\n\n"
+            ],
             "options" : [
                {
-                  "unit" : "bytes",
-                  "key" : "memtotal"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "memfree"
-               },
-               {
-                  "key" : "swaptotal",
+                  "key" : "memtotal",
                   "unit" : "bytes"
+               },
+               {
+                  "key" : "memfree",
+                  "unit" : "bytes"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "swaptotal"
                },
                {
                   "key" : "swapfree",
                   "unit" : "bytes"
                },
                {
-                  "unit" : "bytes",
-                  "key" : "memused"
+                  "key" : "memused",
+                  "unit" : "bytes"
                },
                {
                   "unit" : "percent",
@@ -156,168 +292,32 @@
                   "key" : "swapused",
                   "unit" : "percent"
                }
-            ],
-            "info" : [
-               "How to set warning and critical thresholds:\n\n",
-               "  It's possible to set thresholds for one or more statistic keys.\n",
-               "  The format to add a threshold for a statistic key is:\n\n",
-               "    key:operator:threshold\n\n",
-               "  or if a unit makes sense\n\n",
-               "    key:operator:threshold + UNIT\n\n",
-               "  where the unit can be in ",
-               "bytes or percent",
-               ".\n\n",
-               "  If no operator is set then the default operator is 'ge'.\n\n",
-               "  The following operators are available:\n\n",
-               "    lt = less than\n",
-               "    le = less than or equal\n",
-               "    gt = greater than\n",
-               "    ge = greater than or equal\n",
-               "    eq = equal\n",
-               "    ne = not equal\n",
-               "\n",
-               "  Allowed units for bytes:\n\n",
-               "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
-               "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
-               "    GB = Gigabytes   EB = Exabytes\n\n",
-               "  Allowed units for percent: %\n\n"
             ]
          },
          "plugin" : "check-snmp-mem",
-         "options" : [
+         "version" : "0.4",
+         "examples" : [
             {
-               "value_desc" : "hostname or ip address",
-               "value_type" : "string",
-               "description" : "A hostname or IP address to connect to.",
-               "name" : "Hostname or IP address",
-               "multiple" : 0,
-               "mandatory" : 0,
-               "option" : "host",
-               "default" : "127.0.0.1"
-            },
-            {
-               "option" : "port",
-               "mandatory" : 0,
-               "default" : 161,
-               "name" : "Port number",
-               "description" : "A port number to connect to.",
-               "value_type" : "int",
-               "value_desc" : "port",
-               "multiple" : 0
-            },
-            {
-               "multiple" : 0,
-               "name" : "SNMP community",
-               "description" : "The SNMP community to connect to the host.",
-               "value_type" : "string",
-               "value_desc" : "community",
-               "default" : "public",
-               "option" : "community",
-               "mandatory" : 0
-            },
-            {
-               "default" : 2,
-               "mandatory" : 0,
-               "option" : "snmp-version",
-               "multiple" : 0,
-               "description" : "The SNMP version to use to connect to the host.",
-               "name" : "SNMP version",
-               "value_desc" : "version",
-               "value_type" : "string"
-            },
-            {
-               "value_desc" : "username",
-               "value_type" : "string",
-               "description" : "The SNMPv3 username.",
-               "name" : "SNMPv3 username",
-               "multiple" : 0,
-               "mandatory" : 0,
-               "option" : "username",
-               "default" : null
-            },
-            {
-               "multiple" : 0,
-               "value_type" : "string",
-               "value_desc" : "authkey",
-               "name" : "SNMPv3 auth key",
-               "description" : "The SNMPv3 auth key.",
-               "default" : null,
-               "option" : "authkey",
-               "mandatory" : 0
-            },
-            {
-               "default" : null,
-               "option" : "authpassword",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "name" : "SNMPv3 auth password",
-               "description" : "The SNMPv3 auth password.",
-               "value_type" : "string",
-               "value_desc" : "authpassword"
-            },
-            {
-               "default" : null,
-               "mandatory" : 0,
-               "option" : "authprotocol",
-               "multiple" : 0,
-               "description" : "The SNMPv3 auth protocol.",
-               "name" : "SNMPv3 auth protocol",
-               "value_desc" : "authprotocol",
-               "value_type" : "string"
-            },
-            {
-               "multiple" : 0,
-               "description" : "The SNMPv3 priv key.",
-               "name" : "SNMPv3 priv key",
-               "value_desc" : "privkey",
-               "value_type" : "string",
-               "default" : null,
-               "mandatory" : 0,
-               "option" : "privkey"
-            },
-            {
-               "multiple" : 0,
-               "value_desc" : "privpassword",
-               "value_type" : "string",
-               "description" : "The SNMPv3 priv password.",
-               "name" : "SNMPv3 priv password",
-               "default" : null,
-               "mandatory" : 0,
-               "option" : "privpassword"
-            },
-            {
-               "multiple" : 0,
-               "name" : "SNMPv3 priv protocol",
-               "description" : "The SNMPv3 priv protocol.",
-               "value_type" : "string",
-               "value_desc" : "privprotocol",
-               "default" : null,
-               "option" : "privprotocol",
-               "mandatory" : 0
-            },
-            {
-               "mandatory" : 0,
-               "option" : "warning",
-               "default" : null,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "name" : "Warning threshold",
-               "value_desc" : "key:value or key:op:value",
-               "value_type" : "string",
-               "multiple" : 1
-            },
-            {
-               "option" : "critical",
-               "mandatory" : 0,
-               "default" : null,
-               "name" : "Critical threshold",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_type" : "string",
-               "value_desc" : "key:value or key:op:value",
-               "multiple" : 1
+               "command_line" : "check-snmp-mem --warning 'memusedper:ge:90' --critical 'memusedper:ge:95'",
+               "description" : [
+                  "A simple example to check the memory usage and trigger a warning if the usage is higher than 90% or trigger a critical if the usage is higher than 95%:"
+               ],
+               "arguments" : [
+                  "warning",
+                  "memusedper:ge:90",
+                  "critical",
+                  "memusedper:ge:95"
+               ]
             }
          ]
       },
-      "netaccess" : "yes",
-      "category" : "System,SNMP"
+      "abstract" : "Memory check",
+      "category" : "System,SNMP",
+      "prefer" : "localhost",
+      "command" : "check-snmp-mem",
+      "id" : "64",
+      "plugin" : "SNMP.Memory",
+      "datatype" : "statistic",
+      "netaccess" : "yes"
    }
 }

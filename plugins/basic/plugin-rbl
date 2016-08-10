@@ -1,13 +1,19 @@
 {
    "plugin" : {
-      "datatype" : "none",
+      "description" : "Check if a IP or hostname is listed on a blacklist.",
+      "plugin" : "RBL.Check",
+      "worldwide" : "no",
+      "prefer" : "remote",
+      "abstract" : "RBL check",
       "netaccess" : "yes",
       "command" : "check-rbl",
+      "category" : "Mail",
       "info" : {
-         "plugin" : "check-rbl",
-         "version" : "0.1",
          "examples" : [
             {
+               "description" : [
+                  "Check if a host or IP address is listet on a blacklist."
+               ],
                "arguments" : [
                   "host",
                   "mail.bloonix.de",
@@ -26,72 +32,66 @@
                   "server",
                   "blackholes.mail-abuse.org"
                ],
-               "command_line" : "check-rbl --host 'mail.bloonix.de' --server 'zen.spamhaus.org' --server 'ix.dnsbl.manitu.net' --server 'bl.spamcop.net' --server 'dul.dnsbl.sorbs.net' --server 'combined.njabl.org' --server 'fuldom.rfc-ignorant.org' --server 'blackholes.mail-abuse.org'",
-               "description" : [
-                  "Check if a host or IP address is listet on a blacklist."
-               ]
+               "command_line" : "check-rbl --host 'mail.bloonix.de' --server 'zen.spamhaus.org' --server 'ix.dnsbl.manitu.net' --server 'bl.spamcop.net' --server 'dul.dnsbl.sorbs.net' --server 'combined.njabl.org' --server 'fuldom.rfc-ignorant.org' --server 'blackholes.mail-abuse.org'"
             }
          ],
-         "flags" : "mid-check-frequency",
+         "plugin" : "check-rbl",
          "options" : [
             {
-               "mandatory" : 1,
-               "multiple" : 0,
-               "value_type" : "string",
+               "description" : "The SMTP server to check.",
                "default" : null,
                "option" : "host",
-               "name" : "Hostname or IP address",
+               "multiple" : 0,
                "value_desc" : "hostname or ip address",
-               "description" : "The SMTP server to check."
+               "mandatory" : 1,
+               "value_type" : "string",
+               "name" : "Hostname or IP address"
             },
             {
-               "description" : "A timeout in seconds after a DNS request will be aborted.",
-               "value_desc" : "seconds",
-               "name" : "Timeout",
-               "option" : "timeout",
-               "default" : 3,
                "multiple" : 0,
+               "value_desc" : "seconds",
+               "mandatory" : 0,
+               "name" : "Timeout",
                "value_type" : "number",
+               "description" : "A timeout in seconds after a DNS request will be aborted.",
+               "default" : 3,
+               "option" : "timeout"
+            },
+            {
+               "option" : "warning",
+               "description" : "The the number of blacklisting servers to trigger a CRITICAL status.",
+               "default" : 0,
+               "multiple" : 0,
+               "value_desc" : "count",
+               "name" : "Warning threshold",
+               "value_type" : "int",
                "mandatory" : 0
             },
             {
-               "value_desc" : "count",
-               "name" : "Warning threshold",
-               "description" : "The the number of blacklisting servers to trigger a CRITICAL status.",
-               "mandatory" : 0,
-               "default" : 0,
-               "option" : "warning",
+               "option" : "critical",
+               "default" : 1,
+               "description" : "The the number of blacklisting servers to trigger a WARNING status.",
+               "name" : "Critical threshold",
                "value_type" : "int",
+               "mandatory" : 0,
+               "value_desc" : "count",
                "multiple" : 0
             },
             {
-               "value_type" : "int",
-               "multiple" : 0,
-               "option" : "critical",
-               "default" : 1,
-               "mandatory" : 0,
-               "description" : "The the number of blacklisting servers to trigger a WARNING status.",
-               "name" : "Critical threshold",
-               "value_desc" : "count"
-            },
-            {
+               "name" : "RBL server",
+               "value_type" : "string",
                "mandatory" : 1,
                "multiple" : 1,
-               "value_type" : "string",
-               "default" : null,
-               "option" : "server",
-               "name" : "RBL server",
                "value_desc" : "server",
-               "description" : "The RBL server to check. It's possible to configure multiple RBL servers."
+               "option" : "server",
+               "description" : "The RBL server to check. It's possible to configure multiple RBL servers.",
+               "default" : null
             }
-         ]
+         ],
+         "version" : "0.1",
+         "flags" : "mid-check-frequency"
       },
-      "description" : "Check if a IP or hostname is listed on a blacklist.",
-      "abstract" : "RBL check",
-      "category" : "Mail",
-      "prefer" : "remote",
-      "plugin" : "RBL.Check",
       "id" : "70",
-      "worldwide" : "no"
+      "datatype" : "none"
    }
 }
