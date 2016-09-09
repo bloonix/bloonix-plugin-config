@@ -1,123 +1,118 @@
 {
    "plugin" : {
-      "command" : "check-dbconnect",
-      "category" : "Database",
-      "datatype" : "statistic",
       "abstract" : "Check database connection",
-      "description" : "Simple database connect statistics.",
-      "prefer" : "localhost",
-      "netaccess" : "yes",
-      "id" : "3",
+      "category" : "Database",
       "info" : {
+         "flags" : "",
          "options" : [
             {
                "name" : "Warning threshold",
-               "multiple" : 0,
-               "default" : 3,
-               "value_type" : "number",
                "value_desc" : "seconds",
                "option" : "warning",
-               "mandatory" : 0,
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered."
-            },
-            {
                "multiple" : 0,
-               "default" : 5,
                "value_type" : "number",
-               "name" : "Critical threshold",
-               "mandatory" : 0,
-               "option" : "critical",
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
-               "value_desc" : "seconds"
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
+               "default" : 3,
+               "mandatory" : 0
             },
             {
+               "name" : "Critical threshold",
                "value_desc" : "seconds",
-               "option" : "timeout",
-               "mandatory" : 0,
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "name" : "Timeout",
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
                "multiple" : 0,
+               "value_type" : "number",
+               "option" : "critical",
+               "mandatory" : 0,
+               "default" : 5
+            },
+            {
+               "name" : "Timeout",
+               "value_desc" : "seconds",
+               "value_type" : "number",
+               "multiple" : 0,
+               "option" : "timeout",
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
                "default" : 10,
-               "value_type" : "number"
+               "mandatory" : 0
             },
             {
                "description" : "A hostname or IP address to connect to.",
-               "mandatory" : 1,
+               "multiple" : 0,
                "option" : "host",
-               "value_desc" : "hostname or ip address",
                "value_type" : "string",
+               "mandatory" : 1,
                "default" : null,
-               "multiple" : 0,
-               "name" : "Hostname or IP address"
+               "name" : "Hostname or IP address",
+               "value_desc" : "hostname or ip address"
             },
             {
-               "name" : "Port number",
-               "multiple" : 0,
-               "value_type" : "int",
-               "default" : null,
                "value_desc" : "port",
+               "name" : "Port number",
                "mandatory" : 1,
+               "default" : null,
+               "description" : "A port number to connect to.",
                "option" : "port",
-               "description" : "A port number to connect to."
+               "multiple" : 0,
+               "value_type" : "int"
             },
             {
-               "option" : "driver",
                "mandatory" : 1,
-               "description" : "Which perl DBD driver to use. Example: mysql, Pg, DB2 ...",
-               "value_desc" : "driver",
-               "multiple" : 0,
                "default" : null,
+               "description" : "Which perl DBD driver to use. Example: mysql, Pg, DB2 ...",
+               "option" : "driver",
+               "multiple" : 0,
                "value_type" : "string",
+               "value_desc" : "driver",
                "name" : "Database driver"
             },
             {
+               "name" : "Database",
+               "value_desc" : "database",
+               "description" : "Set the database to connect to.",
+               "value_type" : "string",
+               "multiple" : 0,
                "option" : "database",
                "mandatory" : 0,
-               "description" : "Set the database to connect to.",
-               "value_desc" : "database",
-               "multiple" : 0,
-               "value_type" : "string",
-               "default" : null,
-               "name" : "Database"
+               "default" : null
             },
             {
+               "name" : "Username",
                "value_desc" : "username",
                "description" : "The username to use for the login.",
                "option" : "username",
-               "mandatory" : 0,
-               "name" : "Username",
-               "default" : null,
                "value_type" : "string",
-               "multiple" : 0
+               "multiple" : 0,
+               "mandatory" : 0,
+               "default" : null
             },
             {
-               "name" : "Password",
-               "multiple" : 0,
-               "value_type" : "string",
-               "default" : null,
                "value_desc" : "password",
-               "option" : "password",
+               "name" : "Password",
+               "default" : null,
                "mandatory" : 0,
+               "value_type" : "string",
+               "multiple" : 0,
+               "option" : "password",
                "description" : "The password for the user to login."
             },
             {
-               "description" : "Use secure connection via SSL.",
+               "name" : "Use secure connection via SSL",
                "option" : "use-ssl",
-               "mandatory" : 0,
-               "value_type" : 0,
-               "default" : null,
                "multiple" : 0,
-               "name" : "Use secure connection via SSL"
+               "value_type" : 0,
+               "description" : "Use secure connection via SSL.",
+               "default" : null,
+               "mandatory" : 0
             },
             {
                "name" : "Secret file",
-               "multiple" : 0,
-               "value_type" : "string",
-               "default" : null,
                "value_desc" : "filename",
+               "description" : "This is the secret file with the username and password to connect to the service.",
+               "value_type" : "string",
+               "multiple" : 0,
                "option" : "secret-file",
                "mandatory" : 0,
-               "description" : "This is the secret file with the username and password to connect to the service."
+               "default" : null
             }
          ],
          "examples" : [
@@ -126,6 +121,7 @@
                   "secret-file",
                   "passwd.conf"
                ],
+               "command_line" : "check-dbconnect --secret-file 'passwd.conf'",
                "description" : [
                   "To read the username and password from a configuration file it's possible to use the option 'secret-file'. The path to the file is hard set to:",
                   "",
@@ -135,14 +131,12 @@
                   "",
                   "    username=root",
                   "    password=secret"
-               ],
-               "command_line" : "check-dbconnect --secret-file 'passwd.conf'"
+               ]
             },
             {
                "description" : [
                   "Connect to a mysql instance"
                ],
-               "command_line" : "check-dbconnect --driver 'mysql' --host 'localhost' --port '3306' --warning '2' --critical '3' --username 'bloonix' --password 'secret'",
                "arguments" : [
                   "driver",
                   "mysql",
@@ -158,9 +152,14 @@
                   "bloonix",
                   "password",
                   "secret"
-               ]
+               ],
+               "command_line" : "check-dbconnect --driver 'mysql' --host 'localhost' --port '3306' --warning '2' --critical '3' --username 'bloonix' --password 'secret'"
             },
             {
+               "description" : [
+                  "Connect to a postgresql instance"
+               ],
+               "command_line" : "check-dbconnect --driver 'Pg' --host 'localhost' --port '5432' --warning '2' --critical '3' --username 'bloonix' --password 'secret'",
                "arguments" : [
                   "driver",
                   "Pg",
@@ -176,37 +175,38 @@
                   "bloonix",
                   "password",
                   "secret"
-               ],
-               "description" : [
-                  "Connect to a postgresql instance"
-               ],
-               "command_line" : "check-dbconnect --driver 'Pg' --host 'localhost' --port '5432' --warning '2' --critical '3' --username 'bloonix' --password 'secret'"
+               ]
             }
          ],
-         "flags" : "",
-         "version" : "0.8",
-         "plugin" : "check-dbconnect"
+         "plugin" : "check-dbconnect",
+         "version" : "0.8"
       },
-      "plugin" : "Database.Check"
-   },
-   "chart" : {
-      "title" : "DB connect - response time",
-      "id" : "1",
-      "options" : {
-         "series" : {
-            "color" : "#005467",
-            "name" : "time"
-         },
-         "chart-type" : "area",
-         "ylabel" : "time in ms",
-         "units" : "null"
-      }
+      "prefer" : "localhost",
+      "command" : "check-dbconnect",
+      "datatype" : "statistic",
+      "plugin" : "Database.Check",
+      "id" : "3",
+      "description" : "Simple database connect statistics.",
+      "netaccess" : "yes"
    },
    "statistic" : {
-      "description" : "Time in milliseconds waiting for response.",
-      "units" : "ms",
       "alias" : "Response time",
+      "units" : "ms",
       "statkey" : "time",
+      "description" : "Time in milliseconds waiting for response.",
       "datatype" : "float"
+   },
+   "chart" : {
+      "id" : "1",
+      "title" : "DB connect - response time",
+      "options" : {
+         "series" : {
+            "name" : "time",
+            "color" : "#005467"
+         },
+         "units" : "null",
+         "chart-type" : "area",
+         "ylabel" : "time in ms"
+      }
    }
 }

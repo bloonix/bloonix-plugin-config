@@ -1,7 +1,166 @@
 {
+   "statistic" : [
+      {
+         "statkey" : "memtotal",
+         "datatype" : "bigint",
+         "units" : "bytes",
+         "description" : "Total size of memory in bytes.",
+         "alias" : "Total memory"
+      },
+      {
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "statkey" : "memused",
+         "alias" : "Memory used",
+         "description" : "Total size of real used memory (memtotal - memfree - cached - buffers) in bytes."
+      },
+      {
+         "units" : "percent",
+         "datatype" : "float",
+         "statkey" : "memusedper",
+         "description" : "Total size of used memory in percent.",
+         "alias" : "Memory used"
+      },
+      {
+         "datatype" : "bigint",
+         "units" : "bytes",
+         "statkey" : "memfree",
+         "description" : "Total size of free memory in bytes.",
+         "alias" : "Memory free"
+      },
+      {
+         "statkey" : "memavailable",
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "description" : "Total size of real free memory in bytes (since kernel 3.14).",
+         "alias" : "Memory available"
+      },
+      {
+         "alias" : "Memory free",
+         "description" : "Total size of free memory is real free (memfree + buffers + cached) in bytes.",
+         "statkey" : "memrealfree",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Total size of buffers used from memory in bytes.",
+         "alias" : "Buffers",
+         "statkey" : "buffers",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "statkey" : "cached",
+         "datatype" : "bigint",
+         "units" : "bytes",
+         "description" : "Total size of cached memory in bytes.",
+         "alias" : "Cached"
+      },
+      {
+         "statkey" : "swapcached",
+         "datatype" : "bigint",
+         "units" : "bytes",
+         "description" : "Memory that once was swapped out, is swapped back in but still also is in the swapfile.",
+         "alias" : "Swap cached"
+      },
+      {
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "statkey" : "active",
+         "description" : "Memory that has been used more recently and usually not reclaimed unless absolutely necessary.",
+         "alias" : "Active"
+      },
+      {
+         "statkey" : "inactive",
+         "datatype" : "bigint",
+         "units" : "bytes",
+         "alias" : "Inactive",
+         "description" : "Memory which has been less recently used and is more eligible to be reclaimed for other purposes."
+      },
+      {
+         "description" : "Total size of swap space in bytes.",
+         "alias" : "Total swap",
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "statkey" : "swaptotal"
+      },
+      {
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "statkey" : "swapfree",
+         "alias" : "Swap free",
+         "description" : "Total size of swap space is free in bytes."
+      },
+      {
+         "description" : "Total size of swap space is used is bytes.",
+         "alias" : "Swap used",
+         "statkey" : "swapused",
+         "datatype" : "bigint",
+         "units" : "bytes"
+      },
+      {
+         "alias" : "Swap used",
+         "description" : "Total size of swap space is used in percent.",
+         "datatype" : "float",
+         "units" : "percent",
+         "statkey" : "swapusedper"
+      },
+      {
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "statkey" : "dirty",
+         "description" : "Total size of memory pages in bytes that waits to be written back to disk.",
+         "alias" : "Dirty"
+      },
+      {
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "statkey" : "writeback",
+         "description" : "Total size of memory that was written back to disk.",
+         "alias" : "Writeback"
+      },
+      {
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "statkey" : "mapped",
+         "description" : "Total size of memory in kilbytes that is mapped by devices or libraries with mmap.",
+         "alias" : "Mapped"
+      },
+      {
+         "description" : "Total size of memory in bytes that used by kernel for data structure allocations.",
+         "alias" : "Slab",
+         "statkey" : "slab",
+         "units" : "bytes",
+         "datatype" : "bigint"
+      },
+      {
+         "statkey" : "committed",
+         "units" : "bytes",
+         "datatype" : "bigint",
+         "description" : "The amount of memory presently allocated on the system.",
+         "alias" : "Committed"
+      },
+      {
+         "statkey" : "vmallocused",
+         "datatype" : "bigint",
+         "units" : "bytes",
+         "alias" : "Vmalloc used",
+         "description" : "Amount of vmalloc area which is used."
+      },
+      {
+         "datatype" : "bigint",
+         "units" : "bytes",
+         "statkey" : "pagetables",
+         "alias" : "Page tables",
+         "description" : "Amount of memory dedicated to the lowest level of page tables."
+      }
+   ],
    "chart" : [
       {
+         "title" : "Linux - memory and swap usage in %",
          "options" : {
+            "chart-type" : "area",
+            "ylabel" : "percent %",
             "units" : "null",
             "series" : [
                {
@@ -9,19 +168,19 @@
                   "color" : "#ff7a0d"
                },
                {
-                  "color" : "#005467",
-                  "name" : "swapusedper"
+                  "name" : "swapusedper",
+                  "color" : "#005467"
                }
-            ],
-            "chart-type" : "area",
-            "ylabel" : "percent %"
+            ]
          },
-         "id" : "1",
-         "title" : "Linux - memory and swap usage in %"
+         "id" : "1"
       },
       {
-         "id" : "2",
+         "title" : "Linux - memory usage (lower kernel 3.14)",
          "options" : {
+            "chart-type" : "area",
+            "ylabel" : "bytes",
+            "units" : "bytes",
             "series" : [
                {
                   "name" : "memused",
@@ -36,45 +195,43 @@
                   "name" : "buffers"
                },
                {
-                  "color" : "#005467",
-                  "name" : "cached"
+                  "name" : "cached",
+                  "color" : "#005467"
                }
-            ],
-            "ylabel" : "bytes",
-            "chart-type" : "area",
-            "units" : "bytes"
+            ]
          },
-         "title" : "Linux - memory usage (lower kernel 3.14)"
+         "id" : "2"
       },
       {
+         "title" : "Linux - memory status",
          "options" : {
-            "units" : "bytes",
-            "ylabel" : "bytes",
             "chart-type" : "area",
+            "ylabel" : "bytes",
+            "units" : "bytes",
             "series" : [
                {
                   "name" : "active",
                   "color" : "#ffb244"
                },
                {
-                  "name" : "inactive",
-                  "color" : "#9a72ad"
+                  "color" : "#9a72ad",
+                  "name" : "inactive"
                },
                {
-                  "name" : "dirty",
-                  "color" : "#005467"
+                  "color" : "#005467",
+                  "name" : "dirty"
                },
                {
-                  "color" : "#e9644a",
-                  "name" : "writeback"
+                  "name" : "writeback",
+                  "color" : "#e9644a"
                },
                {
                   "color" : "#2ba743",
                   "name" : "mapped"
                },
                {
-                  "name" : "slab",
-                  "color" : "#7648eb"
+                  "color" : "#7648eb",
+                  "name" : "slab"
                },
                {
                   "name" : "committed",
@@ -86,195 +243,161 @@
                }
             ]
          },
-         "id" : "3",
-         "title" : "Linux - memory status"
+         "id" : "3"
       },
       {
          "id" : "4",
          "options" : {
+            "units" : "bytes",
             "series" : [
                {
-                  "name" : "memused",
-                  "color" : "#e9644a"
+                  "color" : "#e9644a",
+                  "name" : "memused"
                },
                {
                   "color" : "#2ba743",
                   "name" : "memavailable"
                }
             ],
-            "chart-type" : "area",
             "ylabel" : "bytes",
-            "units" : "bytes"
+            "chart-type" : "area"
          },
          "title" : "Linux - memory usage (since kernel 3.14)"
       }
    ],
-   "statistic" : [
-      {
-         "datatype" : "bigint",
-         "description" : "Total size of memory in bytes.",
-         "statkey" : "memtotal",
-         "alias" : "Total memory",
-         "units" : "bytes"
-      },
-      {
-         "datatype" : "bigint",
-         "description" : "Total size of real used memory (memtotal - memfree - cached - buffers) in bytes.",
-         "statkey" : "memused",
-         "alias" : "Memory used",
-         "units" : "bytes"
-      },
-      {
-         "units" : "percent",
-         "alias" : "Memory used",
-         "statkey" : "memusedper",
-         "description" : "Total size of used memory in percent.",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Memory free",
-         "units" : "bytes",
-         "datatype" : "bigint",
-         "statkey" : "memfree",
-         "description" : "Total size of free memory in bytes."
-      },
-      {
-         "datatype" : "bigint",
-         "statkey" : "memavailable",
-         "description" : "Total size of real free memory in bytes (since kernel 3.14).",
-         "alias" : "Memory available",
-         "units" : "bytes"
-      },
-      {
-         "units" : "bytes",
-         "alias" : "Memory free",
-         "statkey" : "memrealfree",
-         "description" : "Total size of free memory is real free (memfree + buffers + cached) in bytes.",
-         "datatype" : "bigint"
-      },
-      {
-         "statkey" : "buffers",
-         "description" : "Total size of buffers used from memory in bytes.",
-         "datatype" : "bigint",
-         "units" : "bytes",
-         "alias" : "Buffers"
-      },
-      {
-         "alias" : "Cached",
-         "units" : "bytes",
-         "datatype" : "bigint",
-         "description" : "Total size of cached memory in bytes.",
-         "statkey" : "cached"
-      },
-      {
-         "datatype" : "bigint",
-         "description" : "Memory that once was swapped out, is swapped back in but still also is in the swapfile.",
-         "statkey" : "swapcached",
-         "alias" : "Swap cached",
-         "units" : "bytes"
-      },
-      {
-         "units" : "bytes",
-         "alias" : "Active",
-         "statkey" : "active",
-         "description" : "Memory that has been used more recently and usually not reclaimed unless absolutely necessary.",
-         "datatype" : "bigint"
-      },
-      {
-         "alias" : "Inactive",
-         "units" : "bytes",
-         "datatype" : "bigint",
-         "description" : "Memory which has been less recently used and is more eligible to be reclaimed for other purposes.",
-         "statkey" : "inactive"
-      },
-      {
-         "alias" : "Total swap",
-         "units" : "bytes",
-         "datatype" : "bigint",
-         "description" : "Total size of swap space in bytes.",
-         "statkey" : "swaptotal"
-      },
-      {
-         "statkey" : "swapfree",
-         "description" : "Total size of swap space is free in bytes.",
-         "datatype" : "bigint",
-         "units" : "bytes",
-         "alias" : "Swap free"
-      },
-      {
-         "units" : "bytes",
-         "alias" : "Swap used",
-         "description" : "Total size of swap space is used is bytes.",
-         "statkey" : "swapused",
-         "datatype" : "bigint"
-      },
-      {
-         "units" : "percent",
-         "alias" : "Swap used",
-         "statkey" : "swapusedper",
-         "description" : "Total size of swap space is used in percent.",
-         "datatype" : "float"
-      },
-      {
-         "alias" : "Dirty",
-         "units" : "bytes",
-         "datatype" : "bigint",
-         "statkey" : "dirty",
-         "description" : "Total size of memory pages in bytes that waits to be written back to disk."
-      },
-      {
-         "statkey" : "writeback",
-         "description" : "Total size of memory that was written back to disk.",
-         "datatype" : "bigint",
-         "units" : "bytes",
-         "alias" : "Writeback"
-      },
-      {
-         "description" : "Total size of memory in kilbytes that is mapped by devices or libraries with mmap.",
-         "statkey" : "mapped",
-         "datatype" : "bigint",
-         "units" : "bytes",
-         "alias" : "Mapped"
-      },
-      {
-         "description" : "Total size of memory in bytes that used by kernel for data structure allocations.",
-         "statkey" : "slab",
-         "datatype" : "bigint",
-         "units" : "bytes",
-         "alias" : "Slab"
-      },
-      {
-         "alias" : "Committed",
-         "units" : "bytes",
-         "datatype" : "bigint",
-         "description" : "The amount of memory presently allocated on the system.",
-         "statkey" : "committed"
-      },
-      {
-         "units" : "bytes",
-         "alias" : "Vmalloc used",
-         "description" : "Amount of vmalloc area which is used.",
-         "statkey" : "vmallocused",
-         "datatype" : "bigint"
-      },
-      {
-         "units" : "bytes",
-         "alias" : "Page tables",
-         "description" : "Amount of memory dedicated to the lowest level of page tables.",
-         "statkey" : "pagetables",
-         "datatype" : "bigint"
-      }
-   ],
    "plugin" : {
+      "description" : "Linux memory statistics",
+      "datatype" : "statistic",
+      "abstract" : "Memory check",
+      "command" : "check-memstat",
+      "plugin" : "Linux.Memory.Check",
       "category" : "System,Linux",
       "id" : "26",
-      "abstract" : "Memory check",
-      "description" : "Linux memory statistics",
-      "plugin" : "Linux.Memory.Check",
-      "datatype" : "statistic",
-      "command" : "check-memstat",
       "info" : {
+         "flags" : "",
+         "examples" : [
+            {
+               "command_line" : "check-memstat --warning 'memusedper:ge:90' --critical 'memusedper:ge:95'",
+               "arguments" : [
+                  "warning",
+                  "memusedper:ge:90",
+                  "critical",
+                  "memusedper:ge:95"
+               ],
+               "description" : [
+                  "A simple example to check the memory usage and trigger a warning if the usage is higher than 90% or trigger a critical if the usage is higher than 95%:"
+               ]
+            }
+         ],
+         "options" : [
+            {
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "mandatory" : 0,
+               "multiple" : 1,
+               "option" : "warning",
+               "value_type" : "string",
+               "default" : null,
+               "name" : "Warning threshold",
+               "value_desc" : "key:value or key:op:value"
+            },
+            {
+               "multiple" : 1,
+               "option" : "critical",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "mandatory" : 0,
+               "name" : "Critical threshold",
+               "value_desc" : "key:value or key:op:value",
+               "value_type" : "string",
+               "default" : null
+            }
+         ],
          "thresholds" : {
+            "options" : [
+               {
+                  "unit" : "bytes",
+                  "key" : "memtotal"
+               },
+               {
+                  "key" : "memfree",
+                  "unit" : "bytes"
+               },
+               {
+                  "key" : "buffers",
+                  "unit" : "bytes"
+               },
+               {
+                  "key" : "cached",
+                  "unit" : "bytes"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "swapcached"
+               },
+               {
+                  "key" : "active",
+                  "unit" : "bytes"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "inactive"
+               },
+               {
+                  "key" : "swaptotal",
+                  "unit" : "bytes"
+               },
+               {
+                  "key" : "swapfree",
+                  "unit" : "bytes"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "dirty"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "writeback"
+               },
+               {
+                  "key" : "mapped",
+                  "unit" : "bytes"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "slab"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "pagetables"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "committed"
+               },
+               {
+                  "unit" : "bytes",
+                  "key" : "vmallocused"
+               },
+               {
+                  "key" : "memused",
+                  "unit" : "bytes"
+               },
+               {
+                  "key" : "memusedper",
+                  "unit" : "percent"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "swapusedper"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "swapused"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "memrealfree"
+               }
+            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -299,138 +422,15 @@
                "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
                "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
                "    GB = Gigabytes   EB = Exabytes\n\n"
-            ],
-            "options" : [
-               {
-                  "key" : "memtotal",
-                  "unit" : "bytes"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "memfree"
-               },
-               {
-                  "key" : "buffers",
-                  "unit" : "bytes"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "cached"
-               },
-               {
-                  "key" : "swapcached",
-                  "unit" : "bytes"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "active"
-               },
-               {
-                  "key" : "inactive",
-                  "unit" : "bytes"
-               },
-               {
-                  "key" : "swaptotal",
-                  "unit" : "bytes"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "swapfree"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "dirty"
-               },
-               {
-                  "key" : "writeback",
-                  "unit" : "bytes"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "mapped"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "slab"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "pagetables"
-               },
-               {
-                  "key" : "committed",
-                  "unit" : "bytes"
-               },
-               {
-                  "key" : "vmallocused",
-                  "unit" : "bytes"
-               },
-               {
-                  "unit" : "bytes",
-                  "key" : "memused"
-               },
-               {
-                  "key" : "memusedper",
-                  "unit" : "percent"
-               },
-               {
-                  "unit" : "percent",
-                  "key" : "swapusedper"
-               },
-               {
-                  "key" : "swapused",
-                  "unit" : "percent"
-               },
-               {
-                  "key" : "memrealfree",
-                  "unit" : "percent"
-               }
             ]
          },
-         "flags" : "",
-         "examples" : [
-            {
-               "description" : [
-                  "A simple example to check the memory usage and trigger a warning if the usage is higher than 90% or trigger a critical if the usage is higher than 95%:"
-               ],
-               "arguments" : [
-                  "warning",
-                  "memusedper:ge:90",
-                  "critical",
-                  "memusedper:ge:95"
-               ],
-               "command_line" : "check-memstat --warning 'memusedper:ge:90' --critical 'memusedper:ge:95'"
-            }
-         ],
          "version" : "0.11",
-         "plugin" : "check-memstat",
-         "options" : [
-            {
-               "value_desc" : "key:value or key:op:value",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "option" : "warning",
-               "value_type" : "string",
-               "default" : null,
-               "multiple" : 1,
-               "name" : "Warning threshold",
-               "mandatory" : 0
-            },
-            {
-               "mandatory" : 0,
-               "name" : "Critical threshold",
-               "option" : "critical",
-               "value_desc" : "key:value or key:op:value",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "default" : null,
-               "multiple" : 1,
-               "value_type" : "string"
-            }
-         ],
          "info" : [
             "memused     = memtotal - memfree - cached - buffers",
             "memrealfree = memfree + cached + buffers",
             "memusedper  = 100 * memused / memtotal"
-         ]
+         ],
+         "plugin" : "check-memstat"
       }
    }
 }

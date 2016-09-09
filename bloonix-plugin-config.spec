@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.34
+Version: 0.37
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,12 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Fri Sep 09 2016 Jonny Schulz <js@bloonix.de> - 0.37-1
+- Added support for NTLM in check-smtp.
+* Fri Aug 12 2016 Jonny Schulz <js@bloonix.de> - 0.36-1
+- New chart for inode usage.
+* Fri Aug 12 2016 Jonny Schulz <js@bloonix.de> - 0.35-1
+- Kicked plugin-http-perf.
 * Wed Aug 10 2016 Jonny Schulz <js@bloonix.de> - 0.34-1
 - Fixed colors of plugin-nfs4.
 * Tue Mar 29 2016 Jonny Schulz <js@bloonix.de> - 0.33-1

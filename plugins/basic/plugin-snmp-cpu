@@ -1,30 +1,19 @@
 {
-   "chart" : {
-      "title" : "CPU usage",
-      "id" : "1",
-      "options" : {
-         "units" : "null",
-         "series" : {
-            "name" : "cpu",
-            "color" : "#005467"
-         },
-         "chart-type" : "area",
-         "ylabel" : "cpu in ms"
-      }
-   },
-   "statistic" : {
-      "statkey" : "cpu",
-      "datatype" : "bigint",
-      "units" : "percent",
-      "description" : "The total usage of the cpu in percent.",
-      "alias" : "Total usage"
-   },
    "plugin" : {
+      "category" : "System,SNMP",
+      "netaccess" : "yes",
+      "id" : "62",
+      "plugin" : "SNMP.CPU",
+      "datatype" : "statistic",
       "info" : {
-         "flags" : "",
+         "version" : "0.4",
          "plugin" : "check-snmp-cpu",
          "examples" : [
             {
+               "description" : [
+                  "Example to check the CPU usage:"
+               ],
+               "command_line" : "check-snmp-cpu --host '127.0.0.1' --port '161' --community 'public' --warning '60' --critical '80'",
                "arguments" : [
                   "host",
                   "127.0.0.1",
@@ -36,155 +25,166 @@
                   60,
                   "critical",
                   80
-               ],
-               "command_line" : "check-snmp-cpu --host '127.0.0.1' --port '161' --community 'public' --warning '60' --critical '80'",
-               "description" : [
-                  "Example to check the CPU usage:"
                ]
             }
          ],
-         "version" : "0.4",
+         "flags" : "",
          "options" : [
             {
-               "name" : "Hostname or IP address",
+               "description" : "A hostname or IP address to connect to.",
+               "mandatory" : 0,
+               "option" : "host",
                "value_desc" : "hostname or ip address",
                "default" : "127.0.0.1",
-               "option" : "host",
                "value_type" : "string",
                "multiple" : 0,
-               "description" : "A hostname or IP address to connect to.",
-               "mandatory" : 0
+               "name" : "Hostname or IP address"
             },
             {
-               "name" : "Port number",
-               "default" : 161,
-               "value_desc" : "port",
-               "option" : "port",
                "multiple" : 0,
                "value_type" : "int",
+               "name" : "Port number",
                "mandatory" : 0,
-               "description" : "A port number to connect to."
+               "option" : "port",
+               "description" : "A port number to connect to.",
+               "value_desc" : "port",
+               "default" : 161
             },
             {
-               "multiple" : 0,
-               "value_type" : "string",
+               "mandatory" : 0,
                "option" : "community",
-               "mandatory" : 0,
                "description" : "The SNMP community to connect to the host.",
-               "name" : "SNMP community",
+               "value_desc" : "community",
                "default" : "public",
-               "value_desc" : "community"
-            },
-            {
-               "option" : "snmp-version",
                "multiple" : 0,
                "value_type" : "string",
-               "mandatory" : 0,
-               "description" : "The SNMP version to use to connect to the host.",
-               "name" : "SNMP version",
-               "default" : 2,
-               "value_desc" : "version"
+               "name" : "SNMP community"
             },
             {
-               "name" : "SNMPv3 username",
+               "mandatory" : 0,
+               "option" : "snmp-version",
+               "description" : "The SNMP version to use to connect to the host.",
+               "value_desc" : "version",
+               "default" : 2,
+               "multiple" : 0,
+               "value_type" : "string",
+               "name" : "SNMP version"
+            },
+            {
                "default" : null,
                "value_desc" : "username",
-               "multiple" : 0,
-               "value_type" : "string",
-               "option" : "username",
+               "description" : "The SNMPv3 username.",
                "mandatory" : 0,
-               "description" : "The SNMPv3 username."
+               "option" : "username",
+               "name" : "SNMPv3 username",
+               "value_type" : "string",
+               "multiple" : 0
             },
             {
-               "value_desc" : "authkey",
                "default" : null,
-               "name" : "SNMPv3 auth key",
+               "value_desc" : "authkey",
                "description" : "The SNMPv3 auth key.",
                "mandatory" : 0,
                "option" : "authkey",
-               "multiple" : 0,
-               "value_type" : "string"
-            },
-            {
-               "value_desc" : "authpassword",
-               "default" : null,
-               "name" : "SNMPv3 auth password",
-               "description" : "The SNMPv3 auth password.",
-               "mandatory" : 0,
-               "option" : "authpassword",
-               "multiple" : 0,
-               "value_type" : "string"
-            },
-            {
-               "multiple" : 0,
+               "name" : "SNMPv3 auth key",
                "value_type" : "string",
+               "multiple" : 0
+            },
+            {
+               "default" : null,
+               "value_desc" : "authpassword",
+               "description" : "The SNMPv3 auth password.",
+               "option" : "authpassword",
+               "mandatory" : 0,
+               "name" : "SNMPv3 auth password",
+               "value_type" : "string",
+               "multiple" : 0
+            },
+            {
+               "description" : "The SNMPv3 auth protocol.",
                "option" : "authprotocol",
                "mandatory" : 0,
-               "description" : "The SNMPv3 auth protocol.",
-               "name" : "SNMPv3 auth protocol",
                "default" : null,
-               "value_desc" : "authprotocol"
+               "value_desc" : "authprotocol",
+               "value_type" : "string",
+               "multiple" : 0,
+               "name" : "SNMPv3 auth protocol"
             },
             {
-               "name" : "SNMPv3 priv key",
+               "mandatory" : 0,
+               "option" : "privkey",
+               "description" : "The SNMPv3 priv key.",
                "value_desc" : "privkey",
                "default" : null,
-               "option" : "privkey",
                "multiple" : 0,
                "value_type" : "string",
-               "description" : "The SNMPv3 priv key.",
-               "mandatory" : 0
+               "name" : "SNMPv3 priv key"
             },
             {
                "name" : "SNMPv3 priv password",
+               "value_type" : "string",
+               "multiple" : 0,
                "value_desc" : "privpassword",
                "default" : null,
-               "option" : "privpassword",
-               "multiple" : 0,
-               "value_type" : "string",
                "description" : "The SNMPv3 priv password.",
+               "option" : "privpassword",
                "mandatory" : 0
             },
             {
-               "default" : null,
                "value_desc" : "privprotocol",
-               "name" : "SNMPv3 priv protocol",
+               "default" : null,
+               "option" : "privprotocol",
                "mandatory" : 0,
                "description" : "The SNMPv3 priv protocol.",
-               "value_type" : "string",
+               "name" : "SNMPv3 priv protocol",
                "multiple" : 0,
-               "option" : "privprotocol"
+               "value_type" : "string"
             },
             {
+               "name" : "Warning threshold",
+               "value_type" : "number",
+               "multiple" : 0,
+               "default" : null,
+               "value_desc" : "percent",
                "description" : "Set the the warning threshold for the CPU usage.",
                "mandatory" : 0,
-               "option" : "warning",
-               "multiple" : 0,
-               "value_type" : "number",
-               "value_desc" : "percent",
-               "default" : null,
-               "name" : "Warning threshold"
+               "option" : "warning"
             },
             {
+               "mandatory" : 0,
+               "option" : "critical",
+               "description" : "Set the the critical threshold for the CPU usage.",
                "value_desc" : "percent",
                "default" : null,
-               "name" : "Critical threshold",
-               "description" : "Set the the critical threshold for the CPU usage.",
-               "mandatory" : 0,
                "multiple" : 0,
                "value_type" : "number",
-               "option" : "critical"
+               "name" : "Critical threshold"
             }
          ]
       },
-      "netaccess" : "yes",
-      "prefer" : "localhost",
-      "abstract" : "CPU check",
-      "datatype" : "statistic",
+      "description" : "CPU statistics.",
       "command" : "check-snmp-cpu",
-      "category" : "System,SNMP",
-      "plugin" : "SNMP.CPU",
-      "id" : "62",
-      "description" : "CPU statistics."
+      "abstract" : "CPU check",
+      "prefer" : "localhost"
+   },
+   "chart" : {
+      "title" : "CPU usage",
+      "options" : {
+         "units" : "null",
+         "ylabel" : "cpu in ms",
+         "chart-type" : "area",
+         "series" : {
+            "color" : "#005467",
+            "name" : "cpu"
+         }
+      },
+      "id" : "1"
+   },
+   "statistic" : {
+      "description" : "The total usage of the cpu in percent.",
+      "statkey" : "cpu",
+      "units" : "percent",
+      "alias" : "Total usage",
+      "datatype" : "bigint"
    }
 }

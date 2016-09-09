@@ -1,3 +1,15 @@
+bloonix-plugin-config (0.37) released at 2016-09-09
+
+    * Added support for NTLM in check-smtp.
+
+bloonix-plugin-config (0.36) released at 2016-08-12
+
+    * New chart for inode usage.
+
+bloonix-plugin-config (0.35) released at 2016-08-12
+
+    * Kicked plugin-http-perf.
+
 bloonix-plugin-config (0.34) released at 2016-08-10
 
     * Fixed colors of plugin-nfs4.

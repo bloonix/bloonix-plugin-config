@@ -1,3 +1,21 @@
+bloonix-plugin-config (0.37-1) unstable; urgency=low
+
+    * Added support for NTLM in check-smtp.
+
+ -- Jonny Schulz <js@bloonix.de>  Fri, 09 Sep 2016 13:17:07 +0200
+
+bloonix-plugin-config (0.36-1) unstable; urgency=low
+
+    * New chart for inode usage.
+
+ -- Jonny Schulz <js@bloonix.de>  Fri, 12 Aug 2016 19:42:41 +0200
+
+bloonix-plugin-config (0.35-1) unstable; urgency=low
+
+    * Kicked plugin-http-perf.
+
+ -- Jonny Schulz <js@bloonix.de>  Fri, 12 Aug 2016 19:29:14 +0200
+
 bloonix-plugin-config (0.34-1) unstable; urgency=low
 
     * Fixed colors of plugin-nfs4.

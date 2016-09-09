@@ -1,7 +1,14 @@
 {
    "plugin" : {
+      "category" : "System,Security",
+      "id" : "5",
+      "description" : "Check the status of a file.",
       "plugin" : "Filestat.Check",
+      "abstract" : "Check filestat",
+      "command" : "check-filestat",
+      "datatype" : "statistic",
       "info" : {
+         "plugin" : "check-filestat",
          "thresholds" : {
             "options" : [
                {
@@ -13,24 +20,24 @@
                   "unit" : "none"
                },
                {
-                  "key" : "nlink",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "nlink"
                },
                {
-                  "key" : "uid",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "uid"
                },
                {
                   "unit" : "none",
                   "key" : "gid"
                },
                {
-                  "key" : "atime",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "atime"
                },
                {
-                  "key" : "diff_atime",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "diff_atime"
                },
                {
                   "key" : "mtime",
@@ -67,14 +74,9 @@
             ]
          },
          "version" : "0.2",
-         "plugin" : "check-filestat",
+         "flags" : "",
          "examples" : [
             {
-               "description" : [
-                  "NOTE: please create the configuration file '/etc/bloonix/agent/check-filestat.conf' on your server and write all file names into the file (one file per line) that the Bloonix agent is allowed to check!",
-                  "",
-                  "In this example the file of /var/log/test.log is checked. If the file size is higher than 1MB a warning is triggered. If the file size is higher than 5MB a critical is triggered."
-               ],
                "command_line" : "check-filestat --file '/var/log/test.log' --warning 'size:gt:1MB' --critical 'size:gt:5MB'",
                "arguments" : [
                   "file",
@@ -83,75 +85,73 @@
                   "size:gt:1MB",
                   "critical",
                   "size:gt:5MB"
+               ],
+               "description" : [
+                  "NOTE: please create the configuration file '/etc/bloonix/agent/check-filestat.conf' on your server and write all file names into the file (one file per line) that the Bloonix agent is allowed to check!",
+                  "",
+                  "In this example the file of /var/log/test.log is checked. If the file size is higher than 1MB a warning is triggered. If the file size is higher than 5MB a critical is triggered."
                ]
             }
          ],
          "options" : [
             {
                "value_type" : "string",
-               "mandatory" : 1,
                "default" : null,
-               "multiple" : 0,
-               "option" : "file",
-               "name" : "Filename",
+               "description" : "This is the file name to check.",
                "value_desc" : "file",
-               "description" : "This is the file name to check."
+               "multiple" : 0,
+               "name" : "Filename",
+               "mandatory" : 1,
+               "option" : "file"
             },
             {
-               "option" : "warning",
-               "name" : "Warning threshold",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_desc" : "key:value or key:op:value",
                "mandatory" : 0,
+               "name" : "Warning threshold",
+               "multiple" : 1,
+               "option" : "warning",
                "value_type" : "string",
+               "value_desc" : "key:value or key:op:value",
                "default" : null,
-               "multiple" : 1
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information."
             },
             {
-               "value_desc" : "key:value or key:op:value",
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "name" : "Critical threshold",
+               "default" : null,
+               "value_desc" : "key:value or key:op:value",
+               "value_type" : "string",
                "option" : "critical",
                "multiple" : 1,
-               "default" : null,
-               "value_type" : "string",
+               "name" : "Critical threshold",
                "mandatory" : 0
             },
             {
-               "mandatory" : 0,
-               "option" : "ignore-missing",
-               "value_type" : 0,
-               "description" : "Enable this options if it's ok if the file does not exists.",
-               "multiple" : 0,
                "default" : null,
-               "name" : "Ignore missing file"
+               "option" : "ignore-missing",
+               "description" : "Enable this options if it's ok if the file does not exists.",
+               "value_type" : 0,
+               "multiple" : 0,
+               "name" : "Ignore missing file",
+               "mandatory" : 0
             }
-         ],
-         "flags" : ""
-      },
-      "command" : "check-filestat",
-      "description" : "Check the status of a file.",
-      "abstract" : "Check filestat",
-      "datatype" : "statistic",
-      "id" : "5",
-      "category" : "System,Security"
+         ]
+      }
    },
    "statistic" : [
       {
-         "datatype" : "float",
          "alias" : "File size",
-         "statkey" : "size",
          "units" : "bytes",
+         "datatype" : "float",
+         "statkey" : "size",
          "description" : "The size of the file in bytes."
       },
       {
-         "datatype" : "varchar(10)",
          "description" : "File mode (type and permissions).",
+         "datatype" : "varchar(10)",
          "statkey" : "mode"
       },
       {
-         "statkey" : "nlink",
          "description" : "Number of (hard) links to the file.",
+         "statkey" : "nlink",
          "datatype" : "bigint"
       },
       {
@@ -160,45 +160,45 @@
          "description" : "Numeric user ID of file's owner."
       },
       {
-         "datatype" : "varchar(10)",
+         "description" : "Numeric group ID of file's owner.",
          "statkey" : "gid",
-         "description" : "Numeric group ID of file's owner."
+         "datatype" : "varchar(10)"
       },
       {
          "description" : "Last access time in seconds since the epoch.",
-         "units" : "unixtime",
          "statkey" : "atime",
-         "datatype" : "bigint"
+         "datatype" : "bigint",
+         "units" : "unixtime"
       },
       {
-         "datatype" : "bigint",
          "units" : "unixtime",
-         "statkey" : "diff_atime",
-         "description" : "The time in seconds since the last access to the file."
+         "description" : "The time in seconds since the last access to the file.",
+         "datatype" : "bigint",
+         "statkey" : "diff_atime"
       },
       {
-         "datatype" : "bigint",
          "description" : "Last modify time in seconds since the epoch.",
+         "datatype" : "bigint",
          "statkey" : "mtime",
          "units" : "unixtime"
       },
       {
          "description" : "The time in seconds since the last modification of the file.",
-         "units" : "unixtime",
          "statkey" : "diff_mtime",
-         "datatype" : "bigint"
+         "datatype" : "bigint",
+         "units" : "unixtime"
       }
    ],
    "chart" : {
       "title" : "File size",
       "options" : {
-         "series" : {
-            "color" : "#005467",
-            "name" : "size"
-         },
          "units" : "bytes",
+         "chart-type" : "area",
          "ylabel" : "size",
-         "chart-type" : "area"
+         "series" : {
+            "name" : "size",
+            "color" : "#005467"
+         }
       },
       "id" : "1"
    }

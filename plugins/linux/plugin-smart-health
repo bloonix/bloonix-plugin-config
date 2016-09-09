@@ -1,53 +1,53 @@
 {
    "plugin" : {
+      "abstract" : "Smart health",
+      "id" : "39",
+      "description" : "Check the SMART health status of a disk.",
+      "datatype" : "none",
+      "command" : "check-smart-health",
+      "plugin" : "Linux.Smart.Health",
+      "category" : "System,Disk,Linux",
       "info" : {
-         "plugin" : "check-smart-health",
-         "flags" : "sudo",
          "info" : [
             "The tool smartctl is needed for this plugin! Please install smartmontools on your server."
          ],
+         "plugin" : "check-smart-health",
          "options" : [
             {
-               "default" : null,
-               "mandatory" : 1,
                "value_desc" : "device",
+               "name" : "Device name",
                "option" : "device",
+               "multiple" : 1,
+               "default" : null,
                "value_type" : "string",
                "description" : "This is the device name to check.",
-               "multiple" : 1,
-               "name" : "Device name"
+               "mandatory" : 1
             },
             {
-               "name" : "Timeout",
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "multiple" : 0,
-               "value_type" : "number",
-               "option" : "timeout",
                "mandatory" : 0,
+               "value_type" : "number",
                "value_desc" : "seconds",
-               "default" : 30
+               "default" : 30,
+               "multiple" : 0,
+               "option" : "timeout",
+               "name" : "Timeout"
             }
          ],
+         "flags" : "sudo",
          "examples" : [
             {
                "command_line" : "check-smart-health --device 'sda'",
-               "description" : [
-                  "A simple example to check the health status of /dev/sda"
-               ],
                "arguments" : [
                   "device",
                   "sda"
+               ],
+               "description" : [
+                  "A simple example to check the health status of /dev/sda"
                ]
             }
          ],
          "version" : "0.3"
-      },
-      "description" : "Check the SMART health status of a disk.",
-      "id" : "39",
-      "command" : "check-smart-health",
-      "category" : "System,Disk,Linux",
-      "datatype" : "none",
-      "abstract" : "Smart health",
-      "plugin" : "Linux.Smart.Health"
+      }
    }
 }

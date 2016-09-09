@@ -1,32 +1,33 @@
 {
    "plugin" : {
-      "id" : "33",
-      "category" : "System,Linux",
-      "abstract" : "Open files check",
-      "command" : "check-open-files",
+      "datatype" : "statistic",
+      "description" : "Linux file statistics.",
       "info" : {
+         "version" : "0.5",
          "options" : [
             {
                "description" : "This is the warning threshold for real free file hanlders in percent. If less than this value in percent are free a warning status is triggered.",
-               "value_type" : "number",
-               "multiple" : 0,
-               "name" : "Warning threshold",
+               "mandatory" : 0,
                "default" : 10,
-               "value_desc" : "percent",
+               "multiple" : 0,
                "option" : "warning",
-               "mandatory" : 0
+               "name" : "Warning threshold",
+               "value_desc" : "percent",
+               "value_type" : "number"
             },
             {
-               "mandatory" : 0,
                "option" : "critical",
-               "value_desc" : "percent",
                "name" : "Critical threshold",
-               "default" : 5,
-               "multiple" : 0,
+               "value_desc" : "percent",
                "value_type" : "number",
-               "description" : "This is the critical threshold for real free file hanlders in percent. If less than this value in percent are free a critical status is triggered."
+               "multiple" : 0,
+               "description" : "This is the critical threshold for real free file hanlders in percent. If less than this value in percent are free a critical status is triggered.",
+               "mandatory" : 0,
+               "default" : 5
             }
          ],
+         "plugin" : "check-open-files",
+         "flags" : "",
          "examples" : [
             {
                "description" : [
@@ -40,25 +41,28 @@
                ],
                "command_line" : "check-open-files --warning '5' --critical '3'"
             }
-         ],
-         "version" : "0.5",
-         "flags" : "",
-         "plugin" : "check-open-files"
+         ]
       },
-      "plugin" : "Linux.OpenFiles.Check",
-      "description" : "Linux file statistics.",
-      "datatype" : "statistic"
+      "abstract" : "Open files check",
+      "id" : "33",
+      "category" : "System,Linux",
+      "command" : "check-open-files",
+      "plugin" : "Linux.OpenFiles.Check"
    },
    "chart" : {
+      "title" : "Linux - filestats",
       "options" : {
+         "units" : "default",
+         "chart-type" : "area",
+         "ylabel" : "count",
          "series" : [
             {
-               "name" : "fh_alloc",
-               "color" : "#005467"
+               "color" : "#005467",
+               "name" : "fh_alloc"
             },
             {
-               "name" : "nr_inodes",
-               "color" : "#e9644a"
+               "color" : "#e9644a",
+               "name" : "nr_inodes"
             },
             {
                "color" : "#2ba743",
@@ -69,34 +73,30 @@
                "name" : "nr_dentry"
             },
             {
-               "color" : "#ffb244",
-               "name" : "nr_unused"
+               "name" : "nr_unused",
+               "color" : "#ffb244"
             }
-         ],
-         "chart-type" : "area",
-         "ylabel" : "count",
-         "units" : "default"
+         ]
       },
-      "title" : "Linux - filestats",
       "id" : "1"
    },
    "statistic" : [
       {
-         "datatype" : "bigint",
-         "statkey" : "fh_alloc",
+         "alias" : "FHs allocated",
          "description" : "Number of allocated file handles.",
-         "alias" : "FHs allocated"
+         "statkey" : "fh_alloc",
+         "datatype" : "bigint"
       },
       {
-         "datatype" : "bigint",
          "alias" : "FHs maximum",
          "statkey" : "fh_max",
-         "description" : "Number of maximum file handles."
+         "description" : "Number of maximum file handles.",
+         "datatype" : "bigint"
       },
       {
          "datatype" : "bigint",
-         "statkey" : "fh_free",
          "description" : "Number of free file handles.",
+         "statkey" : "fh_free",
          "alias" : "FHs free"
       },
       {
@@ -106,22 +106,22 @@
          "datatype" : "bigint"
       },
       {
-         "datatype" : "bigint",
          "alias" : "Inodes allocated",
          "statkey" : "nr_inodes",
-         "description" : "Number of allocated inodes."
+         "description" : "Number of allocated inodes.",
+         "datatype" : "bigint"
+      },
+      {
+         "statkey" : "nr_dentry",
+         "description" : "Number of allocated dentries (directory cache entries).",
+         "alias" : "Dentries allocated",
+         "datatype" : "bigint"
       },
       {
          "datatype" : "bigint",
-         "statkey" : "nr_dentry",
-         "description" : "Number of allocated dentries (directory cache entries).",
-         "alias" : "Dentries allocated"
-      },
-      {
-         "alias" : "Dentries unused",
          "description" : "Number of unused dentries (directory cache).",
          "statkey" : "nr_unused",
-         "datatype" : "bigint"
+         "alias" : "Dentries unused"
       }
    ]
 }

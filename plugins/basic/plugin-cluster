@@ -1,46 +1,111 @@
 {
+   "chart" : {
+      "id" : "1",
+      "title" : "Cluster status",
+      "options" : {
+         "units" : "null",
+         "ylabel" : "count status",
+         "chart-type" : "area",
+         "series" : [
+            {
+               "name" : "OK",
+               "color" : "#4b9768"
+            },
+            {
+               "color" : "#2f96b4",
+               "name" : "INFO"
+            },
+            {
+               "color" : "#f89406",
+               "name" : "WARNING"
+            },
+            {
+               "color" : "#ca2146",
+               "name" : "CRITICAL"
+            },
+            {
+               "name" : "UNKNOWN",
+               "color" : "#eb582a"
+            }
+         ]
+      }
+   },
+   "statistic" : [
+      {
+         "description" : "Number of services in status OK.",
+         "datatype" : "bigint",
+         "units" : "null",
+         "statkey" : "OK"
+      },
+      {
+         "statkey" : "INFO",
+         "description" : "Number of services in status INFO.",
+         "datatype" : "bigint",
+         "units" : "null"
+      },
+      {
+         "description" : "Number of services in status WARNING.",
+         "units" : "null",
+         "datatype" : "bigint",
+         "statkey" : "WARNING"
+      },
+      {
+         "description" : "Number of services in status CRITICAL.",
+         "units" : "null",
+         "datatype" : "bigint",
+         "statkey" : "CRITICAL"
+      },
+      {
+         "description" : "Number of services in status UNKNOWN.",
+         "units" : "null",
+         "datatype" : "bigint",
+         "statkey" : "UNKNOWN"
+      }
+   ],
    "plugin" : {
-      "abstract" : "Check cluster service",
       "command" : "check-cluster",
-      "plugin" : "Cluster.ServiceCheck",
-      "category" : "Cluster,System,Utilities",
+      "netaccess" : "yes",
+      "id" : "2",
       "description" : "Check the status of multiple services.",
+      "prefer" : "remote",
+      "datatype" : "none",
+      "category" : "Cluster,System,Utilities",
+      "abstract" : "Check cluster service",
+      "plugin" : "Cluster.ServiceCheck",
       "info" : {
-         "flags" : "",
          "options" : [
             {
+               "mandatory" : 1,
+               "default" : null,
+               "value_type" : "number",
+               "name" : "Warning threshold",
+               "value_desc" : "number",
                "description" : "The maximum number of services that are allowed in status WARNING.",
                "multiple" : 0,
-               "option" : "warning",
+               "option" : "warning"
+            },
+            {
+               "name" : "Critical threshold",
                "value_desc" : "number",
-               "default" : null,
-               "name" : "Warning threshold",
+               "description" : "The maximum number of services that are allowed in status CRITICAL.",
+               "multiple" : 0,
+               "option" : "critical",
                "mandatory" : 1,
+               "default" : null,
                "value_type" : "number"
             },
             {
-               "option" : "critical",
-               "multiple" : 0,
-               "description" : "The maximum number of services that are allowed in status CRITICAL.",
-               "value_type" : "number",
-               "default" : null,
-               "name" : "Critical threshold",
-               "mandatory" : 1,
-               "value_desc" : "number"
-            },
-            {
-               "value_type" : "string",
-               "value_desc" : "id:status",
-               "default" : null,
-               "name" : "Service",
-               "mandatory" : 1,
                "multiple" : 1,
+               "description" : "The service id you want to check.",
+               "value_desc" : "id:status",
+               "name" : "Service",
                "option" : "service",
-               "description" : "The service id you want to check."
+               "mandatory" : 1,
+               "value_type" : "string",
+               "default" : null
             }
          ],
-         "plugin" : "check-cluster",
-         "version" : "0.2",
+         "flags" : "",
          "examples" : [
             {
                "description" : [
@@ -62,74 +127,9 @@
                   "26"
                ]
             }
-         ]
-      },
-      "prefer" : "remote",
-      "id" : "2",
-      "datatype" : "none",
-      "netaccess" : "yes"
-   },
-   "statistic" : [
-      {
-         "description" : "Number of services in status OK.",
-         "units" : "null",
-         "datatype" : "bigint",
-         "statkey" : "OK"
-      },
-      {
-         "datatype" : "bigint",
-         "statkey" : "INFO",
-         "description" : "Number of services in status INFO.",
-         "units" : "null"
-      },
-      {
-         "statkey" : "WARNING",
-         "datatype" : "bigint",
-         "description" : "Number of services in status WARNING.",
-         "units" : "null"
-      },
-      {
-         "datatype" : "bigint",
-         "statkey" : "CRITICAL",
-         "description" : "Number of services in status CRITICAL.",
-         "units" : "null"
-      },
-      {
-         "units" : "null",
-         "description" : "Number of services in status UNKNOWN.",
-         "statkey" : "UNKNOWN",
-         "datatype" : "bigint"
+         ],
+         "version" : "0.2",
+         "plugin" : "check-cluster"
       }
-   ],
-   "chart" : {
-      "options" : {
-         "ylabel" : "count status",
-         "units" : "null",
-         "chart-type" : "area",
-         "series" : [
-            {
-               "name" : "OK",
-               "color" : "#4b9768"
-            },
-            {
-               "name" : "INFO",
-               "color" : "#2f96b4"
-            },
-            {
-               "name" : "WARNING",
-               "color" : "#f89406"
-            },
-            {
-               "name" : "CRITICAL",
-               "color" : "#ca2146"
-            },
-            {
-               "color" : "#eb582a",
-               "name" : "UNKNOWN"
-            }
-         ]
-      },
-      "id" : "1",
-      "title" : "Cluster status"
    }
 }
