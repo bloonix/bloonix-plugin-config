@@ -1,45 +1,49 @@
 {
    "plugin" : {
+      "datatype" : "none",
+      "plugin" : "Linux.NFS3.Check",
+      "description" : "This plugin can check the nfs3 server or nfs3 client.",
+      "id" : "30",
+      "abstract" : "NFS3 check",
+      "category" : "System,Filesystem,Linux",
       "info" : {
-         "version" : "0.4",
-         "plugin" : "check-nfs3",
          "flags" : "",
          "options" : [
             {
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "mandatory" : 0,
                "option" : "warning",
                "name" : "Warning threshold",
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value",
-               "default" : null,
-               "value_type" : "string"
-            },
-            {
-               "name" : "Critical threshold",
-               "option" : "critical",
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value",
                "value_type" : "string",
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
                "default" : null,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "mandatory" : 0
             },
             {
-               "default" : null,
-               "value_type" : 0,
                "mandatory" : 0,
+               "default" : null,
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "option" : "critical",
+               "name" : "Critical threshold",
+               "value_type" : "string"
+            },
+            {
+               "multiple" : 0,
                "description" : "By default the server is checked. Enable this option if you want to check the client instead the server.",
-               "name" : "Check the client instead the server",
+               "mandatory" : 0,
+               "default" : null,
                "option" : "client",
-               "multiple" : 0
+               "name" : "Check the client instead the server",
+               "value_type" : 0
             }
          ],
          "thresholds" : {
             "options" : [
                {
-                  "key" : "getattr",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "getattr"
                },
                {
                   "unit" : "none",
@@ -50,16 +54,16 @@
                   "unit" : "none"
                },
                {
-                  "key" : "access",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "access"
                },
                {
-                  "key" : "readlink",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "readlink"
                },
                {
-                  "key" : "read",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "read"
                },
                {
                   "unit" : "none",
@@ -70,52 +74,52 @@
                   "key" : "create"
                },
                {
-                  "key" : "mkdir",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "mkdir"
                },
                {
-                  "key" : "symlink",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "symlink"
                },
                {
-                  "key" : "mknod",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "mknod"
                },
                {
                   "unit" : "none",
                   "key" : "remove"
                },
                {
+                  "key" : "rmdir",
+                  "unit" : "none"
+               },
+               {
                   "unit" : "none",
-                  "key" : "rmdir"
+                  "key" : "rename"
                },
                {
-                  "key" : "rename",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "link",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "link"
                },
                {
                   "key" : "readdir",
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "readdirplus"
-               },
-               {
-                  "key" : "fsstat",
+                  "key" : "readdirplus",
                   "unit" : "none"
                },
                {
                   "unit" : "none",
-                  "key" : "fsinfo"
+                  "key" : "fsstat"
                },
                {
-                  "unit" : "none",
-                  "key" : "pathconf"
+                  "key" : "fsinfo",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "pathconf",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
@@ -136,14 +140,10 @@
                "    eq = equal\n",
                "    ne = not equal\n"
             ]
-         }
+         },
+         "plugin" : "check-nfs3",
+         "version" : "0.4"
       },
-      "command" : "check-nfs3",
-      "abstract" : "NFS3 check",
-      "description" : "This plugin can check the nfs3 server or nfs3 client.",
-      "plugin" : "Linux.NFS3.Check",
-      "datatype" : "none",
-      "id" : "30",
-      "category" : "System,Filesystem,Linux"
+      "command" : "check-nfs3"
    }
 }

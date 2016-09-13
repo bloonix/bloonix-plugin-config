@@ -1,90 +1,90 @@
 {
-   "chart" : {
-      "options" : {
-         "units" : "null",
-         "series" : {
-            "color" : "#005467",
-            "name" : "time"
-         },
-         "ylabel" : "time in ms",
-         "chart-type" : "area"
-      },
-      "title" : "Bloonix satellite response time",
-      "id" : "1"
+   "statistic" : {
+      "datatype" : "float",
+      "stattype" : "gauge",
+      "description" : "The response time.",
+      "alias" : "Response time",
+      "statkey" : "time"
    },
    "plugin" : {
-      "command" : "check-bloonix-satellite",
       "description" : "Check a satellite server.",
+      "plugin" : "Bloonix.Satellite.Check",
+      "command" : "check-bloonix-satellite",
       "abstract" : "Bloonix satellite check",
+      "id" : "60",
+      "category" : "Network,Satellite,Bloonix",
       "netaccess" : "yes",
+      "prefer" : "remote",
+      "datatype" : "statistic",
       "info" : {
-         "version" : "0.1",
+         "flags" : "",
+         "plugin" : "check-bloonix-satellite",
          "options" : [
             {
-               "name" : "Hostname or IP address",
-               "mandatory" : 1,
-               "default" : null,
-               "value_desc" : "hostname or ip address",
-               "multiple" : 0,
-               "description" : "A hostname or IP address to connect to.",
                "value_type" : "string",
-               "option" : "host"
+               "value_desc" : "hostname or ip address",
+               "option" : "host",
+               "mandatory" : 1,
+               "name" : "Hostname or IP address",
+               "description" : "A hostname or IP address to connect to.",
+               "default" : null,
+               "multiple" : 0
             },
             {
-               "value_type" : "int",
                "option" : "port",
-               "description" : "A port number to connect to.",
+               "value_type" : "int",
+               "value_desc" : "port",
                "mandatory" : 0,
                "name" : "Port number",
                "multiple" : 0,
                "default" : 5464,
-               "value_desc" : "port"
+               "description" : "A port number to connect to."
             },
             {
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
+               "mandatory" : 0,
                "value_type" : "number",
+               "value_desc" : "seconds",
                "option" : "warning",
                "default" : 10,
-               "value_desc" : "seconds",
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "multiple" : 0,
-               "name" : "Warning threshold",
+               "name" : "Warning threshold"
+            },
+            {
+               "name" : "Critical threshold",
+               "multiple" : 0,
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "default" : 15,
+               "option" : "critical",
+               "value_desc" : "seconds",
+               "value_type" : "number",
                "mandatory" : 0
             },
             {
-               "value_desc" : "seconds",
-               "default" : 15,
-               "multiple" : 0,
-               "name" : "Critical threshold",
-               "mandatory" : 0,
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
-               "value_type" : "number",
-               "option" : "critical"
-            },
-            {
                "default" : null,
-               "value_desc" : "authkey",
+               "description" : "This is the authentication key.",
                "multiple" : 0,
                "name" : "Authkey",
                "mandatory" : 1,
-               "description" : "This is the authentication key.",
-               "option" : "authkey",
-               "value_type" : "string"
+               "value_type" : "string",
+               "value_desc" : "authkey",
+               "option" : "authkey"
             }
          ],
-         "plugin" : "check-bloonix-satellite",
-         "flags" : ""
-      },
-      "id" : "60",
-      "plugin" : "Bloonix.Satellite.Check",
-      "datatype" : "statistic",
-      "category" : "Network,Satellite,Bloonix",
-      "prefer" : "remote"
+         "version" : "0.1"
+      }
    },
-   "statistic" : {
-      "alias" : "Response time",
-      "statkey" : "time",
-      "datatype" : "float",
-      "description" : "The response time.",
-      "stattype" : "gauge"
+   "chart" : {
+      "options" : {
+         "series" : {
+            "color" : "#005467",
+            "name" : "time"
+         },
+         "units" : "null",
+         "ylabel" : "time in ms",
+         "chart-type" : "area"
+      },
+      "id" : "1",
+      "title" : "Bloonix satellite response time"
    }
 }

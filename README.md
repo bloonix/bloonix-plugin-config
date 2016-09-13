@@ -13,6 +13,8 @@ Ordered by id (desc)
       id   |             plugin              |          command          
     -------+---------------------------------+---------------------------
        200 | Bloonix.Server.Check            | check-bloonix-server
+        74 | Linux.Gluster.Status            | check-gluster-status
+        73 | Linux.Mount.Check               | check-findmnt
         72 | HTTP.Perf.Check                 | check-http-perf
         71 | NTP.Time.Check                  | check-ntp-time
         70 | RBL.Check                       | check-rbl

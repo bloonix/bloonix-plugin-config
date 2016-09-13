@@ -1,32 +1,8 @@
 {
    "plugin" : {
-      "datatype" : "statistic",
+      "category" : "System,Linux",
       "description" : "Linux file statistics.",
       "info" : {
-         "version" : "0.5",
-         "options" : [
-            {
-               "description" : "This is the warning threshold for real free file hanlders in percent. If less than this value in percent are free a warning status is triggered.",
-               "mandatory" : 0,
-               "default" : 10,
-               "multiple" : 0,
-               "option" : "warning",
-               "name" : "Warning threshold",
-               "value_desc" : "percent",
-               "value_type" : "number"
-            },
-            {
-               "option" : "critical",
-               "name" : "Critical threshold",
-               "value_desc" : "percent",
-               "value_type" : "number",
-               "multiple" : 0,
-               "description" : "This is the critical threshold for real free file hanlders in percent. If less than this value in percent are free a critical status is triggered.",
-               "mandatory" : 0,
-               "default" : 5
-            }
-         ],
-         "plugin" : "check-open-files",
          "flags" : "",
          "examples" : [
             {
@@ -41,51 +17,44 @@
                ],
                "command_line" : "check-open-files --warning '5' --critical '3'"
             }
-         ]
-      },
-      "abstract" : "Open files check",
-      "id" : "33",
-      "category" : "System,Linux",
-      "command" : "check-open-files",
-      "plugin" : "Linux.OpenFiles.Check"
-   },
-   "chart" : {
-      "title" : "Linux - filestats",
-      "options" : {
-         "units" : "default",
-         "chart-type" : "area",
-         "ylabel" : "count",
-         "series" : [
+         ],
+         "version" : "0.5",
+         "plugin" : "check-open-files",
+         "options" : [
             {
-               "color" : "#005467",
-               "name" : "fh_alloc"
+               "value_type" : "number",
+               "description" : "This is the warning threshold for real free file hanlders in percent. If less than this value in percent are free a warning status is triggered.",
+               "name" : "Warning threshold",
+               "multiple" : 0,
+               "value_desc" : "percent",
+               "default" : 10,
+               "option" : "warning",
+               "mandatory" : 0
             },
             {
-               "color" : "#e9644a",
-               "name" : "nr_inodes"
-            },
-            {
-               "color" : "#2ba743",
-               "name" : "nr_free_inodes"
-            },
-            {
-               "color" : "#9a72ad",
-               "name" : "nr_dentry"
-            },
-            {
-               "name" : "nr_unused",
-               "color" : "#ffb244"
+               "multiple" : 0,
+               "name" : "Critical threshold",
+               "value_desc" : "percent",
+               "default" : 5,
+               "value_type" : "number",
+               "description" : "This is the critical threshold for real free file hanlders in percent. If less than this value in percent are free a critical status is triggered.",
+               "mandatory" : 0,
+               "option" : "critical"
             }
          ]
       },
-      "id" : "1"
+      "id" : "33",
+      "abstract" : "Open files check",
+      "plugin" : "Linux.OpenFiles.Check",
+      "command" : "check-open-files",
+      "datatype" : "statistic"
    },
    "statistic" : [
       {
-         "alias" : "FHs allocated",
-         "description" : "Number of allocated file handles.",
          "statkey" : "fh_alloc",
-         "datatype" : "bigint"
+         "alias" : "FHs allocated",
+         "datatype" : "bigint",
+         "description" : "Number of allocated file handles."
       },
       {
          "alias" : "FHs maximum",
@@ -94,34 +63,65 @@
          "datatype" : "bigint"
       },
       {
-         "datatype" : "bigint",
          "description" : "Number of free file handles.",
-         "statkey" : "fh_free",
-         "alias" : "FHs free"
+         "datatype" : "bigint",
+         "alias" : "FHs free",
+         "statkey" : "fh_free"
       },
       {
-         "alias" : "Inodes free",
-         "statkey" : "nr_free_inodes",
+         "datatype" : "bigint",
          "description" : "Number of free inodes.",
-         "datatype" : "bigint"
+         "statkey" : "nr_free_inodes",
+         "alias" : "Inodes free"
       },
       {
-         "alias" : "Inodes allocated",
          "statkey" : "nr_inodes",
-         "description" : "Number of allocated inodes.",
-         "datatype" : "bigint"
+         "alias" : "Inodes allocated",
+         "datatype" : "bigint",
+         "description" : "Number of allocated inodes."
       },
       {
          "statkey" : "nr_dentry",
-         "description" : "Number of allocated dentries (directory cache entries).",
          "alias" : "Dentries allocated",
-         "datatype" : "bigint"
+         "datatype" : "bigint",
+         "description" : "Number of allocated dentries (directory cache entries)."
       },
       {
-         "datatype" : "bigint",
-         "description" : "Number of unused dentries (directory cache).",
+         "alias" : "Dentries unused",
          "statkey" : "nr_unused",
-         "alias" : "Dentries unused"
+         "description" : "Number of unused dentries (directory cache).",
+         "datatype" : "bigint"
       }
-   ]
+   ],
+   "chart" : {
+      "title" : "Linux - filestats",
+      "id" : "1",
+      "options" : {
+         "series" : [
+            {
+               "color" : "#005467",
+               "name" : "fh_alloc"
+            },
+            {
+               "name" : "nr_inodes",
+               "color" : "#e9644a"
+            },
+            {
+               "name" : "nr_free_inodes",
+               "color" : "#2ba743"
+            },
+            {
+               "name" : "nr_dentry",
+               "color" : "#9a72ad"
+            },
+            {
+               "name" : "nr_unused",
+               "color" : "#ffb244"
+            }
+         ],
+         "ylabel" : "count",
+         "units" : "default",
+         "chart-type" : "area"
+      }
+   }
 }

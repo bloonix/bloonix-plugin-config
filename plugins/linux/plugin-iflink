@@ -1,42 +1,42 @@
 {
    "plugin" : {
-      "datatype" : "none",
-      "abstract" : "Interface link check",
-      "description" : "Check the link of an interface.",
-      "category" : "System,Network,Linux",
       "id" : "20",
-      "command" : "check-iflink",
       "plugin" : "Linux.Interface.Check",
+      "datatype" : "none",
       "info" : {
+         "flags" : "",
+         "options" : [
+            {
+               "value_type" : "string",
+               "mandatory" : 0,
+               "name" : "Network interface",
+               "multiple" : 1,
+               "option" : "interface",
+               "description" : "This is the network interface you want to check. As example eth0 or eth1.",
+               "default" : null,
+               "value_desc" : "interface"
+            }
+         ],
+         "plugin" : "check-iflink",
          "version" : "0.3",
          "examples" : [
             {
-               "command_line" : "check-iflink --interface 'eth0' --interface 'eth1'",
-               "description" : [
-                  "A simple example"
-               ],
                "arguments" : [
                   "interface",
                   "eth0",
                   "interface",
                   "eth1"
+               ],
+               "command_line" : "check-iflink --interface 'eth0' --interface 'eth1'",
+               "description" : [
+                  "A simple example"
                ]
             }
-         ],
-         "plugin" : "check-iflink",
-         "flags" : "",
-         "options" : [
-            {
-               "multiple" : 1,
-               "name" : "Network interface",
-               "description" : "This is the network interface you want to check. As example eth0 or eth1.",
-               "option" : "interface",
-               "value_desc" : "interface",
-               "mandatory" : 0,
-               "default" : null,
-               "value_type" : "string"
-            }
          ]
-      }
+      },
+      "abstract" : "Interface link check",
+      "description" : "Check the link of an interface.",
+      "command" : "check-iflink",
+      "category" : "System,Network,Linux"
    }
 }

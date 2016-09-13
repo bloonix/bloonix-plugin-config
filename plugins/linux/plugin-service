@@ -1,28 +1,31 @@
 {
    "plugin" : {
-      "datatype" : "none",
+      "id" : "38",
       "abstract" : "Service check",
+      "plugin" : "Linux.Service.Check",
+      "datatype" : "none",
       "category" : "System",
       "description" : "Check the status of a service.",
       "info" : {
          "options" : [
             {
                "mandatory" : 1,
-               "default" : null,
                "value_type" : "string",
+               "multiple" : 0,
                "name" : "Service name",
+               "option" : "service",
                "description" : "This is the service name you want to check.",
                "value_desc" : "service",
-               "option" : "service",
-               "multiple" : 0
+               "default" : null
             }
          ],
          "version" : "0.5",
-         "flags" : "sudo",
          "plugin" : "check-service",
+         "info" : [
+            "This plugin tries to determine automatically the method to check the status of a service. At first the plugin searchs for 'systemctl', then for 'service' and then the plugin checks if /etc/init.d/service-name exists."
+         ],
          "examples" : [
             {
-               "command_line" : "check-service --service 'httpd'",
                "description" : [
                   "An example to check service httpd:",
                   "",
@@ -32,15 +35,12 @@
                "arguments" : [
                   "service",
                   "httpd"
-               ]
+               ],
+               "command_line" : "check-service --service 'httpd'"
             }
          ],
-         "info" : [
-            "This plugin tries to determine automatically the method to check the status of a service. At first the plugin searchs for 'systemctl', then for 'service' and then the plugin checks if /etc/init.d/service-name exists."
-         ]
+         "flags" : "sudo"
       },
-      "plugin" : "Linux.Service.Check",
-      "command" : "check-service",
-      "id" : "38"
+      "command" : "check-service"
    }
 }

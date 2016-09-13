@@ -1,14 +1,8 @@
 {
    "plugin" : {
-      "abstract" : "DNS check",
-      "datatype" : "statistic",
-      "plugin" : "DNS.Check",
-      "category" : "Network,DNS",
-      "worldwide" : "yes",
-      "id" : "4",
       "command" : "check-dns",
-      "prefer" : "remote",
       "info" : {
+         "plugin" : "check-dns",
          "examples" : [
             {
                "arguments" : [
@@ -21,109 +15,115 @@
                   "type",
                   "A"
                ],
+               "command_line" : "check-dns --nameserver 'dns.example.test' --hostname 'bloonix.de' --ipaddr '192.168.10.11' --type 'A'",
                "description" : [
                   "In the following example a DNS request is send to the nameserver dns.example.test for the domain bloonix.de and the record type A. In the response of the DNS server the IP address 192.168.10.11 is expected. A CRITICAL status is triggered if the IP address is not present in the response."
-               ],
-               "command_line" : "check-dns --nameserver 'dns.example.test' --hostname 'bloonix.de' --ipaddr '192.168.10.11' --type 'A'"
+               ]
             }
          ],
-         "plugin" : "check-dns",
-         "flags" : "",
          "options" : [
             {
-               "default" : null,
-               "value_type" : "string",
-               "value_desc" : "ip,ip,ip",
                "description" : "This is the IP address of the DNS server to request.",
-               "mandatory" : 1,
                "multiple" : 0,
+               "value_desc" : "ip,ip,ip",
+               "option" : "nameserver",
+               "mandatory" : 1,
+               "value_type" : "string",
                "name" : "The nameserver to connect",
-               "option" : "nameserver"
+               "default" : null
             },
             {
-               "mandatory" : 1,
-               "name" : "The hostname to query",
+               "description" : "This is the hostname or address to query.",
+               "value_desc" : "hostname",
                "multiple" : 0,
                "option" : "hostname",
-               "default" : null,
+               "mandatory" : 1,
                "value_type" : "string",
-               "value_desc" : "hostname",
-               "description" : "This is the hostname or address to query."
+               "name" : "The hostname to query",
+               "default" : null
             },
             {
+               "default" : "A",
+               "name" : "The record type to query",
+               "value_type" : "string",
                "mandatory" : 0,
                "option" : "type",
-               "name" : "The record type to query",
                "multiple" : 0,
-               "value_type" : "string",
-               "default" : "A",
-               "description" : "This is the record type that is expected in combination with the IP address. It's possible to search for type A or AAAA.",
-               "value_desc" : "type"
+               "value_desc" : "type",
+               "description" : "This is the record type that is expected in combination with the IP address. It's possible to search for type A or AAAA."
             },
             {
+               "name" : "The IP address to expect",
                "default" : null,
                "value_type" : "string",
+               "multiple" : 0,
                "value_desc" : "address",
-               "description" : "Enter a IP address that is expected in combination with the record type.",
+               "option" : "ipaddr",
                "mandatory" : 1,
-               "name" : "The IP address to expect",
-               "multiple" : 0,
-               "option" : "ipaddr"
+               "description" : "Enter a IP address that is expected in combination with the record type."
             },
             {
-               "mandatory" : 0,
-               "option" : "warning",
-               "name" : "Warning threshold",
-               "multiple" : 0,
-               "value_type" : "number",
                "default" : 3,
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
-               "value_desc" : "seconds"
-            },
-            {
-               "mandatory" : 0,
-               "multiple" : 0,
-               "name" : "Critical threshold",
-               "option" : "critical",
-               "default" : 5,
+               "name" : "Warning threshold",
                "value_type" : "number",
                "value_desc" : "seconds",
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered."
+               "multiple" : 0,
+               "mandatory" : 0,
+               "option" : "warning",
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered."
             },
             {
-               "value_type" : "number",
+               "multiple" : 0,
+               "value_desc" : "seconds",
+               "mandatory" : 0,
+               "option" : "critical",
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "default" : 5,
+               "name" : "Critical threshold",
+               "value_type" : "number"
+            },
+            {
                "default" : 10,
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "name" : "Timeout",
+               "value_type" : "number",
+               "multiple" : 0,
                "value_desc" : "seconds",
                "mandatory" : 0,
                "option" : "timeout",
-               "multiple" : 0,
-               "name" : "Timeout"
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered."
             }
          ],
-         "version" : "0.4"
+         "version" : "0.4",
+         "flags" : ""
       },
       "netaccess" : "yes",
-      "description" : "Check DNS records."
+      "worldwide" : "yes",
+      "id" : "4",
+      "abstract" : "DNS check",
+      "description" : "Check DNS records.",
+      "prefer" : "remote",
+      "category" : "Network,DNS",
+      "plugin" : "DNS.Check",
+      "datatype" : "statistic"
    },
    "statistic" : {
-      "description" : "Time in milliseconds waiting for response.",
+      "datatype" : "float",
+      "alias" : "Response time",
       "statkey" : "time",
       "units" : "ms",
-      "alias" : "Response time",
-      "datatype" : "float"
+      "description" : "Time in milliseconds waiting for response."
    },
    "chart" : {
-      "title" : "DNS request - response time",
-      "id" : "1",
       "options" : {
+         "units" : "null",
          "ylabel" : "time in ms",
-         "chart-type" : "area",
          "series" : {
             "name" : "time",
             "color" : "#005467"
          },
-         "units" : "null"
-      }
+         "chart-type" : "area"
+      },
+      "id" : "1",
+      "title" : "DNS request - response time"
    }
 }

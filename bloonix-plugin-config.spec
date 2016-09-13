@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.37
+Version: 0.38
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,9 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Tue Sep 13 2016 Jonny Schulz <js@bloonix.de> - 0.38-1
+- Added plugin: check-findmnt
+- Added plugin: check-gluster-status
 * Fri Sep 09 2016 Jonny Schulz <js@bloonix.de> - 0.37-1
 - Added support for NTLM in check-smtp.
 * Fri Aug 12 2016 Jonny Schulz <js@bloonix.de> - 0.36-1

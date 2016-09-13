@@ -1,162 +1,11 @@
 {
-   "chart" : [
-      {
-         "title" : "Linux - count processes",
-         "id" : "1",
-         "options" : {
-            "series" : {
-               "name" : "count",
-               "color" : "#005467"
-            },
-            "ylabel" : "count",
-            "units" : "null",
-            "chart-type" : "area"
-         }
-      },
-      {
-         "options" : {
-            "chart-type" : "area",
-            "series" : {
-               "color" : "#005467",
-               "name" : "new"
-            },
-            "units" : "null",
-            "ylabel" : "new/s"
-         },
-         "title" : "Linux - new processes",
-         "id" : "2"
-      },
-      {
-         "id" : "3",
-         "title" : "Linux - procstats",
-         "options" : {
-            "chart-type" : "area",
-            "series" : [
-               {
-                  "name" : "running",
-                  "color" : "#ffbc00"
-               },
-               {
-                  "name" : "runqueue",
-                  "color" : "#ff7c00"
-               },
-               {
-                  "color" : "#ff5c00",
-                  "name" : "blocked"
-               }
-            ],
-            "units" : "null",
-            "ylabel" : "count"
-         }
-      }
-   ],
-   "statistic" : [
-      {
-         "datatype" : "bigint",
-         "statkey" : "count",
-         "alias" : "Count",
-         "description" : "The number of kernel scheduling entities that currently exist on the system (processes, threads)."
-      },
-      {
-         "datatype" : "bigint",
-         "statkey" : "runqueue",
-         "alias" : "Run queue",
-         "description" : "The number of currently executing kernel scheduling entities (processes, threads)."
-      },
-      {
-         "datatype" : "float",
-         "description" : "Number of new processes that were produced per second.",
-         "statkey" : "new",
-         "alias" : "New"
-      },
-      {
-         "datatype" : "bigint",
-         "alias" : "Blocked",
-         "statkey" : "blocked",
-         "description" : "Number of processes blocked waiting for I/O to complete."
-      },
-      {
-         "datatype" : "bigint",
-         "description" : "Number of processes in runnable state.",
-         "alias" : "Running",
-         "statkey" : "running"
-      }
-   ],
    "plugin" : {
-      "command" : "check-procstat",
-      "description" : "Linux process statistics",
       "category" : "System,Linux",
-      "datatype" : "statistic",
+      "command" : "check-procstat",
       "id" : "36",
-      "abstract" : "Process statistics",
-      "plugin" : "Linux.Processes.Check",
       "info" : {
-         "flags" : "",
-         "thresholds" : {
-            "info" : [
-               "How to set warning and critical thresholds:\n\n",
-               "  It's possible to set thresholds for one or more statistic keys.\n",
-               "  The format to add a threshold for a statistic key is:\n\n",
-               "    key:operator:threshold\n\n",
-               "  If no operator is set then the default operator is 'ge'.\n\n",
-               "  The following operators are available:\n\n",
-               "    lt = less than\n",
-               "    le = less than or equal\n",
-               "    gt = greater than\n",
-               "    ge = greater than or equal\n",
-               "    eq = equal\n",
-               "    ne = not equal\n"
-            ],
-            "options" : [
-               {
-                  "unit" : "none",
-                  "key" : "new"
-               },
-               {
-                  "key" : "runqueue",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "count"
-               },
-               {
-                  "key" : "blocked",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "running",
-                  "unit" : "none"
-               }
-            ]
-         },
-         "plugin" : "check-procstat",
-         "options" : [
-            {
-               "default" : null,
-               "name" : "Warning threshold",
-               "value_type" : "string",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "option" : "warning",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_desc" : "key:value or key:op:value"
-            },
-            {
-               "value_desc" : "key:value or key:op:value",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "name" : "Critical threshold",
-               "default" : null,
-               "value_type" : "string",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "option" : "critical"
-            }
-         ],
-         "version" : "0.8",
          "examples" : [
             {
-               "command_line" : "check-procstat --warning 'runqueue:20' --critical 'runqueue:40' --warning 'new:100' --critical 'new:200'",
                "description" : [
                   "A simple example",
                   "",
@@ -174,9 +23,160 @@
                   "new:100",
                   "critical",
                   "new:200"
-               ]
+               ],
+               "command_line" : "check-procstat --warning 'runqueue:20' --critical 'runqueue:40' --warning 'new:100' --critical 'new:200'"
             }
-         ]
+         ],
+         "plugin" : "check-procstat",
+         "thresholds" : {
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "new"
+               },
+               {
+                  "key" : "runqueue",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "count",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "blocked",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "running",
+                  "unit" : "none"
+               }
+            ],
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
+            ]
+         },
+         "flags" : "",
+         "options" : [
+            {
+               "value_type" : "string",
+               "default" : null,
+               "name" : "Warning threshold",
+               "mandatory" : 0,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "option" : "warning",
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1
+            },
+            {
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1,
+               "option" : "critical",
+               "mandatory" : 0,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "name" : "Critical threshold",
+               "value_type" : "string",
+               "default" : null
+            }
+         ],
+         "version" : "0.8"
+      },
+      "description" : "Linux process statistics",
+      "plugin" : "Linux.Processes.Check",
+      "datatype" : "statistic",
+      "abstract" : "Process statistics"
+   },
+   "statistic" : [
+      {
+         "description" : "The number of kernel scheduling entities that currently exist on the system (processes, threads).",
+         "statkey" : "count",
+         "datatype" : "bigint",
+         "alias" : "Count"
+      },
+      {
+         "description" : "The number of currently executing kernel scheduling entities (processes, threads).",
+         "statkey" : "runqueue",
+         "datatype" : "bigint",
+         "alias" : "Run queue"
+      },
+      {
+         "description" : "Number of new processes that were produced per second.",
+         "statkey" : "new",
+         "datatype" : "float",
+         "alias" : "New"
+      },
+      {
+         "alias" : "Blocked",
+         "datatype" : "bigint",
+         "statkey" : "blocked",
+         "description" : "Number of processes blocked waiting for I/O to complete."
+      },
+      {
+         "description" : "Number of processes in runnable state.",
+         "statkey" : "running",
+         "datatype" : "bigint",
+         "alias" : "Running"
       }
-   }
+   ],
+   "chart" : [
+      {
+         "options" : {
+            "chart-type" : "area",
+            "series" : {
+               "name" : "count",
+               "color" : "#005467"
+            },
+            "ylabel" : "count",
+            "units" : "null"
+         },
+         "title" : "Linux - count processes",
+         "id" : "1"
+      },
+      {
+         "title" : "Linux - new processes",
+         "id" : "2",
+         "options" : {
+            "series" : {
+               "name" : "new",
+               "color" : "#005467"
+            },
+            "chart-type" : "area",
+            "units" : "null",
+            "ylabel" : "new/s"
+         }
+      },
+      {
+         "options" : {
+            "chart-type" : "area",
+            "series" : [
+               {
+                  "color" : "#ffbc00",
+                  "name" : "running"
+               },
+               {
+                  "name" : "runqueue",
+                  "color" : "#ff7c00"
+               },
+               {
+                  "name" : "blocked",
+                  "color" : "#ff5c00"
+               }
+            ],
+            "ylabel" : "count",
+            "units" : "null"
+         },
+         "id" : "3",
+         "title" : "Linux - procstats"
+      }
+   ]
 }

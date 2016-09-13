@@ -1,3 +1,8 @@
+bloonix-plugin-config (0.38) released at 2016-09-13
+
+    * Added plugin: check-findmnt
+    * Added plugin: check-gluster-status
+
 bloonix-plugin-config (0.37) released at 2016-09-09
 
     * Added support for NTLM in check-smtp.

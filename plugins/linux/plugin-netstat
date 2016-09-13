@@ -1,46 +1,79 @@
 {
    "plugin" : {
+      "abstract" : "Netstat check",
+      "plugin" : "Linux.Netstat.Check",
+      "command" : "check-netstat",
+      "description" : "Linux netstat statistics",
+      "category" : "System,Network,Linux",
       "info" : {
-         "plugin" : "check-netstat",
+         "version" : "0.8",
          "options" : [
             {
+               "name" : "Warning threshold",
                "value_desc" : "key:value or key:op:value",
-               "value_type" : "string",
-               "multiple" : 1,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
                "mandatory" : 0,
-               "option" : "warning",
+               "multiple" : 1,
                "default" : null,
-               "name" : "Warning threshold"
+               "value_type" : "string",
+               "option" : "warning",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information."
             },
             {
-               "mandatory" : 0,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "name" : "Critical threshold",
-               "default" : null,
-               "option" : "critical",
                "value_desc" : "key:value or key:op:value",
+               "name" : "Critical threshold",
+               "mandatory" : 0,
+               "default" : null,
+               "value_type" : "string",
                "multiple" : 1,
-               "value_type" : "string"
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "option" : "critical"
             }
          ],
-         "flags" : "",
-         "info" : [
-            "The command 'netstat' is used to check the network statistics."
+         "examples" : [
+            {
+               "arguments" : [
+                  "warning",
+                  "established:ge:500",
+                  "critical",
+                  "established:ge:750"
+               ],
+               "description" : [
+                  "An example to check the current established connections and trigger",
+                  "",
+                  "- a warning status if the number of established connections is higher than or equal 500",
+                  "- or a critical status if the number of established connections is higher than or equal 700"
+               ],
+               "command_line" : "check-netstat --warning 'established:ge:500' --critical 'established:ge:750'"
+            }
          ],
+         "plugin" : "check-netstat",
          "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
+            ],
             "options" : [
                {
-                  "key" : "recv_resets",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "recv_resets"
                },
                {
                   "key" : "sent_resets",
                   "unit" : "none"
                },
                {
-                  "key" : "recv_udp_pcks",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "recv_udp_pcks"
                },
                {
                   "unit" : "none",
@@ -51,36 +84,36 @@
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "passive"
+                  "key" : "passive",
+                  "unit" : "none"
                },
                {
                   "key" : "failed",
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "established"
-               },
-               {
-                  "key" : "syn_send",
+                  "key" : "established",
                   "unit" : "none"
                },
                {
                   "unit" : "none",
-                  "key" : "syn_recv"
+                  "key" : "syn_send"
                },
                {
-                  "key" : "fin_wait1",
+                  "key" : "syn_recv",
                   "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "fin_wait1"
                },
                {
                   "unit" : "none",
                   "key" : "fin_wait2"
                },
                {
-                  "unit" : "none",
-                  "key" : "time_wait"
+                  "key" : "time_wait",
+                  "unit" : "none"
                },
                {
                   "key" : "close",
@@ -99,58 +132,22 @@
                   "key" : "closing"
                },
                {
-                  "unit" : "none",
-                  "key" : "unknown"
+                  "key" : "unknown",
+                  "unit" : "none"
                }
-            ],
-            "info" : [
-               "How to set warning and critical thresholds:\n\n",
-               "  It's possible to set thresholds for one or more statistic keys.\n",
-               "  The format to add a threshold for a statistic key is:\n\n",
-               "    key:operator:threshold\n\n",
-               "  If no operator is set then the default operator is 'ge'.\n\n",
-               "  The following operators are available:\n\n",
-               "    lt = less than\n",
-               "    le = less than or equal\n",
-               "    gt = greater than\n",
-               "    ge = greater than or equal\n",
-               "    eq = equal\n",
-               "    ne = not equal\n"
             ]
          },
-         "examples" : [
-            {
-               "arguments" : [
-                  "warning",
-                  "established:ge:500",
-                  "critical",
-                  "established:ge:750"
-               ],
-               "description" : [
-                  "An example to check the current established connections and trigger",
-                  "",
-                  "- a warning status if the number of established connections is higher than or equal 500",
-                  "- or a critical status if the number of established connections is higher than or equal 700"
-               ],
-               "command_line" : "check-netstat --warning 'established:ge:500' --critical 'established:ge:750'"
-            }
-         ],
-         "version" : "0.8"
+         "flags" : "",
+         "info" : [
+            "The command 'netstat' is used to check the network statistics."
+         ]
       },
-      "command" : "check-netstat",
-      "category" : "System,Network,Linux",
-      "plugin" : "Linux.Netstat.Check",
-      "description" : "Linux netstat statistics",
-      "abstract" : "Netstat check",
       "id" : "28",
       "datatype" : "statistic"
    },
    "chart" : [
       {
-         "title" : "Linux netstat - connections/s",
-         "id" : "1",
          "options" : {
-            "chart-type" : "area",
             "series" : [
                {
                   "color" : "#ffb244",
@@ -161,82 +158,80 @@
                   "name" : "passive"
                },
                {
-                  "color" : "#e9644a",
-                  "name" : "failed"
+                  "name" : "failed",
+                  "color" : "#e9644a"
                }
             ],
-            "units" : "default",
-            "ylabel" : "connections/s"
-         }
+            "ylabel" : "connections/s",
+            "chart-type" : "area",
+            "units" : "default"
+         },
+         "title" : "Linux netstat - connections/s",
+         "id" : "1"
       },
       {
+         "id" : "2",
+         "title" : "Linux netstat - established connections/s",
          "options" : {
-            "units" : "default",
-            "ylabel" : "established",
-            "chart-type" : "area",
             "series" : {
                "name" : "established",
                "color" : "#005467"
-            }
-         },
-         "title" : "Linux netstat - established connections/s",
-         "id" : "2"
+            },
+            "ylabel" : "established",
+            "units" : "default",
+            "chart-type" : "area"
+         }
       },
       {
          "id" : "3",
          "title" : "Linux netstat - connection resets/s",
          "options" : {
             "chart-type" : "area",
+            "units" : "default",
+            "ylabel" : "recv/s (-) / sent/s (+)",
             "series" : [
                {
                   "name" : "sent_resets",
                   "color" : "#005467"
                },
                {
-                  "color" : "#ff7a0d",
                   "name" : "recv_resets",
-                  "opposite" : "true"
+                  "opposite" : "true",
+                  "color" : "#ff7a0d"
                }
-            ],
-            "units" : "default",
-            "ylabel" : "recv/s (-) / sent/s (+)"
+            ]
          }
       },
       {
-         "id" : "4",
-         "title" : "Linux netstat - udp packets/s",
          "options" : {
-            "chart-type" : "area",
+            "ylabel" : "recv/s (-) / sent/s (+)",
             "series" : [
                {
                   "name" : "sent_udp_pcks",
                   "color" : "#005467"
                },
                {
+                  "name" : "recv_udp_pcks",
                   "opposite" : "true",
-                  "color" : "#ff7a0d",
-                  "name" : "recv_udp_pcks"
+                  "color" : "#ff7a0d"
                }
             ],
             "units" : "default",
-            "ylabel" : "recv/s (-) / sent/s (+)"
-         }
+            "chart-type" : "area"
+         },
+         "id" : "4",
+         "title" : "Linux netstat - udp packets/s"
       },
       {
-         "title" : "Linux netstat - current connections",
-         "id" : "5",
          "options" : {
-            "units" : "null",
-            "ylabel" : "connections",
-            "chart-type" : "area",
             "series" : [
                {
-                  "color" : "#e9644a",
-                  "name" : "established"
+                  "name" : "established",
+                  "color" : "#e9644a"
                },
                {
-                  "name" : "syn_send",
-                  "color" : "#ffb244"
+                  "color" : "#ffb244",
+                  "name" : "syn_send"
                },
                {
                   "name" : "syn_recv",
@@ -255,47 +250,52 @@
                   "color" : "#7648eb"
                },
                {
-                  "color" : "#7f7fff",
-                  "name" : "close"
+                  "name" : "close",
+                  "color" : "#7f7fff"
                },
                {
                   "color" : "#1c6d16",
                   "name" : "close_wait"
                },
                {
-                  "name" : "last_ack",
-                  "color" : "#bf00bf"
+                  "color" : "#bf00bf",
+                  "name" : "last_ack"
                },
                {
-                  "color" : "#275487",
-                  "name" : "closing"
+                  "name" : "closing",
+                  "color" : "#275487"
                },
                {
                   "name" : "unknown",
                   "color" : "#666666"
                }
-            ]
-         }
+            ],
+            "ylabel" : "connections",
+            "units" : "null",
+            "chart-type" : "area"
+         },
+         "title" : "Linux netstat - current connections",
+         "id" : "5"
       }
    ],
    "statistic" : [
       {
-         "datatype" : "float",
-         "alias" : "Active",
          "statkey" : "active",
-         "description" : "Number of active connections per second."
+         "datatype" : "float",
+         "description" : "Number of active connections per second.",
+         "alias" : "Active"
       },
       {
-         "datatype" : "float",
          "alias" : "Passive",
          "description" : "Number of passive connections per second.",
-         "statkey" : "passive"
+         "statkey" : "passive",
+         "datatype" : "float"
       },
       {
-         "alias" : "Failed",
          "datatype" : "float",
+         "statkey" : "failed",
          "description" : "Number of failed connections per second.",
-         "statkey" : "failed"
+         "alias" : "Failed"
       },
       {
          "alias" : "Received resets",
@@ -304,21 +304,21 @@
          "description" : "Number of connection resets received per second."
       },
       {
-         "statkey" : "sent_resets",
+         "alias" : "Sent resets",
          "description" : "Number of connection resets sent per second.",
-         "datatype" : "float",
-         "alias" : "Sent resets"
-      },
-      {
-         "statkey" : "recv_udp_pcks",
-         "description" : "Number of udp packets received per second.",
-         "alias" : "Received UDP packets",
+         "statkey" : "sent_resets",
          "datatype" : "float"
       },
       {
-         "statkey" : "sent_udp_pcks",
-         "description" : "Number of udp packets sent per second.",
+         "description" : "Number of udp packets received per second.",
+         "datatype" : "float",
+         "statkey" : "recv_udp_pcks",
+         "alias" : "Received UDP packets"
+      },
+      {
          "alias" : "Sent UDP packets",
+         "description" : "Number of udp packets sent per second.",
+         "statkey" : "sent_udp_pcks",
          "datatype" : "float"
       },
       {
@@ -329,69 +329,69 @@
       },
       {
          "alias" : "Established",
-         "datatype" : "bigint",
+         "description" : "ESTABLISHED - The socket has an established connection.",
          "statkey" : "established",
-         "description" : "ESTABLISHED - The socket has an established connection."
-      },
-      {
-         "statkey" : "syn_send",
-         "description" : "SYN_SENT - The socket is actively attempting to establish a connection.",
-         "alias" : "SYN sent",
          "datatype" : "bigint"
       },
       {
-         "alias" : "SYN received",
+         "alias" : "SYN sent",
+         "description" : "SYN_SENT - The socket is actively attempting to establish a connection.",
          "datatype" : "bigint",
+         "statkey" : "syn_send"
+      },
+      {
+         "alias" : "SYN received",
          "statkey" : "syn_recv",
+         "datatype" : "bigint",
          "description" : "SYN_RECV - A connection request has been received from the network."
       },
       {
-         "datatype" : "bigint",
-         "alias" : "FIN wait1",
          "description" : "FIN_WAIT1 - The socket is closed, and the connection is shutting down.",
-         "statkey" : "fin_wait1"
+         "statkey" : "fin_wait1",
+         "datatype" : "bigint",
+         "alias" : "FIN wait1"
       },
       {
-         "alias" : "FIN wait2",
          "datatype" : "bigint",
          "statkey" : "fin_wait2",
-         "description" : "FIN_WAIT2 - Connection is closed, and the socket is waiting for a shutdown from the remote end."
+         "description" : "FIN_WAIT2 - Connection is closed, and the socket is waiting for a shutdown from the remote end.",
+         "alias" : "FIN wait2"
       },
       {
-         "datatype" : "bigint",
          "alias" : "Time wait",
          "statkey" : "time_wait",
+         "datatype" : "bigint",
          "description" : "TIME_WAIT - The socket is waiting after close to handle packets still in the network."
       },
       {
-         "datatype" : "bigint",
          "alias" : "Close",
          "description" : "CLOSE - The socket is not being used.",
-         "statkey" : "close"
+         "statkey" : "close",
+         "datatype" : "bigint"
       },
       {
          "description" : "CLOSE_WAIT - The remote end has shut down, waiting for the socket to close.",
          "statkey" : "close_wait",
-         "alias" : "Close wait",
-         "datatype" : "bigint"
-      },
-      {
-         "statkey" : "last_ack",
-         "description" : "LAST_ACK - The remote end has shut down, and the socket is closed. Waiting for acknowledgement.",
          "datatype" : "bigint",
-         "alias" : "Last ACK"
+         "alias" : "Close wait"
       },
       {
-         "description" : "CLOSING - Both sockets are shut down but we still don't have all our data sent.",
-         "statkey" : "closing",
+         "alias" : "Last ACK",
+         "datatype" : "bigint",
+         "statkey" : "last_ack",
+         "description" : "LAST_ACK - The remote end has shut down, and the socket is closed. Waiting for acknowledgement."
+      },
+      {
          "alias" : "Closing",
-         "datatype" : "bigint"
+         "statkey" : "closing",
+         "datatype" : "bigint",
+         "description" : "CLOSING - Both sockets are shut down but we still don't have all our data sent."
       },
       {
-         "description" : "UNKNOWN - The state of the socket is unknown.",
-         "statkey" : "unknown",
          "alias" : "Unknown",
-         "datatype" : "bigint"
+         "statkey" : "unknown",
+         "datatype" : "bigint",
+         "description" : "UNKNOWN - The state of the socket is unknown."
       }
    ]
 }

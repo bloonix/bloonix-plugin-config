@@ -1,3 +1,10 @@
+bloonix-plugin-config (0.38-1) unstable; urgency=low
+
+    * Added plugin: check-findmnt
+    * Added plugin: check-gluster-status
+
+ -- Jonny Schulz <js@bloonix.de>  Tue, 13 Sep 2016 23:31:59 +0200
+
 bloonix-plugin-config (0.37-1) unstable; urgency=low
 
     * Added support for NTLM in check-smtp.
