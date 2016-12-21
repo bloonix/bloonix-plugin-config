@@ -1,0 +1,38 @@
+{
+   "plugin" : {
+      "datatype" : "none",
+      "description" : "Check the number of peers in the cluster",
+      "command" : "check-gluster-status",
+      "category" : "System,Linux,Filesystem",
+      "id" : "74",
+      "abstract" : "Linux gluster status",
+      "info" : {
+         "version" : "0.1",
+         "plugin" : "check-gluster-status",
+         "flags" : "sudo",
+         "options" : [
+            {
+               "option" : "number-of-peers",
+               "description" : "The number of connected peers exptected in the cluster.",
+               "name" : "Number of peers",
+               "multiple" : 0,
+               "mandatory" : 1,
+               "value_desc" : "num",
+               "value_type" : "number",
+               "default" : 1
+            },
+            {
+               "description" : "Validate hostnames in the cluster which are allowed to be connected.",
+               "name" : "Allowed peer",
+               "multiple" : 1,
+               "option" : "allowed-peer",
+               "value_desc" : "hostname",
+               "value_type" : "string",
+               "default" : null,
+               "mandatory" : 0
+            }
+         ]
+      },
+      "plugin" : "Linux.Gluster.Status"
+   }
+}
