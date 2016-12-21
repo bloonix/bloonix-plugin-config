@@ -1,53 +1,34 @@
 {
    "plugin" : {
-      "datatype" : "none",
-      "plugin" : "Linux.NFS3.Check",
+      "command" : "check-nfs3",
       "description" : "This plugin can check the nfs3 server or nfs3 client.",
-      "id" : "30",
-      "abstract" : "NFS3 check",
-      "category" : "System,Filesystem,Linux",
       "info" : {
+         "version" : "0.4",
+         "plugin" : "check-nfs3",
          "flags" : "",
-         "options" : [
-            {
-               "option" : "warning",
-               "name" : "Warning threshold",
-               "value_type" : "string",
-               "value_desc" : "key:value or key:op:value",
-               "multiple" : 1,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "default" : null,
-               "mandatory" : 0
-            },
-            {
-               "mandatory" : 0,
-               "default" : null,
-               "value_desc" : "key:value or key:op:value",
-               "multiple" : 1,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "option" : "critical",
-               "name" : "Critical threshold",
-               "value_type" : "string"
-            },
-            {
-               "multiple" : 0,
-               "description" : "By default the server is checked. Enable this option if you want to check the client instead the server.",
-               "mandatory" : 0,
-               "default" : null,
-               "option" : "client",
-               "name" : "Check the client instead the server",
-               "value_type" : 0
-            }
-         ],
          "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
+            ],
             "options" : [
                {
-                  "unit" : "none",
-                  "key" : "getattr"
+                  "key" : "getattr",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "setattr"
+                  "key" : "setattr",
+                  "unit" : "none"
                },
                {
                   "key" : "lookup",
@@ -58,28 +39,28 @@
                   "key" : "access"
                },
                {
-                  "unit" : "none",
-                  "key" : "readlink"
+                  "key" : "readlink",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "read"
+                  "key" : "read",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "write"
+                  "key" : "write",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "create"
+                  "key" : "create",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
                   "key" : "mkdir"
                },
                {
-                  "unit" : "none",
-                  "key" : "symlink"
+                  "key" : "symlink",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
@@ -90,8 +71,8 @@
                   "key" : "remove"
                },
                {
-                  "key" : "rmdir",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "rmdir"
                },
                {
                   "unit" : "none",
@@ -118,32 +99,51 @@
                   "unit" : "none"
                },
                {
-                  "key" : "pathconf",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "pathconf"
                },
                {
-                  "unit" : "none",
-                  "key" : "commit"
+                  "key" : "commit",
+                  "unit" : "none"
                }
-            ],
-            "info" : [
-               "How to set warning and critical thresholds:\n\n",
-               "  It's possible to set thresholds for one or more statistic keys.\n",
-               "  The format to add a threshold for a statistic key is:\n\n",
-               "    key:operator:threshold\n\n",
-               "  If no operator is set then the default operator is 'ge'.\n\n",
-               "  The following operators are available:\n\n",
-               "    lt = less than\n",
-               "    le = less than or equal\n",
-               "    gt = greater than\n",
-               "    ge = greater than or equal\n",
-               "    eq = equal\n",
-               "    ne = not equal\n"
             ]
          },
-         "plugin" : "check-nfs3",
-         "version" : "0.4"
+         "options" : [
+            {
+               "multiple" : 1,
+               "default" : null,
+               "value_desc" : "key:value or key:op:value",
+               "mandatory" : 0,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "name" : "Warning threshold",
+               "value_type" : "string",
+               "option" : "warning"
+            },
+            {
+               "default" : null,
+               "multiple" : 1,
+               "mandatory" : 0,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_desc" : "key:value or key:op:value",
+               "option" : "critical",
+               "value_type" : "string",
+               "name" : "Critical threshold"
+            },
+            {
+               "default" : null,
+               "multiple" : 0,
+               "value_type" : 0,
+               "name" : "Check the client instead the server",
+               "description" : "By default the server is checked. Enable this option if you want to check the client instead the server.",
+               "mandatory" : 0,
+               "option" : "client"
+            }
+         ]
       },
-      "command" : "check-nfs3"
+      "plugin" : "Linux.NFS3.Check",
+      "id" : "30",
+      "datatype" : "none",
+      "category" : "System,Filesystem,Linux",
+      "abstract" : "NFS3 check"
    }
 }

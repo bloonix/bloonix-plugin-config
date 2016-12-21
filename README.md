@@ -13,6 +13,7 @@ Ordered by id (desc)
       id   |             plugin              |          command          
     -------+---------------------------------+---------------------------
        200 | Bloonix.Server.Check            | check-bloonix-server
+        75 | Linux.NF.Conntrack.Check        | check-nf-conntrack
         74 | Linux.Gluster.Status            | check-gluster-status
         73 | Linux.Mount.Check               | check-findmnt
         72 | HTTP.Perf.Check                 | check-http-perf
@@ -30,12 +31,6 @@ Ordered by id (desc)
         60 | Bloonix.Satellite.Check         | check-bloonix-satellite
         59 | Simple.Wrapper                  | check-simple-wrapper
         58 | WebTransaction                  | check-wtrm
-        57 |                                 |                          free
-        56 |                                 |                          free
-        55 |                                 |                          free
-        54 |                                 |                          free
-        53 |                                 |                          free
-        52 |                                 |                          free
         51 | Varnish.Check                   | check-varnish3
         50 | Linux.Sensors                   | check-lm-sensors
         49 | Redis.Queue.Check               | check-redis-queue

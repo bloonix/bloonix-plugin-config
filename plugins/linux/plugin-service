@@ -1,29 +1,8 @@
 {
    "plugin" : {
-      "id" : "38",
-      "abstract" : "Service check",
-      "plugin" : "Linux.Service.Check",
-      "datatype" : "none",
-      "category" : "System",
       "description" : "Check the status of a service.",
+      "plugin" : "Linux.Service.Check",
       "info" : {
-         "options" : [
-            {
-               "mandatory" : 1,
-               "value_type" : "string",
-               "multiple" : 0,
-               "name" : "Service name",
-               "option" : "service",
-               "description" : "This is the service name you want to check.",
-               "value_desc" : "service",
-               "default" : null
-            }
-         ],
-         "version" : "0.5",
-         "plugin" : "check-service",
-         "info" : [
-            "This plugin tries to determine automatically the method to check the status of a service. At first the plugin searchs for 'systemctl', then for 'service' and then the plugin checks if /etc/init.d/service-name exists."
-         ],
          "examples" : [
             {
                "description" : [
@@ -39,8 +18,29 @@
                "command_line" : "check-service --service 'httpd'"
             }
          ],
-         "flags" : "sudo"
+         "flags" : "sudo",
+         "options" : [
+            {
+               "name" : "Service name",
+               "multiple" : 0,
+               "value_type" : "string",
+               "default" : null,
+               "mandatory" : 1,
+               "value_desc" : "service",
+               "description" : "This is the service name you want to check.",
+               "option" : "service"
+            }
+         ],
+         "version" : "0.5",
+         "plugin" : "check-service",
+         "info" : [
+            "This plugin tries to determine automatically the method to check the status of a service. At first the plugin searchs for 'systemctl', then for 'service' and then the plugin checks if /etc/init.d/service-name exists."
+         ]
       },
-      "command" : "check-service"
+      "id" : "38",
+      "abstract" : "Service check",
+      "category" : "System",
+      "command" : "check-service",
+      "datatype" : "none"
    }
 }

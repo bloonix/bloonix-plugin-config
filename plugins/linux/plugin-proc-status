@@ -1,77 +1,128 @@
 {
-   "statistic" : [
-      {
-         "alias" : "Running",
-         "datatype" : "bigint",
-         "statkey" : "running",
-         "description" : "Number of processes in status R."
+   "plugin" : {
+      "description" : "Linux process status",
+      "datatype" : "statistic",
+      "command" : "check-proc-status",
+      "plugin" : "Linux.Processes.Status",
+      "info" : {
+         "examples" : [
+            {
+               "description" : [
+                  "A simple example to check if a process is in uninterruptible disk sleep:"
+               ],
+               "command_line" : "check-proc-status --warning 'disksleep:5' --critical 'disksleep:10'",
+               "arguments" : [
+                  "warning",
+                  "disksleep:5",
+                  "critical",
+                  "disksleep:10"
+               ]
+            }
+         ],
+         "version" : "0.1",
+         "flags" : "",
+         "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
+            ],
+            "options" : [
+               {
+                  "key" : "running",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "sleeping",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "disksleep",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "zombie",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "stopped",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "tracing",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "dead"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "wakekill"
+               },
+               {
+                  "key" : "waking",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "parked",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "unknown",
+                  "unit" : "none"
+               }
+            ]
+         },
+         "plugin" : "check-proc-status",
+         "options" : [
+            {
+               "mandatory" : 0,
+               "value_type" : "string",
+               "multiple" : 1,
+               "option" : "warning",
+               "name" : "Warning threshold",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_desc" : "key:value or key:op:value",
+               "default" : null
+            },
+            {
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "name" : "Critical threshold",
+               "option" : "critical",
+               "mandatory" : 0,
+               "value_type" : "string",
+               "multiple" : 1,
+               "default" : null,
+               "value_desc" : "key:value or key:op:value"
+            }
+         ]
       },
-      {
-         "datatype" : "bigint",
-         "statkey" : "sleeping",
-         "alias" : "Sleeping",
-         "description" : "Number of processes in status S."
-      },
-      {
-         "description" : "Number of processes in status D.",
-         "alias" : "Disk sleep",
-         "statkey" : "disksleep",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Number of processes in status Z.",
-         "alias" : "Zombie",
-         "datatype" : "bigint",
-         "statkey" : "zombie"
-      },
-      {
-         "description" : "Number of processes in status T.",
-         "alias" : "Tracing",
-         "datatype" : "bigint",
-         "statkey" : "tracing"
-      },
-      {
-         "alias" : "Dead",
-         "statkey" : "dead",
-         "datatype" : "bigint",
-         "description" : "Number of processes in status X."
-      },
-      {
-         "datatype" : "bigint",
-         "statkey" : "wakekill",
-         "alias" : "wakekill",
-         "description" : "Number of processes in status K."
-      },
-      {
-         "statkey" : "waking",
-         "datatype" : "bigint",
-         "alias" : "Waking",
-         "description" : "Number of processes in status W."
-      },
-      {
-         "description" : "Number of processes in status P.",
-         "alias" : "Parked",
-         "datatype" : "bigint",
-         "statkey" : "parked"
-      },
-      {
-         "datatype" : "bigint",
-         "statkey" : "unknown",
-         "alias" : "Unknown",
-         "description" : "Number of processes where the status cannot be determined."
-      }
-   ],
+      "abstract" : "Process status check",
+      "category" : "System,Linux",
+      "id" : "72"
+   },
    "chart" : {
-      "title" : "Linux - process status",
+      "id" : "1",
       "options" : {
+         "ylabel" : "count",
          "series" : [
             {
                "name" : "running",
                "color" : "#e9644a"
             },
             {
-               "color" : "#ffb244",
-               "name" : "sleeping"
+               "name" : "sleeping",
+               "color" : "#ffb244"
             },
             {
                "color" : "#9a72ad",
@@ -90,138 +141,87 @@
                "color" : "#7648eb"
             },
             {
-               "color" : "#7f7fff",
-               "name" : "wakekill"
+               "name" : "wakekill",
+               "color" : "#7f7fff"
             },
             {
                "name" : "waking",
                "color" : "#1c6d16"
             },
             {
-               "name" : "parked",
-               "color" : "#bf00bf"
+               "color" : "#bf00bf",
+               "name" : "parked"
             },
             {
-               "name" : "unknown",
-               "color" : "#666666"
+               "color" : "#666666",
+               "name" : "unknown"
             }
          ],
-         "units" : "null",
          "chart-type" : "area",
-         "ylabel" : "count"
+         "units" : "null"
       },
-      "id" : "1"
+      "title" : "Linux - process status"
    },
-   "plugin" : {
-      "command" : "check-proc-status",
-      "info" : {
-         "version" : "0.1",
-         "flags" : "",
-         "options" : [
-            {
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "mandatory" : 0,
-               "default" : null,
-               "value_desc" : "key:value or key:op:value",
-               "option" : "warning",
-               "value_type" : "string",
-               "multiple" : 1,
-               "name" : "Warning threshold"
-            },
-            {
-               "option" : "critical",
-               "value_type" : "string",
-               "multiple" : 1,
-               "name" : "Critical threshold",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "default" : null,
-               "mandatory" : 0,
-               "value_desc" : "key:value or key:op:value"
-            }
-         ],
-         "thresholds" : {
-            "info" : [
-               "How to set warning and critical thresholds:\n\n",
-               "  It's possible to set thresholds for one or more statistic keys.\n",
-               "  The format to add a threshold for a statistic key is:\n\n",
-               "    key:operator:threshold\n\n",
-               "  If no operator is set then the default operator is 'ge'.\n\n",
-               "  The following operators are available:\n\n",
-               "    lt = less than\n",
-               "    le = less than or equal\n",
-               "    gt = greater than\n",
-               "    ge = greater than or equal\n",
-               "    eq = equal\n",
-               "    ne = not equal\n"
-            ],
-            "options" : [
-               {
-                  "unit" : "none",
-                  "key" : "running"
-               },
-               {
-                  "key" : "sleeping",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "disksleep"
-               },
-               {
-                  "key" : "zombie",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "stopped",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "tracing"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "dead"
-               },
-               {
-                  "key" : "wakekill",
-                  "unit" : "none"
-               },
-               {
-                  "key" : "waking",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "parked"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "unknown"
-               }
-            ]
-         },
-         "plugin" : "check-proc-status",
-         "examples" : [
-            {
-               "description" : [
-                  "A simple example to check if a process is in uninterruptible disk sleep:"
-               ],
-               "arguments" : [
-                  "warning",
-                  "disksleep:5",
-                  "critical",
-                  "disksleep:10"
-               ],
-               "command_line" : "check-proc-status --warning 'disksleep:5' --critical 'disksleep:10'"
-            }
-         ]
+   "statistic" : [
+      {
+         "alias" : "Running",
+         "statkey" : "running",
+         "datatype" : "bigint",
+         "description" : "Number of processes in status R."
       },
-      "id" : "72",
-      "abstract" : "Process status check",
-      "plugin" : "Linux.Processes.Status",
-      "category" : "System,Linux",
-      "datatype" : "statistic",
-      "description" : "Linux process status"
-   }
+      {
+         "description" : "Number of processes in status S.",
+         "datatype" : "bigint",
+         "statkey" : "sleeping",
+         "alias" : "Sleeping"
+      },
+      {
+         "datatype" : "bigint",
+         "description" : "Number of processes in status D.",
+         "statkey" : "disksleep",
+         "alias" : "Disk sleep"
+      },
+      {
+         "statkey" : "zombie",
+         "datatype" : "bigint",
+         "description" : "Number of processes in status Z.",
+         "alias" : "Zombie"
+      },
+      {
+         "description" : "Number of processes in status T.",
+         "datatype" : "bigint",
+         "statkey" : "tracing",
+         "alias" : "Tracing"
+      },
+      {
+         "alias" : "Dead",
+         "description" : "Number of processes in status X.",
+         "datatype" : "bigint",
+         "statkey" : "dead"
+      },
+      {
+         "description" : "Number of processes in status K.",
+         "datatype" : "bigint",
+         "statkey" : "wakekill",
+         "alias" : "wakekill"
+      },
+      {
+         "alias" : "Waking",
+         "statkey" : "waking",
+         "description" : "Number of processes in status W.",
+         "datatype" : "bigint"
+      },
+      {
+         "statkey" : "parked",
+         "datatype" : "bigint",
+         "description" : "Number of processes in status P.",
+         "alias" : "Parked"
+      },
+      {
+         "statkey" : "unknown",
+         "description" : "Number of processes where the status cannot be determined.",
+         "datatype" : "bigint",
+         "alias" : "Unknown"
+      }
+   ]
 }

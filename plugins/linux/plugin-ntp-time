@@ -1,105 +1,105 @@
 {
-   "statistic" : [
-      {
-         "statkey" : "delay",
-         "alias" : "Delay",
-         "datatype" : "float",
-         "description" : "The roundtrip time, in milliseconds, to receive a reply."
-      },
-      {
-         "description" : "The time difference, in milliseconds, between the client server and source.",
-         "datatype" : "float",
-         "alias" : "Offset",
-         "statkey" : "offset"
-      },
-      {
-         "description" : "The difference, in milliseconds, between two samples.",
-         "alias" : "Jitter",
-         "statkey" : "jitter",
-         "datatype" : "float"
-      }
-   ],
    "plugin" : {
-      "plugin" : "NTP.Time.Check",
-      "id" : "71",
-      "command" : "check-ntp-time",
-      "abstract" : "NTP time difference",
-      "category" : "System,Network,Time",
       "datatype" : "statistic",
+      "abstract" : "NTP time difference",
       "description" : "Check the NTP time difference",
+      "category" : "System,Network,Time",
+      "id" : "71",
+      "plugin" : "NTP.Time.Check",
+      "command" : "check-ntp-time",
       "info" : {
-         "version" : "0.1",
          "plugin" : "check-ntp-time",
-         "options" : [
-            {
-               "name" : "Warning threshold",
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
-               "value_type" : "number",
-               "option" : "warning",
-               "value_desc" : "seconds",
-               "default" : 500,
-               "mandatory" : 0,
-               "multiple" : 0
-            },
-            {
-               "value_desc" : "seconds",
-               "default" : 1000,
-               "mandatory" : 0,
-               "multiple" : 0,
-               "name" : "Critical threshold",
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
-               "value_type" : "number",
-               "option" : "critical"
-            },
-            {
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "value_type" : "number",
-               "name" : "Timeout",
-               "option" : "timeout",
-               "default" : 10,
-               "value_desc" : "seconds",
-               "multiple" : 0,
-               "mandatory" : 0
-            }
-         ],
+         "flags" : "",
          "examples" : [
             {
-               "command_line" : "check-ntp-time --warning '1000' --critical '3000'",
-               "description" : [
-                  "Check the time difference between the client and server in milliseconds."
-               ],
                "arguments" : [
                   "warning",
                   1000,
                   "critical",
                   3000
+               ],
+               "command_line" : "check-ntp-time --warning '1000' --critical '3000'",
+               "description" : [
+                  "Check the time difference between the client and server in milliseconds."
                ]
             }
          ],
-         "flags" : ""
+         "version" : "0.1",
+         "options" : [
+            {
+               "option" : "warning",
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
+               "mandatory" : 0,
+               "value_type" : "number",
+               "name" : "Warning threshold",
+               "default" : 500,
+               "multiple" : 0,
+               "value_desc" : "seconds"
+            },
+            {
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "mandatory" : 0,
+               "option" : "critical",
+               "value_type" : "number",
+               "default" : 1000,
+               "name" : "Critical threshold",
+               "value_desc" : "seconds",
+               "multiple" : 0
+            },
+            {
+               "value_desc" : "seconds",
+               "multiple" : 0,
+               "name" : "Timeout",
+               "default" : 10,
+               "value_type" : "number",
+               "mandatory" : 0,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "option" : "timeout"
+            }
+         ]
       }
    },
    "chart" : {
+      "title" : "NTP statistics",
       "options" : {
+         "units" : "null",
+         "chart-type" : "line",
          "series" : [
             {
                "name" : "delay",
                "color" : "#e9644a"
             },
             {
-               "color" : "#005467",
-               "name" : "offset"
+               "name" : "offset",
+               "color" : "#005467"
             },
             {
                "name" : "jitter",
                "color" : "#9a72ad"
             }
          ],
-         "units" : "null",
-         "ylabel" : "ms",
-         "chart-type" : "line"
+         "ylabel" : "ms"
       },
-      "title" : "NTP statistics",
       "id" : "1"
-   }
+   },
+   "statistic" : [
+      {
+         "statkey" : "delay",
+         "description" : "The roundtrip time, in milliseconds, to receive a reply.",
+         "alias" : "Delay",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "offset",
+         "description" : "The time difference, in milliseconds, between the client server and source.",
+         "alias" : "Offset",
+         "datatype" : "float"
+      },
+      {
+         "alias" : "Jitter",
+         "datatype" : "float",
+         "description" : "The difference, in milliseconds, between two samples.",
+         "statkey" : "jitter"
+      }
+   ]
 }

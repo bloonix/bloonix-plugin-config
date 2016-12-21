@@ -1,7 +1,132 @@
 {
+   "chart" : {
+      "title" : "Linux netstat",
+      "id" : "1",
+      "options" : {
+         "chart-type" : "area",
+         "units" : "null",
+         "series" : [
+            {
+               "color" : "#e9644a",
+               "name" : "established"
+            },
+            {
+               "color" : "#ffb244",
+               "name" : "syn_send"
+            },
+            {
+               "name" : "syn_recv",
+               "color" : "#9a72ad"
+            },
+            {
+               "name" : "fin_wait1",
+               "color" : "#005467"
+            },
+            {
+               "color" : "#2ba743",
+               "name" : "fin_wait2"
+            },
+            {
+               "name" : "time_wait",
+               "color" : "#7648eb"
+            },
+            {
+               "name" : "close",
+               "color" : "#7f7fff"
+            },
+            {
+               "name" : "close_wait",
+               "color" : "#1c6d16"
+            },
+            {
+               "name" : "last_ack",
+               "color" : "#bf00bf"
+            },
+            {
+               "color" : "#275487",
+               "name" : "closing"
+            },
+            {
+               "color" : "#666666",
+               "name" : "unknown"
+            }
+         ],
+         "ylabel" : "connections"
+      }
+   },
+   "statistic" : [
+      {
+         "statkey" : "established",
+         "alias" : "Established",
+         "description" : "ESTABLISHED - The socket has an established connection.",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "SYN_SENT - The socket is actively attempting to establish a connection.",
+         "datatype" : "bigint",
+         "statkey" : "syn_send",
+         "alias" : "SYN sent"
+      },
+      {
+         "statkey" : "syn_recv",
+         "alias" : "SYN received",
+         "datatype" : "bigint",
+         "description" : "SYN_RECV - A connection request has been received from the network."
+      },
+      {
+         "alias" : "FIN wait1",
+         "statkey" : "fin_wait1",
+         "description" : "FIN_WAIT1 - The socket is closed, and the connection is shutting down.",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "FIN_WAIT2 - Connection is closed, and the socket is waiting for a shutdown from the remote end.",
+         "datatype" : "bigint",
+         "alias" : "FIN wait2",
+         "statkey" : "fin_wait2"
+      },
+      {
+         "alias" : "Time wait",
+         "statkey" : "time_wait",
+         "datatype" : "bigint",
+         "description" : "TIME_WAIT - The socket is waiting after close to handle packets still in the network."
+      },
+      {
+         "alias" : "Close",
+         "statkey" : "close",
+         "description" : "CLOSE - The socket is not being used.",
+         "datatype" : "bigint"
+      },
+      {
+         "alias" : "Close wait",
+         "statkey" : "close_wait",
+         "description" : "CLOSE_WAIT - The remote end has shut down, waiting for the socket to close.",
+         "datatype" : "bigint"
+      },
+      {
+         "alias" : "Last ACK",
+         "statkey" : "last_ack",
+         "datatype" : "bigint",
+         "description" : "LAST_ACK - The remote end has shut down, and the socket is closed. Waiting for acknowledgement."
+      },
+      {
+         "statkey" : "closing",
+         "alias" : "Closing",
+         "datatype" : "bigint",
+         "description" : "CLOSING - Both sockets are shut down but we still don't have all our data sent."
+      },
+      {
+         "description" : "UNKNOWN - The state of the socket is unknown.",
+         "datatype" : "bigint",
+         "alias" : "Unknown",
+         "statkey" : "unknown"
+      }
+   ],
    "plugin" : {
-      "plugin" : "Linux.NetstatPort.Check",
+      "description" : "Linux netstat statistics by port",
+      "datatype" : "statistic",
       "info" : {
+         "plugin" : "check-netstat-port",
          "thresholds" : {
             "options" : [
                {
@@ -13,20 +138,20 @@
                   "unit" : "none"
                },
                {
-                  "key" : "fin_wait1",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "fin_wait1"
                },
                {
-                  "unit" : "none",
-                  "key" : "fin_wait2"
+                  "key" : "fin_wait2",
+                  "unit" : "none"
                },
                {
                   "key" : "time_wait",
                   "unit" : "none"
                },
                {
-                  "key" : "close",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "close"
                },
                {
                   "key" : "close_wait",
@@ -37,12 +162,12 @@
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "closing"
+                  "key" : "closing",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "established"
+                  "key" : "established",
+                  "unit" : "none"
                }
             ],
             "info" : [
@@ -60,8 +185,48 @@
                "    ne = not equal\n"
             ]
          },
+         "options" : [
+            {
+               "value_type" : "int",
+               "mandatory" : 1,
+               "default" : null,
+               "option" : "port",
+               "value_desc" : "port",
+               "name" : "Port number",
+               "description" : "A port number to connect to.",
+               "multiple" : 0
+            },
+            {
+               "option" : "remote",
+               "value_type" : 0,
+               "name" : "Remote port",
+               "mandatory" : 0,
+               "description" : "By default the connection to the local port are checked. Enable this option if you want to check the connections to the remote port.",
+               "multiple" : 0,
+               "default" : null
+            },
+            {
+               "value_desc" : "key:value or key:op:value",
+               "option" : "warning",
+               "name" : "Warning threshold",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "multiple" : 1,
+               "value_type" : "string",
+               "mandatory" : 0,
+               "default" : null
+            },
+            {
+               "value_type" : "string",
+               "mandatory" : 0,
+               "default" : null,
+               "value_desc" : "key:value or key:op:value",
+               "option" : "critical",
+               "name" : "Critical threshold",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "multiple" : 1
+            }
+         ],
          "version" : "0.5",
-         "flags" : "",
          "examples" : [
             {
                "description" : [
@@ -70,6 +235,7 @@
                   "- a warning status if the number of established connections is higher than or equal 500",
                   "- or a critical status if the number of established connections is higher than or equal 700"
                ],
+               "command_line" : "check-netstat-port --port '80' --warning 'established:ge:500' --critical 'established:ge:750'",
                "arguments" : [
                   "port",
                   80,
@@ -77,181 +243,15 @@
                   "established:ge:500",
                   "critical",
                   "established:ge:750"
-               ],
-               "command_line" : "check-netstat-port --port '80' --warning 'established:ge:500' --critical 'established:ge:750'"
+               ]
             }
          ],
-         "plugin" : "check-netstat-port",
-         "options" : [
-            {
-               "description" : "A port number to connect to.",
-               "default" : null,
-               "value_desc" : "port",
-               "multiple" : 0,
-               "mandatory" : 1,
-               "name" : "Port number",
-               "value_type" : "int",
-               "option" : "port"
-            },
-            {
-               "multiple" : 0,
-               "mandatory" : 0,
-               "description" : "By default the connection to the local port are checked. Enable this option if you want to check the connections to the remote port.",
-               "name" : "Remote port",
-               "option" : "remote",
-               "value_type" : 0,
-               "default" : null
-            },
-            {
-               "mandatory" : 0,
-               "name" : "Warning threshold",
-               "multiple" : 1,
-               "value_type" : "string",
-               "option" : "warning",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "value_desc" : "key:value or key:op:value",
-               "default" : null
-            },
-            {
-               "option" : "critical",
-               "value_type" : "string",
-               "mandatory" : 0,
-               "name" : "Critical threshold",
-               "multiple" : 1,
-               "default" : null,
-               "value_desc" : "key:value or key:op:value",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information."
-            }
-         ]
+         "flags" : ""
       },
-      "category" : "System,Network,Linux",
-      "id" : "29",
-      "datatype" : "statistic",
       "command" : "check-netstat-port",
-      "description" : "Linux netstat statistics by port",
-      "abstract" : "Netstat port check"
-   },
-   "chart" : {
-      "id" : "1",
-      "options" : {
-         "series" : [
-            {
-               "name" : "established",
-               "color" : "#e9644a"
-            },
-            {
-               "name" : "syn_send",
-               "color" : "#ffb244"
-            },
-            {
-               "color" : "#9a72ad",
-               "name" : "syn_recv"
-            },
-            {
-               "name" : "fin_wait1",
-               "color" : "#005467"
-            },
-            {
-               "name" : "fin_wait2",
-               "color" : "#2ba743"
-            },
-            {
-               "name" : "time_wait",
-               "color" : "#7648eb"
-            },
-            {
-               "color" : "#7f7fff",
-               "name" : "close"
-            },
-            {
-               "name" : "close_wait",
-               "color" : "#1c6d16"
-            },
-            {
-               "name" : "last_ack",
-               "color" : "#bf00bf"
-            },
-            {
-               "name" : "closing",
-               "color" : "#275487"
-            },
-            {
-               "name" : "unknown",
-               "color" : "#666666"
-            }
-         ],
-         "chart-type" : "area",
-         "units" : "null",
-         "ylabel" : "connections"
-      },
-      "title" : "Linux netstat"
-   },
-   "statistic" : [
-      {
-         "datatype" : "bigint",
-         "description" : "ESTABLISHED - The socket has an established connection.",
-         "alias" : "Established",
-         "statkey" : "established"
-      },
-      {
-         "datatype" : "bigint",
-         "alias" : "SYN sent",
-         "description" : "SYN_SENT - The socket is actively attempting to establish a connection.",
-         "statkey" : "syn_send"
-      },
-      {
-         "statkey" : "syn_recv",
-         "alias" : "SYN received",
-         "description" : "SYN_RECV - A connection request has been received from the network.",
-         "datatype" : "bigint"
-      },
-      {
-         "statkey" : "fin_wait1",
-         "alias" : "FIN wait1",
-         "description" : "FIN_WAIT1 - The socket is closed, and the connection is shutting down.",
-         "datatype" : "bigint"
-      },
-      {
-         "statkey" : "fin_wait2",
-         "datatype" : "bigint",
-         "alias" : "FIN wait2",
-         "description" : "FIN_WAIT2 - Connection is closed, and the socket is waiting for a shutdown from the remote end."
-      },
-      {
-         "statkey" : "time_wait",
-         "datatype" : "bigint",
-         "alias" : "Time wait",
-         "description" : "TIME_WAIT - The socket is waiting after close to handle packets still in the network."
-      },
-      {
-         "description" : "CLOSE - The socket is not being used.",
-         "alias" : "Close",
-         "datatype" : "bigint",
-         "statkey" : "close"
-      },
-      {
-         "statkey" : "close_wait",
-         "datatype" : "bigint",
-         "alias" : "Close wait",
-         "description" : "CLOSE_WAIT - The remote end has shut down, waiting for the socket to close."
-      },
-      {
-         "datatype" : "bigint",
-         "description" : "LAST_ACK - The remote end has shut down, and the socket is closed. Waiting for acknowledgement.",
-         "alias" : "Last ACK",
-         "statkey" : "last_ack"
-      },
-      {
-         "datatype" : "bigint",
-         "alias" : "Closing",
-         "description" : "CLOSING - Both sockets are shut down but we still don't have all our data sent.",
-         "statkey" : "closing"
-      },
-      {
-         "alias" : "Unknown",
-         "description" : "UNKNOWN - The state of the socket is unknown.",
-         "datatype" : "bigint",
-         "statkey" : "unknown"
-      }
-   ]
+      "id" : "29",
+      "abstract" : "Netstat port check",
+      "category" : "System,Network,Linux",
+      "plugin" : "Linux.NetstatPort.Check"
+   }
 }

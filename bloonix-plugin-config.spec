@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.38
+Version: 0.43
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,16 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Tue Dec 20 2016 Jonny Schulz <js@bloonix.de> - 0.43-1
+- check-nf-conntrack: improved chart for count/max
+* Tue Dec 20 2016 Jonny Schulz <js@bloonix.de> - 0.42-1
+- check-nf-conntrack: missed key 'free'
+* Tue Dec 20 2016 Jonny Schulz <js@bloonix.de> - 0.41-1
+- New plugin: check-nf-conntrack
+* Mon Dec 12 2016 Jonny Schulz <js@bloonix.de> - 0.40-1
+- check-iostat updated.
+* Wed Sep 14 2016 Jonny Schulz <js@bloonix.de> - 0.39-1
+- Improved options of check-gluster-status.
 * Tue Sep 13 2016 Jonny Schulz <js@bloonix.de> - 0.38-1
 - Added plugin: check-findmnt
 - Added plugin: check-gluster-status

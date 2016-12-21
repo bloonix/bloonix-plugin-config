@@ -1,3 +1,23 @@
+bloonix-plugin-config (0.43) released at 2016-12-20
+
+    * check-nf-conntrack: improved chart for count/max
+
+bloonix-plugin-config (0.42) released at 2016-12-20
+
+    * check-nf-conntrack: missed key 'free'
+
+bloonix-plugin-config (0.41) released at 2016-12-20
+
+    * New plugin: check-nf-conntrack
+
+bloonix-plugin-config (0.40) released at 2016-12-12
+
+    * check-iostat updated.
+
+bloonix-plugin-config (0.39) released at 2016-09-14
+
+    * Improved options of check-gluster-status.
+
 bloonix-plugin-config (0.38) released at 2016-09-13
 
     * Added plugin: check-findmnt

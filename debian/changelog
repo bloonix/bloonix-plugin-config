@@ -1,3 +1,33 @@
+bloonix-plugin-config (0.43-1) unstable; urgency=low
+
+    * check-nf-conntrack: improved chart for count/max
+
+ -- Jonny Schulz <js@bloonix.de>  Tue, 20 Dec 2016 20:29:57 +0100
+
+bloonix-plugin-config (0.42-1) unstable; urgency=low
+
+    * check-nf-conntrack: missed key 'free'
+
+ -- Jonny Schulz <js@bloonix.de>  Tue, 20 Dec 2016 20:20:04 +0100
+
+bloonix-plugin-config (0.41-1) unstable; urgency=low
+
+    * New plugin: check-nf-conntrack
+
+ -- Jonny Schulz <js@bloonix.de>  Tue, 20 Dec 2016 19:14:17 +0100
+
+bloonix-plugin-config (0.40-1) unstable; urgency=low
+
+    * check-iostat updated.
+
+ -- Jonny Schulz <js@bloonix.de>  Mon, 12 Dec 2016 18:29:36 +0100
+
+bloonix-plugin-config (0.39-1) unstable; urgency=low
+
+    * Improved options of check-gluster-status.
+
+ -- Jonny Schulz <js@bloonix.de>  Wed, 14 Sep 2016 04:42:25 +0200
+
 bloonix-plugin-config (0.38-1) unstable; urgency=low
 
     * Added plugin: check-findmnt

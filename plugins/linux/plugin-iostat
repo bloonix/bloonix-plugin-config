@@ -1,89 +1,13 @@
 {
-   "statistic" : [
-      {
-         "datatype" : "float",
-         "statkey" : "rdreq",
-         "description" : "Number of read requests that were made to physical disk per second.",
-         "alias" : "Read requests"
-      },
-      {
-         "datatype" : "float",
-         "description" : "Number of write requests that were made to physical disk per second.",
-         "statkey" : "wrtreq",
-         "alias" : "Write requests"
-      },
-      {
-         "alias" : "Blocks read",
-         "description" : "Number of blocks that were read from physical disk per second.",
-         "statkey" : "rdblk",
-         "datatype" : "float"
-      },
-      {
-         "statkey" : "wrtblk",
-         "description" : "Number of blocks that were written to physical disk per second.",
-         "alias" : "Blocks written",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "varchar(100)",
-         "alias" : "Disk name",
-         "description" : "The disk name.",
-         "statkey" : "disk"
-      },
-      {
-         "description" : "Total number of requests were made from/to physical disk per second.",
-         "statkey" : "ttreq",
-         "alias" : "Total requests",
-         "datatype" : "float"
-      },
-      {
-         "datatype" : "float",
-         "description" : "Total number of blocks transmitted from/to physical disk per second.",
-         "statkey" : "ttblk",
-         "alias" : "Total blocks"
-      }
-   ],
    "plugin" : {
-      "description" : "Linux disk i/o statistics",
-      "abstract" : "Disk i/o check",
-      "id" : "22",
-      "datatype" : "statistic",
-      "command" : "check-iostat",
-      "plugin" : "Linux.DiskIO.Check",
-      "category" : "System,Linux",
       "info" : {
-         "options" : [
-            {
-               "value_desc" : "device",
-               "multiple" : 0,
-               "value_type" : "string",
-               "default" : null,
-               "option" : "device",
-               "description" : "This is the device name you want to check. As example 'sda' or 'vda'.",
-               "name" : "Device name",
-               "mandatory" : 1
-            },
-            {
-               "option" : "warning",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "name" : "Warning threshold",
-               "mandatory" : 0,
-               "multiple" : 1,
-               "value_desc" : "key:value or key:op:value",
-               "value_type" : "string",
-               "default" : null
-            },
-            {
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "name" : "Critical threshold",
-               "mandatory" : 0,
-               "option" : "critical",
-               "default" : null,
-               "value_desc" : "key:value or key:op:value",
-               "multiple" : 1,
-               "value_type" : "string"
-            }
+         "info" : [
+            "Available devices:",
+            "  cat /proc/partitions",
+            "or",
+            "  cat /proc/diskstats"
          ],
+         "flags" : "",
          "examples" : [
             {
                "arguments" : [
@@ -104,24 +28,24 @@
                   "unit" : "none"
                },
                {
-                  "key" : "rdblk",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "rdblk"
                },
                {
-                  "unit" : "none",
-                  "key" : "wrtreq"
+                  "key" : "wrtreq",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
                   "key" : "wrtblk"
                },
                {
-                  "key" : "ttreq",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "ttreq"
                },
                {
-                  "key" : "ttblk",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "ttblk"
                }
             ],
             "info" : [
@@ -139,22 +63,54 @@
                "    ne = not equal\n"
             ]
          },
-         "info" : [
-            "Available devices:",
-            "  cat /proc/partitions",
-            "or",
-            "  cat /proc/diskstats"
-         ],
-         "flags" : "",
-         "version" : "0.8"
-      }
+         "version" : "0.9",
+         "options" : [
+            {
+               "name" : "Device name",
+               "mandatory" : 1,
+               "default" : null,
+               "value_desc" : "device",
+               "option" : "device",
+               "value_type" : "string",
+               "multiple" : 0,
+               "description" : "This is the device name you want to check. As example 'sda', 'vda' or 'hda'. It's also possible to pass 'dev-a', then the check would check if any device with letter 'a' exist. At first with 'sd' is checked, then 'vd' and then 'hd'."
+            },
+            {
+               "value_type" : "string",
+               "option" : "warning",
+               "value_desc" : "key:value or key:op:value",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "multiple" : 1,
+               "name" : "Warning threshold",
+               "default" : null,
+               "mandatory" : 0
+            },
+            {
+               "multiple" : 1,
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "value_desc" : "key:value or key:op:value",
+               "option" : "critical",
+               "value_type" : "string",
+               "mandatory" : 0,
+               "default" : null,
+               "name" : "Critical threshold"
+            }
+         ]
+      },
+      "id" : "22",
+      "plugin" : "Linux.DiskIO.Check",
+      "datatype" : "statistic",
+      "description" : "Linux disk i/o statistics",
+      "category" : "System,Linux",
+      "abstract" : "Disk i/o check",
+      "command" : "check-iostat"
    },
    "chart" : [
       {
-         "title" : "Linux - disk load in blocks",
          "options" : {
-            "units" : "default",
             "chart-type" : "area",
+            "ylabel" : "blocks/s",
+            "units" : "default",
             "series" : [
                {
                   "name" : "rdblk",
@@ -162,33 +118,77 @@
                },
                {
                   "color" : "#005467",
-                  "opposite" : "true",
-                  "name" : "wrtblk"
-               }
-            ],
-            "ylabel" : "blocks/s"
-         },
-         "id" : "1"
-      },
-      {
-         "options" : {
-            "units" : "default",
-            "chart-type" : "area",
-            "series" : [
-               {
-                  "name" : "rdreq",
-                  "color" : "#ff7a0d"
-               },
-               {
-                  "name" : "wrtreq",
-                  "color" : "#005467",
+                  "name" : "wrtblk",
                   "opposite" : "true"
                }
-            ],
-            "ylabel" : "wrtreq (-) / rdreq (+)"
+            ]
          },
+         "id" : "1",
+         "title" : "Linux - disk load in blocks"
+      },
+      {
          "id" : "2",
-         "title" : "Linux - disk requests"
+         "title" : "Linux - disk requests",
+         "options" : {
+            "chart-type" : "area",
+            "ylabel" : "wrtreq (-) / rdreq (+)",
+            "units" : "default",
+            "series" : [
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "rdreq"
+               },
+               {
+                  "color" : "#005467",
+                  "opposite" : "true",
+                  "name" : "wrtreq"
+               }
+            ]
+         }
+      }
+   ],
+   "statistic" : [
+      {
+         "alias" : "Read requests",
+         "description" : "Number of read requests that were made to physical disk per second.",
+         "datatype" : "float",
+         "statkey" : "rdreq"
+      },
+      {
+         "description" : "Number of write requests that were made to physical disk per second.",
+         "datatype" : "float",
+         "alias" : "Write requests",
+         "statkey" : "wrtreq"
+      },
+      {
+         "statkey" : "rdblk",
+         "description" : "Number of blocks that were read from physical disk per second.",
+         "datatype" : "float",
+         "alias" : "Blocks read"
+      },
+      {
+         "statkey" : "wrtblk",
+         "description" : "Number of blocks that were written to physical disk per second.",
+         "datatype" : "float",
+         "alias" : "Blocks written"
+      },
+      {
+         "alias" : "Disk name",
+         "description" : "The disk name.",
+         "datatype" : "varchar(100)",
+         "statkey" : "disk"
+      },
+      {
+         "description" : "Total number of requests were made from/to physical disk per second.",
+         "datatype" : "float",
+         "alias" : "Total requests",
+         "statkey" : "ttreq"
+      },
+      {
+         "alias" : "Total blocks",
+         "description" : "Total number of blocks transmitted from/to physical disk per second.",
+         "datatype" : "float",
+         "statkey" : "ttblk"
       }
    ]
 }

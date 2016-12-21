@@ -2,41 +2,110 @@
    "statistic" : [
       {
          "description" : "Round trip average in milliseconds.",
-         "statkey" : "rta",
          "datatype" : "float",
          "units" : "ms",
+         "statkey" : "rta",
          "alias" : "Round trip average"
       },
       {
+         "statkey" : "loss",
          "units" : "percent",
          "alias" : "Packets loss",
-         "datatype" : "float",
-         "statkey" : "loss",
-         "description" : "Packets loss in percent."
+         "description" : "Packets loss in percent.",
+         "datatype" : "float"
       }
    ],
+   "chart" : {
+      "id" : "1",
+      "title" : "Ping - round trip average / paket loss",
+      "options" : {
+         "chart-type" : "area",
+         "units" : "null",
+         "series" : [
+            {
+               "color" : "#005467",
+               "name" : "rta"
+            },
+            {
+               "opposite" : "true",
+               "color" : "#ff7a0d",
+               "name" : "loss"
+            }
+         ],
+         "ylabel" : "loss (-) / rta (+)"
+      }
+   },
    "plugin" : {
-      "prefer" : "remote",
-      "category" : "System,Network",
-      "netaccess" : "yes",
-      "datatype" : "statistic",
-      "command" : "check-ping",
-      "description" : "Ping statistics.",
-      "abstract" : "Ping check",
+      "worldwide" : "yes",
       "plugin" : "Ping.Check",
-      "id" : "35",
       "info" : {
-         "plugin" : "check-ping",
          "flags" : "",
+         "version" : "0.9",
+         "plugin" : "check-ping",
+         "options" : [
+            {
+               "value_type" : "string",
+               "multiple" : 0,
+               "option" : "host",
+               "mandatory" : 1,
+               "description" : "A hostname or IP address to connect to.",
+               "name" : "Hostname or IP address",
+               "default" : null,
+               "value_desc" : "hostname or ip address"
+            },
+            {
+               "value_desc" : "seconds",
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "name" : "Timeout",
+               "default" : 10,
+               "value_type" : "number",
+               "multiple" : 0,
+               "mandatory" : 0,
+               "option" : "timeout"
+            },
+            {
+               "value_type" : 0,
+               "multiple" : 0,
+               "option" : "use-ipv6",
+               "mandatory" : 0,
+               "description" : "Use IPv6 to connect to the host.",
+               "default" : null,
+               "name" : "Use IPv6"
+            },
+            {
+               "value_desc" : "packets",
+               "description" : "Number of packets to send. At least 1 and maximum 10.",
+               "default" : 3,
+               "name" : "Packets",
+               "value_type" : "number",
+               "multiple" : 0,
+               "option" : "packets",
+               "mandatory" : 0
+            },
+            {
+               "multiple" : 0,
+               "value_type" : "string",
+               "option" : "warning",
+               "mandatory" : 0,
+               "description" : "Set the the maximum average in seconds and loss in percent with a comma separated.",
+               "name" : "Warning threshold",
+               "default" : "2000,33%",
+               "value_desc" : "seconds"
+            },
+            {
+               "value_desc" : "seconds",
+               "description" : "Set the the maximum average in seconds and loss in percent with a comma separated.",
+               "default" : "5000,66%",
+               "name" : "Critical threshold",
+               "value_type" : "string",
+               "multiple" : 0,
+               "mandatory" : 0,
+               "option" : "critical"
+            }
+         ],
          "examples" : [
             {
                "command_line" : "check-ping --host '127.0.0.1' --warning '1000,40%' --critical '2000,60%'",
-               "description" : [
-                  "A simple example:",
-                  "",
-                  "- Trigger a warning if rta is higher than 1000ms or package loss is higher than 40%.",
-                  "- Trigger a critical if rta is higher than 2000ms or package loss is higher than 60%."
-               ],
                "arguments" : [
                   "host",
                   "127.0.0.1",
@@ -44,92 +113,23 @@
                   "1000,40%",
                   "critical",
                   "2000,60%"
+               ],
+               "description" : [
+                  "A simple example:",
+                  "",
+                  "- Trigger a warning if rta is higher than 1000ms or package loss is higher than 40%.",
+                  "- Trigger a critical if rta is higher than 2000ms or package loss is higher than 60%."
                ]
-            }
-         ],
-         "version" : "0.9",
-         "options" : [
-            {
-               "value_desc" : "hostname or ip address",
-               "description" : "A hostname or IP address to connect to.",
-               "option" : "host",
-               "default" : null,
-               "mandatory" : 1,
-               "name" : "Hostname or IP address",
-               "multiple" : 0,
-               "value_type" : "string"
-            },
-            {
-               "value_type" : "number",
-               "multiple" : 0,
-               "name" : "Timeout",
-               "mandatory" : 0,
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "option" : "timeout",
-               "default" : 10,
-               "value_desc" : "seconds"
-            },
-            {
-               "name" : "Use IPv6",
-               "multiple" : 0,
-               "default" : null,
-               "mandatory" : 0,
-               "option" : "use-ipv6",
-               "description" : "Use IPv6 to connect to the host.",
-               "value_type" : 0
-            },
-            {
-               "default" : 3,
-               "description" : "Number of packets to send. At least 1 and maximum 10.",
-               "mandatory" : 0,
-               "option" : "packets",
-               "value_desc" : "packets",
-               "value_type" : "number",
-               "multiple" : 0,
-               "name" : "Packets"
-            },
-            {
-               "value_desc" : "seconds",
-               "option" : "warning",
-               "mandatory" : 0,
-               "description" : "Set the the maximum average in seconds and loss in percent with a comma separated.",
-               "default" : "2000,33%",
-               "name" : "Warning threshold",
-               "multiple" : 0,
-               "value_type" : "string"
-            },
-            {
-               "name" : "Critical threshold",
-               "multiple" : 0,
-               "value_type" : "string",
-               "value_desc" : "seconds",
-               "option" : "critical",
-               "default" : "5000,66%",
-               "description" : "Set the the maximum average in seconds and loss in percent with a comma separated.",
-               "mandatory" : 0
             }
          ]
       },
-      "worldwide" : "yes"
-   },
-   "chart" : {
-      "id" : "1",
-      "options" : {
-         "ylabel" : "loss (-) / rta (+)",
-         "series" : [
-            {
-               "name" : "rta",
-               "color" : "#005467"
-            },
-            {
-               "color" : "#ff7a0d",
-               "name" : "loss",
-               "opposite" : "true"
-            }
-         ],
-         "chart-type" : "area",
-         "units" : "null"
-      },
-      "title" : "Ping - round trip average / paket loss"
+      "prefer" : "remote",
+      "datatype" : "statistic",
+      "id" : "35",
+      "netaccess" : "yes",
+      "category" : "System,Network",
+      "command" : "check-ping",
+      "description" : "Ping statistics.",
+      "abstract" : "Ping check"
    }
 }
