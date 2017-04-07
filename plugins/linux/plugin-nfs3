@@ -1,46 +1,278 @@
 {
+   "chart" : [
+      {
+         "options" : {
+            "stack" : "true",
+            "ylabel" : "Percent",
+            "units" : "percent",
+            "series" : [
+               {
+                  "name" : "percent_of_read",
+                  "color" : "#339900"
+               },
+               {
+                  "color" : "#666666",
+                  "name" : "percent_of_write"
+               },
+               {
+                  "name" : "percent_of_getattr",
+                  "color" : "#FF0000"
+               },
+               {
+                  "color" : "#990000",
+                  "name" : "percent_of_commit"
+               },
+               {
+                  "name" : "percent_of_readdir",
+                  "color" : "#cc3399"
+               },
+               {
+                  "name" : "percent_of_fsstat",
+                  "color" : "#005467"
+               },
+               {
+                  "name" : "percent_of_rmdir",
+                  "color" : "#ffb244"
+               },
+               {
+                  "color" : "#9933cc",
+                  "name" : "percent_of_pathconf"
+               },
+               {
+                  "name" : "percent_of_link",
+                  "color" : "#2ba743"
+               },
+               {
+                  "color" : "#9a72ad",
+                  "name" : "percent_of_mknod"
+               },
+               {
+                  "name" : "percent_of_readlink",
+                  "color" : "#7648eb"
+               },
+               {
+                  "name" : "percent_of_symlink",
+                  "color" : "#e9644a"
+               },
+               {
+                  "color" : "#bf00bf",
+                  "name" : "percent_of_null"
+               },
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "percent_of_remove"
+               },
+               {
+                  "name" : "percent_of_create",
+                  "color" : "#50eee2"
+               },
+               {
+                  "color" : "#6662a1",
+                  "name" : "percent_of_mkdir"
+               },
+               {
+                  "color" : "#3f4958",
+                  "name" : "percent_of_readdirplus"
+               },
+               {
+                  "color" : "#07726a",
+                  "name" : "percent_of_rename"
+               },
+               {
+                  "color" : "#536a60",
+                  "name" : "percent_of_fsinfo"
+               },
+               {
+                  "color" : "#4ca101",
+                  "name" : "percent_of_access"
+               },
+               {
+                  "name" : "percent_of_setattr",
+                  "color" : "#bbc81f"
+               },
+               {
+                  "name" : "percent_of_lookup",
+                  "color" : "#6a2887"
+               }
+            ],
+            "chart-type" : "area"
+         },
+         "id" : "1",
+         "title" : "NFSv3 Operation Distribution"
+      },
+      {
+         "options" : {
+            "stack" : "true",
+            "series" : [
+               {
+                  "color" : "#339900",
+                  "name" : "read"
+               },
+               {
+                  "opposite" : "true",
+                  "name" : "write",
+                  "color" : "#666666"
+               },
+               {
+                  "name" : "getattr",
+                  "color" : "#FF0000"
+               },
+               {
+                  "opposite" : "true",
+                  "name" : "commit",
+                  "color" : "#990000"
+               },
+               {
+                  "name" : "readdir",
+                  "color" : "#cc3399"
+               },
+               {
+                  "name" : "fsstat",
+                  "color" : "#005467"
+               },
+               {
+                  "opposite" : "true",
+                  "color" : "#ffb244",
+                  "name" : "rmdir"
+               },
+               {
+                  "opposite" : "true",
+                  "name" : "pathconf",
+                  "color" : "#9933cc"
+               },
+               {
+                  "color" : "#2ba743",
+                  "name" : "link"
+               },
+               {
+                  "opposite" : "true",
+                  "name" : "mknod",
+                  "color" : "#9a72ad"
+               },
+               {
+                  "color" : "#7648eb",
+                  "name" : "readlink"
+               },
+               {
+                  "color" : "#e9644a",
+                  "name" : "symlink",
+                  "opposite" : "true"
+               },
+               {
+                  "name" : "null",
+                  "color" : "#bf00bf"
+               },
+               {
+                  "opposite" : "true",
+                  "name" : "remove",
+                  "color" : "#ff7a0d"
+               },
+               {
+                  "color" : "#50eee2",
+                  "name" : "create",
+                  "opposite" : "true"
+               },
+               {
+                  "opposite" : "true",
+                  "color" : "#6662a1",
+                  "name" : "mkdir"
+               },
+               {
+                  "name" : "readdirplus",
+                  "color" : "#3f4958"
+               },
+               {
+                  "name" : "rename",
+                  "color" : "#07726a",
+                  "opposite" : "true"
+               },
+               {
+                  "name" : "fsinfo",
+                  "color" : "#536a60"
+               },
+               {
+                  "color" : "#4ca101",
+                  "name" : "access"
+               },
+               {
+                  "opposite" : "true",
+                  "color" : "#bbc81f",
+                  "name" : "setattr"
+               },
+               {
+                  "name" : "lookup",
+                  "color" : "#6a2887"
+               }
+            ],
+            "chart-type" : "area",
+            "units" : "default",
+            "ylabel" : "Operations/s"
+         },
+         "id" : "2",
+         "title" : "NFSv3 Operations"
+      }
+   ],
    "plugin" : {
-      "command" : "check-nfs3",
-      "description" : "This plugin can check the nfs3 server or nfs3 client.",
       "info" : {
-         "version" : "0.4",
          "plugin" : "check-nfs3",
          "flags" : "",
+         "version" : "0.5",
+         "options" : [
+            {
+               "value_type" : "string",
+               "mandatory" : 0,
+               "multiple" : 1,
+               "option" : "warning",
+               "name" : "Warning threshold",
+               "default" : null,
+               "value_desc" : "key:value or key:op:value",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information."
+            },
+            {
+               "mandatory" : 0,
+               "value_type" : "string",
+               "multiple" : 1,
+               "option" : "critical",
+               "name" : "Critical threshold",
+               "default" : null,
+               "value_desc" : "key:value or key:op:value",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information."
+            },
+            {
+               "description" : "By default the server is checked. Enable this option if you want to check the client instead the server.",
+               "multiple" : 0,
+               "option" : "client",
+               "value_type" : 0,
+               "mandatory" : 0,
+               "default" : null,
+               "name" : "Check the client instead the server"
+            }
+         ],
          "thresholds" : {
-            "info" : [
-               "How to set warning and critical thresholds:\n\n",
-               "  It's possible to set thresholds for one or more statistic keys.\n",
-               "  The format to add a threshold for a statistic key is:\n\n",
-               "    key:operator:threshold\n\n",
-               "  If no operator is set then the default operator is 'ge'.\n\n",
-               "  The following operators are available:\n\n",
-               "    lt = less than\n",
-               "    le = less than or equal\n",
-               "    gt = greater than\n",
-               "    ge = greater than or equal\n",
-               "    eq = equal\n",
-               "    ne = not equal\n"
-            ],
             "options" : [
                {
-                  "key" : "getattr",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "null"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "getattr"
                },
                {
                   "key" : "setattr",
                   "unit" : "none"
                },
                {
-                  "key" : "lookup",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "lookup"
                },
                {
                   "unit" : "none",
                   "key" : "access"
                },
                {
-                  "key" : "readlink",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "readlink"
                },
                {
                   "key" : "read",
@@ -63,16 +295,16 @@
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "mknod"
+                  "key" : "mknod",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "remove"
+                  "key" : "remove",
+                  "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "rmdir"
+                  "key" : "rmdir",
+                  "unit" : "none"
                },
                {
                   "unit" : "none",
@@ -83,67 +315,450 @@
                   "key" : "link"
                },
                {
-                  "key" : "readdir",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "readdir"
                },
                {
                   "key" : "readdirplus",
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "fsstat"
+                  "key" : "fsstat",
+                  "unit" : "none"
                },
                {
-                  "key" : "fsinfo",
-                  "unit" : "none"
+                  "unit" : "none",
+                  "key" : "fsinfo"
                },
                {
                   "unit" : "none",
                   "key" : "pathconf"
                },
                {
-                  "key" : "commit",
+                  "unit" : "none",
+                  "key" : "commit"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_write"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_getattr"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_commit"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_readdir"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_fsstat"
+               },
+               {
+                  "key" : "percent_of_rmdir",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_pathconf"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_link"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_mknod"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_readlink"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_symlink"
+               },
+               {
+                  "key" : "percent_of_null",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_remove"
+               },
+               {
+                  "key" : "percent_of_create",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "percent_of_read",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "percent_of_mkdir"
+               },
+               {
+                  "key" : "percent_of_readdirplus",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "percent_of_rename",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "percent_of_fsinfo",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "percent_of_access",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "percent_of_setattr",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "percent_of_lookup",
                   "unit" : "none"
                }
+            ],
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
             ]
-         },
-         "options" : [
-            {
-               "multiple" : 1,
-               "default" : null,
-               "value_desc" : "key:value or key:op:value",
-               "mandatory" : 0,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "name" : "Warning threshold",
-               "value_type" : "string",
-               "option" : "warning"
-            },
-            {
-               "default" : null,
-               "multiple" : 1,
-               "mandatory" : 0,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "value_desc" : "key:value or key:op:value",
-               "option" : "critical",
-               "value_type" : "string",
-               "name" : "Critical threshold"
-            },
-            {
-               "default" : null,
-               "multiple" : 0,
-               "value_type" : 0,
-               "name" : "Check the client instead the server",
-               "description" : "By default the server is checked. Enable this option if you want to check the client instead the server.",
-               "mandatory" : 0,
-               "option" : "client"
-            }
-         ]
+         }
       },
-      "plugin" : "Linux.NFS3.Check",
+      "abstract" : "NFS3 check",
+      "command" : "check-nfs3",
+      "category" : "System,Filesystem,Linux",
+      "description" : "This plugin can check the nfs3 server or nfs3 client.",
       "id" : "30",
       "datatype" : "none",
-      "category" : "System,Filesystem,Linux",
-      "abstract" : "NFS3 check"
-   }
+      "plugin" : "Linux.NFS3.Check"
+   },
+   "statistic" : [
+      {
+         "statkey" : "null",
+         "units" : "default",
+         "datatype" : "float",
+         "alias" : "null",
+         "description" : "Does not do any work. It is made available to allow server response testing and timing."
+      },
+      {
+         "description" : "Retrieves the attributes for a specified file system object.",
+         "alias" : "getattr",
+         "statkey" : "getattr",
+         "units" : "default",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "setattr",
+         "units" : "default",
+         "description" : "Changes one or more of the attributes of a file system object on the server.",
+         "alias" : "setattr"
+      },
+      {
+         "description" : "Searches a directory for a specific name and returns the file handle for the corresponding file system object.",
+         "alias" : "lookup",
+         "statkey" : "lookup",
+         "units" : "default",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "access",
+         "units" : "default",
+         "description" : "Determines the access rights that a user, as identified by the credentials in the request, has with respect to a file system object.",
+         "alias" : "access"
+      },
+      {
+         "datatype" : "float",
+         "units" : "default",
+         "statkey" : "readlink",
+         "description" : "Reads the data associated with a symbolic link.",
+         "alias" : "readlink"
+      },
+      {
+         "alias" : "read",
+         "description" : "READ reads data from a file.",
+         "units" : "default",
+         "statkey" : "read",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "units" : "default",
+         "statkey" : "write",
+         "description" : "WRITE writes data to a file.",
+         "alias" : "write"
+      },
+      {
+         "description" : "CREATE creates a regular file.",
+         "alias" : "create",
+         "datatype" : "float",
+         "statkey" : "create",
+         "units" : "default"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "mkdir",
+         "units" : "default",
+         "description" : "MKDIR creates a new subdirectory.",
+         "alias" : "mkdir"
+      },
+      {
+         "description" : "SYMLINK creates a new symbolic link.",
+         "alias" : "symlink",
+         "statkey" : "symlink",
+         "units" : "default",
+         "datatype" : "float"
+      },
+      {
+         "alias" : "mknod",
+         "description" : "MKNOD creates a new special file of the type, what.type.",
+         "datatype" : "float",
+         "units" : "default",
+         "statkey" : "mknod"
+      },
+      {
+         "statkey" : "remove",
+         "units" : "default",
+         "datatype" : "float",
+         "description" : "REMOVE removes (deletes) an entry from a directory.",
+         "alias" : "remove"
+      },
+      {
+         "description" : "RMDIR removes (deletes) a subdirectory from a directory.",
+         "alias" : "rmdir",
+         "units" : "default",
+         "statkey" : "rmdir",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "rename",
+         "units" : "default",
+         "alias" : "rename",
+         "description" : "RENAME renames the file identified by from.name in the directory, from.dir, to to.name in the di- rectory, to.dir."
+      },
+      {
+         "statkey" : "link",
+         "units" : "default",
+         "datatype" : "float",
+         "description" : "LINK creates a hard link from file to link.name, in the directory, link.dir. file and link.dir must reside on the same file system and server.",
+         "alias" : "link"
+      },
+      {
+         "datatype" : "float",
+         "units" : "default",
+         "statkey" : "readdir",
+         "description" : "READDIR retrieves a variable number of entries, in sequence, from a directory and returns the name and file identifier for each, with information to allow the client to request additional directory entries in a subsequent READDIR request.",
+         "alias" : "readdir"
+      },
+      {
+         "description" : "READDIRPLUS differs from READDIR only in the amount of information returned for each entry.",
+         "alias" : "readdirplus",
+         "units" : "default",
+         "statkey" : "readdirplus",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "fsstat",
+         "units" : "default",
+         "datatype" : "float",
+         "description" : "FSSTAT retrieves volatile file system state information.",
+         "alias" : "fsstat"
+      },
+      {
+         "alias" : "fsinfo",
+         "description" : "FSINFO retrieves nonvolatile file system state information and general information about the NFSv3 protocol server implementation.",
+         "datatype" : "float",
+         "statkey" : "fsinfo",
+         "units" : "default"
+      },
+      {
+         "description" : "PATHCONF retrieves the pathconf information for a file or directory.",
+         "alias" : "pathconf",
+         "datatype" : "float",
+         "units" : "default",
+         "statkey" : "pathconf"
+      },
+      {
+         "description" : "COMMIT forces or flushes data to stable storage that was previously written with a WRITE procedure call with the stable field set to UNSTABLE.",
+         "alias" : "commit",
+         "statkey" : "commit",
+         "units" : "default",
+         "datatype" : "float"
+      },
+      {
+         "units" : "percent",
+         "statkey" : "percent_of_write",
+         "datatype" : "float",
+         "alias" : "write %",
+         "description" : "Percentage of write operations"
+      },
+      {
+         "statkey" : "percent_of_getattr",
+         "units" : "percent",
+         "datatype" : "float",
+         "alias" : "getattr %",
+         "description" : "Percentage of getattr operations"
+      },
+      {
+         "description" : "Percentage of commit operations",
+         "alias" : "commit %",
+         "datatype" : "float",
+         "statkey" : "percent_of_commit",
+         "units" : "percent"
+      },
+      {
+         "description" : "Percentage of readdir operations",
+         "alias" : "readdir %",
+         "datatype" : "float",
+         "statkey" : "percent_of_readdir",
+         "units" : "percent"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "percent_of_fsstat",
+         "units" : "percent",
+         "alias" : "fsstat %",
+         "description" : "Percentage of fsstat operations"
+      },
+      {
+         "units" : "percent",
+         "statkey" : "percent_of_rmdir",
+         "datatype" : "float",
+         "description" : "Percentage of rmdir operations",
+         "alias" : "rmdir %"
+      },
+      {
+         "datatype" : "float",
+         "units" : "percent",
+         "statkey" : "percent_of_pathconf",
+         "alias" : "pathconf %",
+         "description" : "Percentage of pathconf operations"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "percent_of_link",
+         "units" : "percent",
+         "description" : "Percentage of link operations",
+         "alias" : "link %"
+      },
+      {
+         "units" : "percent",
+         "statkey" : "percent_of_mknod",
+         "datatype" : "float",
+         "alias" : "mknod %",
+         "description" : "Percentage of mknod operations"
+      },
+      {
+         "statkey" : "percent_of_readlink",
+         "units" : "percent",
+         "datatype" : "float",
+         "alias" : "readlink %",
+         "description" : "Percentage of readlink operations"
+      },
+      {
+         "alias" : "null %",
+         "description" : "Percentage of null operations",
+         "datatype" : "float",
+         "statkey" : "percent_of_null",
+         "units" : "percent"
+      },
+      {
+         "description" : "Percentage of remove operations",
+         "alias" : "remove %",
+         "statkey" : "percent_of_remove",
+         "units" : "percent",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Percentage of create operations",
+         "alias" : "create %",
+         "statkey" : "percent_of_create",
+         "units" : "percent",
+         "datatype" : "float"
+      },
+      {
+         "description" : "Percentage of read operations",
+         "alias" : "read %",
+         "statkey" : "percent_of_read",
+         "units" : "percent",
+         "datatype" : "float"
+      },
+      {
+         "statkey" : "percent_of_readdirplus",
+         "units" : "percent",
+         "datatype" : "float",
+         "description" : "Percentage of readdirplus operations",
+         "alias" : "readdirplus %"
+      },
+      {
+         "description" : "Percentage of rename operations",
+         "alias" : "rename %",
+         "datatype" : "float",
+         "units" : "percent",
+         "statkey" : "percent_of_rename"
+      },
+      {
+         "alias" : "fsinfo %",
+         "description" : "Percentage of fsinfo operations",
+         "datatype" : "float",
+         "units" : "percent",
+         "statkey" : "percent_of_fsinfo"
+      },
+      {
+         "description" : "Percentage of access operations",
+         "alias" : "access %",
+         "units" : "percent",
+         "statkey" : "percent_of_access",
+         "datatype" : "float"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "percent_of_setattr",
+         "units" : "percent",
+         "description" : "Percentage of setattr operations",
+         "alias" : "setattr %"
+      },
+      {
+         "datatype" : "float",
+         "statkey" : "percent_of_lookup",
+         "units" : "percent",
+         "description" : "Percentage of lookup operations",
+         "alias" : "lookup %"
+      },
+      {
+         "description" : "Percentage of mkdir operations",
+         "alias" : "mkdir %",
+         "statkey" : "percent_of_mkdir",
+         "units" : "percent",
+         "datatype" : "float"
+      },
+      {
+         "units" : "percent",
+         "statkey" : "percent_of_symlink",
+         "datatype" : "float",
+         "alias" : "symlink %",
+         "description" : "Percentage of symlink operations"
+      }
+   ]
 }
