@@ -1,28 +1,28 @@
 {
    "plugin" : {
-      "description" : "Check if a filesystem is mounted",
       "category" : "System,Linux,Filesystem",
       "datatype" : "none",
-      "plugin" : "Linux.Mount.Check",
-      "id" : "73",
-      "abstract" : "Linux find mount",
-      "command" : "check-findmnt",
+      "description" : "Check if a filesystem is mounted",
       "info" : {
+         "version" : "0.1",
          "plugin" : "check-findmnt",
          "options" : [
             {
-               "description" : "The mountpoint to check.",
-               "value_desc" : "path",
-               "option" : "mountpoint",
-               "mandatory" : 1,
-               "value_type" : "string",
-               "name" : "Mountpoint",
                "default" : null,
-               "multiple" : 1
+               "description" : "The mountpoint to check.",
+               "multiple" : 1,
+               "name" : "Mountpoint",
+               "value_type" : "string",
+               "mandatory" : 1,
+               "option" : "mountpoint",
+               "value_desc" : "path"
             }
          ],
-         "version" : "0.1",
          "flags" : ""
-      }
+      },
+      "plugin" : "Linux.Mount.Check",
+      "abstract" : "Linux find mount",
+      "id" : "73",
+      "command" : "check-findmnt"
    }
 }

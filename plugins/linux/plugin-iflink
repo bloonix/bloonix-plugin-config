@@ -1,9 +1,12 @@
 {
    "plugin" : {
+      "plugin" : "Linux.Interface.Check",
+      "command" : "check-iflink",
+      "category" : "System,Network,Linux",
       "info" : {
+         "flags" : "",
          "examples" : [
             {
-               "command_line" : "check-iflink --interface 'eth0' --interface 'eth1'",
                "description" : [
                   "A simple example"
                ],
@@ -12,31 +15,28 @@
                   "eth0",
                   "interface",
                   "eth1"
-               ]
+               ],
+               "command_line" : "check-iflink --interface 'eth0' --interface 'eth1'"
             }
          ],
+         "plugin" : "check-iflink",
          "options" : [
             {
-               "option" : "interface",
                "value_desc" : "interface",
                "value_type" : "string",
-               "multiple" : 1,
+               "description" : "This is the network interface you want to check. As example eth0 or eth1.",
+               "name" : "Network interface",
                "default" : null,
                "mandatory" : 0,
-               "description" : "This is the network interface you want to check. As example eth0 or eth1.",
-               "name" : "Network interface"
+               "multiple" : 1,
+               "option" : "interface"
             }
          ],
-         "flags" : "",
-         "version" : "0.3",
-         "plugin" : "check-iflink"
+         "version" : "0.3"
       },
-      "description" : "Check the link of an interface.",
-      "plugin" : "Linux.Interface.Check",
       "datatype" : "none",
-      "id" : "20",
+      "description" : "Check the link of an interface.",
       "abstract" : "Interface link check",
-      "category" : "System,Network,Linux",
-      "command" : "check-iflink"
+      "id" : "20"
    }
 }

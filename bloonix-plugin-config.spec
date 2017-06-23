@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.43
+Version: 0.46
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,12 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Fri Jun 23 2017 Jonny Schulz <js@bloonix.de> - 0.46-1
+- check-nfs3: different new stats.
+* Fri Jun 09 2017 Jonny Schulz <js@bloonix.de> - 0.45-1
+- check-http: added --http-header.
+* Wed Jan 25 2017 Jonny Schulz <js@bloonix.de> - 0.44-1
+- Fixed stacked area charts with negative values.
 * Tue Dec 20 2016 Jonny Schulz <js@bloonix.de> - 0.43-1
 - check-nf-conntrack: improved chart for count/max
 * Tue Dec 20 2016 Jonny Schulz <js@bloonix.de> - 0.42-1

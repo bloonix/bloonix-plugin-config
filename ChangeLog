@@ -1,3 +1,15 @@
+bloonix-plugin-config (0.46) released at 2017-06-22
+
+    * check-nfs3: different new stats.
+
+bloonix-plugin-config (0.45) released at 2017-06-09
+
+    * check-http: added --http-header.
+
+bloonix-plugin-config (0.44) released at 2017-01-25
+
+    * Fixed stacked area charts with negative values.
+
 bloonix-plugin-config (0.43) released at 2016-12-20
 
     * check-nf-conntrack: improved chart for count/max

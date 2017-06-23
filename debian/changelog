@@ -1,3 +1,21 @@
+bloonix-plugin-config (0.46-1) unstable; urgency=low
+
+    * check-nfs3: different new stats.
+
+ -- Jonny Schulz <js@bloonix.de>  Fri, 23 Jun 2017 14:00:20 +0200
+
+bloonix-plugin-config (0.45-1) unstable; urgency=low
+
+    * check-http: added --http-header.
+
+ -- Jonny Schulz <js@bloonix.de>  Fri, 09 Jun 2017 19:17:35 +0200
+
+bloonix-plugin-config (0.44-1) unstable; urgency=low
+
+    * Fixed stacked area charts with negative values.
+
+ -- Jonny Schulz <js@bloonix.de>  Wed, 25 Jan 2017 19:06:06 +0100
+
 bloonix-plugin-config (0.43-1) unstable; urgency=low
 
     * check-nf-conntrack: improved chart for count/max

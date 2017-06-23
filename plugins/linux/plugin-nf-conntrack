@@ -1,40 +1,57 @@
 {
+   "chart" : [
+      {
+         "id" : "1",
+         "options" : {
+            "series" : [
+               {
+                  "color" : "#dfdfdf",
+                  "name" : "free"
+               },
+               {
+                  "name" : "count",
+                  "color" : "#ff7a0d"
+               }
+            ],
+            "chart-type" : "area",
+            "units" : "null",
+            "ylabel" : "count"
+         },
+         "title" : "NF conntrack count"
+      },
+      {
+         "title" : "NF conntrack used %",
+         "options" : {
+            "series" : {
+               "name" : "usedper",
+               "color" : "#ff7a0d"
+            },
+            "chart-type" : "area",
+            "units" : "null",
+            "ylabel" : "percent"
+         },
+         "id" : "2"
+      }
+   ],
    "plugin" : {
-      "category" : "System,Linux,iptables,nftables",
-      "description" : "Linux netfilter conntrack table check",
       "info" : {
-         "version" : "0.2",
-         "plugin" : "check-nf-conntrack",
          "examples" : [
             {
+               "command_line" : "check-nf-conntrack --warning 'usedper:ge:80' --critical 'usedper:ge:90'",
                "arguments" : [
                   "warning",
                   "usedper:ge:80",
                   "critical",
                   "usedper:ge:90"
                ],
-               "command_line" : "check-nf-conntrack --warning 'usedper:ge:80' --critical 'usedper:ge:90'",
                "description" : [
                   "A simple example"
                ]
             }
          ],
+         "plugin" : "check-nf-conntrack",
          "flags" : "",
          "thresholds" : {
-            "options" : [
-               {
-                  "key" : "count",
-                  "unit" : "none"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "free"
-               },
-               {
-                  "key" : "usedper",
-                  "unit" : "percent"
-               }
-            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -55,96 +72,79 @@
                "    ne = not equal\n",
                "\n",
                "  Allowed units for percent: %\n\n"
+            ],
+            "options" : [
+               {
+                  "key" : "count",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "free"
+               },
+               {
+                  "unit" : "percent",
+                  "key" : "usedper"
+               }
             ]
          },
          "options" : [
             {
+               "value_desc" : "key:value or key:op:value",
+               "default" : null,
+               "name" : "Warning threshold",
                "value_type" : "string",
                "mandatory" : 0,
-               "multiple" : 1,
-               "name" : "Warning threshold",
-               "default" : null,
                "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "option" : "warning",
-               "value_desc" : "key:value or key:op:value"
+               "multiple" : 1,
+               "option" : "warning"
             },
             {
-               "value_desc" : "key:value or key:op:value",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "mandatory" : 0,
                "option" : "critical",
                "multiple" : 1,
-               "name" : "Critical threshold",
-               "default" : null,
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
                "value_type" : "string",
-               "mandatory" : 0
+               "default" : null,
+               "name" : "Critical threshold",
+               "value_desc" : "key:value or key:op:value"
             }
-         ]
+         ],
+         "version" : "0.2"
       },
       "plugin" : "Linux.NF.Conntrack.Check",
-      "id" : "75",
-      "command" : "check-nf-conntrack",
       "datatype" : "statistic",
-      "abstract" : "Netfilter conntrack table check"
+      "description" : "Linux netfilter conntrack table check",
+      "category" : "System,Linux,iptables,nftables",
+      "abstract" : "Netfilter conntrack table check",
+      "command" : "check-nf-conntrack",
+      "id" : "75"
    },
    "statistic" : [
       {
          "statkey" : "max",
-         "alias" : "Max",
+         "description" : "Number of currently allocated flow entries.",
          "datatype" : "bigint",
-         "description" : "Number of currently allocated flow entries."
+         "alias" : "Max"
       },
       {
-         "statkey" : "count",
+         "datatype" : "bigint",
          "alias" : "Count",
-         "datatype" : "bigint",
+         "statkey" : "count",
          "description" : "Number of currently allocated flow entries."
       },
       {
+         "datatype" : "bigint",
          "alias" : "Free",
          "statkey" : "free",
-         "description" : "Free for entries (max - count).",
-         "datatype" : "bigint"
+         "description" : "Free for entries (max - count)."
       },
       {
          "description" : "Currently allocated flow entries in percent (100 * count / max).",
-         "datatype" : "float",
-         "alias" : "Used %",
+         "statkey" : "usedper",
          "units" : "percent",
-         "statkey" : "usedper"
-      }
-   ],
-   "chart" : [
-      {
-         "title" : "NF conntrack count",
-         "options" : {
-            "units" : "null",
-            "series" : [
-               {
-                  "color" : "#dfdfdf",
-                  "name" : "free"
-               },
-               {
-                  "name" : "count",
-                  "color" : "#ff7a0d"
-               }
-            ],
-            "chart-type" : "area",
-            "ylabel" : "count"
-         },
-         "id" : "1"
-      },
-      {
-         "id" : "2",
-         "options" : {
-            "units" : "null",
-            "series" : {
-               "color" : "#ff7a0d",
-               "name" : "usedper"
-            },
-            "chart-type" : "area",
-            "ylabel" : "percent"
-         },
-         "title" : "NF conntrack used %"
+         "datatype" : "float",
+         "alias" : "Used %"
       }
    ]
 }
