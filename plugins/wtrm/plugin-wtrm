@@ -1,83 +1,93 @@
 {
    "chart" : {
-      "title" : "Web transaction - runtime",
+      "id" : "1",
       "options" : {
+         "ylabel" : "time in ms",
          "series" : {
             "name" : "time",
             "color" : "#005467"
          },
-         "ylabel" : "time in ms",
-         "units" : "null",
-         "chart-type" : "area"
+         "chart-type" : "area",
+         "units" : "null"
       },
-      "id" : "1"
+      "title" : "Web transaction - runtime"
    },
    "plugin" : {
-      "plugin" : "WebTransaction",
-      "description" : "Simulation of end-users on the website.",
-      "abstract" : "Web transaction",
-      "datatype" : "statistic",
-      "category" : "HTTP,Webserver",
-      "command" : "check-wtrm",
-      "id" : "58",
-      "netaccess" : "yes",
       "info" : {
          "info" : [
             "Please install PhantomJS on the server where the plugin is exexuted. Install the command phantomjs to /usr/lib/bloonix/bin, /usr/local/lib/bloonix/bin or to a path of the PATH variable.\n\nNote that PhantomJS does not validate SSL certificates. If you want to validate SSL certificates, then use a HTTP check instead."
          ],
-         "plugin" : "check-wtrm",
-         "version" : null,
-         "flags" : "",
          "options" : [
             {
-               "description" : "This is the workflow to simulate end-users on the website.",
-               "value_type" : "array",
-               "name" : "workflow",
-               "value_desc" : "workflow",
-               "default" : null,
-               "option" : "workflow",
                "mandatory" : 1,
-               "multiple" : 0
+               "default" : null,
+               "description" : "This is the workflow to simulate end-users on the website.",
+               "multiple" : 0,
+               "value_type" : "array",
+               "value_desc" : "workflow",
+               "name" : "workflow",
+               "option" : "workflow"
+            },
+            {
+               "mandatory" : 0,
+               "description" : "The ssl protocol version to use for phantomjs (--ssl-protocol).",
+               "multiple" : 0,
+               "default" : "tlsv1",
+               "value_type" : "string",
+               "value_desc" : "proto",
+               "name" : "ssl-protocol",
+               "option" : "ssl-protocol"
             },
             {
                "option" : "warning",
-               "value_desc" : "seconds",
-               "default" : null,
-               "value_type" : "number",
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "name" : "Warning threshold",
+               "value_desc" : "seconds",
+               "value_type" : "number",
+               "default" : null,
                "multiple" : 0,
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "mandatory" : 0
             },
             {
-               "value_desc" : "seconds",
-               "default" : null,
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
-               "value_type" : "number",
-               "name" : "Critical threshold",
-               "option" : "critical",
                "mandatory" : 0,
-               "multiple" : 0
+               "default" : null,
+               "multiple" : 0,
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "value_desc" : "seconds",
+               "value_type" : "number",
+               "option" : "critical",
+               "name" : "Critical threshold"
             },
             {
-               "mandatory" : 0,
-               "multiple" : 0,
-               "default" : 30,
+               "value_type" : "number",
                "value_desc" : "seconds",
                "name" : "Timeout",
-               "value_type" : "number",
+               "option" : "timeout",
+               "mandatory" : 0,
+               "default" : 30,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "option" : "timeout"
+               "multiple" : 0
             }
-         ]
+         ],
+         "plugin" : "check-wtrm",
+         "flags" : "",
+         "version" : null
       },
-      "prefer" : "remote"
+      "datatype" : "statistic",
+      "netaccess" : "yes",
+      "id" : "58",
+      "command" : "check-wtrm",
+      "description" : "Simulation of end-users on the website.",
+      "plugin" : "WebTransaction",
+      "abstract" : "Web transaction",
+      "prefer" : "remote",
+      "category" : "HTTP,Webserver"
    },
    "statistic" : {
+      "alias" : "Execution time",
+      "datatype" : "float",
       "statkey" : "time",
       "description" : "Time in milliseconds to complete the transaction.",
-      "units" : "ms",
-      "alias" : "Execution time",
-      "datatype" : "float"
+      "units" : "ms"
    }
 }

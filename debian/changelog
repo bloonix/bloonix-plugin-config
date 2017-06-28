@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.47-1) unstable; urgency=low
+
+    * check-wtrm: added param --ssl-protocol.
+
+ -- Jonny Schulz <js@bloonix.de>  Wed, 28 Jun 2017 16:29:36 +0200
+
 bloonix-plugin-config (0.46-1) unstable; urgency=low
 
     * check-nfs3: different new stats.

@@ -1,3 +1,7 @@
+bloonix-plugin-config (0.47) released at 2017-06-28
+
+    * check-wtrm: added param --ssl-protocol.
+
 bloonix-plugin-config (0.46) released at 2017-06-22
 
     * check-nfs3: different new stats.
