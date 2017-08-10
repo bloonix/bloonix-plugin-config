@@ -1,38 +1,38 @@
 {
    "plugin" : {
-      "info" : {
-         "version" : "0.2",
-         "options" : [
-            {
-               "value_type" : "string",
-               "option" : "host",
-               "multiple" : 0,
-               "name" : "Hostname or IP address",
-               "value_desc" : "hostname or ip address",
-               "default" : null,
-               "mandatory" : 1,
-               "description" : "A hostname or IP address to connect to."
-            },
-            {
-               "value_desc" : "seconds",
-               "multiple" : 0,
-               "name" : "Timeout",
-               "option" : "timeout",
-               "value_type" : "number",
-               "mandatory" : 0,
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "default" : 30
-            }
-         ],
-         "flags" : "",
-         "plugin" : "check-mtr"
-      },
       "description" : "Monitor the route to a host via MTR.",
       "datatype" : "table",
       "category" : "System,Linux",
-      "id" : "27",
-      "plugin" : "Network.MTR.Check",
       "abstract" : "Traceroute",
+      "info" : {
+         "plugin" : "check-mtr",
+         "version" : "0.2",
+         "flags" : "",
+         "options" : [
+            {
+               "mandatory" : 1,
+               "description" : "A hostname or IP address to connect to.",
+               "option" : "host",
+               "default" : null,
+               "value_desc" : "hostname or ip address",
+               "multiple" : 0,
+               "name" : "Hostname or IP address",
+               "value_type" : "string"
+            },
+            {
+               "default" : 30,
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "option" : "timeout",
+               "mandatory" : 0,
+               "value_type" : "number",
+               "name" : "Timeout",
+               "multiple" : 0,
+               "value_desc" : "seconds"
+            }
+         ]
+      },
+      "plugin" : "Network.MTR.Check",
+      "id" : "27",
       "command" : "check-mtr"
    }
 }

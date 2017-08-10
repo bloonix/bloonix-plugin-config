@@ -1,38 +1,38 @@
 {
    "plugin" : {
-      "plugin" : "Linux.Gluster.Status",
-      "command" : "check-gluster-status",
-      "abstract" : "Linux gluster status",
-      "id" : "74",
-      "datatype" : "none",
+      "category" : "System,Linux,Filesystem",
       "info" : {
-         "version" : "0.1",
+         "flags" : "sudo",
+         "plugin" : "check-gluster-status",
          "options" : [
             {
+               "option" : "number-of-peers",
+               "default" : 1,
                "value_desc" : "num",
                "value_type" : "number",
-               "name" : "Number of peers",
-               "default" : 1,
-               "option" : "number-of-peers",
                "multiple" : 0,
+               "name" : "Number of peers",
                "description" : "The number of connected peers exptected in the cluster.",
                "mandatory" : 1
             },
             {
-               "mandatory" : 0,
-               "description" : "Validate hostnames in the cluster which are allowed to be connected.",
-               "option" : "allowed-peer",
-               "multiple" : 1,
-               "default" : null,
-               "name" : "Allowed peer",
                "value_type" : "string",
-               "value_desc" : "hostname"
+               "multiple" : 1,
+               "value_desc" : "hostname",
+               "default" : null,
+               "option" : "allowed-peer",
+               "description" : "Validate hostnames in the cluster which are allowed to be connected.",
+               "name" : "Allowed peer",
+               "mandatory" : 0
             }
          ],
-         "plugin" : "check-gluster-status",
-         "flags" : "sudo"
+         "version" : "0.1"
       },
-      "category" : "System,Linux,Filesystem",
-      "description" : "Check the number of peers in the cluster"
+      "description" : "Check the number of peers in the cluster",
+      "abstract" : "Linux gluster status",
+      "id" : "74",
+      "command" : "check-gluster-status",
+      "datatype" : "none",
+      "plugin" : "Linux.Gluster.Status"
    }
 }

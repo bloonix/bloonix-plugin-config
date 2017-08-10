@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.47
+Version: 0.48
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,8 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Thu Aug 10 2017 Jonny Schulz <js@bloonix.de> - 0.48-1
+- check-ping: ipv6 is now possible to use without --use-ipv6.
 * Wed Jun 28 2017 Jonny Schulz <js@bloonix.de> - 0.47-1
 - check-wtrm: added param --ssl-protocol.
 * Fri Jun 23 2017 Jonny Schulz <js@bloonix.de> - 0.46-1

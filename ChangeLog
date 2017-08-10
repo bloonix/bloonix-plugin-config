@@ -1,3 +1,7 @@
+bloonix-plugin-config (0.48) released at 2017-08-10
+
+    * check-ping: ipv6 is now possible to use without --use-ipv6.
+
 bloonix-plugin-config (0.47) released at 2017-06-28
 
     * check-wtrm: added param --ssl-protocol.

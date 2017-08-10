@@ -1,56 +1,29 @@
 {
-   "chart" : [
-      {
-         "id" : "1",
-         "options" : {
-            "series" : [
-               {
-                  "color" : "#dfdfdf",
-                  "name" : "free"
-               },
-               {
-                  "name" : "count",
-                  "color" : "#ff7a0d"
-               }
-            ],
-            "chart-type" : "area",
-            "units" : "null",
-            "ylabel" : "count"
-         },
-         "title" : "NF conntrack count"
-      },
-      {
-         "title" : "NF conntrack used %",
-         "options" : {
-            "series" : {
-               "name" : "usedper",
-               "color" : "#ff7a0d"
-            },
-            "chart-type" : "area",
-            "units" : "null",
-            "ylabel" : "percent"
-         },
-         "id" : "2"
-      }
-   ],
    "plugin" : {
       "info" : {
-         "examples" : [
+         "plugin" : "check-nf-conntrack",
+         "options" : [
             {
-               "command_line" : "check-nf-conntrack --warning 'usedper:ge:80' --critical 'usedper:ge:90'",
-               "arguments" : [
-                  "warning",
-                  "usedper:ge:80",
-                  "critical",
-                  "usedper:ge:90"
-               ],
-               "description" : [
-                  "A simple example"
-               ]
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
+               "value_desc" : "key:value or key:op:value",
+               "mandatory" : 0,
+               "value_type" : "string",
+               "multiple" : 1,
+               "default" : null,
+               "option" : "warning",
+               "name" : "Warning threshold"
+            },
+            {
+               "mandatory" : 0,
+               "value_desc" : "key:value or key:op:value",
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "name" : "Critical threshold",
+               "option" : "critical",
+               "default" : null,
+               "multiple" : 1,
+               "value_type" : "string"
             }
          ],
-         "plugin" : "check-nf-conntrack",
-         "flags" : "",
          "thresholds" : {
             "info" : [
                "How to set warning and critical thresholds:\n\n",
@@ -75,76 +48,103 @@
             ],
             "options" : [
                {
-                  "key" : "count",
+                  "unit" : "none",
+                  "key" : "count"
+               },
+               {
+                  "key" : "free",
                   "unit" : "none"
                },
                {
-                  "unit" : "none",
-                  "key" : "free"
-               },
-               {
-                  "unit" : "percent",
-                  "key" : "usedper"
+                  "key" : "usedper",
+                  "unit" : "percent"
                }
             ]
          },
-         "options" : [
+         "version" : "0.2",
+         "flags" : "",
+         "examples" : [
             {
-               "value_desc" : "key:value or key:op:value",
-               "default" : null,
-               "name" : "Warning threshold",
-               "value_type" : "string",
-               "mandatory" : 0,
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "multiple" : 1,
-               "option" : "warning"
-            },
-            {
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "mandatory" : 0,
-               "option" : "critical",
-               "multiple" : 1,
-               "value_type" : "string",
-               "default" : null,
-               "name" : "Critical threshold",
-               "value_desc" : "key:value or key:op:value"
+               "arguments" : [
+                  "warning",
+                  "usedper:ge:80",
+                  "critical",
+                  "usedper:ge:90"
+               ],
+               "description" : [
+                  "A simple example"
+               ],
+               "command_line" : "check-nf-conntrack --warning 'usedper:ge:80' --critical 'usedper:ge:90'"
             }
-         ],
-         "version" : "0.2"
+         ]
       },
-      "plugin" : "Linux.NF.Conntrack.Check",
-      "datatype" : "statistic",
-      "description" : "Linux netfilter conntrack table check",
-      "category" : "System,Linux,iptables,nftables",
       "abstract" : "Netfilter conntrack table check",
       "command" : "check-nf-conntrack",
-      "id" : "75"
+      "datatype" : "statistic",
+      "category" : "System,Linux,iptables,nftables",
+      "id" : "75",
+      "description" : "Linux netfilter conntrack table check",
+      "plugin" : "Linux.NF.Conntrack.Check"
    },
+   "chart" : [
+      {
+         "options" : {
+            "chart-type" : "area",
+            "units" : "null",
+            "ylabel" : "count",
+            "series" : [
+               {
+                  "name" : "free",
+                  "color" : "#dfdfdf"
+               },
+               {
+                  "color" : "#ff7a0d",
+                  "name" : "count"
+               }
+            ]
+         },
+         "id" : "1",
+         "title" : "NF conntrack count"
+      },
+      {
+         "id" : "2",
+         "title" : "NF conntrack used %",
+         "options" : {
+            "units" : "null",
+            "series" : {
+               "color" : "#ff7a0d",
+               "name" : "usedper"
+            },
+            "ylabel" : "percent",
+            "chart-type" : "area"
+         }
+      }
+   ],
    "statistic" : [
       {
          "statkey" : "max",
+         "alias" : "Max",
          "description" : "Number of currently allocated flow entries.",
-         "datatype" : "bigint",
-         "alias" : "Max"
+         "datatype" : "bigint"
       },
       {
          "datatype" : "bigint",
+         "description" : "Number of currently allocated flow entries.",
          "alias" : "Count",
-         "statkey" : "count",
-         "description" : "Number of currently allocated flow entries."
+         "statkey" : "count"
       },
       {
-         "datatype" : "bigint",
          "alias" : "Free",
          "statkey" : "free",
-         "description" : "Free for entries (max - count)."
+         "description" : "Free for entries (max - count).",
+         "datatype" : "bigint"
       },
       {
-         "description" : "Currently allocated flow entries in percent (100 * count / max).",
-         "statkey" : "usedper",
-         "units" : "percent",
          "datatype" : "float",
-         "alias" : "Used %"
+         "description" : "Currently allocated flow entries in percent (100 * count / max).",
+         "units" : "percent",
+         "alias" : "Used %",
+         "statkey" : "usedper"
       }
    ]
 }

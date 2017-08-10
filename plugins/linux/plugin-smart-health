@@ -1,53 +1,53 @@
 {
    "plugin" : {
-      "datatype" : "none",
-      "id" : "39",
-      "description" : "Check the SMART health status of a disk.",
       "info" : {
+         "info" : [
+            "The tool smartctl is needed for this plugin! Please install smartmontools on your server."
+         ],
+         "flags" : "sudo",
          "examples" : [
             {
-               "description" : [
-                  "A simple example to check the health status of /dev/sda"
-               ],
                "command_line" : "check-smart-health --device 'sda'",
                "arguments" : [
                   "device",
                   "sda"
+               ],
+               "description" : [
+                  "A simple example to check the health status of /dev/sda"
                ]
             }
          ],
          "options" : [
             {
-               "value_type" : "string",
-               "mandatory" : 1,
-               "description" : "This is the device name to check.",
-               "multiple" : 1,
-               "name" : "Device name",
+               "default" : null,
                "value_desc" : "device",
                "option" : "device",
-               "default" : null
+               "value_type" : "string",
+               "name" : "Device name",
+               "mandatory" : 1,
+               "description" : "This is the device name to check.",
+               "multiple" : 1
             },
             {
-               "value_type" : "number",
-               "mandatory" : 0,
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "value_desc" : "seconds",
                "multiple" : 0,
+               "mandatory" : 0,
+               "value_desc" : "seconds",
+               "value_type" : "number",
+               "option" : "timeout",
                "name" : "Timeout",
-               "default" : 30,
-               "option" : "timeout"
+               "default" : 30
             }
          ],
-         "info" : [
-            "The tool smartctl is needed for this plugin! Please install smartmontools on your server."
-         ],
-         "version" : "0.3",
-         "flags" : "sudo",
-         "plugin" : "check-smart-health"
+         "plugin" : "check-smart-health",
+         "version" : "0.3"
       },
-      "plugin" : "Linux.Smart.Health",
+      "datatype" : "none",
+      "description" : "Check the SMART health status of a disk.",
       "category" : "System,Disk,Linux",
-      "command" : "check-smart-health",
-      "abstract" : "Smart health"
+      "abstract" : "Smart health",
+      "plugin" : "Linux.Smart.Health",
+      "id" : "39",
+      "command" : "check-smart-health"
    }
 }

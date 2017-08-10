@@ -1,3 +1,9 @@
+bloonix-plugin-config (0.48-1) unstable; urgency=low
+
+    * check-ping: ipv6 is now possible to use without --use-ipv6.
+
+ -- Jonny Schulz <js@bloonix.de>  Thu, 10 Aug 2017 22:47:10 +0200
+
 bloonix-plugin-config (0.47-1) unstable; urgency=low
 
     * check-wtrm: added param --ssl-protocol.

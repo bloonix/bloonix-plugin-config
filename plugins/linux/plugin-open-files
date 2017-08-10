@@ -1,7 +1,32 @@
 {
    "plugin" : {
-      "id" : "33",
+      "description" : "Linux file statistics.",
+      "command" : "check-open-files",
       "info" : {
+         "plugin" : "check-open-files",
+         "options" : [
+            {
+               "description" : "This is the warning threshold for real free file hanlders in percent. If less than this value in percent are free a warning status is triggered.",
+               "value_desc" : "percent",
+               "option" : "warning",
+               "default" : 10,
+               "value_type" : "number",
+               "name" : "Warning threshold",
+               "mandatory" : 0,
+               "multiple" : 0
+            },
+            {
+               "value_desc" : "percent",
+               "description" : "This is the critical threshold for real free file hanlders in percent. If less than this value in percent are free a critical status is triggered.",
+               "default" : 5,
+               "name" : "Critical threshold",
+               "value_type" : "number",
+               "mandatory" : 0,
+               "multiple" : 0,
+               "option" : "critical"
+            }
+         ],
+         "version" : "0.5",
          "examples" : [
             {
                "description" : [
@@ -16,49 +41,65 @@
                ]
             }
          ],
-         "plugin" : "check-open-files",
-         "options" : [
-            {
-               "description" : "This is the warning threshold for real free file hanlders in percent. If less than this value in percent are free a warning status is triggered.",
-               "name" : "Warning threshold",
-               "option" : "warning",
-               "multiple" : 0,
-               "mandatory" : 0,
-               "value_desc" : "percent",
-               "default" : 10,
-               "value_type" : "number"
-            },
-            {
-               "mandatory" : 0,
-               "multiple" : 0,
-               "value_desc" : "percent",
-               "default" : 5,
-               "value_type" : "number",
-               "description" : "This is the critical threshold for real free file hanlders in percent. If less than this value in percent are free a critical status is triggered.",
-               "name" : "Critical threshold",
-               "option" : "critical"
-            }
-         ],
-         "version" : "0.5",
          "flags" : ""
       },
-      "description" : "Linux file statistics.",
       "abstract" : "Open files check",
+      "id" : "33",
       "datatype" : "statistic",
-      "command" : "check-open-files",
       "plugin" : "Linux.OpenFiles.Check",
       "category" : "System,Linux"
    },
+   "statistic" : [
+      {
+         "datatype" : "bigint",
+         "alias" : "FHs allocated",
+         "description" : "Number of allocated file handles.",
+         "statkey" : "fh_alloc"
+      },
+      {
+         "statkey" : "fh_max",
+         "datatype" : "bigint",
+         "description" : "Number of maximum file handles.",
+         "alias" : "FHs maximum"
+      },
+      {
+         "statkey" : "fh_free",
+         "datatype" : "bigint",
+         "description" : "Number of free file handles.",
+         "alias" : "FHs free"
+      },
+      {
+         "statkey" : "nr_free_inodes",
+         "alias" : "Inodes free",
+         "description" : "Number of free inodes.",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Number of allocated inodes.",
+         "alias" : "Inodes allocated",
+         "datatype" : "bigint",
+         "statkey" : "nr_inodes"
+      },
+      {
+         "statkey" : "nr_dentry",
+         "description" : "Number of allocated dentries (directory cache entries).",
+         "alias" : "Dentries allocated",
+         "datatype" : "bigint"
+      },
+      {
+         "description" : "Number of unused dentries (directory cache).",
+         "alias" : "Dentries unused",
+         "datatype" : "bigint",
+         "statkey" : "nr_unused"
+      }
+   ],
    "chart" : {
-      "title" : "Linux - filestats",
       "options" : {
-         "ylabel" : "count",
-         "chart-type" : "area",
          "units" : "default",
          "series" : [
             {
-               "name" : "fh_alloc",
-               "color" : "#005467"
+               "color" : "#005467",
+               "name" : "fh_alloc"
             },
             {
                "name" : "nr_inodes",
@@ -69,59 +110,18 @@
                "name" : "nr_free_inodes"
             },
             {
-               "color" : "#9a72ad",
-               "name" : "nr_dentry"
+               "name" : "nr_dentry",
+               "color" : "#9a72ad"
             },
             {
                "name" : "nr_unused",
                "color" : "#ffb244"
             }
-         ]
+         ],
+         "chart-type" : "area",
+         "ylabel" : "count"
       },
+      "title" : "Linux - filestats",
       "id" : "1"
-   },
-   "statistic" : [
-      {
-         "alias" : "FHs allocated",
-         "statkey" : "fh_alloc",
-         "datatype" : "bigint",
-         "description" : "Number of allocated file handles."
-      },
-      {
-         "description" : "Number of maximum file handles.",
-         "datatype" : "bigint",
-         "alias" : "FHs maximum",
-         "statkey" : "fh_max"
-      },
-      {
-         "description" : "Number of free file handles.",
-         "datatype" : "bigint",
-         "alias" : "FHs free",
-         "statkey" : "fh_free"
-      },
-      {
-         "datatype" : "bigint",
-         "description" : "Number of free inodes.",
-         "alias" : "Inodes free",
-         "statkey" : "nr_free_inodes"
-      },
-      {
-         "alias" : "Inodes allocated",
-         "statkey" : "nr_inodes",
-         "description" : "Number of allocated inodes.",
-         "datatype" : "bigint"
-      },
-      {
-         "description" : "Number of allocated dentries (directory cache entries).",
-         "datatype" : "bigint",
-         "statkey" : "nr_dentry",
-         "alias" : "Dentries allocated"
-      },
-      {
-         "datatype" : "bigint",
-         "description" : "Number of unused dentries (directory cache).",
-         "alias" : "Dentries unused",
-         "statkey" : "nr_unused"
-      }
-   ]
+   }
 }
