@@ -1,21 +1,26 @@
 {
+   "statistic" : {
+      "units" : "ms",
+      "datatype" : "float",
+      "alias" : "Response time",
+      "description" : "Time in milliseconds waiting for response or to login.",
+      "statkey" : "time"
+   },
    "plugin" : {
       "description" : "FTP statistics",
-      "plugin" : "FTP.Check",
-      "abstract" : "FTP check",
-      "command" : "check-ftp",
       "prefer" : "remote",
+      "command" : "check-ftp",
+      "category" : "Network",
+      "abstract" : "FTP check",
       "datatype" : "statistic",
-      "worldwide" : "yes",
-      "netaccess" : "yes",
       "info" : {
          "plugin" : "check-ftp",
          "examples" : [
             {
+               "command_line" : "check-ftp --host 'www.bloonix.de' --warning '3' --critical '5' --username 'bloonix' --password 'secret'",
                "description" : [
                   "A simple FTP login check"
                ],
-               "command_line" : "check-ftp --host 'www.bloonix.de' --warning '3' --critical '5' --username 'bloonix' --password 'secret'",
                "arguments" : [
                   "host",
                   "www.bloonix.de",
@@ -30,101 +35,96 @@
                ]
             }
          ],
+         "version" : "0.3",
+         "flags" : "",
          "options" : [
             {
-               "default" : 3,
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "value_type" : "number",
                "option" : "warning",
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
-               "mandatory" : 0,
+               "name" : "Warning threshold",
                "value_desc" : "seconds",
+               "default" : 3,
                "multiple" : 0,
-               "name" : "Warning threshold"
+               "mandatory" : 0
             },
             {
-               "multiple" : 0,
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
+               "value_type" : "number",
                "name" : "Critical threshold",
-               "mandatory" : 0,
                "value_desc" : "seconds",
-               "value_type" : "number",
-               "default" : 5,
                "option" : "critical",
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered."
+               "mandatory" : 0,
+               "multiple" : 0,
+               "default" : 5
             },
             {
                "value_type" : "number",
-               "default" : 10,
-               "option" : "timeout",
                "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "value_desc" : "seconds",
                "mandatory" : 0,
+               "default" : 10,
                "multiple" : 0,
-               "name" : "Timeout"
+               "value_desc" : "seconds",
+               "name" : "Timeout",
+               "option" : "timeout"
             },
             {
-               "option" : "host",
-               "description" : "A hostname or IP address to connect to.",
-               "default" : null,
                "value_type" : "string",
-               "name" : "Hostname or IP address",
-               "multiple" : 0,
+               "description" : "A hostname or IP address to connect to.",
                "mandatory" : 1,
+               "multiple" : 0,
+               "default" : null,
+               "option" : "host",
+               "name" : "Hostname or IP address",
                "value_desc" : "hostname or ip address"
             },
             {
-               "option" : "username",
                "description" : "The username to use for the login.",
                "value_type" : "string",
-               "default" : null,
+               "value_desc" : "username",
                "name" : "Username",
+               "option" : "username",
                "multiple" : 0,
                "mandatory" : 0,
-               "value_desc" : "username"
+               "default" : null
             },
             {
-               "default" : null,
-               "value_type" : "string",
-               "option" : "password",
-               "description" : "The password for the user to login.",
-               "mandatory" : 0,
                "value_desc" : "password",
+               "name" : "Password",
+               "option" : "password",
                "multiple" : 0,
-               "name" : "Password"
+               "mandatory" : 0,
+               "default" : null,
+               "description" : "The password for the user to login.",
+               "value_type" : "string"
             },
             {
-               "mandatory" : 0,
-               "multiple" : 0,
-               "name" : "Use secure connection via SSL",
                "default" : null,
+               "multiple" : 0,
+               "mandatory" : 0,
                "value_type" : 0,
+               "description" : "Use secure connection via SSL.",
                "option" : "use-ssl",
-               "description" : "Use secure connection via SSL."
+               "name" : "Use secure connection via SSL"
             }
-         ],
-         "version" : "0.3",
-         "flags" : ""
+         ]
       },
-      "category" : "Network",
-      "id" : "6"
+      "worldwide" : "yes",
+      "netaccess" : "yes",
+      "id" : "6",
+      "plugin" : "FTP.Check"
    },
    "chart" : {
-      "options" : {
-         "series" : {
-            "color" : "#005467",
-            "name" : "time"
-         },
-         "ylabel" : "time in ms",
-         "chart-type" : "area",
-         "units" : "null"
-      },
+      "title" : "FTP connect - response time",
       "id" : "1",
-      "title" : "FTP connect - response time"
-   },
-   "statistic" : {
-      "alias" : "Response time",
-      "units" : "ms",
-      "statkey" : "time",
-      "datatype" : "float",
-      "description" : "Time in milliseconds waiting for response or to login."
+      "options" : {
+         "units" : "null",
+         "chart-type" : "area",
+         "series" : {
+            "name" : "time",
+            "color" : "#005467"
+         },
+         "ylabel" : "time in ms"
+      }
    }
 }

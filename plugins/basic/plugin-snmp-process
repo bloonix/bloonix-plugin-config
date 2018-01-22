@@ -1,184 +1,156 @@
 {
    "plugin" : {
-      "id" : "66",
-      "plugin" : "SNMP.ProcessCheck",
-      "abstract" : "Process check",
       "datatype" : "none",
-      "category" : "System,SNMP",
       "info" : {
-         "version" : "0.4",
-         "thresholds" : {
-            "info" : [
-               "How to set warning and critical thresholds:\n\n",
-               "  It's possible to set thresholds for one or more statistic keys.\n",
-               "  The format to add a threshold for a statistic key is:\n\n",
-               "    key:operator:threshold\n\n",
-               "  If no operator is set then the default operator is 'ge'.\n\n",
-               "  The following operators are available:\n\n",
-               "    lt = less than\n",
-               "    le = less than or equal\n",
-               "    gt = greater than\n",
-               "    ge = greater than or equal\n",
-               "    eq = equal\n",
-               "    ne = not equal\n"
-            ],
-            "options" : [
-               {
-                  "key" : "count",
-                  "unit" : "none"
-               }
-            ]
-         },
-         "plugin" : "check-snmp-process",
          "options" : [
             {
-               "multiple" : 0,
-               "option" : "process",
-               "mandatory" : 1,
-               "default" : null,
                "value_type" : "string",
-               "name" : "Process name",
                "value_desc" : "process",
-               "description" : "This is the process name you want to check."
+               "multiple" : 0,
+               "name" : "Process name",
+               "mandatory" : 1,
+               "option" : "process",
+               "description" : "This is the process name you want to check.",
+               "default" : null
             },
             {
+               "multiple" : 0,
                "value_type" : "string",
                "value_desc" : "hostname or ip address",
-               "name" : "Hostname or IP address",
-               "description" : "A hostname or IP address to connect to.",
-               "multiple" : 0,
-               "option" : "host",
                "mandatory" : 0,
-               "default" : "127.0.0.1"
+               "name" : "Hostname or IP address",
+               "option" : "host",
+               "default" : "127.0.0.1",
+               "description" : "A hostname or IP address to connect to."
             },
             {
-               "description" : "A port number to connect to.",
+               "mandatory" : 0,
                "name" : "Port number",
                "value_desc" : "port",
                "value_type" : "int",
-               "option" : "port",
+               "multiple" : 0,
+               "description" : "A port number to connect to.",
                "default" : 161,
-               "mandatory" : 0,
-               "multiple" : 0
+               "option" : "port"
             },
             {
-               "option" : "community",
-               "default" : "public",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "description" : "The SNMP community to connect to the host.",
-               "name" : "SNMP community",
                "value_desc" : "community",
-               "value_type" : "string"
+               "value_type" : "string",
+               "multiple" : 0,
+               "name" : "SNMP community",
+               "mandatory" : 0,
+               "option" : "community",
+               "description" : "The SNMP community to connect to the host.",
+               "default" : "public"
             },
             {
                "default" : 2,
-               "mandatory" : 0,
-               "option" : "snmp-version",
-               "multiple" : 0,
                "description" : "The SNMP version to use to connect to the host.",
+               "option" : "snmp-version",
+               "mandatory" : 0,
                "name" : "SNMP version",
+               "multiple" : 0,
                "value_desc" : "version",
                "value_type" : "string"
             },
             {
-               "value_type" : "string",
+               "description" : "The SNMPv3 username.",
+               "default" : null,
+               "option" : "username",
+               "mandatory" : 0,
                "name" : "SNMPv3 username",
                "value_desc" : "username",
-               "description" : "The SNMPv3 username.",
-               "multiple" : 0,
-               "mandatory" : 0,
-               "default" : null,
-               "option" : "username"
+               "value_type" : "string",
+               "multiple" : 0
             },
             {
-               "value_desc" : "authkey",
-               "name" : "SNMPv3 auth key",
-               "description" : "The SNMPv3 auth key.",
-               "value_type" : "string",
-               "mandatory" : 0,
-               "default" : null,
                "option" : "authkey",
-               "multiple" : 0
+               "default" : null,
+               "description" : "The SNMPv3 auth key.",
+               "multiple" : 0,
+               "value_type" : "string",
+               "value_desc" : "authkey",
+               "mandatory" : 0,
+               "name" : "SNMPv3 auth key"
             },
             {
-               "multiple" : 0,
-               "option" : "authpassword",
-               "mandatory" : 0,
-               "default" : null,
-               "value_type" : "string",
                "value_desc" : "authpassword",
+               "value_type" : "string",
+               "multiple" : 0,
                "name" : "SNMPv3 auth password",
-               "description" : "The SNMPv3 auth password."
+               "mandatory" : 0,
+               "option" : "authpassword",
+               "description" : "The SNMPv3 auth password.",
+               "default" : null
             },
             {
-               "value_type" : "string",
-               "name" : "SNMPv3 auth protocol",
-               "value_desc" : "authprotocol",
+               "option" : "authprotocol",
                "description" : "The SNMPv3 auth protocol.",
+               "default" : null,
+               "value_type" : "string",
+               "value_desc" : "authprotocol",
                "multiple" : 0,
                "mandatory" : 0,
-               "default" : null,
-               "option" : "authprotocol"
+               "name" : "SNMPv3 auth protocol"
             },
             {
-               "value_desc" : "privkey",
-               "name" : "SNMPv3 priv key",
-               "description" : "The SNMPv3 priv key.",
-               "value_type" : "string",
                "option" : "privkey",
-               "mandatory" : 0,
+               "description" : "The SNMPv3 priv key.",
                "default" : null,
-               "multiple" : 0
-            },
-            {
                "value_type" : "string",
-               "value_desc" : "privpassword",
-               "name" : "SNMPv3 priv password",
-               "description" : "The SNMPv3 priv password.",
+               "value_desc" : "privkey",
                "multiple" : 0,
                "mandatory" : 0,
+               "name" : "SNMPv3 priv key"
+            },
+            {
+               "mandatory" : 0,
+               "name" : "SNMPv3 priv password",
+               "multiple" : 0,
+               "value_desc" : "privpassword",
+               "value_type" : "string",
                "default" : null,
+               "description" : "The SNMPv3 priv password.",
                "option" : "privpassword"
             },
             {
-               "mandatory" : 0,
-               "default" : null,
-               "option" : "privprotocol",
                "multiple" : 0,
+               "value_type" : "string",
                "value_desc" : "privprotocol",
                "name" : "SNMPv3 priv protocol",
-               "description" : "The SNMPv3 priv protocol.",
-               "value_type" : "string"
+               "mandatory" : 0,
+               "option" : "privprotocol",
+               "default" : null,
+               "description" : "The SNMPv3 priv protocol."
             },
             {
-               "multiple" : 1,
                "option" : "warning",
-               "mandatory" : 0,
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
                "default" : null,
                "value_type" : "string",
-               "name" : "Warning threshold",
                "value_desc" : "key:value or key:op:value",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information."
+               "multiple" : 1,
+               "mandatory" : 0,
+               "name" : "Warning threshold"
             },
             {
+               "default" : null,
                "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "name" : "Critical threshold",
-               "value_desc" : "key:value or key:op:value",
-               "value_type" : "string",
-               "default" : null,
-               "mandatory" : 0,
                "option" : "critical",
-               "multiple" : 1
+               "name" : "Critical threshold",
+               "mandatory" : 0,
+               "multiple" : 1,
+               "value_type" : "string",
+               "value_desc" : "key:value or key:op:value"
             },
             {
-               "multiple" : 0,
-               "value_type" : 0,
                "description" : "Use the process name as a regex.",
-               "option" : "match",
-               "name" : "Match the process name as regex",
                "default" : null,
-               "mandatory" : 0
+               "name" : "Match the process name as regex",
+               "mandatory" : 0,
+               "value_type" : 0,
+               "option" : "match",
+               "multiple" : 0
             }
          ],
          "examples" : [
@@ -201,11 +173,39 @@
                ]
             }
          ],
-         "flags" : ""
+         "flags" : "",
+         "thresholds" : {
+            "info" : [
+               "How to set warning and critical thresholds:\n\n",
+               "  It's possible to set thresholds for one or more statistic keys.\n",
+               "  The format to add a threshold for a statistic key is:\n\n",
+               "    key:operator:threshold\n\n",
+               "  If no operator is set then the default operator is 'ge'.\n\n",
+               "  The following operators are available:\n\n",
+               "    lt = less than\n",
+               "    le = less than or equal\n",
+               "    gt = greater than\n",
+               "    ge = greater than or equal\n",
+               "    eq = equal\n",
+               "    ne = not equal\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "none",
+                  "key" : "count"
+               }
+            ]
+         },
+         "version" : "0.4",
+         "plugin" : "check-snmp-process"
       },
-      "command" : "check-snmp-process",
-      "netaccess" : "yes",
       "prefer" : "localhost",
-      "description" : "Plugin to check a process over snmp."
+      "netaccess" : "yes",
+      "id" : "66",
+      "plugin" : "SNMP.ProcessCheck",
+      "description" : "Plugin to check a process over snmp.",
+      "category" : "System,SNMP",
+      "abstract" : "Process check",
+      "command" : "check-snmp-process"
    }
 }

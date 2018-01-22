@@ -1,6 +1,6 @@
 Summary: Bloonix configuration files for plugins
 Name: bloonix-plugin-config
-Version: 0.48
+Version: 0.50
 Release: 1%{dist}
 License: Commercial
 Group: Utilities/System
@@ -81,6 +81,10 @@ rm -rf %{buildroot}
 %doc %attr(0444, root, root) %{docdir}/LICENSE
 
 %changelog
+* Mon Jan 22 2018 Jonny Schulz <js@bloonix.de> - 0.50-1
+- New plugins: check-jstat7, check-jstat8, check-jstack
+* Tue Oct 17 2017 Jonny Schulz <js@bloonix.de> - 0.49-1
+- check-typo3-updates: Added new plugin.
 * Thu Aug 10 2017 Jonny Schulz <js@bloonix.de> - 0.48-1
 - check-ping: ipv6 is now possible to use without --use-ipv6.
 * Wed Jun 28 2017 Jonny Schulz <js@bloonix.de> - 0.47-1

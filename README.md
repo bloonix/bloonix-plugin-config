@@ -13,6 +13,10 @@ Ordered by id (desc)
       id   |             plugin              |          command          
     -------+---------------------------------+---------------------------
        200 | Bloonix.Server.Check            | check-bloonix-server
+        79 | Linux.Java8.Jstat               | check-jstat8
+        78 | Linux.Java.Jstack               | check-jstack
+        77 | Linux.Java7.Jstat               | check-jstat7
+        76 | CMS.Typo3.Check                 | check-typo3-updates
         75 | Linux.NF.Conntrack.Check        | check-nf-conntrack
         74 | Linux.Gluster.Status            | check-gluster-status
         73 | Linux.Mount.Check               | check-findmnt

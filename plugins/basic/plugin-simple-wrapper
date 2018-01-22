@@ -1,42 +1,42 @@
 {
    "plugin" : {
-      "category" : "Simple",
-      "plugin" : "Simple.Script",
-      "command" : "check-simple-wrapper",
       "datatype" : "none",
       "netaccess" : "yes",
-      "prefer" : "localhost",
-      "id" : "59",
-      "abstract" : "Simple check script",
       "description" : "Check a service with a simple script.",
+      "category" : "Simple",
+      "plugin" : "Simple.Script",
+      "id" : "59",
+      "prefer" : "localhost",
+      "abstract" : "Simple check script",
       "info" : {
          "examples" : [
             {
+               "description" : [
+                  "Using simple checks is very simple. Just enter the full command:"
+               ],
                "arguments" : [
                   "simple-command",
                   "check_this_or_that -H 127.0.0.1 -w 4 -c 5"
                ],
-               "description" : [
-                  "Using simple checks is very simple. Just enter the full command:"
-               ],
                "command_line" : "check-simple-wrapper --simple-command 'check_this_or_that -H 127.0.0.1 -w 4 -c 5'"
             }
          ],
-         "plugin" : "check-simple-wrapper",
+         "version" : "0.2",
          "options" : [
             {
-               "multiple" : 0,
-               "default" : null,
-               "mandatory" : 1,
-               "value_type" : "string",
-               "name" : "Command",
                "value_desc" : "string",
+               "description" : "Enter the complete command with arguments but without\nthe path to the script. Note that single quotes, backticks\nand backslashes are not allowed characters. Command example:\ncheck_this_or_that -H 127.0.0.1 -w 4 -c 5",
+               "name" : "Command",
+               "value_type" : "string",
                "option" : "simple-command",
-               "description" : "Enter the complete command with arguments but without\nthe path to the script. Note that single quotes, backticks\nand backslashes are not allowed characters. Command example:\ncheck_this_or_that -H 127.0.0.1 -w 4 -c 5"
+               "multiple" : 0,
+               "mandatory" : 1,
+               "default" : null
             }
          ],
          "flags" : "simple",
-         "version" : "0.2"
-      }
+         "plugin" : "check-simple-wrapper"
+      },
+      "command" : "check-simple-wrapper"
    }
 }

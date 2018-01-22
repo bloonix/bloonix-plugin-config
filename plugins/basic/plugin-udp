@@ -1,14 +1,16 @@
 {
    "plugin" : {
-      "netaccess" : "yes",
-      "abstract" : "UDP check",
-      "datatype" : "statistic",
+      "description" : "Check if a UDP server sends a response.",
+      "category" : "Network",
       "prefer" : "remote",
       "info" : {
-         "version" : "0.6",
+         "flags" : "",
          "examples" : [
             {
                "command_line" : "check-udp --host 'udp.server.test' --port '5300' --warning '3' --critical '5' --send 'hello server' --match 'hello client'",
+               "description" : [
+                  "The following example would send the string 'hello server' as UDP request to the server and expects the response 'hello client'. If the response does not match a critical status is triggered."
+               ],
                "arguments" : [
                   "host",
                   "udp.server.test",
@@ -22,101 +24,99 @@
                   "hello server",
                   "match",
                   "hello client"
-               ],
-               "description" : [
-                  "The following example would send the string 'hello server' as UDP request to the server and expects the response 'hello client'. If the response does not match a critical status is triggered."
                ]
             }
          ],
-         "flags" : "",
          "plugin" : "check-udp",
          "options" : [
             {
-               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "multiple" : 0,
+               "value_type" : "number",
+               "name" : "Warning threshold",
+               "mandatory" : 0,
+               "description" : "A value in seconds. When the check takes longer than this time then a warning status is triggered.",
                "default" : 3,
                "value_desc" : "seconds",
-               "name" : "Warning threshold",
-               "option" : "warning",
-               "value_type" : "number",
-               "mandatory" : 0
+               "option" : "warning"
             },
             {
-               "value_desc" : "seconds",
                "default" : 5,
-               "multiple" : 0,
-               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
-               "mandatory" : 0,
-               "value_type" : "number",
-               "option" : "critical",
-               "name" : "Critical threshold"
-            },
-            {
-               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
-               "multiple" : 0,
-               "default" : 10,
                "value_desc" : "seconds",
-               "name" : "Timeout",
-               "option" : "timeout",
+               "option" : "critical",
+               "multiple" : 0,
                "value_type" : "number",
+               "name" : "Critical threshold",
+               "description" : "A value in seconds. When the check takes longer than this time then a critical status is triggered.",
                "mandatory" : 0
             },
             {
+               "value_desc" : "seconds",
+               "default" : 10,
+               "option" : "timeout",
+               "multiple" : 0,
+               "value_type" : "number",
+               "name" : "Timeout",
+               "description" : "A timeout in seconds after its expiration the check is aborted and a critical status is triggered.",
+               "mandatory" : 0
+            },
+            {
+               "multiple" : 0,
+               "name" : "Hostname or IP address",
+               "value_type" : "string",
+               "mandatory" : 1,
+               "description" : "A hostname or IP address to connect to.",
                "default" : null,
                "value_desc" : "hostname or ip address",
-               "description" : "A hostname or IP address to connect to.",
-               "multiple" : 0,
-               "mandatory" : 1,
-               "name" : "Hostname or IP address",
-               "option" : "host",
-               "value_type" : "string"
+               "option" : "host"
             },
             {
-               "name" : "Port number",
+               "value_desc" : "port",
+               "default" : null,
                "option" : "port",
+               "multiple" : 0,
+               "name" : "Port number",
                "value_type" : "int",
                "mandatory" : 1,
-               "description" : "A port number to connect to.",
-               "multiple" : 0,
-               "default" : null,
-               "value_desc" : "port"
+               "description" : "A port number to connect to."
             },
             {
-               "mandatory" : 0,
-               "default" : null,
-               "multiple" : 0,
-               "option" : "use-ipv6",
-               "value_type" : 0,
                "name" : "Use IPv6",
-               "description" : "Use IPv6 to connect to the host."
+               "default" : null,
+               "value_type" : 0,
+               "multiple" : 0,
+               "description" : "Use IPv6 to connect to the host.",
+               "mandatory" : 0,
+               "option" : "use-ipv6"
             },
             {
-               "name" : "Send string",
-               "value_type" : "string",
+               "value_desc" : "string",
+               "default" : null,
                "option" : "send",
-               "mandatory" : 1,
-               "description" : "Send a string to the server.",
                "multiple" : 0,
-               "default" : null,
-               "value_desc" : "string"
+               "value_type" : "string",
+               "name" : "Send string",
+               "mandatory" : 1,
+               "description" : "Send a string to the server."
             },
             {
-               "name" : "Match string",
-               "value_type" : "string",
-               "option" : "match",
-               "mandatory" : 1,
-               "description" : "A string that is expected in the response of the server. If the string is not found then a critical status is triggered.",
-               "multiple" : 0,
                "default" : null,
-               "value_desc" : "regex"
+               "value_desc" : "regex",
+               "option" : "match",
+               "multiple" : 0,
+               "value_type" : "string",
+               "name" : "Match string",
+               "mandatory" : 1,
+               "description" : "A string that is expected in the response of the server. If the string is not found then a critical status is triggered."
             }
-         ]
+         ],
+         "version" : "0.6"
       },
-      "plugin" : "UDP.Check",
-      "description" : "Check if a UDP server sends a response.",
-      "command" : "check-udp",
-      "category" : "Network",
+      "id" : "14",
       "worldwide" : "yes",
-      "id" : "14"
+      "abstract" : "UDP check",
+      "command" : "check-udp",
+      "netaccess" : "yes",
+      "datatype" : "statistic",
+      "plugin" : "UDP.Check"
    }
 }

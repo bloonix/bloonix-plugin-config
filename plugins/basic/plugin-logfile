@@ -1,116 +1,27 @@
 {
    "statistic" : [
       {
-         "alias" : "Warning matches",
-         "description" : "The number of warning matches found in logfile.",
          "units" : "null",
-         "statkey" : "warning",
-         "datatype" : "bigint"
+         "description" : "The number of warning matches found in logfile.",
+         "alias" : "Warning matches",
+         "datatype" : "bigint",
+         "statkey" : "warning"
       },
       {
-         "datatype" : "bigint",
          "units" : "null",
+         "description" : "The number of critical matches found in logfile.",
+         "datatype" : "bigint",
          "statkey" : "critical",
-         "alias" : "Critical matches",
-         "description" : "The number of critical matches found in logfile."
+         "alias" : "Critical matches"
       }
    ],
-   "chart" : {
-      "title" : "Logfile messages",
-      "id" : "1",
-      "options" : {
-         "series" : [
-            {
-               "name" : "critical",
-               "color" : "#005467"
-            },
-            {
-               "name" : "warning",
-               "color" : "#ff7a0d"
-            }
-         ],
-         "chart-type" : "line",
-         "ylabel" : "alerts",
-         "units" : "default"
-      }
-   },
    "plugin" : {
-      "command" : "check-logfile",
-      "datatype" : "statistic",
+      "description" : "Logfile statistics.",
       "category" : "System,Security",
       "id" : "9",
       "info" : {
-         "version" : "0.13",
-         "options" : [
-            {
-               "mandatory" : 0,
-               "value_desc" : "regex",
-               "default" : null,
-               "multiple" : 1,
-               "value_type" : "string",
-               "name" : "Search for warnings",
-               "description" : "Define a regular expression to search for it in the logfile. The warn-counter will be increased with each match.",
-               "option" : "warning"
-            },
-            {
-               "description" : "Set the maximum number of matches that are allowed. If more matches are found then a WARNING is triggered.",
-               "name" : "Trigger a warning after X matches",
-               "value_type" : "string",
-               "option" : "warn-count",
-               "mandatory" : 0,
-               "value_desc" : "count",
-               "default" : 1,
-               "multiple" : 0
-            },
-            {
-               "default" : null,
-               "multiple" : 1,
-               "mandatory" : 0,
-               "value_desc" : "regex",
-               "option" : "critical",
-               "description" : "Define a regular expression to search for it in the logfile. The crit-counter will be increased with each match.",
-               "name" : "Search for critical events",
-               "value_type" : "string"
-            },
-            {
-               "value_desc" : "count",
-               "mandatory" : 0,
-               "multiple" : 0,
-               "default" : 1,
-               "description" : "Set the maximum number of matches that are allowed. If more matches are found then a CRITICAL is triggered.",
-               "name" : "Trigger a critical after X matches",
-               "value_type" : "string",
-               "option" : "crit-count"
-            },
-            {
-               "multiple" : 0,
-               "default" : null,
-               "value_desc" : "filename",
-               "mandatory" : 1,
-               "option" : "logfile",
-               "name" : "Logfile",
-               "description" : "This is the logfile to search for events.",
-               "value_type" : "string"
-            },
-            {
-               "default" : null,
-               "option" : "rotated-file",
-               "multiple" : 0,
-               "value_type" : 0,
-               "mandatory" : 0,
-               "description" : "Enable this option if the check should automatically search rotated log files in the format 'logfile.1'.",
-               "name" : "Include rotated log files"
-            },
-            {
-               "mandatory" : 0,
-               "value_type" : 0,
-               "description" : "It's allowed if the logfile doesn't exist. Otherwise a WARNING is triggered.",
-               "name" : "Permit non existent file",
-               "default" : null,
-               "option" : "permit-non-existent",
-               "multiple" : 0
-            }
-         ],
+         "plugin" : "check-logfile",
+         "flags" : "",
          "examples" : [
             {
                "arguments" : [
@@ -131,19 +42,108 @@
                   "rotated-file",
                   null
                ],
-               "command_line" : "check-logfile --logfile '/var/log/auth.log' --critical 'Did not receive identification string from' --critical 'Failed password for .+ from .+ ssh' --critical 'User .+ from .+ not allowed because not listed in AllowUsers' --critical 'Invalid user .+ from .+' --warn-count '1' --crit-count '2' --rotated-file",
                "description" : [
                   "NOTE: please create the configuration file '/etc/bloonix/agent/check-logfile.conf' on your server and write all logfiles into the file (one logfile per line) that the Bloonix agent is allowed to read!",
                   "",
                   "In this example the logfile /var/log/auth.log is checked for failed login attempts and a critical event is triggered if 3 entries were found. In addition the nightly rotated file (/var/log/auth.log.1) is checked also."
-               ]
+               ],
+               "command_line" : "check-logfile --logfile '/var/log/auth.log' --critical 'Did not receive identification string from' --critical 'Failed password for .+ from .+ ssh' --critical 'User .+ from .+ not allowed because not listed in AllowUsers' --critical 'Invalid user .+ from .+' --warn-count '1' --crit-count '2' --rotated-file"
             }
          ],
-         "flags" : "",
-         "plugin" : "check-logfile"
+         "options" : [
+            {
+               "default" : null,
+               "mandatory" : 0,
+               "value_type" : "string",
+               "option" : "warning",
+               "multiple" : 1,
+               "value_desc" : "regex",
+               "name" : "Search for warnings",
+               "description" : "Define a regular expression to search for it in the logfile. The warn-counter will be increased with each match."
+            },
+            {
+               "value_desc" : "count",
+               "description" : "Set the maximum number of matches that are allowed. If more matches are found then a WARNING is triggered.",
+               "name" : "Trigger a warning after X matches",
+               "option" : "warn-count",
+               "value_type" : "string",
+               "multiple" : 0,
+               "default" : 1,
+               "mandatory" : 0
+            },
+            {
+               "name" : "Search for critical events",
+               "description" : "Define a regular expression to search for it in the logfile. The crit-counter will be increased with each match.",
+               "value_desc" : "regex",
+               "mandatory" : 0,
+               "default" : null,
+               "multiple" : 1,
+               "value_type" : "string",
+               "option" : "critical"
+            },
+            {
+               "value_desc" : "count",
+               "name" : "Trigger a critical after X matches",
+               "description" : "Set the maximum number of matches that are allowed. If more matches are found then a CRITICAL is triggered.",
+               "value_type" : "string",
+               "option" : "crit-count",
+               "multiple" : 0,
+               "default" : 1,
+               "mandatory" : 0
+            },
+            {
+               "multiple" : 0,
+               "value_type" : "string",
+               "option" : "logfile",
+               "default" : null,
+               "mandatory" : 1,
+               "name" : "Logfile",
+               "description" : "This is the logfile to search for events.",
+               "value_desc" : "filename"
+            },
+            {
+               "description" : "Enable this option if the check should automatically search rotated log files in the format 'logfile.1'.",
+               "name" : "Include rotated log files",
+               "value_type" : 0,
+               "option" : "rotated-file",
+               "multiple" : 0,
+               "default" : null,
+               "mandatory" : 0
+            },
+            {
+               "default" : null,
+               "mandatory" : 0,
+               "description" : "It's allowed if the logfile doesn't exist. Otherwise a WARNING is triggered.",
+               "name" : "Permit non existent file",
+               "option" : "permit-non-existent",
+               "value_type" : 0,
+               "multiple" : 0
+            }
+         ],
+         "version" : "0.13"
       },
-      "description" : "Logfile statistics.",
       "plugin" : "Logfile.Check",
-      "abstract" : "Check logfile"
+      "command" : "check-logfile",
+      "abstract" : "Check logfile",
+      "datatype" : "statistic"
+   },
+   "chart" : {
+      "options" : {
+         "ylabel" : "alerts",
+         "chart-type" : "line",
+         "series" : [
+            {
+               "color" : "#005467",
+               "name" : "critical"
+            },
+            {
+               "name" : "warning",
+               "color" : "#ff7a0d"
+            }
+         ],
+         "units" : "default"
+      },
+      "id" : "1",
+      "title" : "Logfile messages"
    }
 }

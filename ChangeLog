@@ -1,3 +1,11 @@
+bloonix-plugin-config (0.50) released at 2018-01-22
+
+    * New plugins: check-jstat7, check-jstat8, check-jstack
+
+bloonix-plugin-config (0.49) released at 2017-10-17
+
+    * check-typo3-updates: Added new plugin.
+
 bloonix-plugin-config (0.48) released at 2017-08-10
 
     * check-ping: ipv6 is now possible to use without --use-ipv6.

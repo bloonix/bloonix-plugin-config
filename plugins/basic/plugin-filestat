@@ -1,8 +1,20 @@
 {
    "plugin" : {
+      "abstract" : "Check filestat",
+      "plugin" : "Filestat.Check",
+      "datatype" : "statistic",
+      "description" : "Check the status of a file.",
+      "id" : "5",
+      "category" : "System,Security",
       "info" : {
          "examples" : [
             {
+               "description" : [
+                  "NOTE: please create the configuration file '/etc/bloonix/agent/check-filestat.conf' on your server and write all file names into the file (one file per line) that the Bloonix agent is allowed to check!",
+                  "",
+                  "In this example the file of /var/log/test.log is checked. If the file size is higher than 1MB a warning is triggered. If the file size is higher than 5MB a critical is triggered."
+               ],
+               "command_line" : "check-filestat --file '/var/log/test.log' --warning 'size:gt:1MB' --critical 'size:gt:5MB'",
                "arguments" : [
                   "file",
                   "/var/log/test.log",
@@ -10,98 +22,54 @@
                   "size:gt:1MB",
                   "critical",
                   "size:gt:5MB"
-               ],
-               "command_line" : "check-filestat --file '/var/log/test.log' --warning 'size:gt:1MB' --critical 'size:gt:5MB'",
-               "description" : [
-                  "NOTE: please create the configuration file '/etc/bloonix/agent/check-filestat.conf' on your server and write all file names into the file (one file per line) that the Bloonix agent is allowed to check!",
-                  "",
-                  "In this example the file of /var/log/test.log is checked. If the file size is higher than 1MB a warning is triggered. If the file size is higher than 5MB a critical is triggered."
                ]
             }
          ],
-         "version" : "0.2",
          "plugin" : "check-filestat",
          "options" : [
             {
-               "value_desc" : "file",
-               "description" : "This is the file name to check.",
                "name" : "Filename",
-               "mandatory" : 1,
+               "description" : "This is the file name to check.",
+               "value_type" : "string",
                "default" : null,
                "option" : "file",
-               "value_type" : "string",
-               "multiple" : 0
+               "multiple" : 0,
+               "value_desc" : "file",
+               "mandatory" : 1
             },
             {
-               "value_desc" : "key:value or key:op:value",
-               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information.",
-               "name" : "Warning threshold",
-               "mandatory" : 0,
                "option" : "warning",
                "default" : null,
                "value_type" : "string",
-               "multiple" : 1
+               "mandatory" : 0,
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1,
+               "name" : "Warning threshold",
+               "description" : "This is the warning threshold. When the value exceeds the threshold a warning status is triggered. Please see the examples for more information."
             },
             {
-               "value_desc" : "key:value or key:op:value",
-               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
-               "name" : "Critical threshold",
-               "option" : "critical",
                "mandatory" : 0,
+               "value_desc" : "key:value or key:op:value",
+               "multiple" : 1,
+               "option" : "critical",
                "default" : null,
                "value_type" : "string",
-               "multiple" : 1
+               "description" : "This is the critical threshold. When the value exceeds the threshold a critical status is triggered. Please see the examples for more information.",
+               "name" : "Critical threshold"
             },
             {
-               "option" : "ignore-missing",
-               "mandatory" : 0,
                "default" : null,
                "name" : "Ignore missing file",
+               "option" : "ignore-missing",
+               "value_type" : 0,
                "multiple" : 0,
                "description" : "Enable this options if it's ok if the file does not exists.",
-               "value_type" : 0
+               "mandatory" : 0
             }
          ],
+         "version" : "0.2",
          "flags" : "",
          "thresholds" : {
-            "options" : [
-               {
-                  "key" : "size",
-                  "unit" : "bytes"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "mode"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "nlink"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "uid"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "gid"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "atime"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "diff_atime"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "mtime"
-               },
-               {
-                  "unit" : "none",
-                  "key" : "diff_mtime"
-               }
-            ],
             "info" : [
                "How to set warning and critical thresholds:\n\n",
                "  It's possible to set thresholds for one or more statistic keys.\n",
@@ -125,81 +93,113 @@
                "    KB = Kilobytes   TB = Terabytes   ZB = Zettabytes\n",
                "    MB = Megabytes   PB = Petabytes   YB = Yottabytes\n",
                "    GB = Gigabytes   EB = Exabytes\n\n"
+            ],
+            "options" : [
+               {
+                  "unit" : "bytes",
+                  "key" : "size"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "mode"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "nlink"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "uid"
+               },
+               {
+                  "key" : "gid",
+                  "unit" : "none"
+               },
+               {
+                  "unit" : "none",
+                  "key" : "atime"
+               },
+               {
+                  "key" : "diff_atime",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "mtime",
+                  "unit" : "none"
+               },
+               {
+                  "key" : "diff_mtime",
+                  "unit" : "none"
+               }
             ]
          }
       },
-      "description" : "Check the status of a file.",
-      "abstract" : "Check filestat",
-      "plugin" : "Filestat.Check",
-      "command" : "check-filestat",
-      "category" : "System,Security",
-      "datatype" : "statistic",
-      "id" : "5"
+      "command" : "check-filestat"
    },
    "chart" : {
-      "id" : "1",
       "title" : "File size",
       "options" : {
-         "units" : "bytes",
          "series" : {
             "name" : "size",
             "color" : "#005467"
          },
          "ylabel" : "size",
-         "chart-type" : "area"
-      }
+         "chart-type" : "area",
+         "units" : "bytes"
+      },
+      "id" : "1"
    },
    "statistic" : [
       {
+         "statkey" : "size",
          "alias" : "File size",
          "datatype" : "float",
-         "description" : "The size of the file in bytes.",
          "units" : "bytes",
-         "statkey" : "size"
+         "description" : "The size of the file in bytes."
       },
       {
-         "statkey" : "mode",
          "description" : "File mode (type and permissions).",
-         "datatype" : "varchar(10)"
+         "datatype" : "varchar(10)",
+         "statkey" : "mode"
       },
       {
-         "description" : "Number of (hard) links to the file.",
+         "datatype" : "bigint",
          "statkey" : "nlink",
-         "datatype" : "bigint"
+         "description" : "Number of (hard) links to the file."
       },
       {
-         "description" : "Numeric user ID of file's owner.",
+         "datatype" : "varchar(10)",
          "statkey" : "uid",
-         "datatype" : "varchar(10)"
+         "description" : "Numeric user ID of file's owner."
       },
       {
          "statkey" : "gid",
-         "description" : "Numeric group ID of file's owner.",
-         "datatype" : "varchar(10)"
+         "datatype" : "varchar(10)",
+         "description" : "Numeric group ID of file's owner."
       },
       {
-         "datatype" : "bigint",
-         "statkey" : "atime",
          "description" : "Last access time in seconds since the epoch.",
+         "statkey" : "atime",
+         "datatype" : "bigint",
          "units" : "unixtime"
       },
       {
-         "units" : "unixtime",
-         "description" : "The time in seconds since the last access to the file.",
          "statkey" : "diff_atime",
-         "datatype" : "bigint"
-      },
-      {
          "datatype" : "bigint",
          "units" : "unixtime",
+         "description" : "The time in seconds since the last access to the file."
+      },
+      {
          "description" : "Last modify time in seconds since the epoch.",
-         "statkey" : "mtime"
+         "statkey" : "mtime",
+         "datatype" : "bigint",
+         "units" : "unixtime"
       },
       {
          "datatype" : "bigint",
          "statkey" : "diff_mtime",
-         "description" : "The time in seconds since the last modification of the file.",
-         "units" : "unixtime"
+         "units" : "unixtime",
+         "description" : "The time in seconds since the last modification of the file."
       }
    ]
 }
